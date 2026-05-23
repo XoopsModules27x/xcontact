@@ -7,6 +7,10 @@ require_once '../../mainfile.php';
 $xoopsOption['template_main'] = 'xcontact_form.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
 require_once __DIR__ . '/include/functions.php';
+require __DIR__ . '/header.php';
+
+$uploadMaxSize = (int)$helper->getConfig('upload_max_size');
+
 xcontact_load_language('main');
 
 $slug    = isset($_GET['slug']) ? preg_replace('/[^a-z0-9\-]/', '', strtolower($_GET['slug'])) : '';
@@ -85,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (int)($_POST['cf_form_id'] ?? 0) ==
                     $allowed = ['jpg','jpeg','png','gif','pdf','doc','docx','xls','xlsx','txt','zip'];
                     if (!in_array($ext, $allowed)) {
                         $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ': ' . _MD_XCONTACT_INVALID_EXT;
-                    } elseif ($_FILES[$fn]['size'] > 5 * 1024 * 1024) {
+                    } elseif ($_FILES[$fn]['size'] > $uploadMaxSize) {
                         $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ': ' . _MD_XCONTACT_FILE_TOO_BIG;
                     } else {
                         xcontact_ensure_upload_dir();
