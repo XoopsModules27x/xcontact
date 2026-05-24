@@ -67,7 +67,6 @@ switch ($op) {
 
         $patKeys   = \array_keys($patterns);
         $patValues = \array_values($patterns);
-        cloneFileFolder(\XCONTACT_PATH);
         try {
             cloneFileFolder(\XCONTACT_PATH);
         } catch (\Throwable $e) {

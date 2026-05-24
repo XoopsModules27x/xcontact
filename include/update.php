@@ -59,6 +59,9 @@ function xoops_module_update_xcontact($module, $prev_version = null):bool
     }
     */
     $ret = xcontact_check_db($module);
+    if (!$ret) {
+        return false;
+    }
 
     include_once __DIR__ . '/install.php';
     $ret = xoops_module_install_xcontact($module);
