@@ -1,11 +1,13 @@
 <?php
 defined('XOOPS_ROOT_PATH') || exit();
+
 if (!defined('_AM_XCONTACT_MENU_MAIN')) {
 define('_AM_XCONTACT_MENU_MAIN',        'Dashboard');
 define('_AM_XCONTACT_MENU_FORMS',       'Form List');
 define('_AM_XCONTACT_MENU_NEW_FORM',    'New Form');
 define('_AM_XCONTACT_MENU_SUBMISSIONS', 'Submissions');
 define('_AM_XCONTACT_MENU_ABOUT',       'About');
+define('_AM_XCONTACT_MENU_CLONE',       'Clone');
 define('_AM_XCONTACT_DASHBOARD',        'xcontact Dashboard');
 define('_AM_XCONTACT_STAT_FORMS',       'Total Forms');
 define('_AM_XCONTACT_STAT_ACTIVE',      'Active Forms');
@@ -174,3 +176,16 @@ define('_AM_XCONTACT_BLOCK_DISPLAY_MODE', 'Display Mode');
 define('_AM_XCONTACT_BLOCK_MODE_LINK',    'Show as link (redirect to form page)');
 define('_AM_XCONTACT_BLOCK_MODE_EMBED',   'Embed form directly in block');
 }
+define('_AM_XCONTACT_MAINTAINEDBY',   'Maintained by');
+// Clone feature
+\define('_AM_XCONTACT_CLONE', 'Clone');
+\define('_AM_XCONTACT_CLONE_DSC', 'Cloning a module has never been this easy! Just type in the name you want for it and hit submit button!');
+\define('_AM_XCONTACT_CLONE_TITLE', 'Clone %s');
+\define('_AM_XCONTACT_CLONE_NAME', 'Choose a name for the new module');
+\define('_AM_XCONTACT_CLONE_NAME_DSC', 'Do not use special characters! <br>Do not choose an existing module dirname or database table name!');
+\define('_AM_XCONTACT_CLONE_INVALIDNAME', 'ERROR: Invalid module name, please try another one!');
+\define('_AM_XCONTACT_CLONE_EXISTS', 'ERROR: Module name already taken, please try another one!');
+\define('_AM_XCONTACT_CLONE_CONGRAT', 'Congratulations! %s was successfully created!<br>You may want to make changes in language files.');
+\define('_AM_XCONTACT_CLONE_IMAGEFAIL', 'Attention, we failed creating the new module logo. Please consider modifying assets/images/logo_module.png manually!');
+\define('_AM_XCONTACT_CLONE_FAIL', 'Sorry, we failed in creating the new clone. Maybe you need to temporarily set write permissions (CHMOD 777) to modules folder and try again.');
+

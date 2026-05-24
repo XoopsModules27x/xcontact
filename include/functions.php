@@ -24,8 +24,9 @@ function xcontact_load_language(string $file): void {
 
 // ── Admin boot ───────────────────────────────────────────────────────────────
 function xcontact_admin_boot(): void {
-    xcontact_load_language('admin');
-    xcontact_load_language('modinfo');
+
+    \xoops_loadLanguage('admin', 'xcontact');
+    \xoops_loadLanguage('modinfo', 'xcontact');
 }
 
 // ── Admin CSS kaydı ──────────────────────────────────────────────────────────

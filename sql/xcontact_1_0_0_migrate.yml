@@ -1,0 +1,65 @@
+xcontact_forms:
+    options: 'ENGINE=InnoDB'
+    columns: 
+        -
+            name: form_id
+            attributes: ' INT(10) UNSIGNED NOT NULL AUTO_INCREMENT '
+        -
+            name: name
+            attributes: ' VARCHAR(255) NOT NULL DEFAULT '''''''' '
+        -
+            name: slug
+            attributes: ' VARCHAR(100) NOT NULL DEFAULT '''''''' '
+        -
+            name: description
+            attributes: ' TEXT NOT NULL '
+        -
+            name: fields
+            attributes: ' LONGTEXT NOT NULL '
+        -
+            name: settings
+            attributes: ' TEXT NOT NULL '
+        -
+            name: is_active
+            attributes: ' TINYINT(1) NOT NULL DEFAULT 1 '
+        -
+            name: created_at
+            attributes: ' INT(10) UNSIGNED NOT NULL DEFAULT 0 '
+    keys:
+        PRIMARY:
+            columns: form_id
+            unique: true
+        slug:
+            columns: slug
+            unique: true
+xcontact_submissions:
+    options: 'ENGINE=InnoDB'
+    columns: 
+        -
+            name: sub_id
+            attributes: ' INT(10) UNSIGNED NOT NULL AUTO_INCREMENT '
+        -
+            name: form_id
+            attributes: ' INT(10) UNSIGNED NOT NULL '
+        -
+            name: data
+            attributes: ' LONGTEXT NOT NULL '
+        -
+            name: ip
+            attributes: ' VARCHAR(45) NOT NULL DEFAULT '''''''' '
+        -
+            name: status
+            attributes: ' TINYINT(1) NOT NULL DEFAULT 0 '
+        -
+            name: created_at
+            attributes: ' INT(10) UNSIGNED NOT NULL DEFAULT 0 '
+    keys:
+        PRIMARY:
+            columns: sub_id
+            unique: true
+        form_id:
+            columns: form_id
+            unique: false
+        status:
+            columns: status
+            unique: false

@@ -1,12 +1,13 @@
 <?php
 defined('XOOPS_ROOT_PATH') || exit();
-// Çift define engellemek için defined() kontrolü
+
 if (!defined('_AM_XCONTACT_MENU_MAIN')) {
 define('_AM_XCONTACT_MENU_MAIN',        'Ana Sayfa');
 define('_AM_XCONTACT_MENU_FORMS',       'Form Listesi');
 define('_AM_XCONTACT_MENU_NEW_FORM',    'Yeni Form');
 define('_AM_XCONTACT_MENU_SUBMISSIONS', 'Gönderiler');
 define('_AM_XCONTACT_MENU_ABOUT',       'Hakkında');
+define('_AM_XCONTACT_MENU_CLONE',       'Clone');
 define('_AM_XCONTACT_DASHBOARD',        'xcontact Kontrol Paneli');
 define('_AM_XCONTACT_STAT_FORMS',       'Toplam Form');
 define('_AM_XCONTACT_STAT_ACTIVE',      'Aktif Form');
@@ -175,3 +176,15 @@ define('_AM_XCONTACT_BLOCK_DISPLAY_MODE', 'Gösterim Modu');
 define('_AM_XCONTACT_BLOCK_MODE_LINK',    'Link olarak göster (forma yönlendir)');
 define('_AM_XCONTACT_BLOCK_MODE_EMBED',   'Formu doğrudan göster (embed)');
 }
+define('_AM_XCONTACT_MAINTAINEDBY',   'Maintained by');
+// Clone feature
+\define('_AM_XCONTACT_CLONE', 'Clone');
+\define('_AM_XCONTACT_CLONE_DSC', 'Cloning a module has never been this easy! Just type in the name you want for it and hit submit button!');
+\define('_AM_XCONTACT_CLONE_TITLE', 'Clone %s');
+\define('_AM_XCONTACT_CLONE_NAME', 'Choose a name for the new module');
+\define('_AM_XCONTACT_CLONE_NAME_DSC', 'Do not use special characters! <br>Do not choose an existing module dirname or database table name!');
+\define('_AM_XCONTACT_CLONE_INVALIDNAME', 'ERROR: Invalid module name, please try another one!');
+\define('_AM_XCONTACT_CLONE_EXISTS', 'ERROR: Module name already taken, please try another one!');
+\define('_AM_XCONTACT_CLONE_CONGRAT', 'Congratulations! %s was successfully created!<br>You may want to make changes in language files.');
+\define('_AM_XCONTACT_CLONE_IMAGEFAIL', 'Attention, we failed creating the new module logo. Please consider modifying assets/images/logo_module.png manually!');
+\define('_AM_XCONTACT_CLONE_FAIL', 'Sorry, we failed in creating the new clone. Maybe you need to temporarily set write permissions (CHMOD 777) to modules folder and try again.');

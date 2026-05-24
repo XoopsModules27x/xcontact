@@ -29,4 +29,5 @@ $adminmenu[] = ['title' => _AM_XCONTACT_MENU_MAIN,        'link' => 'admin/index
 $adminmenu[] = ['title' => _AM_XCONTACT_MENU_FORMS,       'link' => 'admin/forms.php',       'icon' => $pathIcon32 . '/content.png'];
 $adminmenu[] = ['title' => _AM_XCONTACT_MENU_NEW_FORM,    'link' => 'admin/form_edit.php',   'icon' => $pathIcon32 . '/add.png'];
 $adminmenu[] = ['title' => _AM_XCONTACT_MENU_SUBMISSIONS, 'link' => 'admin/submissions.php', 'icon' => $pathIcon32 . '/search.png'];
+$adminmenu[] = ['title' => _AM_XCONTACT_MENU_CLONE,       'link' => 'admin/clone.php',       'icon' => $pathIcon32 . '/page_copy.png'];
 $adminmenu[] = ['title' => _AM_XCONTACT_MENU_ABOUT,       'link' => 'admin/about.php',       'icon' => $pathIcon32 . '/about.png'];

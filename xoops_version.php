@@ -9,32 +9,59 @@
 
 defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
 
-$modversion = [];
-
-$modversion['name']        = _MI_XCONTACT_NAME;
-$modversion['version']     = '1.0.0';
-$modversion['description'] = _MI_XCONTACT_DESC;
-$modversion['author']      = 'Eren Yumak — Aymak';
-$modversion['credits']     = 'Eren Yumak';
-$modversion['license']     = 'GPL 2.0';
-$modversion['official']    = 0;
-$modversion['image']       = 'assets/images/logo.png';
-$modversion['dirname']     = 'xcontact';
-$modversion['hasAdmin']    = 1;
-$modversion['adminindex']  = 'admin/index.php';
-$modversion['adminmenu']   = 'admin/menu.php';
-$modversion['system_menu'] = 1;
-$modversion['hasMain']     = 1;
-
+$modversion = [
+    'name'                => \_MI_XCONTACT_NAME,
+    'version'             => '1.0.0',
+    'description'         => \_MI_XCONTACT_DESC,
+    'author'              => 'Eren Yumak — Aymak',
+    'author_mail'         => '',
+    'author_website_url'  => '',
+    'author_website_name' => '',
+    'credits'             => 'Eren Yumak — Aymak; Goffy',
+    'license'             => 'GPL 2.0 or later',
+    'license_url'         => 'https://www.gnu.org/licenses/gpl-2.0.en.html',
+    'help'                => 'page=help',
+    'release_info'        => 'release_info',
+    'release_file'        => \XOOPS_URL . '/modules/xcontact/docs/release_info file',
+    'release_date'        => '2026/05/24',
+    'manual'              => 'link to manual file',
+    'manual_file'         => \XOOPS_URL . '/modules/xcontact/docs/install.txt',
+    'min_php'             => '8.3',
+    'min_xoops'           => '2.7.0',
+    'min_admin'           => '1.2',
+    'min_db'              => ['mysql' => '8.0', 'mysqli' => '8.0'],
+    'image'               => 'assets/images/logo.png',
+    'dirname'             => \basename(__DIR__),
+    'dirmoduleadmin'      => 'Frameworks/moduleclasses/moduleadmin',
+    'sysicons16'          => '../../Frameworks/moduleclasses/icons/16',
+    'sysicons32'          => '../../Frameworks/moduleclasses/icons/32',
+    'modicons16'          => 'assets/icons/16',
+    'modicons32'          => 'assets/icons/32',
+    'demo_site_url'       => 'https://wedega.com',
+    'demo_site_name'      => 'Wedega Site',
+    'support_url'         => 'https://xoops.org/modules/newbb',
+    'support_name'        => 'Support Forum',
+    'module_website_url'  => 'www.xoops.org',
+    'module_website_name' => 'XOOPS Project',
+    'release'             => '2026-05-24',
+    'module_status'       => 'Beta 1',
+    'system_menu'         => 1,
+    'hasAdmin'            => 1,
+    'hasMain'             => 1,
+    'adminindex'          => 'admin/index.php',
+    'adminmenu'           => 'admin/menu.php',
+    'onInstall'           => 'include/install.php',
+    'onUninstall'         => 'include/uninstall.php',
+    'onUpdate'            => 'include/update.php',
+    'official'            => 0,
+];
+// ------------------- Mysql ------------------- //
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
+// Tables
 $modversion['tables'][0]        = 'xcontact_forms';
 $modversion['tables'][1]        = 'xcontact_submissions';
 
-$modversion['onInstall']   = 'include/install.php';
-$modversion['onUpdate']    = 'include/install.php';
-$modversion['onUninstall'] = 'include/uninstall.php';
-
-// ── Blok ─────────────────────────────────────────────────────────────────────
+// ── Blocks ─────────────────────────────────────────────────────────────────────
 $modversion['blocks'][1] = [
     'file'      => 'xcontact_blocks.php',
     'name'      => _MI_XCONTACT_BLOCK_FORM,
@@ -44,9 +71,23 @@ $modversion['blocks'][1] = [
     'template'  => 'xcontact_block_form.tpl',
 ];
 
-// ── Şablonlar ─────────────────────────────────────────────────────────────────
-$modversion['templates'][1] = ['file' => 'xcontact_index.tpl',      'description' => 'Form listesi'];
-$modversion['templates'][2] = ['file' => 'xcontact_form.tpl',       'description' => 'Form görüntüleme'];
+// ------------------- Templates ------------------- //
+// Admin
+$modversion['templates'] = [
+    // Admin templates
+    ['file' => 'xcontact_admin_about.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'xcontact_admin_clone.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'xcontact_admin_footer.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'xcontact_admin_form_edit.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'xcontact_admin_forms.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'xcontact_admin_header.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'xcontact_admin_index.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'xcontact_admin_sub_view.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'xcontact_admin_submissions.tpl', 'description' => '', 'type' => 'admin'],
+];
+// User
+$modversion['templates'][] = ['file' => 'xcontact_index.tpl',      'description' => 'Form listesi'];
+$modversion['templates'][] = ['file' => 'xcontact_form.tpl',       'description' => 'Form görüntüleme'];
 // Block template templates/blocks/ klasöründe - XOOPS install sırasında otomatik tarar
 
 // ── Modül ayarları ────────────────────────────────────────────────────────────

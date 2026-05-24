@@ -5,7 +5,7 @@
  - implemented namespace (goffy)
  - implemented common class files (goffy)
  - changed from assigning language vars to Smarty (goffy)
-
+ - implemented clone feature (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]
