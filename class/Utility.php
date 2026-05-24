@@ -131,7 +131,7 @@ class Utility
         if (!$exact) {
             // ...search the last occurance of a space...
             $spacepos = \mb_strrpos($truncate, ' ');
-            if (isset($spacepos)) {
+            if (false !== $spacepos) {
                 // ...and cut the text in this position
                 $truncate = \mb_substr($truncate, 0, $spacepos);
             }

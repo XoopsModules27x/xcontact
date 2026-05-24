@@ -89,7 +89,10 @@ function xoops_module_update_xcontact($module, $prev_version = null):bool
 
     //create copy for XOOPS 2.5.11 Beta 1 and older versions
     $fileYaml2 = \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . "/sql/{$moduleDirName}_{$moduleVersionOld}_migrate.yml";
-    \copy($fileYaml, $fileYaml2);
+    if (!\copy($fileYaml, $fileYaml2)) {
+        \xoops_error("Error: Failed to copy migration file to {$fileYaml2}");
+        return false;
+    }
 
     // run standard procedure for db migration
     $migrate->synchronizeSchema();

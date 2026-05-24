@@ -63,5 +63,5 @@ $GLOBALS['xoopsTpl']->assign('modPathIcon16', $modPathIcon16);
 $GLOBALS['xoopsTpl']->assign('modPathIcon32', $modPathIcon32);
 
 $adminObject = \Xmf\Module\Admin::getInstance();
-$style = \XCONTACT_URL . '/assets/css/admin/style.css';
+$style = \XCONTACT_URL . '/assets/css/admin.css';
 $GLOBALS['xoTheme']->addStylesheet($style, null);

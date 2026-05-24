@@ -47,9 +47,9 @@ switch ($op) {
         if (!$GLOBALS['xoopsSecurity']->check()) {
             \redirect_header('clone.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
-        $clone = Request::getString('clone', '', 'POST');
-        //check if name is valid
-        if (empty($clone) || \preg_match('/[^a-zA-Z0-9\_\-]/', $clone)) {
+        $clone = \mb_strtolower(Request::getString('clone', '', 'POST'));
+        // check if name is valid
+        if (!\preg_match('/^[a-z][a-z0-9_]*$/', $clone)) {
             \redirect_header('clone.php', 3, \sprintf(\_AM_XCONTACT_CLONE_INVALIDNAME, $clone));
         }
 
@@ -60,14 +60,19 @@ switch ($op) {
         }
 
         $patterns = [
-            \mb_strtolower(\XCONTACT_DIRNAME)           => \mb_strtolower($clone),
+            \mb_strtolower(\XCONTACT_DIRNAME)           => $clone,
             \mb_strtoupper(\XCONTACT_DIRNAME)           => \mb_strtoupper($clone),
-            \ucfirst(\mb_strtolower(\XCONTACT_DIRNAME)) => \ucfirst(\mb_strtolower($clone)),
+            \ucfirst(\mb_strtolower(\XCONTACT_DIRNAME)) => \ucfirst($clone),
         ];
 
         $patKeys   = \array_keys($patterns);
         $patValues = \array_values($patterns);
         cloneFileFolder(\XCONTACT_PATH);
+        try {
+            cloneFileFolder(\XCONTACT_PATH);
+        } catch (\Throwable $e) {
+            \redirect_header('clone.php', 3, \_AM_XCONTACT_CLONE_FAIL . ': ' . $e->getMessage());
+        }
         $logocreated = createLogo(\mb_strtolower($clone));
 
         //change module name in modinfo.php

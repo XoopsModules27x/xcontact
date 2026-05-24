@@ -95,7 +95,7 @@ class FileChecker
         $crc1 = \hash_file('crc32b', $file1_path);
         $crc2 = \hash_file('crc32b', $file2_path);
 
-        return $crc1 === $crc2;
+        return false !== $crc1 && false !== $crc2 && $crc1 === $crc2;
     }
 
     /**

@@ -275,7 +275,7 @@ class Resizer
                 \imagegif($dest, $this->endFile);
                 break;
             default:
-                \imagejpeg($dest, $this->endFile);
+                \imagejpeg($dest, $this->endFile, $this->jpgQuality);
         }
 
         \imagedestroy($src);

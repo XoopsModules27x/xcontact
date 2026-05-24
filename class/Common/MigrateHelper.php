@@ -53,7 +53,7 @@ class MigrateHelper
      */
     public function createSchemaFromSqlfile(): bool
     {
-        if (!\file_exists($this->fileSql)) {
+        if (!\is_file($this->fileSql) || !\is_readable($this->fileSql)) {
             \xoops_error('Error: Sql file not found!');
             return false;
         }
@@ -64,6 +64,10 @@ class MigrateHelper
 
         // read sql file
         $lines = \file($this->fileSql);
+        if (false === $lines) {
+            \xoops_error('Error: Unable to read sql file!');
+            return false;
+        }
 
         // remove unnecessary lines
         foreach ($lines as $key => $value) {

@@ -69,7 +69,9 @@ function xoops_module_install_xcontact(\XoopsModule $module): bool
     if ($configurator->uploadFolders && \is_array($configurator->uploadFolders)) {
         foreach (\array_keys($configurator->uploadFolders) as $i) {
             $utility::createFolder($configurator->uploadFolders[$i]);
-            chmod($configurator->uploadFolders[$i], 0777);
+            if (\is_dir($configurator->uploadFolders[$i])) {
+                chmod($configurator->uploadFolders[$i], 0755);
+            }
         }
     }
 

@@ -57,5 +57,5 @@ return (object)[
     ],
     'moduleStats'  => [
     ],
-    'modCopyright' => "<a href='https://xoops.org' title='XOOPS Project' target='_blank' rel='noopener noreferrer'><img src='" . \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . "/assets/images/logo/logoModule.png' alt='XOOPS Project'></a>",
+    'modCopyright' => "<a href='https://xoops.org' title='XOOPS Project' target='_blank' rel='noopener noreferrer'><img src='" . \XOOPS_URL . '/modules/' . $moduleDirName . "/assets/images/logo/logoModule.png' alt='XOOPS Project'></a>",
 ];

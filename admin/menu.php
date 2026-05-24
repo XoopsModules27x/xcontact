@@ -6,8 +6,9 @@
 $path = dirname(__DIR__, 3);
 $pathLanguage = XOOPS_ROOT_PATH . '/modules/xcontact/language/';
 
-if (file_exists($fileinc = $pathLanguage . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/' . 'admin.php')) {
-    $fileinc = $pathLanguage . '/language/english/main.php';
+$fileinc = $pathLanguage . $GLOBALS['xoopsConfig']['language'] . '/admin.php';
+if (!file_exists($fileinc)) {
+    $fileinc = $pathLanguage . 'english/admin.php';
 }
 include_once $fileinc;
 
