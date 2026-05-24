@@ -3,17 +3,14 @@
  * xcontact — Admin menu
  */
 
-// Dil dosyasını menu.php içinde yükle (XOOPS menu.php'yi erken çağırır)
-$langFile = XOOPS_ROOT_PATH . '/modules/xcontact/language/turkish/admin.php';
-if (!defined('_AM_XCONTACT_MENU_MAIN')) {
-    if (defined('_LANGCODE') && _LANGCODE !== 'turkish') {
-        $altLang = XOOPS_ROOT_PATH . '/modules/xcontact/language/' . _LANGCODE . '/admin.php';
-        if (file_exists($altLang)) require_once $altLang;
-        else require_once $langFile;
-    } else {
-        require_once $langFile;
-    }
+$path = dirname(__DIR__, 3);
+$pathLanguage = XOOPS_ROOT_PATH . '/modules/xcontact/language/';
+
+if (file_exists($fileinc = $pathLanguage . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/' . 'admin.php')) {
+    $fileinc = $pathLanguage . '/language/english/main.php';
 }
+include_once $fileinc;
+
 if (!defined('_AM_XCONTACT_MENU_MAIN')) {
     // Fallback: sabit string
     define('_AM_XCONTACT_MENU_MAIN',        'Ana Sayfa');

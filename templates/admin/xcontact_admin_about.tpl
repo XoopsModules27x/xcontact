@@ -4,7 +4,7 @@
         <tr><th><{$xcf_about_mod_name}></th><td>xcontact</td></tr>
         <tr><th><{$xcf_about_version}></th><td>1.0.0</td></tr>
         <tr><th><{$xcf_about_author}></th><td>Eren Yumak — Aymak</td></tr>
-        <tr><th><{$xcf_about_web}></th><td><a href="https://aymak.net" target="_blank">aymak.net</a></td></tr>
+        <tr><th><{$xcf_about_web}></th><td><a href="https://aymak.net" target="_blank" rel="noopener noreferrer">aymak.net</a></td></tr>
         <tr><th><{$xcf_about_license}></th><td>GPL 2.0</td></tr>
         <tr><th><{$xcf_about_compat}></th><td>XOOPS 2.7.0+</td></tr>
     </table>

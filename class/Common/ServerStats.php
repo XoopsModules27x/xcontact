@@ -25,7 +25,7 @@ trait ServerStats
     public static function getServerStats(): string
     {
         $moduleDirName      = self::consumerDirnameForStats();
-        $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
+        //$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
         \xoops_loadLanguage('common', $moduleDirName);
         $html = '';
         //        $sql   = 'SELECT metavalue';

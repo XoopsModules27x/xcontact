@@ -99,7 +99,9 @@ class Resizer
             // Copy and resize old image into new image.
             \imagecopyresampled($tmpimg, $img, 0, 0, 0, 0, (int)$new_width, (int)$new_height, (int)$width, (int)$height);
 
-            \unlink($this->endFile);
+            if (\is_file($this->endFile)) {
+                \unlink($this->endFile);
+            }
             //compressing the file
             switch ($this->imageMimetype) {
                 case 'image/png':
@@ -194,6 +196,8 @@ class Resizer
 
     public function mergeImage(): void
     {
+        $dest = null;
+        $src = null;
         switch ($this->imageMimetype) {
             case 'image/png':
                 $dest = \imagecreatefrompng($this->endFile);
@@ -203,8 +207,17 @@ class Resizer
                 $dest = \imagecreatefromjpeg($this->endFile);
                 $src = \imagecreatefromjpeg($this->sourceFile);
                 break;
-            // ... etc
+            case 'image/gif':
+                $dest = \imagecreatefromgif($this->endFile);
+                $src = \imagecreatefromgif($this->sourceFile);
+                break;
+            default:
+                return; // Unsupported format
         }
+        if (!$dest || !$src) {
+            return;
+        }
+
         if (4 == $this->mergeType) {
             $imgWidth  = (int)\round($this->maxWidth / 2 - 1);
             $imgHeight = (int)\round($this->maxHeight / 2 - 1);
@@ -253,7 +266,17 @@ class Resizer
                     break;
             }
         }
-        \imagejpeg($dest, $this->endFile);
+
+        switch ($this->imageMimetype) {
+            case 'image/png':
+                \imagepng($dest, $this->endFile);
+                break;
+            case 'image/gif':
+                \imagegif($dest, $this->endFile);
+                break;
+            default:
+                \imagejpeg($dest, $this->endFile);
+        }
 
         \imagedestroy($src);
         \imagedestroy($dest);

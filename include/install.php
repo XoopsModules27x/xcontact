@@ -1,63 +1,103 @@
-<?php
-if (!defined('XOOPS_ROOT_PATH')) { exit(); }
+<?php declare(strict_types=1);
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
 
-$db        = XoopsDatabaseFactory::getDatabaseConnection();
-$tblBlocks = $db->prefix('newblocks');
-$tblFile   = $db->prefix('tplfile');
-$tblSource = $db->prefix('tplsource');
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
 
-// 1. Upload klasörü
-$uploadDir = XOOPS_ROOT_PATH . '/uploads/xcontact';
-if (!is_dir($uploadDir)) {
-    mkdir($uploadDir, 0755, true);
-    file_put_contents($uploadDir . '/index.html', '<html><body></body></html>');
-}
+/**
+ * Xcontact module for xoops
+ *
+ * @copyright      module for xoops
+ * @license         GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
+ */
 
-// 2. newblocks kaydını düzelt
-$db->queryF("UPDATE `{$tblBlocks}` SET
-    func_file = 'xcontact_blocks.php',
-    show_func = 'xcontact_block_form',
-    edit_func = 'xcontact_block_form_edit',
-    template  = 'xcontact_block_form.tpl'
-    WHERE dirname = 'xcontact'"
-);
+use XoopsModules\Xcontact;
+use XoopsModules\Xcontact\{
+    Common,
+    Constants
+};
 
-// 3. tplfile: prefix'siz, type=block
-$db->queryF("UPDATE `{$tblFile}` SET
-    tpl_file = 'xcontact_block_form.tpl',
-    tpl_type = 'block'
-    WHERE tpl_module = 'xcontact'
-    AND tpl_file IN ('blocks/xcontact_block_form.tpl','xcontact_block_form.tpl')"
-);
+/**
+ * @param \XoopsModule $module
+ * @return bool
+ */
+function xoops_module_pre_install_xcontact(\XoopsModule $module): bool
+{
+    require \dirname(__DIR__) . '/preloads/autoloader.php';
 
-// 4. tplsource: fiziksel dosyadan güncelle
-$tplPath = XOOPS_ROOT_PATH . '/modules/xcontact/templates/blocks/xcontact_block_form.tpl';
-if (file_exists($tplPath)) {
-    $src = $db->escape(file_get_contents($tplPath));
-    $now = time();
-    $res = $db->query("SELECT tpl_id FROM `{$tblFile}` WHERE tpl_module='xcontact' AND tpl_file='xcontact_block_form.tpl' ORDER BY tpl_id ASC LIMIT 1");
-    if ($res && ($row = $db->fetchArray($res))) {
-        $tid = (int)$row['tpl_id'];
-        $sc  = $db->query("SELECT tpl_id FROM `{$tblSource}` WHERE tpl_id='{$tid}' LIMIT 1");
-        if ($sc && $db->getRowsNum($sc) > 0) {
-            $db->queryF("UPDATE `{$tblSource}` SET tpl_source='{$src}' WHERE tpl_id='{$tid}'");
-        } else {
-            $db->queryF("INSERT INTO `{$tblSource}` (tpl_id,tpl_source) VALUES ('{$tid}','{$src}')");
+    $utility = new Xcontact\Utility();
+
+    //check for minimum XOOPS version
+    $xoopsSuccess = $utility::checkVerXoops($module);
+
+    // check for minimum PHP version
+    $phpSuccess = $utility::checkVerPhp($module);
+
+    if ($xoopsSuccess && $phpSuccess) {
+        $moduleTables = &$module->getInfo('tables');
+        foreach ($moduleTables as $table) {
+            $GLOBALS['xoopsDB']->queryF('DROP TABLE IF EXISTS ' . $GLOBALS['xoopsDB']->prefix($table) . ';');
         }
-        $db->queryF("UPDATE `{$tblFile}` SET tpl_lastmodified='{$now}' WHERE tpl_id='{$tid}'");
     }
+
+    return $xoopsSuccess && $phpSuccess;
 }
 
-// 5. Smarty compile cache temizle
-foreach ([
-    XOOPS_ROOT_PATH . '/../xoops_data/caches/smarty_compile',
-    XOOPS_ROOT_PATH . '/xoops_data/caches/smarty_compile',
-] as $dir) {
-    if (!is_dir($dir)) continue;
-    foreach (new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
-        RecursiveIteratorIterator::CHILD_FIRST
-    ) as $f) {
-        if ($f->isFile() && $f->getExtension() === 'php') @unlink($f->getPathname());
+/**
+ * @param \XoopsModule $module
+ * @return bool
+ */
+function xoops_module_install_xcontact(\XoopsModule $module): bool
+{
+    require \dirname(__DIR__) . '/preloads/autoloader.php';
+
+    $helper       = Xcontact\Helper::getInstance();
+    $utility      = new Xcontact\Utility();
+    $configurator = new Common\Configurator();
+
+    // Load language files
+    $helper->loadLanguage('admin');
+    $helper->loadLanguage('modinfo');
+    $helper->loadLanguage('common');
+
+    //  ---  CREATE FOLDERS ---------------
+    if ($configurator->uploadFolders && \is_array($configurator->uploadFolders)) {
+        foreach (\array_keys($configurator->uploadFolders) as $i) {
+            $utility::createFolder($configurator->uploadFolders[$i]);
+            chmod($configurator->uploadFolders[$i], 0777);
+        }
     }
+
+    //  ---  COPY blank.gif FILES ---------------
+    if ($configurator->copyBlankFiles && \is_array($configurator->copyBlankFiles)) {
+        $file = \dirname(__DIR__) . '/assets/images/blank.gif';
+        foreach (\array_keys($configurator->copyBlankFiles) as $i) {
+            $dest = $configurator->copyBlankFiles[$i] . '/blank.gif';
+            $utility::copyFile($file, $dest);
+        }
+    }
+
+    // Smarty compile cache temizle
+    foreach ([
+                 XOOPS_ROOT_PATH . '/../xoops_data/caches/smarty_compile',
+                 XOOPS_ROOT_PATH . '/xoops_data/caches/smarty_compile',
+             ] as $dir) {
+        if (!is_dir($dir)) continue;
+        foreach (new RecursiveIteratorIterator(
+                     new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
+                     RecursiveIteratorIterator::CHILD_FIRST
+                 ) as $f) {
+            if ($f->isFile() && $f->getExtension() === 'php') @unlink($f->getPathname());
+        }
+    }
+
+    return true;
 }
+
+
+

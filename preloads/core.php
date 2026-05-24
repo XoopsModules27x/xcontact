@@ -30,6 +30,6 @@ class XcontactCorePreload extends \XoopsPreloadItem
      */
     public static function eventCoreIncludeCommonEnd($args)
     {
-        require __DIR__ . '/autoloader.php';
+        require_once __DIR__ . '/autoloader.php';
     }
 }

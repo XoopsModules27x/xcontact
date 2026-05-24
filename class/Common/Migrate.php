@@ -29,7 +29,7 @@ class Migrate extends \Xmf\Database\Migrate
      * Migrate constructor.
      * @param Configurator|null $configurator
      */
-    public function __construct(?Common\Configurator $configurator = null)
+    public function __construct(?Configurator $configurator = null)
     {
         if (null !== $configurator) {
             $this->renameTables = $configurator->renameTables;

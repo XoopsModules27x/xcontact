@@ -58,14 +58,16 @@ class Configurator
      */
     public function __construct($dir = null)
     {
-        //        $moduleDirName      = \basename(\dirname(__DIR__, 2));
-        //        $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
+        $resolvedBaseDir = '' !== rtrim((string)$dir, '/\\')
+                    ? rtrim((string)$dir, '/\\')
+                    : \dirname(__DIR__, 2);
+        $this->baseDir = $resolvedBaseDir;
 
-        //        require \dirname(__DIR__, 2) . '/config/config.php';
-        //        $config = getConfig();
-
-        $this->baseDir = rtrim((string)$dir, '/\\');
-        $config = require $this->baseDir . '/config/config.php';
+        $configFile = $this->baseDir . '/config/config.php';
+        if (!\is_file($configFile)) {
+            throw new \RuntimeException('Missing config file: ' . $configFile);
+        }
+        $config = require $configFile;
 
         $this->name            = (string)$config->name;
         // $this->paths           = $config->paths;
@@ -80,8 +82,13 @@ class Configurator
         $this->moduleStats     = (array)$config->moduleStats;
         $this->modCopyright    = (string)$config->modCopyright;
 
-        $this->icons = (array)require $this->baseDir . '/config/icons.php';
-        $this->paths = (array)require $this->baseDir . '/config/paths.php';
+        $iconsFile = $this->baseDir . '/config/icons.php';
+        $pathsFile = $this->baseDir . '/config/paths.php';
+        if (!\is_file($iconsFile) || !\is_file($pathsFile)) {
+            throw new \RuntimeException('Missing icons/paths config files in ' . $this->baseDir . '/config');
+        }
+        $this->icons = (array)require $iconsFile;
+        $this->paths = (array)require $pathsFile;
     }
 
     public function getPath(string $key): ?string

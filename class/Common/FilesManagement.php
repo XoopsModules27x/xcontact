@@ -107,7 +107,8 @@ trait FilesManagement
 
         // Check for symlinks
         if (\is_link($source)) {
-            return \symlink(\readlink($source), $dest);
+            $target = \readlink($source);
+            return false !== $target && \symlink($target, $dest);
         }
 
         // Simple copy for a file

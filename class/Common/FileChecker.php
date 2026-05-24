@@ -91,10 +91,11 @@ class FileChecker
         if (\filesize($file1_path) !== \filesize($file2_path)) {
             return false;
         }
-        $crc1 = \mb_strtoupper(\dechex(\crc32(file_get_contents($file1_path))));
-        $crc2 = \mb_strtoupper(\dechex(\crc32(file_get_contents($file2_path))));
 
-        return !($crc1 !== $crc2);
+        $crc1 = \hash_file('crc32b', $file1_path);
+        $crc2 = \hash_file('crc32b', $file2_path);
+
+        return $crc1 === $crc2;
     }
 
     /**

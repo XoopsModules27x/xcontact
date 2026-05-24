@@ -48,12 +48,13 @@ class ModuleFeedback extends \XoopsObject
      * @static function &getInstance
      *
      */
-    public static function getInstance(): void
+    public static function getInstance(): self
     {
         static $instance = false;
         if (!$instance) {
             $instance = new self();
         }
+        return $instance;
     }
 
     /**
@@ -108,10 +109,10 @@ class ModuleFeedback extends \XoopsObject
         $editorConfigs['height'] = '400px';
         /** @var \XoopsModuleHandler $moduleHandler */
         $moduleHandler = \xoops_getHandler('module');
-        $module        = $moduleHandler->getByDirname('system');
+        $systemModule  = $moduleHandler->getByDirname('system');
         /** @var \XoopsConfigHandler $configHandler */
         $configHandler           = \xoops_getHandler('config');
-        $config                  = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
+        $config                  = $configHandler->getConfigsByCat(0, $systemModule->getVar('mid'));
         $editorConfigs['editor'] = $config['general_editor'];
         $editor                  = new \XoopsFormEditor($this->constantValue($moduleDirNameUpper, 'FB_TYPE_CONTENT', 'Message'), 'fb_content', $editorConfigs);
         $form->addElement($editor, true);

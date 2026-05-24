@@ -8,7 +8,7 @@
     <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #f0f0f0">
         <div style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;margin-bottom:3px"><{if isset($fmap[$k])}><{$fmap[$k]}><{else}><{$k}><{/if}></div>
         <div style="font-size:13px;color:#222;background:#f8f9fa;padding:8px 10px;border-radius:4px;word-break:break-all">
-            <{if $v|is_array}><{$v|implode:', '}><{else}><{$v|nl2br}><{/if}>
+            <{if $v|is_array}><{$v|implode:', '|escape}><{else}><{$v|escape|nl2br}><{/if}>
         </div>
     </div>
     <{/foreach}>
