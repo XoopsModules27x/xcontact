@@ -59,7 +59,7 @@ class Configurator
     public function __construct($dir = null)
     {
         $dir = rtrim((string)$dir, '/\\');
-        $resolvedBaseDir = '' !== $dir ? $dir : \\dirname(__DIR__, 2);
+        $resolvedBaseDir = '' !== $dir ? $dir : \dirname(__DIR__, 2);
         $this->baseDir = $resolvedBaseDir;
 
         $configFile = $this->baseDir . '/config/config.php';
@@ -68,8 +68,15 @@ class Configurator
         }
         $config = require $configFile;
         if (!\is_object($config)) {
-            throw new \RuntimeException('Invalid config format in ' . $configFile . ': expected object');
+            throw new \RuntimeException(
+                \sprintf(
+                    'Invalid config format in %s: expected object, got %s',
+                    $configFile,
+                    \gettype($config)
+                )
+            );
         }
+
 
         $this->name            = (string)$config->name;
         // $this->paths           = $config->paths;
