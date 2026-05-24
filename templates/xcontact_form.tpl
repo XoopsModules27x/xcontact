@@ -102,7 +102,7 @@
 <{elseif $field.type eq 'phone'}>
     <div class="xcontact-fg">
         <label class="xcontact-label" for="xcf_<{$fn}>"><{$field.label|escape}><{if $field.required}><span class="xcontact-req">*</span><{/if}></label>
-        <input type="tel" id="xcf_<{$fn}>" name="<{$fn|escape}>" placeholder="<{$smarty.const._MD_XCONTACT_PHONE_PLACEHOLDER}>" value="<{$xcontact_data[$fn]|default:''|escape}>"<{if $field.required}> required<{/if}>>
+        <input type="tel" id="xcf_<{$fn}>" name="<{$fn|escape}>" placeholder="<{$smarty.const._MD_XCONTACT_PHONE_PLACEHOLDER|escape}>" value="<{$xcontact_data[$fn]|default:''|escape}>"<{if $field.required}> required<{/if}>>
         <{if $field.description}><p class="xcontact-hint"><{$field.description|escape}></p><{/if}>
     </div>
 <{elseif $field.type eq 'number'}>
@@ -193,7 +193,7 @@
         <{else}>
         <div style="background:#1976d2;color:#fff;padding:8px 16px;border-radius:4px;font-size:18px;font-weight:700;letter-spacing:6px;font-family:monospace"><{$xcontact_captcha.code}></div>
         <{/if}>
-        <input type="text" name="cf_captcha" placeholder="<{$smarty.const._MD_XCONTACT_CODE_HINT}>" required autocomplete="off" style="width:180px;padding:10px 12px;border:1px solid #ddd;border-radius:5px;font-size:14px">
+        <input type="text" name="cf_captcha" placeholder="<{$smarty.const._MD_XCONTACT_CODE_HINT|escape}>" required autocomplete="off" style="width:180px;padding:10px 12px;border:1px solid #ddd;border-radius:5px;font-size:14px">
     </div>
 </div>
 <{/if}>

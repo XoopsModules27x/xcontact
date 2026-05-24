@@ -4,7 +4,7 @@
  - changed name into xcontact (goffy)
  - implemented namespace (goffy)
  - implemented common class files (goffy)
- - changed from assign lang vars to smarty (goffy)
+ - changed from assigning language vars to Smarty (goffy)
 
 
 ==============================================================

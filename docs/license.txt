@@ -31,7 +31,7 @@ term or condition of this Agreement. Upon such termination, you
 agree to destroy the Software, together with all copies thereof.
 
 COPYRIGHT/OWNERSHIP This Software and its source
-code are proprietary products of Pablo Software Solutions 
+code are proprietary products of XOOPS community
 and are protected by copyright, trade secret and other intellectual 
 property laws.
 

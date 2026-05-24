@@ -20,6 +20,9 @@ declare(strict_types=1);
  * @package      xcontact
  * @author       Goffy - wedega - Email:webmaster@wedega.com - Website:https://wedega.com
  */
+
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 if (!\defined('XOOPS_ICONS32_PATH')) {
     \define('XOOPS_ICONS32_PATH', \XOOPS_ROOT_PATH . '/Frameworks/moduleclasses/icons/32');
 }

@@ -86,7 +86,7 @@
 <div id="tab-settings" class="xcp-tab-panel">
 <div class="xcp-wrap" style="max-width:600px">
     <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_NAME}></label><input type="text" name="form_name" value="<{$form.name|escape}>" required></div>
-    <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_SLUG}></label><input type="text" name="form_slug" value="<{$form.slug|escape}>" placeholder="<{$smarty.const._AM_XCONTACT_SET_SLUG_PLACEHOLDER}>" pattern="[a-z0-9\-]+" required><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_slug_hint}></small></div>
+    <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_SLUG}></label><input type="text" name="form_slug" value="<{$form.slug|escape}>" placeholder="<{$smarty.const._AM_XCONTACT_SET_SLUG_PLACEHOLDER}>" pattern="[a-z0-9\-]+" required><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_SLUG_HINT}></small></div>
     <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_DESC}></label><textarea name="form_desc"><{$form.description|escape}></textarea></div>
     <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_SUCCESS_MSG}></label><input type="text" name="success_msg" value="<{$settings.success_msg|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUCCESS|escape}>"></div>
     <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_NOTIFY_EMAIL}></label><input type="email" name="notify_email" value="<{$settings.notify_email|default:''|escape}>"><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_EMAIL_HINT}></small></div>
@@ -102,7 +102,7 @@
 
 <!-- Inspector -->
 <div id="xcf-inspector" class="xcp-inspector">
-    <div class="xcp-isp-hd"><span id="xcf-isp-title"><{$smarty.const._AM_XCONTACT_ISP_TITLE}></span><button onclick="xcfCloseInspector()" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer">✕</button></div>
+    <div class="xcp-isp-hd"><span id="xcf-isp-title"><{$smarty.const._AM_XCONTACT_BUILDER_ISP_TITLE}></span><button onclick="xcfCloseInspector()" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer">✕</button></div>
     <div id="xcf-isp-body" class="xcp-isp-body"></div>
 </div>
 
