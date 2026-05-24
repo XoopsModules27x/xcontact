@@ -58,9 +58,8 @@ class Configurator
      */
     public function __construct($dir = null)
     {
-        $resolvedBaseDir = '' !== rtrim((string)$dir, '/\\')
-                    ? rtrim((string)$dir, '/\\')
-                    : \dirname(__DIR__, 2);
+        $dir = rtrim((string)$dir, '/\\');
+        $resolvedBaseDir = '' !== $dir ? $dir : \dirname(__DIR__, 2);
         $this->baseDir = $resolvedBaseDir;
 
         $configFile = $this->baseDir . '/config/config.php';
@@ -68,6 +67,16 @@ class Configurator
             throw new \RuntimeException('Missing config file: ' . $configFile);
         }
         $config = require $configFile;
+        if (!\is_object($config)) {
+            throw new \RuntimeException(
+                \sprintf(
+                    'Invalid config format in %s: expected object, got %s',
+                    $configFile,
+                    \gettype($config)
+                )
+            );
+        }
+
 
         $this->name            = (string)$config->name;
         // $this->paths           = $config->paths;
@@ -84,8 +93,11 @@ class Configurator
 
         $iconsFile = $this->baseDir . '/config/icons.php';
         $pathsFile = $this->baseDir . '/config/paths.php';
-        if (!\is_file($iconsFile) || !\is_file($pathsFile)) {
-            throw new \RuntimeException('Missing icons/paths config files in ' . $this->baseDir . '/config');
+        if (!\is_file($iconsFile)) {
+            throw new \RuntimeException('Missing icons config file: ' . $iconsFile);
+        }
+        if (!\is_file($pathsFile)) {
+            throw new \RuntimeException('Missing paths config file: ' . $pathsFile);
         }
         $this->icons = (array)require $iconsFile;
         $this->paths = (array)require $pathsFile;

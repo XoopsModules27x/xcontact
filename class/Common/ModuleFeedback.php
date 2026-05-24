@@ -50,8 +50,8 @@ class ModuleFeedback extends \XoopsObject
      */
     public static function getInstance(): self
     {
-        static $instance = false;
-        if (!$instance) {
+        static $instance = null;
+        if (null === $instance) {
             $instance = new self();
         }
         return $instance;
