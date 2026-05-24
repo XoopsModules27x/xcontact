@@ -1,0 +1,6 @@
+Legend :
++ Added
+- Removed
+* Modified
+
+To see the differences of language files, see the language folder 

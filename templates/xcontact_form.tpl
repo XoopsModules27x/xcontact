@@ -39,7 +39,7 @@
 <{if !empty($xcontact_error)}>
     <div class="xcontact-errors"><{$xcontact_error}></div>
 <{elseif $xcontact_success}>
-    <div class="xcontact-success">✅ <{$xcontact_settings.success_msg|default:$xcontact_lang_success}></div>
+    <div class="xcontact-success">✅ <{$xcontact_settings.success_msg|default:$smarty.const._MD_XCONTACT_SUCCESS}></div>
 <{else}>
 
 <{if $xcontact_form.description}>
@@ -47,7 +47,7 @@
 <{/if}>
 
 <{if !empty($xcontact_errors)}>
-<div class="xcontact-errors"><strong><{$xcontact_lang_please_fix}></strong><ul>
+<div class="xcontact-errors"><strong><{$smarty.const._MD_XCONTACT_PLEASE_FIX}></strong><ul>
 <{foreach item=e from=$xcontact_errors}><li><{$e}></li><{/foreach}>
 </ul></div>
 <{/if}>
@@ -90,7 +90,7 @@
 <{elseif $field.type eq 'email'}>
     <div class="xcontact-fg">
         <label class="xcontact-label" for="xcf_<{$fn}>"><{$field.label|escape}><{if $field.required}><span class="xcontact-req">*</span><{/if}></label>
-        <input type="email" id="xcf_<{$fn}>" name="<{$fn|escape}>" placeholder="<{$field.placeholder|default:$xcontact_lang_email_placeholder|escape}>" value="<{$xcontact_data[$fn]|default:''|escape}>"<{if $field.required}> required<{/if}>>
+        <input type="email" id="xcf_<{$fn}>" name="<{$fn|escape}>" placeholder="<{$field.placeholder|default:$smarty.const._MD_XCONTACT_EMAIL_PLACEHOLDER|escape}>" value="<{$xcontact_data[$fn]|default:''|escape}>"<{if $field.required}> required<{/if}>>
         <{if $field.description}><p class="xcontact-hint"><{$field.description|escape}></p><{/if}>
     </div>
 <{elseif $field.type eq 'website'}>
@@ -102,7 +102,7 @@
 <{elseif $field.type eq 'phone'}>
     <div class="xcontact-fg">
         <label class="xcontact-label" for="xcf_<{$fn}>"><{$field.label|escape}><{if $field.required}><span class="xcontact-req">*</span><{/if}></label>
-        <input type="tel" id="xcf_<{$fn}>" name="<{$fn|escape}>" placeholder="<{$xcontact_lang_phone_placeholder}>" value="<{$xcontact_data[$fn]|default:''|escape}>"<{if $field.required}> required<{/if}>>
+        <input type="tel" id="xcf_<{$fn}>" name="<{$fn|escape}>" placeholder="<{$smarty.const._MD_XCONTACT_PHONE_PLACEHOLDER|escape}>" value="<{$xcontact_data[$fn]|default:''|escape}>"<{if $field.required}> required<{/if}>>
         <{if $field.description}><p class="xcontact-hint"><{$field.description|escape}></p><{/if}>
     </div>
 <{elseif $field.type eq 'number'}>
@@ -127,7 +127,7 @@
     <div class="xcontact-fg">
         <label class="xcontact-label" for="xcf_<{$fn}>"><{$field.label|escape}><{if $field.required}><span class="xcontact-req">*</span><{/if}></label>
         <input type="file" id="xcf_<{$fn}>" name="<{$fn|escape}>" style="width:100%;padding:8px;border:1px dashed #bbb;border-radius:5px;background:#fafafa;font-size:13px"<{if $field.required}> required<{/if}>>
-        <p class="xcontact-hint"><{$xcontact_lang_file_hint}><{if $field.description}> · <{$field.description|escape}><{/if}></p>
+        <p class="xcontact-hint"><{$smarty.const._MD_XCONTACT_FILE_HINT}><{if $field.description}> · <{$field.description|escape}><{/if}></p>
     </div>
 <{elseif $field.type eq 'choice'}>
     <div class="xcontact-fg">
@@ -143,7 +143,7 @@
     <div class="xcontact-fg">
         <label class="xcontact-label" for="xcf_<{$fn}>"><{$field.label|escape}><{if $field.required}><span class="xcontact-req">*</span><{/if}></label>
         <select class="xcontact-dropdown" id="xcf_<{$fn}>" name="<{$fn|escape}>"<{if $field.required}> required<{/if}>>
-            <option value=""><{$xcontact_lang_select_opt}></option>
+            <option value=""><{$smarty.const._MD_XCONTACT_SELECT_OPT}></option>
             <{foreach item=opt from=$field.options}>
             <option value="<{$opt|escape}>"<{if $xcontact_data[$fn]|default:'' eq $opt}> selected<{/if}>><{$opt|escape}></option>
             <{/foreach}>
@@ -176,7 +176,7 @@
         <label class="xcontact-label"><{$field.label|escape}><{if $field.required}><span class="xcontact-req">*</span><{/if}></label>
         <canvas class="xcontact-sig-pad" id="sig_<{$fn}>" width="580" height="140"></canvas>
         <input type="hidden" name="<{$fn|escape}>" id="sig_data_<{$fn}>">
-        <button type="button" class="xcontact-sig-clear" onclick="xcfSigClear('<{$fn|escape}>')">🗑 <{$xcontact_lang_sig_clear}></button>
+        <button type="button" class="xcontact-sig-clear" onclick="xcfSigClear('<{$fn|escape}>')">🗑 <{$smarty.const._MD_XCONTACT_SIG_CLEAR}></button>
         <{if $field.description}><p class="xcontact-hint"><{$field.description|escape}></p><{/if}>
     </div>
 <{/if}>
@@ -186,19 +186,19 @@
 
 <{if $xcontact_settings.enable_captcha}>
 <div class="xcontact-fg" style="margin-top:8px">
-    <label class="xcontact-label"><{$xcontact_lang_security_code}> <span class="xcontact-req">*</span></label>
+    <label class="xcontact-label"><{$smarty.const._MD_XCONTACT_SECURITY_CODE}> <span class="xcontact-req">*</span></label>
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
         <{if $xcontact_captcha.img}>
         <img src="<{$xcontact_captcha.img}>" style="border:1px solid #ddd;border-radius:4px;height:44px">
         <{else}>
         <div style="background:#1976d2;color:#fff;padding:8px 16px;border-radius:4px;font-size:18px;font-weight:700;letter-spacing:6px;font-family:monospace"><{$xcontact_captcha.code}></div>
         <{/if}>
-        <input type="text" name="cf_captcha" placeholder="<{$xcontact_lang_code_hint}>" required autocomplete="off" style="width:180px;padding:10px 12px;border:1px solid #ddd;border-radius:5px;font-size:14px">
+        <input type="text" name="cf_captcha" placeholder="<{$smarty.const._MD_XCONTACT_CODE_HINT|escape}>" required autocomplete="off" style="width:180px;padding:10px 12px;border:1px solid #ddd;border-radius:5px;font-size:14px">
     </div>
 </div>
 <{/if}>
 
-<div><button type="submit" class="xcontact-submit-btn" id="xcf-sbtn-<{$xcontact_form_id}>"><{$xcontact_lang_submit}></button></div>
+<div><button type="submit" class="xcontact-submit-btn" id="xcf-sbtn-<{$xcontact_form_id}>"><{$smarty.const._MD_XCONTACT_SUBMIT}></button></div>
 </form>
 
 <script>
@@ -220,7 +220,7 @@
     window.xcfSigClear=function(fn){var c=document.getElementById('sig_'+fn);if(c){c.getContext('2d').clearRect(0,0,c.width,c.height);var i=document.getElementById('sig_data_'+fn);if(i)i.value='';}};
 <{/literal}>
     var btn=document.getElementById('xcf-sbtn-<{$xcontact_form_id}>');
-    var sending=<{$xcontact_lang_sending|json_encode}>;
+    var sending=<{$smarty.const._MD_XCONTACT_SENDING|json_encode}>;
     if(btn)btn.closest('form').addEventListener('submit',function(){btn.disabled=true;btn.textContent=sending;});
 <{literal}>
 })();

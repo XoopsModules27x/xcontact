@@ -35,7 +35,7 @@
 </style>
 
 <div class="xcp-wrap">
-<h2><{if $is_edit}>✏️ <{$xcf_lang_edit_title}> <{$form.name}><{else}>➕ <{$xcf_lang_new_title}><{/if}></h2>
+<h2><{if $is_edit}>✏️ <{$smarty.const._AM_XCONTACT_BUILDER_EDIT_TITLE}> <{$form.name}><{else}>➕ <{$smarty.const._AM_XCONTACT_BUILDER_NEW_TITLE}><{/if}></h2>
 
 <form method="post" action="<{$module_url}>admin/form_edit.php<{if $is_edit}>?id=<{$form.form_id}><{/if}>">
 <input type="hidden" name="op" value="save">
@@ -43,41 +43,41 @@
 <{$xoops_token_html}>
 
 <div class="xcp-tabs">
-    <button type="button" class="xcp-tab active" data-tab="builder">🧩 <{$xcf_lang_tab_builder}></button>
-    <button type="button" class="xcp-tab" data-tab="settings">⚙️ <{$xcf_lang_tab_settings}></button>
+    <button type="button" class="xcp-tab active" data-tab="builder">🧩 <{$smarty.const._AM_XCONTACT_BUILDER_TAB_BUILDER}></button>
+    <button type="button" class="xcp-tab" data-tab="settings">⚙️ <{$smarty.const._AM_XCONTACT_BUILDER_TAB_SETTINGS}></button>
 </div>
 
 <div id="tab-builder" class="xcp-tab-panel active">
 <div class="xcp-builder">
     <div class="xcp-palette">
-        <h4><{$xcf_lang_field_types}></h4>
-        <div class="xcp-ft" data-type="short_text"   draggable="true" ondblclick="xcfAdd('short_text')"><div class="xcp-ft-icon xcp-ic-green">T</div><{$xcf_lang_ft_short_text}></div>
-        <div class="xcp-ft" data-type="long_text"    draggable="true" ondblclick="xcfAdd('long_text')"><div class="xcp-ft-icon xcp-ic-green">T&#818;</div><{$xcf_lang_ft_long_text}></div>
-        <div class="xcp-ft" data-type="email"        draggable="true" ondblclick="xcfAdd('email')"><div class="xcp-ft-icon xcp-ic-teal">@</div><{$xcf_lang_ft_email}></div>
-        <div class="xcp-ft" data-type="website"      draggable="true" ondblclick="xcfAdd('website')"><div class="xcp-ft-icon xcp-ic-teal">🔗</div><{$xcf_lang_ft_website}></div>
-        <div class="xcp-ft" data-type="phone"        draggable="true" ondblclick="xcfAdd('phone')"><div class="xcp-ft-icon xcp-ic-teal">📞</div><{$xcf_lang_ft_phone}></div>
-        <div class="xcp-ft" data-type="number"       draggable="true" ondblclick="xcfAdd('number')"><div class="xcp-ft-icon xcp-ic-teal">#</div><{$xcf_lang_ft_number}></div>
-        <div class="xcp-ft" data-type="date"         draggable="true" ondblclick="xcfAdd('date')"><div class="xcp-ft-icon xcp-ic-blue">📅</div><{$xcf_lang_ft_date}></div>
-        <div class="xcp-ft" data-type="time"         draggable="true" ondblclick="xcfAdd('time')"><div class="xcp-ft-icon xcp-ic-blue">⏰</div><{$xcf_lang_ft_time}></div>
-        <div class="xcp-ft" data-type="file"         draggable="true" ondblclick="xcfAdd('file')"><div class="xcp-ft-icon xcp-ic-blue">📎</div><{$xcf_lang_ft_file}></div>
-        <div class="xcp-ft" data-type="hidden"       draggable="true" ondblclick="xcfAdd('hidden')"><div class="xcp-ft-icon xcp-ic-grey">🚫</div><{$xcf_lang_ft_hidden}></div>
-        <div class="xcp-ft" data-type="label"        draggable="true" ondblclick="xcfAdd('label')"><div class="xcp-ft-icon xcp-ic-grey">L</div><{$xcf_lang_ft_label}></div>
-        <div class="xcp-ft" data-type="heading"      draggable="true" ondblclick="xcfAdd('heading')"><div class="xcp-ft-icon xcp-ic-grey">H</div><{$xcf_lang_ft_heading}></div>
-        <div class="xcp-ft" data-type="paragraph"    draggable="true" ondblclick="xcfAdd('paragraph')"><div class="xcp-ft-icon xcp-ic-grey">¶</div><{$xcf_lang_ft_paragraph}></div>
-        <div class="xcp-ft" data-type="choice"       draggable="true" ondblclick="xcfAdd('choice')"><div class="xcp-ft-icon xcp-ic-purple">☑</div><{$xcf_lang_ft_choice}></div>
-        <div class="xcp-ft" data-type="image_choice" draggable="true" ondblclick="xcfAdd('image_choice')"><div class="xcp-ft-icon xcp-ic-purple">🖼</div><{$xcf_lang_ft_image_choice}></div>
-        <div class="xcp-ft" data-type="dropdown"     draggable="true" ondblclick="xcfAdd('dropdown')"><div class="xcp-ft-icon xcp-ic-purple">▼</div><{$xcf_lang_ft_dropdown}></div>
-        <div class="xcp-ft" data-type="consent"      draggable="true" ondblclick="xcfAdd('consent')"><div class="xcp-ft-icon xcp-ic-purple">✓</div><{$xcf_lang_ft_consent}></div>
-        <div class="xcp-ft" data-type="signature"    draggable="true" ondblclick="xcfAdd('signature')"><div class="xcp-ft-icon xcp-ic-orange">✒</div><{$xcf_lang_ft_signature}></div>
+        <h4><{$smarty.const._AM_XCONTACT_BUILDER_FIELD_TYPES}></h4>
+        <div class="xcp-ft" data-type="short_text"   draggable="true" ondblclick="xcfAdd('short_text')"><div class="xcp-ft-icon xcp-ic-green">T</div><{$smarty.const._AM_XCONTACT_FT_SHORT_TEXT}></div>
+        <div class="xcp-ft" data-type="long_text"    draggable="true" ondblclick="xcfAdd('long_text')"><div class="xcp-ft-icon xcp-ic-green">T&#818;</div><{$smarty.const._AM_XCONTACT_FT_LONG_TEXT}></div>
+        <div class="xcp-ft" data-type="email"        draggable="true" ondblclick="xcfAdd('email')"><div class="xcp-ft-icon xcp-ic-teal">@</div><{$smarty.const._AM_XCONTACT_FT_EMAIL}></div>
+        <div class="xcp-ft" data-type="website"      draggable="true" ondblclick="xcfAdd('website')"><div class="xcp-ft-icon xcp-ic-teal">🔗</div><{$smarty.const._AM_XCONTACT_FT_WEBSITE}></div>
+        <div class="xcp-ft" data-type="phone"        draggable="true" ondblclick="xcfAdd('phone')"><div class="xcp-ft-icon xcp-ic-teal">📞</div><{$smarty.const._AM_XCONTACT_FT_PHONE}></div>
+        <div class="xcp-ft" data-type="number"       draggable="true" ondblclick="xcfAdd('number')"><div class="xcp-ft-icon xcp-ic-teal">#</div><{$smarty.const._AM_XCONTACT_FT_NUMBER}></div>
+        <div class="xcp-ft" data-type="date"         draggable="true" ondblclick="xcfAdd('date')"><div class="xcp-ft-icon xcp-ic-blue">📅</div><{$smarty.const._AM_XCONTACT_FT_DATE}></div>
+        <div class="xcp-ft" data-type="time"         draggable="true" ondblclick="xcfAdd('time')"><div class="xcp-ft-icon xcp-ic-blue">⏰</div><{$smarty.const._AM_XCONTACT_FT_TIME}></div>
+        <div class="xcp-ft" data-type="file"         draggable="true" ondblclick="xcfAdd('file')"><div class="xcp-ft-icon xcp-ic-blue">📎</div><{$smarty.const._AM_XCONTACT_FT_FILE}></div>
+        <div class="xcp-ft" data-type="hidden"       draggable="true" ondblclick="xcfAdd('hidden')"><div class="xcp-ft-icon xcp-ic-grey">🚫</div><{$smarty.const._AM_XCONTACT_FT_HIDDEN}></div>
+        <div class="xcp-ft" data-type="label"        draggable="true" ondblclick="xcfAdd('label')"><div class="xcp-ft-icon xcp-ic-grey">L</div><{$smarty.const._AM_XCONTACT_FT_LABEL}></div>
+        <div class="xcp-ft" data-type="heading"      draggable="true" ondblclick="xcfAdd('heading')"><div class="xcp-ft-icon xcp-ic-grey">H</div><{$smarty.const._AM_XCONTACT_FT_HEADING}></div>
+        <div class="xcp-ft" data-type="paragraph"    draggable="true" ondblclick="xcfAdd('paragraph')"><div class="xcp-ft-icon xcp-ic-grey">¶</div><{$smarty.const._AM_XCONTACT_FT_PARAGRAPH}></div>
+        <div class="xcp-ft" data-type="choice"       draggable="true" ondblclick="xcfAdd('choice')"><div class="xcp-ft-icon xcp-ic-purple">☑</div><{$smarty.const._AM_XCONTACT_FT_CHOICE}></div>
+        <div class="xcp-ft" data-type="image_choice" draggable="true" ondblclick="xcfAdd('image_choice')"><div class="xcp-ft-icon xcp-ic-purple">🖼</div><{$smarty.const._AM_XCONTACT_FT_IMAGE_CHOICE}></div>
+        <div class="xcp-ft" data-type="dropdown"     draggable="true" ondblclick="xcfAdd('dropdown')"><div class="xcp-ft-icon xcp-ic-purple">▼</div><{$smarty.const._AM_XCONTACT_FT_DROPDOWN}></div>
+        <div class="xcp-ft" data-type="consent"      draggable="true" ondblclick="xcfAdd('consent')"><div class="xcp-ft-icon xcp-ic-purple">✓</div><{$smarty.const._AM_XCONTACT_FT_CONSENT}></div>
+        <div class="xcp-ft" data-type="signature"    draggable="true" ondblclick="xcfAdd('signature')"><div class="xcp-ft-icon xcp-ic-orange">✒</div><{$smarty.const._AM_XCONTACT_FT_SIGNATURE}></div>
     </div>
     <div>
         <div id="xcf-canvas" class="xcp-canvas">
             <div id="xcf-empty" class="xcp-canvas-empty">
-                <p style="font-size:14px;font-weight:600"><{$xcf_lang_drag_hint}></p>
+                <p style="font-size:14px;font-weight:600"><{$smarty.const._AM_XCONTACT_BUILDER_DRAG_HINT}></p>
             </div>
         </div>
         <div style="margin-top:12px;text-align:right">
-            <button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px;font-size:14px">💾 <{$xcf_lang_save_form}></button>
+            <button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px;font-size:14px">💾 <{$smarty.const._AM_XCONTACT_BUILDER_SAVE_FORM}></button>
         </div>
     </div>
 </div>
@@ -85,15 +85,15 @@
 
 <div id="tab-settings" class="xcp-tab-panel">
 <div class="xcp-wrap" style="max-width:600px">
-    <div class="xcp-isp-fg"><label><{$xcf_lang_set_form_name}></label><input type="text" name="form_name" value="<{$form.name|escape}>" required></div>
-    <div class="xcp-isp-fg"><label><{$xcf_lang_set_form_slug}></label><input type="text" name="form_slug" value="<{$form.slug|escape}>" placeholder="<{$xcf_lang_set_slug_placeholder}>" pattern="[a-z0-9\-]+" required><small style="color:#888"><{$xcf_lang_set_slug_hint}></small></div>
-    <div class="xcp-isp-fg"><label><{$xcf_lang_set_desc}></label><textarea name="form_desc"><{$form.description|escape}></textarea></div>
-    <div class="xcp-isp-fg"><label><{$xcf_lang_set_success_msg}></label><input type="text" name="success_msg" value="<{$settings.success_msg|default:$xcf_lang_set_default_success|escape}>"></div>
-    <div class="xcp-isp-fg"><label><{$xcf_lang_set_notify_email}></label><input type="email" name="notify_email" value="<{$settings.notify_email|default:''|escape}>"><small style="color:#888"><{$xcf_lang_set_email_hint}></small></div>
-    <div class="xcp-isp-fg"><label><{$xcf_lang_set_email_subject}></label><input type="text" name="email_subject" value="<{$settings.email_subject|default:$xcf_lang_set_default_subject|escape}>"></div>
-    <label class="xcp-isp-toggle"><input type="checkbox" name="is_active" value="1"<{if !empty($form.is_active)}> checked<{/if}>> <{$xcf_lang_set_is_active}></label>
-    <label class="xcp-isp-toggle"><input type="checkbox" name="enable_captcha" value="1"<{if !empty($settings.enable_captcha)}> checked<{/if}>> <{$xcf_lang_set_captcha}></label>
-    <div style="margin-top:18px"><button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px">💾 <{$xcf_lang_save}></button></div>
+    <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_NAME}></label><input type="text" name="form_name" value="<{$form.name|escape}>" required></div>
+    <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_SLUG}></label><input type="text" name="form_slug" value="<{$form.slug|escape}>" placeholder="<{$smarty.const._AM_XCONTACT_SET_SLUG_PLACEHOLDER}>" pattern="[a-z0-9\-]+" required><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_SLUG_HINT}></small></div>
+    <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_DESC}></label><textarea name="form_desc"><{$form.description|escape}></textarea></div>
+    <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_SUCCESS_MSG}></label><input type="text" name="success_msg" value="<{$settings.success_msg|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUCCESS|escape}>"></div>
+    <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_NOTIFY_EMAIL}></label><input type="email" name="notify_email" value="<{$settings.notify_email|default:''|escape}>"><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_EMAIL_HINT}></small></div>
+    <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_EMAIL_SUBJECT}></label><input type="text" name="email_subject" value="<{$settings.email_subject|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUBJECT|escape}>"></div>
+    <label class="xcp-isp-toggle"><input type="checkbox" name="is_active" value="1"<{if !empty($form.is_active)}> checked<{/if}>> <{$smarty.const._AM_XCONTACT_SET_IS_ACTIVE}></label>
+    <label class="xcp-isp-toggle"><input type="checkbox" name="enable_captcha" value="1"<{if !empty($settings.enable_captcha)}> checked<{/if}>> <{$smarty.const._AM_XCONTACT_SET_CAPTCHA}></label>
+    <div style="margin-top:18px"><button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px">💾 <{$smarty.const._AM_XCONTACT_SAVE}></button></div>
 </div>
 </div>
 
@@ -102,48 +102,48 @@
 
 <!-- Inspector -->
 <div id="xcf-inspector" class="xcp-inspector">
-    <div class="xcp-isp-hd"><span id="xcf-isp-title"><{$xcf_lang_isp_title}></span><button onclick="xcfCloseInspector()" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer">✕</button></div>
+    <div class="xcp-isp-hd"><span id="xcf-isp-title"><{$smarty.const._AM_XCONTACT_BUILDER_ISP_TITLE}></span><button onclick="xcfCloseInspector()" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer">✕</button></div>
     <div id="xcf-isp-body" class="xcp-isp-body"></div>
 </div>
 
 <script>
 var XCF_TYPES = {
-    short_text:{l:<{$xcf_lang_ft_short_text|json_encode}>},
-    long_text:{l:<{$xcf_lang_ft_long_text|json_encode}>},
-    email:{l:<{$xcf_lang_ft_email|json_encode}>},
-    website:{l:<{$xcf_lang_ft_website|json_encode}>},
-    phone:{l:<{$xcf_lang_ft_phone|json_encode}>},
-    number:{l:<{$xcf_lang_ft_number|json_encode}>},
-    date:{l:<{$xcf_lang_ft_date|json_encode}>},
-    time:{l:<{$xcf_lang_ft_time|json_encode}>},
-    file:{l:<{$xcf_lang_ft_file|json_encode}>},
-    hidden:{l:<{$xcf_lang_ft_hidden|json_encode}>},
-    label:{l:<{$xcf_lang_ft_label|json_encode}>},
-    heading:{l:<{$xcf_lang_ft_heading|json_encode}>},
-    paragraph:{l:<{$xcf_lang_ft_paragraph|json_encode}>},
-    choice:{l:<{$xcf_lang_ft_choice|json_encode}>},
-    image_choice:{l:<{$xcf_lang_ft_image_choice|json_encode}>},
-    dropdown:{l:<{$xcf_lang_ft_dropdown|json_encode}>},
-    consent:{l:<{$xcf_lang_ft_consent|json_encode}>},
-    signature:{l:<{$xcf_lang_ft_signature|json_encode}>}
+    short_text:{l:<{$smarty.const._AM_XCONTACT_FT_SHORT_TEXT|json_encode}>},
+    long_text:{l:<{$smarty.const._AM_XCONTACT_FT_LONG_TEXT|json_encode}>},
+    email:{l:<{$smarty.const._AM_XCONTACT_FT_EMAIL|json_encode}>},
+    website:{l:<{$smarty.const._AM_XCONTACT_FT_WEBSITE|json_encode}>},
+    phone:{l:<{$smarty.const._AM_XCONTACT_FT_PHONE|json_encode}>},
+    number:{l:<{$smarty.const._AM_XCONTACT_FT_NUMBER|json_encode}>},
+    date:{l:<{$smarty.const._AM_XCONTACT_FT_DATE|json_encode}>},
+    time:{l:<{$smarty.const._AM_XCONTACT_FT_TIME|json_encode}>},
+    file:{l:<{$smarty.const._AM_XCONTACT_FT_FILE|json_encode}>},
+    hidden:{l:<{$smarty.const._AM_XCONTACT_FT_HIDDEN|json_encode}>},
+    label:{l:<{$smarty.const._AM_XCONTACT_FT_LABEL|json_encode}>},
+    heading:{l:<{$smarty.const._AM_XCONTACT_FT_HEADING|json_encode}>},
+    paragraph:{l:<{$smarty.const._AM_XCONTACT_FT_PARAGRAPH|json_encode}>},
+    choice:{l:<{$smarty.const._AM_XCONTACT_FT_CHOICE|json_encode}>},
+    image_choice:{l:<{$smarty.const._AM_XCONTACT_FT_IMAGE_CHOICE|json_encode}>},
+    dropdown:{l:<{$smarty.const._AM_XCONTACT_FT_DROPDOWN|json_encode}>},
+    consent:{l:<{$smarty.const._AM_XCONTACT_FT_CONSENT|json_encode}>},
+    signature:{l:<{$smarty.const._AM_XCONTACT_FT_SIGNATURE|json_encode}>}
 };
 var XCF_LANG = {
-    confirm_del:   <{$xcf_lang_confirm_del|json_encode}>,
-    required_lbl:  <{$xcf_lang_required_lbl|json_encode}>,
-    isp_content:   <{$xcf_lang_isp_content|json_encode}>,
-    isp_label:     <{$xcf_lang_isp_field_label|json_encode}>,
-    isp_name:      <{$xcf_lang_isp_field_name|json_encode}>,
-    isp_ph:        <{$xcf_lang_isp_placeholder|json_encode}>,
-    isp_val:       <{$xcf_lang_isp_default_val|json_encode}>,
-    isp_opts:      <{$xcf_lang_isp_options|json_encode}>,
-    isp_required:  <{$xcf_lang_isp_required|json_encode}>,
-    isp_desc:      <{$xcf_lang_isp_desc|json_encode}>,
-    isp_width:     <{$xcf_lang_isp_width|json_encode}>,
-    isp_full:      <{$xcf_lang_isp_width_full|json_encode}>,
-    isp_save:      <{$xcf_lang_isp_save|json_encode}>,
-    isp_settings:  <{$xcf_lang_isp_settings_suffix|json_encode}>,
-    def_option1:   <{$xcf_lang_isp_default_option|json_encode}>,
-    def_option2:   <{$xcf_lang_isp_default_option2|json_encode}>
+    confirm_del:   <{$smarty.const._AM_XCONTACT_BUILDER_CONFIRM_DEL|json_encode}>,
+    required_lbl:  <{$smarty.const._AM_XCONTACT_BUILDER_REQUIRED_LBL|json_encode}>,
+    isp_content:   <{$smarty.const._AM_XCONTACT_ISP_CONTENT|json_encode}>,
+    isp_label:     <{$smarty.const._AM_XCONTACT_ISP_FIELD_LABEL|json_encode}>,
+    isp_name:      <{$smarty.const._AM_XCONTACT_ISP_FIELD_NAME|json_encode}>,
+    isp_ph:        <{$smarty.const._AM_XCONTACT_ISP_PLACEHOLDER|json_encode}>,
+    isp_val:       <{$smarty.const._AM_XCONTACT_ISP_DEFAULT_VAL|json_encode}>,
+    isp_opts:      <{$smarty.const._AM_XCONTACT_ISP_OPTIONS|json_encode}>,
+    isp_required:  <{$smarty.const._AM_XCONTACT_ISP_REQUIRED|json_encode}>,
+    isp_desc:      <{$smarty.const._AM_XCONTACT_ISP_DESC|json_encode}>,
+    isp_width:     <{$smarty.const._AM_XCONTACT_ISP_WIDTH|json_encode}>,
+    isp_full:      <{$smarty.const._AM_XCONTACT_ISP_WIDTH_FULL|json_encode}>,
+    isp_save:      <{$smarty.const._AM_XCONTACT_ISP_SAVE|json_encode}>,
+    isp_settings:  <{$smarty.const._AM_XCONTACT_ISP_SETTINGS_SUFFIX|json_encode}>,
+    def_option1:   <{$smarty.const._AM_XCONTACT_ISP_DEFAULT_OPTION|json_encode}>,
+    def_option2:   <{$smarty.const._AM_XCONTACT_ISP_DEFAULT_OPTION2|json_encode}>
 };
 <{literal}>
 var xcfFields = [], xcfDragType = null, xcfDragIdx = null, xcfSelIdx = null;

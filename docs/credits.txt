@@ -1,0 +1,6 @@
+Read Me First
+=============
+
+Originally created by Eren Yumak — Aymak (aymak.net).
+
+Modified by Goffy (German Xoops) (http://wedega.com)
