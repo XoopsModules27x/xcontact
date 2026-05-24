@@ -1,63 +1,98 @@
-<?php
-if (!defined('XOOPS_ROOT_PATH')) { exit(); }
+<?php declare(strict_types=1);
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
 
-$db        = XoopsDatabaseFactory::getDatabaseConnection();
-$tblBlocks = $db->prefix('newblocks');
-$tblFile   = $db->prefix('tplfile');
-$tblSource = $db->prefix('tplsource');
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
 
-// 1. Upload klasörü
-$uploadDir = XOOPS_ROOT_PATH . '/uploads/xcform';
-if (!is_dir($uploadDir)) {
-    mkdir($uploadDir, 0755, true);
-    file_put_contents($uploadDir . '/index.html', '<html><body></body></html>');
+/**
+ * Xcontact module for xoops
+ *
+ * @copyright      module for xoops
+ * @license         GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
+ */
+
+use XoopsModules\Xcontact;
+use XoopsModules\Xcontact\{
+    Common,
+    Constants
+};
+
+/**
+ * @param \XoopsModule $module
+ * @return bool
+ */
+function xoops_module_pre_install_xcontact(\XoopsModule $module): bool
+{
+    require \dirname(__DIR__) . '/preloads/autoloader.php';
+
+    $utility = new Xcontact\Utility();
+
+    //check for minimum XOOPS version
+    $xoopsSuccess = $utility::checkVerXoops($module);
+
+    // check for minimum PHP version
+    $phpSuccess = $utility::checkVerPhp($module);
+
+    return $xoopsSuccess && $phpSuccess;
 }
 
-// 2. newblocks kaydını düzelt
-$db->queryF("UPDATE `{$tblBlocks}` SET
-    func_file = 'xcform_blocks.php',
-    show_func = 'xcform_block_form',
-    edit_func = 'xcform_block_form_edit',
-    template  = 'xcform_block_form.tpl'
-    WHERE dirname = 'xcform'"
-);
+/**
+ * @param \XoopsModule $module
+ * @return bool
+ */
+function xoops_module_install_xcontact(\XoopsModule $module): bool
+{
+    require \dirname(__DIR__) . '/preloads/autoloader.php';
 
-// 3. tplfile: prefix'siz, type=block
-$db->queryF("UPDATE `{$tblFile}` SET
-    tpl_file = 'xcform_block_form.tpl',
-    tpl_type = 'block'
-    WHERE tpl_module = 'xcform'
-    AND tpl_file IN ('blocks/xcform_block_form.tpl','xcform_block_form.tpl')"
-);
+    $helper       = Xcontact\Helper::getInstance();
+    $utility      = new Xcontact\Utility();
+    $configurator = new Common\Configurator();
 
-// 4. tplsource: fiziksel dosyadan güncelle
-$tplPath = XOOPS_ROOT_PATH . '/modules/xcform/templates/blocks/xcform_block_form.tpl';
-if (file_exists($tplPath)) {
-    $src = $db->escape(file_get_contents($tplPath));
-    $now = time();
-    $res = $db->query("SELECT tpl_id FROM `{$tblFile}` WHERE tpl_module='xcform' AND tpl_file='xcform_block_form.tpl' ORDER BY tpl_id ASC LIMIT 1");
-    if ($res && ($row = $db->fetchArray($res))) {
-        $tid = (int)$row['tpl_id'];
-        $sc  = $db->query("SELECT tpl_id FROM `{$tblSource}` WHERE tpl_id='{$tid}' LIMIT 1");
-        if ($sc && $db->getRowsNum($sc) > 0) {
-            $db->queryF("UPDATE `{$tblSource}` SET tpl_source='{$src}' WHERE tpl_id='{$tid}'");
-        } else {
-            $db->queryF("INSERT INTO `{$tblSource}` (tpl_id,tpl_source) VALUES ('{$tid}','{$src}')");
+    // Load language files
+    $helper->loadLanguage('admin');
+    $helper->loadLanguage('modinfo');
+    $helper->loadLanguage('common');
+
+    //  ---  CREATE FOLDERS ---------------
+    if ($configurator->uploadFolders && \is_array($configurator->uploadFolders)) {
+        foreach (\array_keys($configurator->uploadFolders) as $i) {
+            $utility::createFolder($configurator->uploadFolders[$i]);
+            if (\is_dir($configurator->uploadFolders[$i])) {
+                chmod($configurator->uploadFolders[$i], 0755);
+            }
         }
-        $db->queryF("UPDATE `{$tblFile}` SET tpl_lastmodified='{$now}' WHERE tpl_id='{$tid}'");
     }
+
+    //  ---  COPY blank.gif FILES ---------------
+    if ($configurator->copyBlankFiles && \is_array($configurator->copyBlankFiles)) {
+        $file = \dirname(__DIR__) . '/assets/images/blank.gif';
+        foreach (\array_keys($configurator->copyBlankFiles) as $i) {
+            $dest = $configurator->copyBlankFiles[$i] . '/blank.gif';
+            $utility::copyFile($file, $dest);
+        }
+    }
+
+    // Smarty compile cache temizle
+    foreach ([
+                 XOOPS_ROOT_PATH . '/../xoops_data/caches/smarty_compile',
+                 XOOPS_ROOT_PATH . '/xoops_data/caches/smarty_compile',
+             ] as $dir) {
+        if (!is_dir($dir)) continue;
+        foreach (new RecursiveIteratorIterator(
+                     new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
+                     RecursiveIteratorIterator::CHILD_FIRST
+                 ) as $f) {
+            if ($f->isFile() && $f->getExtension() === 'php') @unlink($f->getPathname());
+        }
+    }
+
+    return true;
 }
 
-// 5. Smarty compile cache temizle
-foreach ([
-    XOOPS_ROOT_PATH . '/../xoops_data/caches/smarty_compile',
-    XOOPS_ROOT_PATH . '/xoops_data/caches/smarty_compile',
-] as $dir) {
-    if (!is_dir($dir)) continue;
-    foreach (new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
-        RecursiveIteratorIterator::CHILD_FIRST
-    ) as $f) {
-        if ($f->isFile() && $f->getExtension() === 'php') @unlink($f->getPathname());
-    }
-}
+
+

@@ -1,7 +1,7 @@
 <?php
 /**
- * xcform — Bloklar
- * @package  xcform
+ * xcontact — Bloklar
+ * @package  xcontact
  * @author   Eren Yumak — Aymak (aymak.net)
  */
 
@@ -9,7 +9,7 @@ if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 
 // ── İletişim Formu Bloğu — show_func ─────────────────────────────────────────
 
-function xcform_block_form($options)
+function xcontact_block_form($options)
 {
     $slug  = isset($options[0]) ? trim($options[0]) : '';
     $embed = isset($options[1]) ? (int)$options[1]  : 0;
@@ -17,7 +17,7 @@ function xcform_block_form($options)
     if ($slug === '' || $slug === 'none') return false;
 
     $db  = XoopsDatabaseFactory::getDatabaseConnection();
-    $tbl = $db->prefix('xcform_forms');
+    $tbl = $db->prefix('xcontact_forms');
 
     $safe = preg_replace('/[^a-z0-9\-]/', '', strtolower($slug));
     $res  = $db->query("SELECT * FROM `{$tbl}` WHERE slug='" . $db->escape($safe) . "' AND is_active=1 LIMIT 1");
@@ -27,7 +27,7 @@ function xcform_block_form($options)
     $cf_form_id = (int)$form['form_id'];
     $cf_fields  = json_decode($form['fields'] ?? '[]', true) ?: [];
     $cf_settings= json_decode($form['settings'] ?? '{}', true) ?: [];
-    $url        = XOOPS_URL . '/modules/xcform/form.php?slug=' . urlencode($safe);
+    $url        = XOOPS_URL . '/modules/xcontact/form.php?slug=' . urlencode($safe);
 
     $block = array(
         'form_url'    => $url,
@@ -45,7 +45,7 @@ function xcform_block_form($options)
     if (!$embed) return $block;
 
     // ── Embed modu: alanları hazırla ─────────────────────────────────────────
-    $cf_token = md5($cf_form_id . 'xcform_salt_aymak');
+    $cf_token = md5($cf_form_id . 'xcontact_salt_aymak');
     $block['token'] = $cf_token;
 
     // Field type → HTML input type eşleştirmesi
@@ -105,7 +105,7 @@ function xcform_block_form($options)
             $block['data'] = $data;
 
             if (empty($errors)) {
-                $ts  = $db->prefix('xcform_submissions');
+                $ts  = $db->prefix('xcontact_submissions');
                 $ip  = $db->escape($_SERVER['REMOTE_ADDR'] ?? '');
                 $dj  = $db->escape(json_encode($data, JSON_UNESCAPED_UNICODE));
                 $now = time();
@@ -122,14 +122,14 @@ function xcform_block_form($options)
 
 // ── İletişim Formu Bloğu — edit_func ─────────────────────────────────────────
 
-function xcform_block_form_edit($options)
+function xcontact_block_form_edit($options)
 {
     $slug  = isset($options[0]) ? trim($options[0]) : '';
     $embed = isset($options[1]) ? (int)$options[1]  : 0;
     if ($slug === 'none') $slug = '';
 
     $db  = XoopsDatabaseFactory::getDatabaseConnection();
-    $tbl = $db->prefix('xcform_forms');
+    $tbl = $db->prefix('xcontact_forms');
     $res = $db->query("SELECT form_id, name, slug FROM `{$tbl}` WHERE is_active=1 ORDER BY form_id DESC");
 
     $html  = '<table>';

@@ -1,4 +1,4 @@
-CREATE TABLE `xcform_forms` (
+CREATE TABLE `xcontact_forms` (
     `form_id`     INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `name`        VARCHAR(255) NOT NULL DEFAULT '',
     `slug`        VARCHAR(100) NOT NULL DEFAULT '',
@@ -11,7 +11,7 @@ CREATE TABLE `xcform_forms` (
     UNIQUE KEY `slug` (`slug`)
 ) ENGINE=InnoDB;
 
-CREATE TABLE `xcform_submissions` (
+CREATE TABLE `xcontact_submissions` (
     `sub_id`     INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `form_id`    INT(10) UNSIGNED NOT NULL,
     `data`       LONGTEXT NOT NULL,
