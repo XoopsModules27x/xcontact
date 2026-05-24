@@ -16,22 +16,6 @@ xcontact_load_language('main');
 $slug    = isset($_GET['slug']) ? preg_replace('/[^a-z0-9\-]/', '', strtolower($_GET['slug'])) : '';
 $cf_form = $slug ? xcontact_get_form_by_slug($slug) : null;
 
-// ── Dil sabitlerini şablona aktar ────────────────────────────────────────────
-$lang_vars = [
-    'xcontact_lang_submit'            => _MD_XCONTACT_SUBMIT,
-    'xcontact_lang_sending'           => _MD_XCONTACT_SENDING,
-    'xcontact_lang_security_code'     => _MD_XCONTACT_SECURITY_CODE,
-    'xcontact_lang_code_hint'         => _MD_XCONTACT_CODE_HINT,
-    'xcontact_lang_success'           => _MD_XCONTACT_SUCCESS,
-    'xcontact_lang_please_fix'        => _MD_XCONTACT_PLEASE_FIX,
-    'xcontact_lang_select_opt'        => _MD_XCONTACT_SELECT_OPT,
-    'xcontact_lang_sig_clear'         => _MD_XCONTACT_SIG_CLEAR,
-    'xcontact_lang_file_hint'         => _MD_XCONTACT_FILE_HINT,
-    'xcontact_lang_email_placeholder' => _MD_XCONTACT_EMAIL_PLACEHOLDER,
-    'xcontact_lang_phone_placeholder' => _MD_XCONTACT_PHONE_PLACEHOLDER,
-];
-foreach ($lang_vars as $k => $v) $xoopsTpl->assign($k, $v);
-
 if (!$cf_form) {
     $xoopsTpl->assign('xcontact_error',      _MD_XCONTACT_FORM_NOT_FOUND);
     $xoopsTpl->assign('xcontact_form',       null);
@@ -158,6 +142,6 @@ $xoopsTpl->assign('xcontact_errors',     $cf_errors);
 $xoopsTpl->assign('xcontact_data',       $cf_data);   // POST'tan gelen temizlenmiş data (array)
 $xoopsTpl->assign('xcontact_captcha',    $cf_captcha);
 $xoopsTpl->assign('xcontact_module_url', XOOPS_URL . '/modules/xcontact/');
-$xoopsTpl->assign('xoops_pagetitle',   $cf_form['name']);
+$xoopsTpl->assign('xoops_pagetitle',     $cf_form['name']);
 
 require_once XOOPS_ROOT_PATH . '/footer.php';

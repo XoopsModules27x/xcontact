@@ -1,0 +1,13 @@
+==============================================================
+1.0.1 [2026/05/23] Dev: XOOPS 2.7.0, PHP 8.3
+==============================================================
+ - changed name into xcontact (goffy)
+ - implemented namespace (goffy)
+ - implemented common class files (goffy)
+ - changed from assign lang vars to smarty (goffy)
+
+
+==============================================================
+1.0.0 [2026/05/01]
+==============================================================
+ - Original release xcform (heyula)
