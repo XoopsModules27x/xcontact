@@ -10,7 +10,7 @@
     </div>
     <div class="xcp-widgets">
         <div class="xcp-widget">
-            <div class="xcp-widget-title">🆕 <{$xcf_dash_recent_forms}></div>
+            <div class="xcp-widget-title">🆕 <{$smarty.const._AM_XCONTACT_DASH_RECENT_FORMS}></div>
             <{if $recent_forms}>
             <table class="xcp-table">
                 <tr><th><{$smarty.const._AM_XCONTACT_DASH_COL_AD}></th><th><{$smarty.const._AM_XCONTACT_DASH_COL_SLUG}></th><th><{$smarty.const._AM_XCONTACT_FORM_ACTIVE}></th><th><{$smarty.const._AM_XCONTACT_ACTIONS}></th></tr>
