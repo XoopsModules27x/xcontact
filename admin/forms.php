@@ -29,6 +29,6 @@ if(method_exists($xoopsTpl,'addTemplateDir')) $xoopsTpl->addTemplateDir($d);
 if(isset($GLOBALS['xoopsSecurity'])) $xoopsTpl->assign('xoops_token_html',$GLOBALS['xoopsSecurity']->getTokenHTML());
 $xoopsTpl->assign('xoops_url',XOOPS_URL); $xoopsTpl->assign('module_url',XOOPS_URL.'/modules/xcontact/');
 $xoopsTpl->assign('forms',$rows); $xoopsTpl->assign('msg',$_GET['msg']??'');
-xcontact_admin_assign_lang('forms');
+
 echo $xoopsTpl->fetch($d.'xcontact_admin_forms.tpl');
 xoops_cp_footer();

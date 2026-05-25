@@ -28,7 +28,7 @@ if($op==='view'&&isset($_GET['id'])){
     if(method_exists($xoopsTpl,'addTemplateDir')) $xoopsTpl->addTemplateDir($d);
     $xoopsTpl->assign('xoops_url',XOOPS_URL); $xoopsTpl->assign('module_url',XOOPS_URL.'/modules/xcontact/');
     $xoopsTpl->assign('sub',$sub); $xoopsTpl->assign('form',$form); $xoopsTpl->assign('fmap',$fmap); $xoopsTpl->assign('data',$data);
-    xcontact_admin_assign_lang('submissions');
+
     echo $xoopsTpl->fetch($d.'xcontact_admin_sub_view.tpl');
     xoops_cp_footer(); exit;
 }
@@ -43,6 +43,6 @@ if(method_exists($xoopsTpl,'addTemplateDir')) $xoopsTpl->addTemplateDir($d);
 $xoopsTpl->assign('xoops_url',XOOPS_URL); $xoopsTpl->assign('module_url',XOOPS_URL.'/modules/xcontact/');
 $xoopsTpl->assign('subs',$subs); $xoopsTpl->assign('form',$form); $xoopsTpl->assign('forms',$forms);
 $xoopsTpl->assign('form_id',$form_id); $xoopsTpl->assign('total',$total); $xoopsTpl->assign('start',$start); $xoopsTpl->assign('limit',$limit);
-xcontact_admin_assign_lang('submissions');
+
 echo $xoopsTpl->fetch($d.'xcontact_admin_submissions.tpl');
 xoops_cp_footer();
