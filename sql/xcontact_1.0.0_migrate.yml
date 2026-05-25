@@ -6,10 +6,13 @@ xcontact_forms:
             attributes: ' INT(10) UNSIGNED NOT NULL AUTO_INCREMENT '
         -
             name: name
-            attributes: ' VARCHAR(255) NOT NULL DEFAULT '''''''' '
+            attributes: " VARCHAR(255) NOT NULL DEFAULT '' "
         -
             name: slug
-            attributes: ' VARCHAR(100) NOT NULL DEFAULT '''''''' '
+            attributes: " VARCHAR(100) NOT NULL DEFAULT '' "
+        -
+            name: slug2
+            attributes: " VARCHAR(100) NOT NULL DEFAULT '' "
         -
             name: description
             attributes: ' TEXT NOT NULL '
@@ -46,7 +49,7 @@ xcontact_submissions:
             attributes: ' LONGTEXT NOT NULL '
         -
             name: ip
-            attributes: ' VARCHAR(45) NOT NULL DEFAULT '''''''' '
+            attributes: " VARCHAR(45) NOT NULL DEFAULT '' "
         -
             name: status
             attributes: ' TINYINT(1) NOT NULL DEFAULT 0 '

@@ -90,19 +90,6 @@ class Configurator
         $this->renameColumns   = (array)$config->renameColumns;
         $this->moduleStats     = (array)$config->moduleStats;
         $this->modCopyright    = (string)$config->modCopyright;
-
-        /* currently not used
-        $iconsFile = $this->baseDir . '/config/icons.php';
-        $pathsFile = $this->baseDir . '/config/paths.php';
-        if (!\is_file($iconsFile)) {
-            throw new \RuntimeException('Missing icons config file: ' . $iconsFile);
-        }
-        if (!\is_file($pathsFile)) {
-            throw new \RuntimeException('Missing paths config file: ' . $pathsFile);
-        }
-        $this->icons = (array)require_once $iconsFile;
-        $this->paths = (array)require_once $pathsFile;
-        */
     }
 
     public function getPath(string $key): ?string

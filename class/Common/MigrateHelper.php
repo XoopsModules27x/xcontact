@@ -222,12 +222,12 @@ class MigrateHelper
         }
         $columns['name'] = $name;
         // update quotes
-        if (\strpos($attributes, "''") > 0) {
-            $attributes = \trim(\str_replace("''", "''''''''" , $attributes));
-        } elseif (\strpos($attributes, "'") > 0) {
-            $attributes = \trim(\str_replace("'", "''" , $attributes));
+        $attributes = \trim($attributes);
+        if (\strpos($attributes, "'") > 0) {
+            $columns['attributes'] = '" ' . $attributes . ' "';
+        } else {
+            $columns['attributes'] = "' " . $attributes . " '";
         }
-        $columns['attributes'] = "' " . $attributes . " '";
 
         return $columns;
 

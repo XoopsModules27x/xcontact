@@ -1,7 +1,6 @@
 <?php
 defined('XOOPS_ROOT_PATH') || exit();
 
-if (!defined('_AM_XCONTACT_MENU_MAIN')) {
 define('_AM_XCONTACT_MENU_MAIN',        'Dashboard');
 define('_AM_XCONTACT_MENU_FORMS',       'Form List');
 define('_AM_XCONTACT_MENU_NEW_FORM',    'New Form');
@@ -41,8 +40,7 @@ define('_AM_XCONTACT_BLOCK_SLUG',       'Select Form:');
 define('_AM_XCONTACT_SELECT_FORM',      '— Select a Form —');
 define('_AM_XCONTACT_USAGE_TITLE',      'Template Usage');
 define('_AM_XCONTACT_USAGE_DESC',       'Link to the form page or use the XOOPS block system.');
-} // end if !defined
-if (!defined('_AM_XCONTACT_BUILDER_FIELD_TYPES')) {
+
 // Form Builder - field type labels
 define('_AM_XCONTACT_FT_SHORT_TEXT',   'Short Text');
 define('_AM_XCONTACT_FT_LONG_TEXT',    'Long Text');
@@ -101,8 +99,7 @@ define('_AM_XCONTACT_SET_CAPTCHA',          'Enable CAPTCHA');
 define('_AM_XCONTACT_SET_DEFAULT_SUCCESS',  'Your form has been submitted successfully. Thank you!');
 define('_AM_XCONTACT_SET_DEFAULT_SUBJECT',  'New Form Submission');
 define('_AM_XCONTACT_SET_SLUG_PLACEHOLDER', 'contact-form');
-}
-if (!defined('_AM_XCONTACT_ABOUT_TITLE')) {
+
 // About page
 define('_AM_XCONTACT_ABOUT_TITLE',      'xcontact — Contact Form Builder');
 define('_AM_XCONTACT_ABOUT_MOD_NAME',   'Module Name');
@@ -166,16 +163,13 @@ define('_AM_XCONTACT_SUBS_CONFIRM_DEL', 'Are you sure you want to delete this su
 define('_AM_XCONTACT_SUBS_EMPTY',       'No submissions for this form yet.');
 define('_AM_XCONTACT_SUB_STATUS_NEW',   'New');
 define('_AM_XCONTACT_SUB_STATUS_READ',  'Read');
-}
-if (!defined('_AM_XCONTACT_SUB_VIEW_TITLE')) {
 define('_AM_XCONTACT_SUB_VIEW_TITLE', 'Submission');
 define('_AM_XCONTACT_SUB_VIEW_BACK',  '← Back to Submissions');
-}
-if (!defined('_AM_XCONTACT_BLOCK_DISPLAY_MODE')) {
+
 define('_AM_XCONTACT_BLOCK_DISPLAY_MODE', 'Display Mode');
 define('_AM_XCONTACT_BLOCK_MODE_LINK',    'Show as link (redirect to form page)');
 define('_AM_XCONTACT_BLOCK_MODE_EMBED',   'Embed form directly in block');
-}
+
 define('_AM_XCONTACT_MAINTAINEDBY',   'Maintained by');
 // Clone feature
 \define('_AM_XCONTACT_CLONE', 'Clone');
