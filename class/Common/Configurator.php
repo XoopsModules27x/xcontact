@@ -79,7 +79,7 @@ class Configurator
 
 
         $this->name            = (string)$config->name;
-        // $this->paths           = $config->paths;
+        $this->paths           = (array)$config->paths;
         $this->uploadFolders   = (array)$config->uploadFolders;
         $this->copyBlankFiles  = (array)$config->copyBlankFiles;
         $this->copyTestFolders = (array)$config->copyTestFolders;
@@ -90,17 +90,6 @@ class Configurator
         $this->renameColumns   = (array)$config->renameColumns;
         $this->moduleStats     = (array)$config->moduleStats;
         $this->modCopyright    = (string)$config->modCopyright;
-
-        $iconsFile = $this->baseDir . '/config/icons.php';
-        $pathsFile = $this->baseDir . '/config/paths.php';
-        if (!\is_file($iconsFile)) {
-            throw new \RuntimeException('Missing icons config file: ' . $iconsFile);
-        }
-        if (!\is_file($pathsFile)) {
-            throw new \RuntimeException('Missing paths config file: ' . $pathsFile);
-        }
-        $this->icons = (array)require $iconsFile;
-        $this->paths = (array)require $pathsFile;
     }
 
     public function getPath(string $key): ?string

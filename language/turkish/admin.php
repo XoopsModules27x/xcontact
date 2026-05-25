@@ -1,12 +1,12 @@
 <?php
 defined('XOOPS_ROOT_PATH') || exit();
-// Çift define engellemek için defined() kontrolü
-if (!defined('_AM_XCONTACT_MENU_MAIN')) {
+
 define('_AM_XCONTACT_MENU_MAIN',        'Ana Sayfa');
 define('_AM_XCONTACT_MENU_FORMS',       'Form Listesi');
 define('_AM_XCONTACT_MENU_NEW_FORM',    'Yeni Form');
 define('_AM_XCONTACT_MENU_SUBMISSIONS', 'Gönderiler');
 define('_AM_XCONTACT_MENU_ABOUT',       'Hakkında');
+define('_AM_XCONTACT_MENU_CLONE',       'Clone');
 define('_AM_XCONTACT_DASHBOARD',        'xcontact Kontrol Paneli');
 define('_AM_XCONTACT_STAT_FORMS',       'Toplam Form');
 define('_AM_XCONTACT_STAT_ACTIVE',      'Aktif Form');
@@ -40,8 +40,7 @@ define('_AM_XCONTACT_BLOCK_SLUG',       'Form Seçin:');
 define('_AM_XCONTACT_SELECT_FORM',      '— Form Seçin —');
 define('_AM_XCONTACT_USAGE_TITLE',      'Şablonda Kullanım');
 define('_AM_XCONTACT_USAGE_DESC',       'Form sayfasına link verin veya XOOPS blok sistemi kullanın.');
-} // end if !defined
-if (!defined('_AM_XCONTACT_BUILDER_FIELD_TYPES')) {
+
 // Form Builder - alan türü etiketleri
 define('_AM_XCONTACT_FT_SHORT_TEXT',   'Kısa Metin');
 define('_AM_XCONTACT_FT_LONG_TEXT',    'Uzun Metin');
@@ -100,8 +99,7 @@ define('_AM_XCONTACT_SET_CAPTCHA',          'CAPTCHA Etkinleştir');
 define('_AM_XCONTACT_SET_DEFAULT_SUCCESS',  'Formunuz başarıyla gönderildi. Teşekkürler!');
 define('_AM_XCONTACT_SET_DEFAULT_SUBJECT',  'Yeni Form Gönderisi');
 define('_AM_XCONTACT_SET_SLUG_PLACEHOLDER', 'iletisim-formu');
-}
-if (!defined('_AM_XCONTACT_ABOUT_TITLE')) {
+
 // About sayfası
 define('_AM_XCONTACT_ABOUT_TITLE',      'xcontact — İletişim Formu Oluşturucu');
 define('_AM_XCONTACT_ABOUT_MOD_NAME',   'Modül Adı');
@@ -165,13 +163,22 @@ define('_AM_XCONTACT_SUBS_CONFIRM_DEL', 'Silmek istediğinize emin misiniz?');
 define('_AM_XCONTACT_SUBS_EMPTY',       'Bu form için henüz gönderi yok.');
 define('_AM_XCONTACT_SUB_STATUS_NEW',   'Yeni');
 define('_AM_XCONTACT_SUB_STATUS_READ',  'Okundu');
-}
-if (!defined('_AM_XCONTACT_SUB_VIEW_TITLE')) {
 define('_AM_XCONTACT_SUB_VIEW_TITLE', 'Gönderi');
 define('_AM_XCONTACT_SUB_VIEW_BACK',  '← Gönderilere Dön');
-}
-if (!defined('_AM_XCONTACT_BLOCK_DISPLAY_MODE')) {
+
 define('_AM_XCONTACT_BLOCK_DISPLAY_MODE', 'Gösterim Modu');
 define('_AM_XCONTACT_BLOCK_MODE_LINK',    'Link olarak göster (forma yönlendir)');
 define('_AM_XCONTACT_BLOCK_MODE_EMBED',   'Formu doğrudan göster (embed)');
-}
+
+define('_AM_XCONTACT_MAINTAINEDBY',   'Bakımını yapan');
+// Clone feature
+\define('_AM_XCONTACT_CLONE', 'Klonla');
+\define('_AM_XCONTACT_CLONE_DSC', 'Bir modülü klonlamak hiç bu kadar kolay olmamıştı! Sadece istediğiniz adı yazın ve gönder düğmesine basın!');
+\define('_AM_XCONTACT_CLONE_TITLE', '%s klonla');
+\define('_AM_XCONTACT_CLONE_NAME', 'Yeni modül için bir ad seçin');
+\define('_AM_XCONTACT_CLONE_NAME_DSC', 'Özel karakterler kullanmayın! <br>Mevcut bir modül dizin adı veya veritabanı tablo adı seçmeyin!');
+\define('_AM_XCONTACT_CLONE_INVALIDNAME', 'HATA: Geçersiz modül adı, lütfen başka bir ad deneyin!');
+\define('_AM_XCONTACT_CLONE_EXISTS', 'HATA: Modül adı zaten kullanılıyor, lütfen başka bir ad deneyin!');
+\define('_AM_XCONTACT_CLONE_CONGRAT', 'Tebrikler! %s başarıyla oluşturuldu!<br>Dil dosyalarında değişiklik yapmak isteyebilirsiniz.');
+\define('_AM_XCONTACT_CLONE_IMAGEFAIL', 'Dikkat, yeni modül logosu oluşturulamadı. Lütfen assets/images/logo_module.png dosyasını manuel olarak değiştirmeyi düşünün!');
+\define('_AM_XCONTACT_CLONE_FAIL', 'Üzgünüz, yeni klon oluşturulamadı. Belki modules klasörüne geçici olarak yazma izni (CHMOD 777) vermeniz ve tekrar denemeniz gerekiyor.');

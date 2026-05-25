@@ -1,11 +1,12 @@
 <?php
 defined('XOOPS_ROOT_PATH') || exit();
-if (!defined('_AM_XCONTACT_MENU_MAIN')) {
+
 define('_AM_XCONTACT_MENU_MAIN',        'Dashboard');
 define('_AM_XCONTACT_MENU_FORMS',       'Form List');
 define('_AM_XCONTACT_MENU_NEW_FORM',    'New Form');
 define('_AM_XCONTACT_MENU_SUBMISSIONS', 'Submissions');
 define('_AM_XCONTACT_MENU_ABOUT',       'About');
+define('_AM_XCONTACT_MENU_CLONE',       'Clone');
 define('_AM_XCONTACT_DASHBOARD',        'xcontact Dashboard');
 define('_AM_XCONTACT_STAT_FORMS',       'Total Forms');
 define('_AM_XCONTACT_STAT_ACTIVE',      'Active Forms');
@@ -39,8 +40,7 @@ define('_AM_XCONTACT_BLOCK_SLUG',       'Select Form:');
 define('_AM_XCONTACT_SELECT_FORM',      '— Select a Form —');
 define('_AM_XCONTACT_USAGE_TITLE',      'Template Usage');
 define('_AM_XCONTACT_USAGE_DESC',       'Link to the form page or use the XOOPS block system.');
-} // end if !defined
-if (!defined('_AM_XCONTACT_BUILDER_FIELD_TYPES')) {
+
 // Form Builder - field type labels
 define('_AM_XCONTACT_FT_SHORT_TEXT',   'Short Text');
 define('_AM_XCONTACT_FT_LONG_TEXT',    'Long Text');
@@ -99,8 +99,7 @@ define('_AM_XCONTACT_SET_CAPTCHA',          'Enable CAPTCHA');
 define('_AM_XCONTACT_SET_DEFAULT_SUCCESS',  'Your form has been submitted successfully. Thank you!');
 define('_AM_XCONTACT_SET_DEFAULT_SUBJECT',  'New Form Submission');
 define('_AM_XCONTACT_SET_SLUG_PLACEHOLDER', 'contact-form');
-}
-if (!defined('_AM_XCONTACT_ABOUT_TITLE')) {
+
 // About page
 define('_AM_XCONTACT_ABOUT_TITLE',      'xcontact — Contact Form Builder');
 define('_AM_XCONTACT_ABOUT_MOD_NAME',   'Module Name');
@@ -164,13 +163,23 @@ define('_AM_XCONTACT_SUBS_CONFIRM_DEL', 'Are you sure you want to delete this su
 define('_AM_XCONTACT_SUBS_EMPTY',       'No submissions for this form yet.');
 define('_AM_XCONTACT_SUB_STATUS_NEW',   'New');
 define('_AM_XCONTACT_SUB_STATUS_READ',  'Read');
-}
-if (!defined('_AM_XCONTACT_SUB_VIEW_TITLE')) {
 define('_AM_XCONTACT_SUB_VIEW_TITLE', 'Submission');
 define('_AM_XCONTACT_SUB_VIEW_BACK',  '← Back to Submissions');
-}
-if (!defined('_AM_XCONTACT_BLOCK_DISPLAY_MODE')) {
+
 define('_AM_XCONTACT_BLOCK_DISPLAY_MODE', 'Display Mode');
 define('_AM_XCONTACT_BLOCK_MODE_LINK',    'Show as link (redirect to form page)');
 define('_AM_XCONTACT_BLOCK_MODE_EMBED',   'Embed form directly in block');
-}
+
+define('_AM_XCONTACT_MAINTAINEDBY',   'Maintained by');
+// Clone feature
+\define('_AM_XCONTACT_CLONE', 'Clone');
+\define('_AM_XCONTACT_CLONE_DSC', 'Cloning a module has never been this easy! Just type in the name you want for it and hit submit button!');
+\define('_AM_XCONTACT_CLONE_TITLE', 'Clone %s');
+\define('_AM_XCONTACT_CLONE_NAME', 'Choose a name for the new module');
+\define('_AM_XCONTACT_CLONE_NAME_DSC', 'Do not use special characters! <br>Do not choose an existing module dirname or database table name!');
+\define('_AM_XCONTACT_CLONE_INVALIDNAME', 'ERROR: Invalid module name, please try another one!');
+\define('_AM_XCONTACT_CLONE_EXISTS', 'ERROR: Module name already taken, please try another one!');
+\define('_AM_XCONTACT_CLONE_CONGRAT', 'Congratulations! %s was successfully created!<br>You may want to make changes in language files.');
+\define('_AM_XCONTACT_CLONE_IMAGEFAIL', 'Attention, we failed creating the new module logo. Please consider modifying assets/images/logo_module.png manually!');
+\define('_AM_XCONTACT_CLONE_FAIL', 'Sorry, we failed in creating the new clone. Maybe you need to temporarily set write permissions (CHMOD 777) to modules folder and try again.');
+
