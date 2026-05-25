@@ -28,6 +28,5 @@ if(isset($GLOBALS['xoopsSecurity'])) $xoopsTpl->assign('xoops_token_html',$GLOBA
 $xoopsTpl->assign('xoops_url',XOOPS_URL); $xoopsTpl->assign('module_url',XOOPS_URL.'/modules/xcontact/');
 $xoopsTpl->assign('form',$form); $xoopsTpl->assign('settings',$settings); $xoopsTpl->assign('is_edit',$is_edit);
 
-xcontact_admin_assign_lang('forms'); // status labels, actions vb. ortak değişkenler
 echo $xoopsTpl->fetch($d.'xcontact_admin_form_edit.tpl');
 xoops_cp_footer();

@@ -29,6 +29,6 @@ $xoopsTpl->assign('stat_cards',[
     ['value'=>$ts2,'label'=>_AM_XCONTACT_STAT_NEW_SUBS,'mod'=>'orange']
 ]);
 $xoopsTpl->assign('recent_forms',$recent); $xoopsTpl->assign('recent_subs',$rsubs);
-xcontact_admin_assign_lang('index');
+
 echo $xoopsTpl->fetch($d.'xcontact_admin_index.tpl');
 xoops_cp_footer();

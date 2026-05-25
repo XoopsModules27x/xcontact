@@ -7,6 +7,6 @@ global $xoopsTpl;
 $d=XOOPS_ROOT_PATH.'/modules/xcontact/templates/admin/';
 if(method_exists($xoopsTpl,'addTemplateDir')) $xoopsTpl->addTemplateDir($d);
 $xoopsTpl->assign('xoops_url',XOOPS_URL); $xoopsTpl->assign('module_url',XOOPS_URL.'/modules/xcontact/');
-xcontact_admin_assign_lang('about');
+
 echo $xoopsTpl->fetch($d.'xcontact_admin_about.tpl');
 xoops_cp_footer();
