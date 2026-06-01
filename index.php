@@ -6,7 +6,8 @@ require_once '../../mainfile.php';
 $xoopsOption['template_main'] = 'xcontact_index.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
 require_once __DIR__ . '/include/functions.php';
-xcontact_load_language('main');
+require __DIR__ . '/header.php';
+
 
 $forms = xcontact_get_forms();
 $rows  = [];

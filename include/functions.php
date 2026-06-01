@@ -7,20 +7,6 @@
 
 defined('XOOPS_ROOT_PATH') || exit();
 
-// ── Dil dosyası yükle (çift yüklemeyi önle) ──────────────────────────────────
-function xcontact_load_language(string $file): void {
-    static $loaded = [];
-    if (isset($loaded[$file])) return;
-    $loaded[$file] = true;
-
-    $lang = 'turkish';
-    if (defined('_LANGCODE') && _LANGCODE !== '') $lang = _LANGCODE;
-    $path = XOOPS_ROOT_PATH . "/modules/xcontact/language/{$lang}/{$file}.php";
-    if (!file_exists($path)) {
-        $path = XOOPS_ROOT_PATH . "/modules/xcontact/language/turkish/{$file}.php";
-    }
-    if (file_exists($path)) require_once $path;
-}
 
 // ── Admin boot ───────────────────────────────────────────────────────────────
 function xcontact_admin_boot(): void {

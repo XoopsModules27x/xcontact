@@ -49,12 +49,12 @@ class Submissions extends \XoopsObject
      */
     public function __construct()
     {
-        $this->initVar('xxx_sub_id', \XOBJ_DTYPE_INT);
-        $this->initVar('xxx_form_id', \XOBJ_DTYPE_INT);
-        $this->initVar('xxx_data', \XOBJ_DTYPE_TXTAREA);
-        $this->initVar('xxx_ip', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('xxx_status', \XOBJ_DTYPE_INT);
-        $this->initVar('xxx_created_at', \XOBJ_DTYPE_INT);
+        $this->initVar('sub_id', \XOBJ_DTYPE_INT);
+        $this->initVar('form_id', \XOBJ_DTYPE_INT);
+        $this->initVar('data', \XOBJ_DTYPE_TXTAREA);
+        $this->initVar('ip', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('status', \XOBJ_DTYPE_INT);
+        $this->initVar('created_at', \XOBJ_DTYPE_INT);
     }
 
     /**
@@ -100,21 +100,21 @@ class Submissions extends \XoopsObject
         $form->setExtra('enctype="multipart/form-data"');
         // Form Table forms
         $formsHandler = $helper->getHandler('Forms');
-        $xxxForm_idSelect = new \XoopsFormSelect(\_AM_XCONTACT_SUBMISSIONS_FORM_ID, 'xxx_form_id', $this->getVar('xxx_form_id'));
+        $xxxForm_idSelect = new \XoopsFormSelect(\_AM_XCONTACT_SUBMISSIONS_FORM_ID, 'form_id', $this->getVar('form_id'));
         $xxxForm_idSelect->addOptionArray($formsHandler->getList());
         $form->addElement($xxxForm_idSelect, true);
         // Form Editor TextArea xxxData
-        $form->addElement(new \XoopsFormTextArea(\_AM_XCONTACT_SUBMISSIONS_DATA, 'xxx_data', $this->getVar('xxx_data', 'e'), 4, 47), true);
+        $form->addElement(new \XoopsFormTextArea(\_AM_XCONTACT_SUBMISSIONS_DATA, 'data', $this->getVar('data', 'e'), 4, 47), true);
         // Form Text IP xxxIp
         $xxxIp = $_SERVER['REMOTE_ADDR'];
-        $xxxIp = $this->isNew() ? ($_SERVER['REMOTE_ADDR'] ?? '') : $this->getVar('xxx_ip');
-        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_SUBMISSIONS_IP, 'xxx_ip', 20, 150, $xxxIp), true);
+        $xxxIp = $this->isNew() ? ($_SERVER['REMOTE_ADDR'] ?? '') : $this->getVar('ip');
+        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_SUBMISSIONS_IP, 'ip', 20, 150, $xxxIp), true);
         // Form Text xxxStatus
-        $xxxStatus = $this->isNew() ? '0' : $this->getVar('xxx_status');
-        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_SUBMISSIONS_STATUS, 'xxx_status', 20, 150, $xxxStatus));
+        $xxxStatus = $this->isNew() ? '0' : $this->getVar('status');
+        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_SUBMISSIONS_STATUS, 'status', 20, 150, $xxxStatus));
         // Form Text Date Select xxxCreated_at
-        $xxxCreated_at = $this->isNew() ? \time() : $this->getVar('xxx_created_at');
-        $form->addElement(new \XoopsFormTextDateSelect(\_AM_XCONTACT_SUBMISSIONS_CREATED_AT, 'xxx_created_at', '', $xxxCreated_at));
+        $xxxCreated_at = $this->isNew() ? \time() : $this->getVar('created_at');
+        $form->addElement(new \XoopsFormTextDateSelect(\_AM_XCONTACT_SUBMISSIONS_CREATED_AT, 'created_at', '', $xxxCreated_at));
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormHidden('start', $this->start));
@@ -133,22 +133,16 @@ class Submissions extends \XoopsObject
     public function getValuesSubmissions($keys = null, $format = null, $maxDepth = null)
     {
         $helper  = \XoopsModules\Xcontact\Helper::getInstance();
-        $utility = new \XoopsModules\Xcontact\Utility();
         $ret = $this->getValues($keys, $format, $maxDepth);
-        $editorMaxchar = $helper->getConfig('editor_maxchar');
-        $ret['sub_id']           = $this->getVar('xxx_sub_id');
         $formsHandler = $helper->getHandler('Forms');
-        $formsObj = $formsHandler->get($this->getVar('xxx_form_id'));
-        $xxxForm_id = '';
+        $formsObj = $formsHandler->get($this->getVar('form_id'));
+        $formName = '';
         if (\is_object($formsObj)) {
-            $xxxForm_id = $formsObj->getVar('xxx_name');
+            $formName = $formsObj->getVar('name');
         }
-        $ret['form_id']          = $xxxForm_id;
-        $ret['data_text']        = \strip_tags($this->getVar('xxx_data', 'e'));
-        $ret['data_short']       = $utility::truncateHtml($ret['data_text'], $editorMaxchar);
-        $ret['ip']               = $this->getVar('xxx_ip');
-        $ret['status']           = $this->getVar('xxx_status');
-        $ret['created_at_text']  = \formatTimestamp($this->getVar('xxx_created_at'), 's');
+        $ret['form_name']        = $formName;
+        $ret['data_text']        = \strip_tags($this->getVar('data', 'e'));
+        $ret['created_at_text']  = \formatTimestamp($this->getVar('created_at'), 's');
         return $ret;
     }
 

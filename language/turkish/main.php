@@ -1,6 +1,6 @@
 <?php
 defined('XOOPS_ROOT_PATH') || exit();
-if (!defined('_MD_XCONTACT_FORM_NOT_FOUND')) {
+
 define('_MD_XCONTACT_FORM_NOT_FOUND',    'Form bulunamadı veya devre dışı.');
 define('_MD_XCONTACT_TOKEN_ERROR',       'Güvenlik doğrulama hatası. Lütfen tekrar deneyin.');
 define('_MD_XCONTACT_CAPTCHA_ERROR',     'Güvenlik kodu hatalı. Lütfen tekrar deneyin.');
@@ -18,14 +18,18 @@ define('_MD_XCONTACT_SUCCESS',           'Formunuz başarıyla gönderildi. Teş
 define('_MD_XCONTACT_PLEASE_FIX',        'Lütfen düzeltin:');
 define('_MD_XCONTACT_SELECT_OPT',        '-- Seçin --');
 define('_MD_XCONTACT_SIG_CLEAR',         'Temizle');
-define('_MD_XCONTACT_FILE_HINT',         'Maks. 5MB · jpg,png,pdf,doc,xls,txt,zip');
+//define('_MD_XCONTACT_FILE_HINT',         'Maks. 5MB · jpg,png,pdf,doc,xls,txt,zip');
 define('_MD_XCONTACT_EMAIL_PLACEHOLDER', 'ornek@email.com');
 define('_MD_XCONTACT_PHONE_PLACEHOLDER', '05XX XXX XX XX');
 define('_MD_XCONTACT_NO_FORMS',          'Henüz aktif form yok.');
 define('_MD_XCONTACT_FILL_FORM',         'Formu Doldurun →');
-}
+
 // (Bu sabitler form.php içinde mail için kullanılır)
-if (!defined('_MD_XCONTACT_SUB_DATE_LABEL')) {
 define('_MD_XCONTACT_SUB_DATE_LABEL',  'Tarih');
 define('_MD_XCONTACT_NEW_SUBMISSION',  'Yeni Form Gönderisi');
-}
+
+define('_MD_XCONTACT_INVALID_PARAMETER',  'Geçersiz Parametre');
+define('_MD_XCONTACT_FORM_UPLOAD_SIZE', 'Maksimum dosya boyutu: ');
+define('_MD_XCONTACT_FORM_UPLOAD_SIZE_MB', 'MB');
+define('_MD_XCONTACT_FORM_UPLOAD_FILETYPE', 'İzin verilen dosya türleri: ');
+define('_MD_XCONTACT_SUBMISSION_ERROR', 'Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
