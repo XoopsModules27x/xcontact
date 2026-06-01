@@ -23,6 +23,6 @@ declare(strict_types=1);
 
 require __DIR__ . '/header.php';
 $templateMain = 'xcontact_admin_about.tpl';
-$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('about.php'));
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('about.php'));
 $GLOBALS['xoopsTpl']->assign('about', $adminObject->renderAbout(false));
 require __DIR__ . '/footer.php';

@@ -10,7 +10,7 @@
  - added preferences for file upload (goffy)
  - replaced function xcontact_load_language by xoops_loadLanguage (goffy)
  - removed unnecessary functions in admin area (goffy)
- 
+
 ==============================================================
 1.0.0 [2026/05/01]
 ==============================================================
