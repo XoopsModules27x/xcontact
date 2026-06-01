@@ -1,7 +1,9 @@
 <?php
-include_once '../../../include/cp_header.php';
+
+require __DIR__ . '/header.php';
+
 require_once XOOPS_ROOT_PATH . '/modules/xcontact/include/functions.php';
-xcontact_admin_boot(); xoops_cp_header(); xcontact_admin_register_css();
+
 if(class_exists('Xmf\\Module\\Admin')) \Xmf\Module\Admin::getInstance()->displayNavigation('form_edit.php');
 $db=$GLOBALS['xoopsDB']; $tbl=$db->prefix('xcontact_forms');
 $form_id=isset($_REQUEST['id'])?(int)$_REQUEST['id']:0; $is_edit=$form_id>0;

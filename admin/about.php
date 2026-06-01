@@ -1,12 +1,28 @@
 <?php
-include_once '../../../include/cp_header.php';
-require_once XOOPS_ROOT_PATH . '/modules/xcontact/include/functions.php';
-xcontact_admin_boot(); xoops_cp_header(); xcontact_admin_register_css();
-if(class_exists('Xmf\\Module\\Admin')) \Xmf\Module\Admin::getInstance()->displayNavigation('about.php');
-global $xoopsTpl;
-$d=XOOPS_ROOT_PATH.'/modules/xcontact/templates/admin/';
-if(method_exists($xoopsTpl,'addTemplateDir')) $xoopsTpl->addTemplateDir($d);
-$xoopsTpl->assign('xoops_url',XOOPS_URL); $xoopsTpl->assign('module_url',XOOPS_URL.'/modules/xcontact/');
 
-echo $xoopsTpl->fetch($d.'xcontact_admin_about.tpl');
-xoops_cp_footer();
+declare(strict_types=1);
+
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+/**
+ * xContact module for xoops
+ *
+ * @copyright    2026 XOOPS Project (https://xoops.org)
+ * @license      GPL 2.0 or later
+ * @package      xcontact
+ * @author       TDM XOOPS - Email:info@email.com - Website:http://xoops.org
+ */
+
+require __DIR__ . '/header.php';
+$templateMain = 'xcontact_admin_about.tpl';
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('about.php'));
+$GLOBALS['xoopsTpl']->assign('about', $adminObject->renderAbout(false));
+require __DIR__ . '/footer.php';

@@ -7,50 +7,6 @@
 
 defined('XOOPS_ROOT_PATH') || exit();
 
-
-// ── Admin boot ───────────────────────────────────────────────────────────────
-function xcontact_admin_boot(): void {
-
-    \xoops_loadLanguage('admin', 'xcontact');
-    \xoops_loadLanguage('modinfo', 'xcontact');
-}
-
-// ── Admin CSS kaydı ──────────────────────────────────────────────────────────
-function xcontact_admin_register_css(): void {
-    if (!isset($GLOBALS['xoTheme']) || !is_object($GLOBALS['xoTheme'])) return;
-    $GLOBALS['xoTheme']->addStylesheet(XOOPS_URL . '/modules/xcontact/assets/css/admin.css');
-}
-
-// ── Admin şablon render (xpages pattern: doğrudan dosya path'i) ──────────────
-function xcontact_admin_render(string $tpl, array $vars = []): void {
-    global $xoopsTpl;
-
-    $adminTplDir = XOOPS_ROOT_PATH . '/modules/xcontact/templates/admin/';
-    $tplFile     = $adminTplDir . $tpl;
-
-    if (!file_exists($tplFile)) {
-        echo '<p style="color:red">Şablon bulunamadı: ' . htmlspecialchars($tplFile) . '</p>';
-        return;
-    }
-
-    // Admin template dizinini Smarty'ye ekle
-    if (method_exists($xoopsTpl, 'addTemplateDir')) {
-        $xoopsTpl->addTemplateDir($adminTplDir);
-    }
-
-    // CSRF token
-    $vars['xoops_token_html'] = '';
-    if (isset($GLOBALS['xoopsSecurity']) && is_object($GLOBALS['xoopsSecurity'])) {
-        $vars['xoops_token_html'] = $GLOBALS['xoopsSecurity']->getTokenHTML();
-    }
-    $vars['xoops_url']  = XOOPS_URL;
-    $vars['module_url'] = XOOPS_URL . '/modules/xcontact/';
-
-    foreach ($vars as $k => $v) $xoopsTpl->assign($k, $v);
-
-    echo $xoopsTpl->fetch($tplFile);
-}
-
 // ── DB: tüm formlar ──────────────────────────────────────────────────────────
 function xcontact_get_forms(): array {
     $db  = $GLOBALS['xoopsDB'];
