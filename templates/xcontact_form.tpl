@@ -127,7 +127,7 @@
     <div class="xcontact-fg">
         <label class="xcontact-label" for="xcf_<{$fn}>"><{$field.label|escape}><{if $field.required}><span class="xcontact-req">*</span><{/if}></label>
         <input type="file" id="xcf_<{$fn}>" name="<{$fn|escape}>" style="width:100%;padding:8px;border:1px dashed #bbb;border-radius:5px;background:#fafafa;font-size:13px"<{if $field.required}> required<{/if}>>
-        <p class="xcontact-hint"><{$smarty.const._MD_XCONTACT_FILE_HINT}><{if $field.description}> · <{$field.description|escape}><{/if}></p>
+        <p class="xcontact-hint"><{$cf_fileupload_size|escape}><br><{$cf_fileupload_types|escape}><{if $field.description}><br><{$field.description|escape}><{/if}></p>
     </div>
 <{elseif $field.type eq 'choice'}>
     <div class="xcontact-fg">

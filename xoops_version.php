@@ -11,7 +11,7 @@ defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
 
 $modversion = [
     'name'                => \_MI_XCONTACT_NAME,
-    'version'             => '1.0.0',
+    'version'             => '1.0.1',
     'description'         => \_MI_XCONTACT_DESC,
     'author'              => 'Eren Yumak — Aymak',
     'author_mail'         => '',
@@ -89,20 +89,90 @@ $modversion['templates'][] = ['file' => 'xcontact_form.tpl',       'description'
 // Block template templates/blocks/ klasöründe - XOOPS install sırasında otomatik tarar
 
 // ── Modül ayarları ────────────────────────────────────────────────────────────
-$modversion['config'][1] = [
-    'name'      => 'upload_max_size',
-    'title'     => '_MI_XCONTACT_CFG_UPLOAD_SIZE',
-    'description' => '_MI_XCONTACT_CFG_UPLOAD_SIZE_DESC',
-    'formtype'  => 'textbox',
-    'valuetype' => 'int',
-    'default'   => 5,
-];
 
-$modversion['config'][2] = [
-    'name'      => 'captcha_length',
-    'title'     => '_MI_XCONTACT_CFG_CAPTCHA_LEN',
+
+// create increment steps for file size
+require_once __DIR__ . '/include/xoops_version.inc.php';
+$iniPostMaxSize       = xcontactReturnBytes(\ini_get('post_max_size'));
+$iniUploadMaxFileSize = xcontactReturnBytes(\ini_get('upload_max_filesize'));
+$maxSize              = min($iniPostMaxSize, $iniUploadMaxFileSize);
+if ($maxSize > 10000 * 1048576) {
+    $increment = 500;
+}
+if ($maxSize <= 10000 * 1048576) {
+    $increment = 200;
+}
+if ($maxSize <= 5000 * 1048576) {
+    $increment = 100;
+}
+if ($maxSize <= 2500 * 1048576) {
+    $increment = 50;
+}
+if ($maxSize <= 1000 * 1048576) {
+    $increment = 10;
+}
+if ($maxSize <= 500 * 1048576) {
+    $increment = 5;
+}
+if ($maxSize <= 100 * 1048576) {
+    $increment = 2;
+}
+if ($maxSize <= 50 * 1048576) {
+    $increment = 1;
+}
+if ($maxSize <= 25 * 1048576) {
+    $increment = 0.5;
+}
+$optionMaxsize = [];
+$i = $increment;
+while ($i * 1048576 <= $maxSize) {
+    $optionMaxsize[$i . ' ' . (defined('_MI_XCONTACT_SIZE_MB') ? _MI_XCONTACT_SIZE_MB : 'MB')] = $i * 1048576;
+    $i += $increment;
+}
+// Uploads : maxsize of image
+$modversion['config'][] = [
+    'name'        => 'upload_max_size',
+    'title'       => '_MI_XCONTACT_CFG_UPLOAD_SIZE',
+    'description' => '_MI_XCONTACT_CFG_UPLOAD_SIZE_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 3145728,
+    'options'     => $optionMaxsize,
+];
+// Uploads : mimetypes for upload file
+$modversion['config'][] = [
+    'name'        => 'upload_filetypes',
+    'title'       => '_MI_XCONTACT_UPLOAD_TYPES',
+    'description' => '_MI_XCONTACT_UPLOAD_TYPES_DESC',
+    'formtype'    => 'select_multi',
+    'valuetype'   => 'array',
+    'default'     => ['jpg','jpeg','png','gif','pdf','doc','docx','xls','xlsx','txt','zip'],
+    'options' => [
+        // images
+        'bmp'   => 'bmp',
+        'gif'   => 'gif',
+        'jpeg'  => 'jpeg',
+        'jpg'   => 'jpg',
+        'jpe'   => 'jpe',
+        'png'   => 'png',
+        // documents
+        'pdf'   => 'pdf',
+        'doc'   => 'doc',
+        'docx'  => 'docx',
+        'txt'   => 'txt',
+        // tables
+        'xls'   => 'xls',
+        'xlsx'  => 'xlsx',
+        // archive
+        'zip'   => 'zip',
+    ],
+];
+//  jpg,png,pdf,doc,xls,txt,zip
+$modversion['config'][] = [
+    'name'        => 'captcha_length',
+    'title'       => '_MI_XCONTACT_CFG_CAPTCHA_LEN',
     'description' => '_MI_XCONTACT_CFG_CAPTCHA_LEN_DESC',
-    'formtype'  => 'textbox',
-    'valuetype' => 'int',
-    'default'   => 5,
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 5,
 ];

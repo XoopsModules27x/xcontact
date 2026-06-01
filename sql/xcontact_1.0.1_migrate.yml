@@ -11,9 +11,6 @@ xcontact_forms:
             name: slug
             attributes: " VARCHAR(100) NOT NULL DEFAULT '' "
         -
-            name: slug2
-            attributes: " VARCHAR(100) NOT NULL DEFAULT '' "
-        -
             name: description
             attributes: ' TEXT NOT NULL '
         -

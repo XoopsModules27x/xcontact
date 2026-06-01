@@ -49,15 +49,15 @@ class Forms extends \XoopsObject
      */
     public function __construct()
     {
-        $this->initVar('xxx_form_id', \XOBJ_DTYPE_INT);
-        $this->initVar('xxx_name', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('xxx_slug', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('xxx_description', \XOBJ_DTYPE_TXTAREA);
-        $this->initVar('xxx_fields', \XOBJ_DTYPE_TXTAREA);
-        $this->initVar('xxx_settings', \XOBJ_DTYPE_TXTAREA);
-        $this->initVar('xxx_is_active', \XOBJ_DTYPE_INT);
-        $this->initVar('xxx_created_at', \XOBJ_DTYPE_INT);
-        $this->initVar('xxx_submitter', \XOBJ_DTYPE_INT);
+        $this->initVar('form_id', \XOBJ_DTYPE_INT);
+        $this->initVar('name', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('slug', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('description', \XOBJ_DTYPE_TXTAREA);
+        $this->initVar('fields', \XOBJ_DTYPE_TXTAREA);
+        $this->initVar('settings', \XOBJ_DTYPE_TXTAREA);
+        $this->initVar('is_active', \XOBJ_DTYPE_INT);
+        $this->initVar('created_at', \XOBJ_DTYPE_INT);
+        $this->initVar('submitter', \XOBJ_DTYPE_INT);
     }
 
     /**
@@ -102,25 +102,25 @@ class Forms extends \XoopsObject
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Form Text xxxName
-        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_FORMS_NAME, 'xxx_name', 50, 255, $this->getVar('xxx_name')), true);
+        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_FORMS_NAME, 'name', 50, 255, $this->getVar('name')), true);
         // Form Text xxxSlug
-        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_FORMS_SLUG, 'xxx_slug', 50, 255, $this->getVar('xxx_slug')));
+        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_FORMS_SLUG, 'slug', 50, 255, $this->getVar('slug')));
         // Form Editor TextArea xxxDescription
-        $form->addElement(new \XoopsFormTextArea(\_AM_XCONTACT_FORMS_DESCRIPTION, 'xxx_description', $this->getVar('xxx_description', 'e'), 4, 47), true);
+        $form->addElement(new \XoopsFormTextArea(\_AM_XCONTACT_FORMS_DESCRIPTION, 'description', $this->getVar('description', 'e'), 4, 47), true);
         // Form Editor TextArea xxxFields
-        $form->addElement(new \XoopsFormTextArea(\_AM_XCONTACT_FORMS_FIELDS, 'xxx_fields', $this->getVar('xxx_fields', 'e'), 4, 47));
+        $form->addElement(new \XoopsFormTextArea(\_AM_XCONTACT_FORMS_FIELDS, 'fields', $this->getVar('fields', 'e'), 4, 47));
         // Form Editor TextArea xxxSettings
-        $form->addElement(new \XoopsFormTextArea(\_AM_XCONTACT_FORMS_SETTINGS, 'xxx_settings', $this->getVar('xxx_settings', 'e'), 4, 47));
+        $form->addElement(new \XoopsFormTextArea(\_AM_XCONTACT_FORMS_SETTINGS, 'settings', $this->getVar('settings', 'e'), 4, 47));
         // Form Text xxxIs_active
-        $xxxIs_active = $this->isNew() ? '1' : $this->getVar('xxx_is_active');
-        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_FORMS_IS_ACTIVE, 'xxx_is_active', 20, 150, $xxxIs_active));
+        $xxxIs_active = $this->isNew() ? '1' : $this->getVar('is_active');
+        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_FORMS_IS_ACTIVE, 'is_active', 20, 150, $xxxIs_active));
         // Form Text Date Select xxxCreated_at
-        $xxxCreated_at = $this->isNew() ? \time() : $this->getVar('xxx_created_at');
-        $form->addElement(new \XoopsFormTextDateSelect(\_AM_XCONTACT_FORMS_CREATED_AT, 'xxx_created_at', '', $xxxCreated_at));
+        $xxxCreated_at = $this->isNew() ? \time() : $this->getVar('created_at');
+        $form->addElement(new \XoopsFormTextDateSelect(\_AM_XCONTACT_FORMS_CREATED_AT, 'created_at', '', $xxxCreated_at));
         // Form Select User xxxSubmitter
         $uidCurrent = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
-        $xxxSubmitter = $this->isNew() ? $uidCurrent : $this->getVar('xxx_submitter');
-        $form->addElement(new \XoopsFormSelectUser(\_AM_XCONTACT_FORMS_SUBMITTER, 'xxx_submitter', false, $xxxSubmitter));
+        $xxxSubmitter = $this->isNew() ? $uidCurrent : $this->getVar('submitter');
+        $form->addElement(new \XoopsFormSelectUser(\_AM_XCONTACT_FORMS_SUBMITTER, 'submitter', false, $xxxSubmitter));
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormHidden('start', $this->start));
@@ -138,23 +138,7 @@ class Forms extends \XoopsObject
      */
     public function getValuesForms($keys = null, $format = null, $maxDepth = null)
     {
-        $helper  = \XoopsModules\Xcontact\Helper::getInstance();
-        $utility = new \XoopsModules\Xcontact\Utility();
-        $ret = $this->getValues($keys, $format, $maxDepth);
-        $editorMaxchar = $helper->getConfig('editor_maxchar');
-        $ret['form_id']           = $this->getVar('xxx_form_id');
-        $ret['name']              = $this->getVar('xxx_name');
-        $ret['slug']              = $this->getVar('xxx_slug');
-        $ret['description_text']  = \strip_tags($this->getVar('xxx_description', 'e'));
-        $ret['description_short'] = $utility::truncateHtml($ret['description_text'], $editorMaxchar);
-        $ret['fields_text']       = \strip_tags($this->getVar('xxx_fields', 'e'));
-        $ret['fields_short']      = $utility::truncateHtml($ret['fields_text'], $editorMaxchar);
-        $ret['settings_text']     = \strip_tags($this->getVar('xxx_settings', 'e'));
-        $ret['settings_short']    = $utility::truncateHtml($ret['settings_text'], $editorMaxchar);
-        $ret['is_active']         = $this->getVar('xxx_is_active');
-        $ret['created_at_text']   = \formatTimestamp($this->getVar('xxx_created_at'), 's');
-        $ret['submitter_text']    = \XoopsUser::getUnameFromId($this->getVar('xxx_submitter'));
-        return $ret;
+        return $this->getValues($keys, $format, $maxDepth);
     }
 
     /**

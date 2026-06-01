@@ -39,7 +39,7 @@ class FormsHandler extends \XoopsPersistableObjectHandler
      */
     public function __construct(\XoopsDatabase $db)
     {
-        parent::__construct($db, 'xcontact_forms', Forms::class, 'xxx_form_id', 'xxx_name');
+        parent::__construct($db, 'xcontact_forms', Forms::class, 'form_id', 'name');
     }
 
     /**
@@ -80,7 +80,7 @@ class FormsHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-    public function getCountForms($sort = 'xxx_form_id ASC, xxx_name', $order = 'ASC')
+    public function getCountForms($sort = 'form_id ASC, name', $order = 'ASC')
     {
         $crCountForms = new \CriteriaCompo();
         $crCountForms = $this->getFormsCriteria($crCountForms, 0, 0, $sort, $order);
@@ -95,7 +95,7 @@ class FormsHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return array
      */
-    public function getAllForms($start = 0, $limit = 0, $sort = 'xxx_form_id ASC, xxx_name', $order = 'ASC')
+    public function getAllForms($start = 0, $limit = 0, $sort = 'form_id ASC, name', $order = 'ASC')
     {
         $crAllForms = new \CriteriaCompo();
         $crAllForms = $this->getFormsCriteria($crAllForms, $start, $limit, $sort, $order);

@@ -39,7 +39,7 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function __construct(\XoopsDatabase $db)
     {
-        parent::__construct($db, 'xcontact_submissions', Submissions::class, 'xxx_sub_id', 'xxx_form_id');
+        parent::__construct($db, 'xcontact_submissions', Submissions::class, 'sub_id', 'form_id');
     }
 
     /**
@@ -80,7 +80,7 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-    public function getCountSubmissions($sort = 'xxx_sub_id ASC, xxx_form_id', $order = 'ASC')
+    public function getCountSubmissions($sort = 'sub_id ASC, form_id', $order = 'ASC')
     {
         $crCountSubmissions = new \CriteriaCompo();
         $crCountSubmissions = $this->getSubmissionsCriteria($crCountSubmissions, 0, 0, $sort, $order);
@@ -95,7 +95,7 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return array
      */
-    public function getAllSubmissions($start = 0, $limit = 0, $sort = 'xxx_sub_id ASC, xxx_form_id', $order = 'ASC')
+    public function getAllSubmissions($start = 0, $limit = 0, $sort = 'sub_id ASC, form_id', $order = 'ASC')
     {
         $crAllSubmissions = new \CriteriaCompo();
         $crAllSubmissions = $this->getSubmissionsCriteria($crAllSubmissions, $start, $limit, $sort, $order);
