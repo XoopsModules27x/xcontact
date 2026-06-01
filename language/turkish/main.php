@@ -9,7 +9,7 @@ define('_MD_XCONTACT_MUST_ACCEPT',       'onaylanmalıdır.');
 define('_MD_XCONTACT_INVALID_EMAIL',     'Geçerli bir e-posta adresi girin.');
 define('_MD_XCONTACT_MUST_BE_NUMBER',    'sayısal olmalıdır.');
 define('_MD_XCONTACT_INVALID_EXT',       'izin verilmeyen dosya türü.');
-define('_MD_XCONTACT_FILE_TOO_BIG',      "dosya 5MB'dan büyük olamaz.");
+define('_MD_XCONTACT_FILE_TOO_BIG',      'dosya izin verilen maksimum boyutu aşıyor.');
 define('_MD_XCONTACT_SUBMIT',            'Gönder');
 define('_MD_XCONTACT_SENDING',           'Gönderiliyor...');
 define('_MD_XCONTACT_SECURITY_CODE',     'Güvenlik Kodu');

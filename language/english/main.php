@@ -9,7 +9,7 @@ define('_MD_XCONTACT_MUST_ACCEPT',       'must be accepted.');
 define('_MD_XCONTACT_INVALID_EMAIL',     'Please enter a valid email address.');
 define('_MD_XCONTACT_MUST_BE_NUMBER',    'must be a number.');
 define('_MD_XCONTACT_INVALID_EXT',       'file type not allowed.');
-define('_MD_XCONTACT_FILE_TOO_BIG',      'file must not exceed 5MB.');
+define('_MD_XCONTACT_FILE_TOO_BIG',      'file exceeds the maximum allowed size.');
 define('_MD_XCONTACT_SUBMIT',            'Submit');
 define('_MD_XCONTACT_SENDING',           'Sending...');
 define('_MD_XCONTACT_SECURITY_CODE',     'Security Code');

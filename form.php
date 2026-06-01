@@ -10,7 +10,7 @@ require_once '../../mainfile.php';
 $xoopsOption['template_main'] = 'xcontact_form.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
 require_once __DIR__ . '/include/functions.php';
-require __DIR__ . '/header.php';
+require_once __DIR__ . '/header.php';
 
 $slug   = Request::getString('slug', '', 'GET');
 $slug   = preg_replace('/[^a-z0-9\-]/', '', strtolower($slug));
@@ -25,6 +25,7 @@ if ($formsHandler->getCount($crForms) > 0) {
     }
 } else {
     \redirect_header('index.php', 3, \_MD_XCONTACT_FORM_NOT_FOUND);
+    exit;
 };
 
 $cf_fields   = json_decode($cf_form['fields']   ?? '[]', true) ?: [];
@@ -68,7 +69,7 @@ if ($formId === $cf_form_id) {
             if (!$fn || in_array($ftype, ['label', 'heading', 'paragraph'])) continue;
 
             if ($ftype === 'choice') {
-                $val = Request::hasVar($fn, 'POST') ? array_map('strip_tags', Request::getArray($fn)) : [];
+                $val = Request::hasVar($fn, 'POST') ? array_map('strip_tags', Request::getArray($fn, [], 'POST')) : [];
                 if ($req && empty($val)) $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ' ' . _MD_XCONTACT_REQUIRED;
             } elseif ($ftype === 'file') {
                 // TODO: replace by XoopsMediaUploader
@@ -92,9 +93,13 @@ if ($formId === $cf_form_id) {
                 }
             } elseif ($ftype === 'consent') {
                 $val = Request::getInt($fn, 0, 'POST');
-                if ($req && $val !== '1') $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ' ' . _MD_XCONTACT_MUST_ACCEPT;
+                if ($req && 1 !== $val) $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ' ' . _MD_XCONTACT_MUST_ACCEPT;
             } else {
-                $val = strip_tags(trim(Request::getString($fn, 0, 'POST') ?? ($field['value'] ?? '')));
+                $raw = Request::getString($fn, '', 'POST');
+                if ($raw === '' && isset($field['value'])) {
+                    $raw = (string) $field['value'];
+                }
+                $val = strip_tags(trim($raw));
                 if ($req && $val === '') $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ' ' . _MD_XCONTACT_REQUIRED;
                 if ($val !== '') {
                     if ($ftype === 'email' && !filter_var($val, FILTER_VALIDATE_EMAIL)) $cf_errors[] = _MD_XCONTACT_INVALID_EMAIL;
@@ -127,6 +132,7 @@ if ($formId === $cf_form_id) {
             } else {
                 // redirect after error when inserting
                 \redirect_header('index.php?op=list', 5, \_MD_XCONTACT_SUBMISSION_ERROR);
+                exit;
             }
         }
     }

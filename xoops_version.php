@@ -126,7 +126,7 @@ if ($maxSize <= 25 * 1048576) {
 $optionMaxsize = [];
 $i = $increment;
 while ($i * 1048576 <= $maxSize) {
-    $optionMaxsize[$i . ' ' . _MI_XCONTACT_SIZE_MB] = $i * 1048576;
+    $optionMaxsize[$i . ' ' . (defined('_MI_XCONTACT_SIZE_MB') ? _MI_XCONTACT_SIZE_MB : 'MB')] = $i * 1048576;
     $i += $increment;
 }
 // Uploads : maxsize of image
@@ -142,8 +142,8 @@ $modversion['config'][] = [
 // Uploads : mimetypes for upload file
 $modversion['config'][] = [
     'name'        => 'upload_filetypes',
-    'title'       => '\_MI_XCONTACT_UPLOAD_TYPES',
-    'description' => '\_MI_XCONTACT_UPLOAD_TYPES_DESC',
+    'title'       => '_MI_XCONTACT_UPLOAD_TYPES',
+    'description' => '_MI_XCONTACT_UPLOAD_TYPES_DESC',
     'formtype'    => 'select_multi',
     'valuetype'   => 'array',
     'default'     => ['jpg','jpeg','png','gif','pdf','doc','docx','xls','xlsx','txt','zip'],
@@ -159,7 +159,7 @@ $modversion['config'][] = [
         'pdf'   => 'pdf',
         'doc'   => 'doc',
         'docx'  => 'docx',
-        'txt'   => 'text/plain',
+        'txt'   => 'txt',
         // tables
         'xls'   => 'xls',
         'xlsx'  => 'xlsx',

@@ -8,7 +8,7 @@
  - implemented clone feature (goffy)
  - updated form.php on user side to XOOPS module standards (goffy)
  - added preferences for file upload (goffy)
- - replaced function xcontact_load_language by xoops_loadlanguage (goffy)
+ - replaced function xcontact_load_language by xoops_loadLanguage (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]

@@ -138,7 +138,7 @@ class Forms extends \XoopsObject
      */
     public function getValuesForms($keys = null, $format = null, $maxDepth = null)
     {
-        return $this->getValues($keys, $format, $maxDepth);;
+        return $this->getValues($keys, $format, $maxDepth);
     }
 
     /**
