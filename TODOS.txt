@@ -5,3 +5,5 @@ move_uploaded_file Max 5MB · jpg,png,pdf,doc,xls,txt,zip
 $cf_token    = md5($cf_form_id . 'xcontact_salt_aymak');
 ==> can be rebuilt by everyone who knows the code
 ==> replace by $GLOBALS['xoopsSecurity']->check()
+
+submissions always automatically read => change only if really read

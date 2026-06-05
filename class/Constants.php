@@ -33,4 +33,8 @@ interface Constants
     public const TABLE_FORMS = 0;
     public const TABLE_SUBMISSIONS = 1;
 
+    // Constants for tables
+    public const SUBMISSION_NEW = 0;
+    public const SUBMISSION_READ = 1;
+
 }
