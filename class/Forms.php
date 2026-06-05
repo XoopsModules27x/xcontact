@@ -24,7 +24,7 @@ namespace XoopsModules\Xcontact;
  * @author       TDM XOOPS - Email:info@email.com - Website:http://xoops.org
  */
 
-use XoopsModules\Xcontact;
+use XoopsModules\Xcontact\Constants;
 
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
@@ -94,33 +94,32 @@ class Forms extends \XoopsObject
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
         }
-        $isAdmin = \is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
         // Title
         $title = $this->isNew() ? \_AM_XCONTACT_FORMS_ADD : \_AM_XCONTACT_FORMS_EDIT;
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
-        // Form Text xxxName
+        // Form Text formName
         $form->addElement(new \XoopsFormText(\_AM_XCONTACT_FORMS_NAME, 'name', 50, 255, $this->getVar('name')), true);
-        // Form Text xxxSlug
+        // Form Text formSlug
         $form->addElement(new \XoopsFormText(\_AM_XCONTACT_FORMS_SLUG, 'slug', 50, 255, $this->getVar('slug')));
-        // Form Editor TextArea xxxDescription
+        // Form Editor TextArea formDescription
         $form->addElement(new \XoopsFormTextArea(\_AM_XCONTACT_FORMS_DESCRIPTION, 'description', $this->getVar('description', 'e'), 4, 47), true);
-        // Form Editor TextArea xxxFields
+        // Form Editor TextArea formFields
         $form->addElement(new \XoopsFormTextArea(\_AM_XCONTACT_FORMS_FIELDS, 'fields', $this->getVar('fields', 'e'), 4, 47));
-        // Form Editor TextArea xxxSettings
+        // Form Editor TextArea formSettings
         $form->addElement(new \XoopsFormTextArea(\_AM_XCONTACT_FORMS_SETTINGS, 'settings', $this->getVar('settings', 'e'), 4, 47));
-        // Form Text xxxIs_active
-        $xxxIs_active = $this->isNew() ? '1' : $this->getVar('is_active');
-        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_FORMS_IS_ACTIVE, 'is_active', 20, 150, $xxxIs_active));
-        // Form Text Date Select xxxCreated_at
-        $xxxCreated_at = $this->isNew() ? \time() : $this->getVar('created_at');
-        $form->addElement(new \XoopsFormTextDateSelect(\_AM_XCONTACT_FORMS_CREATED_AT, 'created_at', '', $xxxCreated_at));
-        // Form Select User xxxSubmitter
+        // Form Text formIs_active
+        $formIs_active = $this->isNew() ? '1' : $this->getVar('is_active');
+        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_FORMS_IS_ACTIVE, 'is_active', 20, 150, $formIs_active));
+        // Form Text Date Select formCreated_at
+        $formCreated_at = $this->isNew() ? \time() : $this->getVar('created_at');
+        $form->addElement(new \XoopsFormTextDateSelect(\_AM_XCONTACT_FORMS_CREATED_AT, 'created_at', '', $formCreated_at));
+        // Form Select User form Submitter
         $uidCurrent = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
-        $xxxSubmitter = $this->isNew() ? $uidCurrent : $this->getVar('submitter');
-        $form->addElement(new \XoopsFormSelectUser(\_AM_XCONTACT_FORMS_SUBMITTER, 'submitter', false, $xxxSubmitter));
+        $formSubmitter = $this->isNew() ? $uidCurrent : $this->getVar('submitter');
+        $form->addElement(new \XoopsFormSelectUser(\_AM_XCONTACT_FORMS_SUBMITTER, 'submitter', false, $formSubmitter));
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormHidden('start', $this->start));
@@ -138,7 +137,21 @@ class Forms extends \XoopsObject
      */
     public function getValuesForms($keys = null, $format = null, $maxDepth = null)
     {
-        return $this->getValues($keys, $format, $maxDepth);
+
+        $helper = \XoopsModules\Xcontact\Helper::getInstance();
+        $submissionsHandler = $helper->getHandler('Submissions');
+
+        $ret =  $this->getValues($keys, $format, $maxDepth);
+        $fields = json_decode($this->getVar('fields'),true);
+        $totalSubs = json_decode($this->getVar('fields'),true);
+        $ret['field_count'] = count($fields);
+        $ret['total_subs']  = $submissionsHandler->getCount();
+        $crNewSubs = new \CriteriaCompo();
+        $crNewSubs->add(new \Criteria('status', \XoopsModules\Xcontact\Constants::SUBMISSION_NEW));
+        $ret['new_subs'] = $submissionsHandler->getCount($crNewSubs);
+        $ret['tpl_tag']  ='{xcontact slug="' .$this->getVar('slug') . '"}';
+
+        return $ret;
     }
 
     /**

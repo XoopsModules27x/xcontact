@@ -120,7 +120,7 @@ define('_AM_XCONTACT_ABOUT_F8',         'XOOPS blok sistemi entegrasyonu');
 define('_AM_XCONTACT_ABOUT_LINK_USAGE', 'Form sayfasına link:');
 define('_AM_XCONTACT_ABOUT_BLOCK_USE',  'Blok olarak: <strong>Admin → Bloklar → xcontact İletişim Formu Bloğu</strong> → Form seçin');
 // Forms listesi
-define('_AM_XCONTACT_FORMS_TITLE',      'Form Listesi');
+define('_AM_XCONTACT_FORMS_LIST',       'Form Listesi');
 define('_AM_XCONTACT_FORMS_NEW',        'Yeni Form');
 define('_AM_XCONTACT_FORMS_BLOCK_INFO', 'Formu XOOPS bloğu olarak ekleyin: <strong>Modüller → xcontact → Blok Yönetimi</strong><br>Veya doğrudan link:');
 define('_AM_XCONTACT_FORMS_DELETED',    'Form ve tüm gönderileri silindi.');
@@ -182,3 +182,5 @@ define('_AM_XCONTACT_MAINTAINEDBY',   'Bakımını yapan');
 \define('_AM_XCONTACT_CLONE_CONGRAT', 'Tebrikler! %s başarıyla oluşturuldu!<br>Dil dosyalarında değişiklik yapmak isteyebilirsiniz.');
 \define('_AM_XCONTACT_CLONE_IMAGEFAIL', 'Dikkat, yeni modül logosu oluşturulamadı. Lütfen assets/images/logo_module.png dosyasını manuel olarak değiştirmeyi düşünün!');
 \define('_AM_XCONTACT_CLONE_FAIL', 'Üzgünüz, yeni klon oluşturulamadı. Belki modules klasörüne geçici olarak yazma izni (CHMOD 777) vermeniz ve tekrar denemeniz gerekiyor.');
+
+define('_AM_XCONTACT_FORM_OK',   'Successfully saved');

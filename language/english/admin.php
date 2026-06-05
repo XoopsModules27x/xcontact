@@ -120,7 +120,7 @@ define('_AM_XCONTACT_ABOUT_F8',         'XOOPS block system integration');
 define('_AM_XCONTACT_ABOUT_LINK_USAGE', 'Direct form link:');
 define('_AM_XCONTACT_ABOUT_BLOCK_USE',  'As a block: <strong>Admin → Blocks → xcontact Contact Form Block</strong> → Select form');
 // Forms list
-define('_AM_XCONTACT_FORMS_TITLE',      'Form List');
+define('_AM_XCONTACT_FORMS_LIST',       'Form List');
 define('_AM_XCONTACT_FORMS_NEW',        'New Form');
 define('_AM_XCONTACT_FORMS_BLOCK_INFO', 'Add as XOOPS block: <strong>Modules → xcontact → Block Management</strong><br>Or direct link:');
 define('_AM_XCONTACT_FORMS_DELETED',    'Form and all submissions deleted.');
@@ -183,3 +183,4 @@ define('_AM_XCONTACT_MAINTAINEDBY',   'Maintained by');
 \define('_AM_XCONTACT_CLONE_IMAGEFAIL', 'Attention, we failed creating the new module logo. Please consider modifying assets/images/logo_module.png manually!');
 \define('_AM_XCONTACT_CLONE_FAIL', 'Sorry, we failed in creating the new clone. Maybe you need to temporarily set write permissions (CHMOD 777) to modules folder and try again.');
 
+define('_AM_XCONTACT_FORM_OK',   'Successfully saved');
