@@ -6,4 +6,4 @@ $cf_token    = md5($cf_form_id . 'xcontact_salt_aymak');
 ==> can be rebuilt by everyone who knows the code
 ==> replace by $GLOBALS['xoopsSecurity']->check()
 
-submissions always automatrically read => change only if really read
+submissions always automatically read => change only if really read

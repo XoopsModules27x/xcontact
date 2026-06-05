@@ -1,8 +1,8 @@
 <!-- Header -->
 <{include file='db:xcontact_admin_header.tpl' }>
 
-<{if $errors|default:false}>
-    <{$errors}>
+<{if $error|default:false}>
+    <{$error}>
 <{/if}>
 <{if $forms|default:false}>
     <{$forms}>
@@ -13,7 +13,6 @@
         <{$smarty.const._AM_XCONTACT_FORMS_BLOCK_INFO}><br>
         <code><{$xoops_url}>/modules/xcontact/form.php?slug=SLUG</code>
     </div>
-    <{if $msg|default:'' eq 'deleted'}><div class="xcp-notice xcp-notice--ok"><{$smarty.const._AM_XCONTACT_FORMS_DELETED}></div><{/if}>
     <table class="xcp-table">
         <thead><tr>
             <th><{$smarty.const._AM_XCONTACT_FORMS_COL_NAME}></th>

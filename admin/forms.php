@@ -75,6 +75,7 @@ switch ($op) {
         if (!$GLOBALS['xoopsSecurity']->check()) {
             \redirect_header('forms.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
+        $formsObj = null;
         if ($formId > 0) {
             $formsObj = $formsHandler->get($formId);
         }
@@ -82,7 +83,6 @@ switch ($op) {
             \redirect_header('forms.php', 3, \_AM_XCONTACT_INVALID_PARAM);
         }
         // Set Vars
-        $isActive = (int)$formsObj->getVar('is_active');
         $isActive = 0 === (int)$formsObj->getVar('is_active') ? 1 : 0;
         $formsObj->setVar('is_active', $isActive);
         // Insert Data
@@ -106,6 +106,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('form', $form->render());*/
         break;
     case 'clone':
+        //TODO: implement button and testing
         $templateMain = 'xcontact_admin_forms.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('forms.php'));
         $adminObject->addItemButton(\_AM_XCONTACT_FORMS_LIST, 'forms.php', 'list');
@@ -123,6 +124,8 @@ switch ($op) {
             \redirect_header('forms.php', 3, \_AM_XCONTACT_INVALID_PARAM);
         }
         $formsObj = $formsObjSource->xoopsClone();
+        $formsObj->setNew();
+        $formsObj->setVar('form_id', 0);
         $form = $formsObj->getFormForms();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
@@ -195,6 +198,9 @@ switch ($op) {
             \redirect_header('forms.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         if ($formsHandler->delete($formsObj)) {
+            $submissionsHandler = $helper->getHandler('Submissions');
+            $critSubmissions = new \Criteria('form_id', $formId);
+            $submissionsHandler->deleteAll($critSubmissions);
             \redirect_header('forms.php', 3, \_AM_XCONTACT_FORM_DELETED);
         } else {
             $GLOBALS['xoopsTpl']->assign('error', $formsObj->getHtmlErrors());

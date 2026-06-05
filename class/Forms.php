@@ -142,14 +142,17 @@ class Forms extends \XoopsObject
         $submissionsHandler = $helper->getHandler('Submissions');
 
         $ret =  $this->getValues($keys, $format, $maxDepth);
-        $fields = json_decode($this->getVar('fields'),true);
-        $totalSubs = json_decode($this->getVar('fields'),true);
+
+        $fields = json_decode($this->getVar('fields') ?: '[]', true) ?: [];
         $ret['field_count'] = count($fields);
-        $ret['total_subs']  = $submissionsHandler->getCount();
+        $crTotalSubs = new \CriteriaCompo();
+        $crTotalSubs->add(new \Criteria('form_id', $this->getVar('form_id')));
+        $ret['total_subs']  = $submissionsHandler->getCount($crTotalSubs);
         $crNewSubs = new \CriteriaCompo();
+        $crNewSubs->add(new \Criteria('form_id', $this->getVar('form_id')));
         $crNewSubs->add(new \Criteria('status', \XoopsModules\Xcontact\Constants::SUBMISSION_NEW));
         $ret['new_subs'] = $submissionsHandler->getCount($crNewSubs);
-        $ret['tpl_tag']  ='{xcontact slug="' .$this->getVar('slug') . '"}';
+        $ret['tpl_tag']  = '{xcontact slug="' . $this->getVar('slug') . '"}';
 
         return $ret;
     }
