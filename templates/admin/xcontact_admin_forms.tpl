@@ -4,8 +4,8 @@
 <{if $error|default:false}>
     <{$error}>
 <{/if}>
-<{if $forms|default:false}>
-    <{$forms}>
+<{if $form|default:false}>
+    <{$form}>
 <{/if}>
 
 <div class="xcp-wrap">

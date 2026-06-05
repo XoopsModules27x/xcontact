@@ -183,4 +183,4 @@ define('_AM_XCONTACT_MAINTAINEDBY',   'Bakımını yapan');
 \define('_AM_XCONTACT_CLONE_IMAGEFAIL', 'Dikkat, yeni modül logosu oluşturulamadı. Lütfen assets/images/logo_module.png dosyasını manuel olarak değiştirmeyi düşünün!');
 \define('_AM_XCONTACT_CLONE_FAIL', 'Üzgünüz, yeni klon oluşturulamadı. Belki modules klasörüne geçici olarak yazma izni (CHMOD 777) vermeniz ve tekrar denemeniz gerekiyor.');
 
-define('_AM_XCONTACT_FORM_OK',   'Successfully saved');
+define('_AM_XCONTACT_FORM_OK', 'Başarıyla kaydedildi');

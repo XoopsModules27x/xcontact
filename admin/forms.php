@@ -175,7 +175,7 @@ switch ($op) {
         $templateMain = 'xcontact_admin_forms.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('forms.php'));
         $adminObject->addItemButton(\_AM_XCONTACT_FORMS_NEW, 'forms.php?op=new');
-        $adminObject->addItemButton(\_AM_XCONTACT_LIST_FORMS, 'forms.php', 'list');
+        $adminObject->addItemButton(\_AM_XCONTACT_FORMS_LIST, 'forms.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         // Get Form
         $formsObj = $formsHandler->get($formId);
