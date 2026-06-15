@@ -6,7 +6,7 @@ define('_AM_XCONTACT_MENU_FORMS',       'Form Listesi');
 define('_AM_XCONTACT_MENU_NEW_FORM',    'Yeni Form');
 define('_AM_XCONTACT_MENU_SUBMISSIONS', 'Gönderiler');
 define('_AM_XCONTACT_MENU_ABOUT',       'Hakkında');
-define('_AM_XCONTACT_MENU_CLONE',       'Klon');
+define('_AM_XCONTACT_MENU_CLONE',       'Klon modülü');
 define('_AM_XCONTACT_MENU_FEEDBACK',    'Geri bildirim');
 define('_AM_XCONTACT_DASHBOARD',        'xcontact Kontrol Paneli');
 define('_AM_XCONTACT_STAT_FORMS',       'Toplam Form');

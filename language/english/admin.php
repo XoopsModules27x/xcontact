@@ -6,7 +6,7 @@ define('_AM_XCONTACT_MENU_FORMS',       'Form List');
 define('_AM_XCONTACT_MENU_NEW_FORM',    'New Form');
 define('_AM_XCONTACT_MENU_SUBMISSIONS', 'Submissions');
 define('_AM_XCONTACT_MENU_ABOUT',       'About');
-define('_AM_XCONTACT_MENU_CLONE',       'Clone');
+define('_AM_XCONTACT_MENU_CLONE',       'Clone module');
 define('_AM_XCONTACT_MENU_FEEDBACK',    'Feedback');
 define('_AM_XCONTACT_DASHBOARD',        'xcontact Dashboard');
 define('_AM_XCONTACT_STAT_FORMS',       'Total Forms');

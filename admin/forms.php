@@ -171,13 +171,12 @@ switch ($op) {
         break;
 
     case 'save':
-        $templateMain = 'xcontact_admin_forms.tpl';
         // Security Check
         if (!$GLOBALS['xoopsSecurity']->check()) {
             \redirect_header('forms.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         //ensure that data are sent by POST
-        if (Request::hasVar('op', 'POST')) {
+        if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
             if ($formId > 0) {
                 $formsObj = $formsHandler->get($formId);
             } else {
@@ -190,8 +189,13 @@ switch ($op) {
             \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         // Set Vars
-        $formsObj->setVar('name', trim(Request::getString('form_name')));
+        $formName = trim(Request::getString('form_name'));
+        $formsObj->setVar('name', $formName);
+
         $slug = preg_replace('/[^a-z0-9\-]/','',strtolower(trim(Request::getString('form_slug'))));
+        if ('' === $slug) {
+            $slug = preg_replace('/[^a-z0-9\-]/','',strtolower($formName)) . '-' . time();
+        }
         $formsObj->setVar('slug', $slug);
         $formsObj->setVar('description', trim(Request::getString('form_desc')));
         $fieldsJson = Request::getText('fields_json', '[]');
@@ -219,8 +223,17 @@ switch ($op) {
         if ($formsHandler->insert($formsObj)) {
             \redirect_header('forms.php?op=list&start=' . $start . '&limit=' . $limit, 2, \_AM_XCONTACT_FORM_OK);
         }
+        $templateMain = 'xcontact_admin_form_edit.tpl';
         // Get errors
         $GLOBALS['xoopsTpl']->assign('error', $formsObj->getHtmlErrors());
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('forms.php'));
+        $adminObject->addItemButton(\_AM_XCONTACT_FORMS_LIST, 'forms.php', 'list');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
+        $GLOBALS['xoopsTpl']->assign('form_header', $formId > 0 ? \_AM_XCONTACT_FORMS_EDIT : \_AM_XCONTACT_FORMS_NEW);
+        $GLOBALS['xoopsTpl']->assign('form', $formsObj->getValues());
+        $GLOBALS['xoopsTpl']->assign('settings', \json_decode((string)$formsObj->getVar('settings'), true) ?: []);
+        $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
+        $GLOBALS['xoopsTpl']->assign('xoops_token_html', $GLOBALS['xoopsSecurity']->getTokenHTML());
         break;
     case 'delete':
         $templateMain = 'xcontact_admin_forms.tpl';
