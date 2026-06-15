@@ -79,10 +79,10 @@ switch ($op) {
         if ($formId > 0) {
             $formsObj = $formsHandler->get($formId);
         } else {
-            \redirect_header('forms.php', 3, \_AM_XCONTACT_INVALID_PARAM);
+            \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         if (!\is_object($formsObj)) {
-            \redirect_header('forms.php', 3, \_AM_XCONTACT_INVALID_PARAM);
+            \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         // Set Vars
         $isActive = 0 === (int)$formsObj->getVar('is_active') ? 1 : 0;
@@ -95,8 +95,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('error', $formsObj->getHtmlErrors());
         break;
     case 'clone':
-        //TODO: implement button and testing
-        $templateMain = 'xcontact_admin_forms.tpl';
+        $templateMain = 'xcontact_admin_form_edit.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('forms.php'));
         $adminObject->addItemButton(\_AM_XCONTACT_FORMS_LIST, 'forms.php', 'list');
         $adminObject->addItemButton(\_AM_XCONTACT_FORMS_NEW, 'forms.php?op=new');
@@ -105,18 +104,23 @@ switch ($op) {
         $formIdSource = Request::getInt('form_id_source');
         // Check params
         if (0 === $formIdSource) {
-            \redirect_header('forms.php?op=list', 3, \_AM_XCONTACT_INVALID_PARAM);
+            \redirect_header('forms.php?op=list', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         // Get Form
         $formsObjSource = $formsHandler->get($formIdSource);
         if (!\is_object($formsObjSource)) {
-            \redirect_header('forms.php', 3, \_AM_XCONTACT_INVALID_PARAM);
+            \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         $formsObj = $formsObjSource->xoopsClone();
         $formsObj->setNew();
         $formsObj->setVar('form_id', 0);
-        $form = $formsObj->getFormForms();
-        $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        $form = $formsObj->getValues();
+        $GLOBALS['xoopsTpl']->assign('form_header', \_AM_XCONTACT_FORMS_CLONE);
+        $GLOBALS['xoopsTpl']->assign('form', $form);
+        $settings = \json_decode((string)($form['settings'] ?? '{}'), true) ?: [];
+        $GLOBALS['xoopsTpl']->assign('settings', $settings);
+        $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
+        $GLOBALS['xoopsTpl']->assign('xoops_token_html', $GLOBALS['xoopsSecurity']->getTokenHTML());
         break;
     case 'new':
         $templateMain = 'xcontact_admin_form_edit.tpl';
@@ -133,7 +137,7 @@ switch ($op) {
             'settings'=>'{}',
             'is_active'=>Constants::FORM_IS_ACTIVE
         ];
-
+        $GLOBALS['xoopsTpl']->assign('form_header', \_AM_XCONTACT_FORMS_NEW);
         $GLOBALS['xoopsTpl']->assign('form', $form);
         $GLOBALS['xoopsTpl']->assign('start', $start);
         $GLOBALS['xoopsTpl']->assign('limit', $limit);
@@ -150,13 +154,13 @@ switch ($op) {
         if ($formId > 0) {
             $formsObj = $formsHandler->get($formId);
         } else {
-            \redirect_header('forms.php', 3, \_AM_XCONTACT_INVALID_PARAM);
+            \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         if (!\is_object($formsObj)) {
-            \redirect_header('forms.php', 3, \_AM_XCONTACT_INVALID_PARAM);
+            \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         $form = $formsObj->getValues();
-
+        $GLOBALS['xoopsTpl']->assign('form_header', \_AM_XCONTACT_FORMS_EDIT);
         $GLOBALS['xoopsTpl']->assign('form', $form);
         $GLOBALS['xoopsTpl']->assign('start', $start);
         $GLOBALS['xoopsTpl']->assign('limit', $limit);
@@ -180,10 +184,10 @@ switch ($op) {
                 $formsObj = $formsHandler->create();
             }
         } else {
-            \redirect_header('forms.php', 3, \_AM_XCONTACT_INVALID_PARAM);
+            \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         if (!\is_object($formsObj)) {
-            \redirect_header('forms.php', 3, \_AM_XCONTACT_INVALID_PARAM);
+            \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         // Set Vars
         $formsObj->setVar('name', trim(Request::getString('form_name')));
@@ -201,9 +205,9 @@ switch ($op) {
             $enableCaptcha = Constants::CAPTCHA_ENABLED;
         }
         $formSettings=json_encode([
-            'success_msg'=>trim(Request::getString('success_msg', \_AM_XCONTACT_FORMS_DEFAULT_SUCCESS)),
+            'success_msg'=>trim(Request::getString('success_msg', \_AM_XCONTACT_SET_DEFAULT_SUCCESS)),
             'notify_email'=>trim(Request::getString('notify_email')),
-            'email_subject'=>trim(Request::getString('email_subject',\_AM_XCONTACT_FORMS_DEFAULT_SUBJECT)),
+            'email_subject'=>trim(Request::getString('email_subject',\_AM_XCONTACT_SET_DEFAULT_SUBJECT)),
             'enable_captcha'=>$enableCaptcha
         ],JSON_UNESCAPED_UNICODE);
         $formsObj->setVar('settings', $formSettings);
@@ -223,7 +227,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('forms.php'));
         $formsObj = $formsHandler->get($formId);
         if (!\is_object($formsObj)) {
-            \redirect_header('forms.php', 3, \_AM_XCONTACT_INVALID_PARAM);
+            \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         if (!$GLOBALS['xoopsSecurity']->check()) {
             \redirect_header('forms.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));

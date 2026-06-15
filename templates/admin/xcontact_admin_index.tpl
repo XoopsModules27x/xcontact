@@ -43,8 +43,8 @@
         </div>
     </div>
     <div class="xcp-quick">
-        <a href="<{$module_url}>admin/form_edit.php"  class="xcp-btn xcp-btn--green">➕ <{$smarty.const._AM_XCONTACT_MENU_NEW_FORM}></a>
-        <a href="<{$module_url}>admin/forms.php"       class="xcp-btn xcp-btn--blue">📋 <{$smarty.const._AM_XCONTACT_DASH_BTN_FORMS}></a>
-        <a href="<{$module_url}>admin/submissions.php" class="xcp-btn xcp-btn--orange">📥 <{$smarty.const._AM_XCONTACT_MENU_SUBMISSIONS}></a>
+        <a href="<{$module_url}>admin/forms.php?op=new" class="xcp-btn xcp-btn--green">➕ <{$smarty.const._AM_XCONTACT_MENU_NEW_FORM}></a>
+        <a href="<{$module_url}>admin/forms.php"        class="xcp-btn xcp-btn--blue">📋 <{$smarty.const._AM_XCONTACT_DASH_BTN_FORMS}></a>
+        <a href="<{$module_url}>admin/submissions.php"  class="xcp-btn xcp-btn--orange">📥 <{$smarty.const._AM_XCONTACT_MENU_SUBMISSIONS}></a>
     </div>
 </div>

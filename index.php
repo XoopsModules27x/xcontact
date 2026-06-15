@@ -4,6 +4,7 @@
  */
 
 use Xmf\Request;
+use XoopsModules\Xcontact\Constants;
 
 require_once '../../mainfile.php';
 $xoopsOption['template_main'] = 'xcontact_index.tpl';
@@ -14,13 +15,24 @@ require __DIR__ . '/header.php';
 $start  = Request::getInt('start');
 $limit  = Request::getInt('limit', $helper->getConfig('userpager'));
 
-$formsCount = $formsHandler->getCountForms();
+$crForms = new \CriteriaCompo();
+$crForms->add(new \Criteria('is_active', Constants::FORM_IS_ACTIVE));
+$formsCount = $formsHandler->getCount($crForms);
 if ($formsCount > 0) {
-    $formsAll = $formsHandler->getAllForms($start, $limit);
+    $crForms->setStart($start);
+    $crForms->setLimit($limit);
+    $crForms->setSort('form_id');
+    $crForms->setOrder('DESC');
+    $formsAll = $formsHandler->getAll($crForms);
     foreach (\array_keys($formsAll) as $i) {
         $forms = $formsAll[$i]->getValuesForms();
         $GLOBALS['xoopsTpl']->append('xcontact_list', $forms);
         unset($forms);
+    }
+    if ($formsCount > $limit) {
+        require_once \XOOPS_ROOT_PATH . '/class/pagenav.php';
+        $pagenav = new \XoopsPageNav($formsCount, $limit, $start, 'start');
+        $xoopsTpl->assign('pagenav', $pagenav->renderNav());
     }
 }
 

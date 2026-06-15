@@ -58,7 +58,7 @@ switch ($op) {
         $your_mail  = Request::getString('your_mail');
         $fb_type    = Request::getString('fb_type');
         $fb_content = Request::getText('fb_content');
-        $fb_content = \str_replace(["\r\n", "\n", "\r"], '<br>', $fb_content); //clean line break from dhtmltextarea
+        $fb_content_html = \str_replace(["\r\n", "\n", "\r"], '<br>', $fb_content); //clean line break from dhtmltextarea
 
         $title       = \constant('CO_' . $moduleDirNameUpper . '_' . 'FB_SEND_FOR') . $GLOBALS['xoopsModule']->getVar('dirname');
         $body        = \constant('CO_' . $moduleDirNameUpper . '_' . 'FB_NAME') . ': ' . $your_name . '<br>';
@@ -66,7 +66,7 @@ switch ($op) {
         $body        .= \constant('CO_' . $moduleDirNameUpper . '_' . 'FB_SITE') . ': ' . $your_site . '<br>';
         $body        .= \constant('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE') . ': ' . $fb_type . '<br><br>';
         $body        .= \constant('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_CONTENT') . ':<br>';
-        $body        .= $fb_content;
+        $body        .= $fb_content_html;
         $xoopsMailer = xoops_getMailer();
         $xoopsMailer->useMail();
         $xoopsMailer->setToEmails($GLOBALS['xoopsModule']->getInfo('author_mail'));

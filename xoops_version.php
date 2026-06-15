@@ -67,7 +67,7 @@ $modversion['tables'][1]        = 'xcontact_submissions';
 // ── Blocks ─────────────────────────────────────────────────────────────────────
 $modversion['blocks'][1] = [
     'file'      => 'xcontact_blocks.php',
-    'name'      => _MI_XCONTACT_BLOCK_FORM,
+    'name'      => \_MI_XCONTACT_BLOCK_FORM,
     'show_func' => 'xcontact_block_form',
     'edit_func' => 'xcontact_block_form_edit',
     'options'   => 'none|0',
@@ -98,8 +98,8 @@ $modversion['templates'][] = ['file' => 'xcontact_form.tpl',       'description'
 // Admin pager
 $modversion['config'][] = [
     'name'        => 'adminpager',
-    'title'       => '\_MI_XCONTACT_ADMIN_PAGER',
-    'description' => '\_MI_XCONTACT_ADMIN_PAGER_DESC',
+    'title'       => '_MI_XCONTACT_ADMIN_PAGER',
+    'description' => '_MI_XCONTACT_ADMIN_PAGER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10,
@@ -107,8 +107,8 @@ $modversion['config'][] = [
 // Admin pager
 $modversion['config'][] = [
     'name'        => 'userpager',
-    'title'       => '\_MI_XCONTACT_USER_PAGER',
-    'description' => '\_MI_XCONTACT_ADMIN_PAGER_DESC',
+    'title'       => '_MI_XCONTACT_USER_PAGER',
+    'description' => '_MI_XCONTACT_USER_PAGER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10,

@@ -44,7 +44,7 @@ if (!isset($xoopsTpl) || !\is_object($xoopsTpl)) {
 // Load languages
 \xoops_loadLanguage('admin', 'xcontact');
 \xoops_loadLanguage('modinfo', 'xcontact');
-// \xoops_loadLanguage('main', 'xcontact');
+\xoops_loadLanguage('main', 'xcontact');
 
 
 // Local admin menu class

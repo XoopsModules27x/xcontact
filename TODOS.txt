@@ -11,3 +11,5 @@ submissions always automatically read => change only if really read
 index.php: update db read access to XOOPS standards
 
 replace is_active=1 by Constants::FORM_IS_ACTIVE
+
+replace <{$f.desc|escape|truncate:80}> in xcontact_index.tpl by module preference

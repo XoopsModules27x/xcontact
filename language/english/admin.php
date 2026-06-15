@@ -123,6 +123,8 @@ define('_AM_XCONTACT_ABOUT_BLOCK_USE',  'As a block: <strong>Admin → Blocks �
 // Forms list
 define('_AM_XCONTACT_FORMS_LIST',       'Form List');
 define('_AM_XCONTACT_FORMS_NEW',        'New Form');
+define('_AM_XCONTACT_FORMS_EDIT',       'Edit Form');
+define('_AM_XCONTACT_FORMS_CLONE',      'Clone Form');
 define('_AM_XCONTACT_FORMS_BLOCK_INFO', 'Add as XOOPS block: <strong>Modules → xcontact → Block Management</strong><br>Or direct link:');
 define('_AM_XCONTACT_FORMS_DELETED',    'Form and all submissions deleted.');
 define('_AM_XCONTACT_FORMS_COL_NAME',   'Name');
@@ -135,13 +137,12 @@ define('_AM_XCONTACT_FORMS_SUB_COUNT',  'submissions');
 define('_AM_XCONTACT_FORMS_STATUS_ON',  'Active');
 define('_AM_XCONTACT_FORMS_STATUS_OFF', 'Inactive');
 define('_AM_XCONTACT_FORMS_BTN_EDIT',   'Edit');
+define('_AM_XCONTACT_FORMS_BTN_CLONE',  'Clone');
 define('_AM_XCONTACT_FORMS_BTN_SUBS',   'Submissions');
 define('_AM_XCONTACT_FORMS_BTN_DEL',    'Delete');
 define('_AM_XCONTACT_FORMS_CONFIRM_DEL','Are you sure you want to delete this form and all its submissions?');
 define('_AM_XCONTACT_FORMS_EMPTY',      'No forms yet.');
 define('_AM_XCONTACT_FORMS_CREATE_FIRST','Create your first form →');
-define('_AM_XCONTACT_FORMS_DEFAULT_SUCCESS','Your form has been successfully submitted. Thank you!');
-define('_AM_XCONTACT_FORMS_DEFAULT_SUBJECT','New Form Submission');
 // Dashboard
 define('_AM_XCONTACT_DASH_RECENT_FORMS','Recent Forms');
 define('_AM_XCONTACT_DASH_RECENT_SUBS', 'Recent Submissions');

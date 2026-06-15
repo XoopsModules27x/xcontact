@@ -48,6 +48,7 @@
                 </td>
                 <td>
                     <a href="forms.php?op=edit&form_id=<{$f.form_id}>" class="xcp-btn xcp-btn--blue"><{$smarty.const._AM_XCONTACT_FORMS_BTN_EDIT}></a>
+                    <a href="forms.php?op=clone&form_id_source=<{$f.form_id}>" class="xcp-btn xcp-btn--blue"><{$smarty.const._AM_XCONTACT_FORMS_BTN_CLONE}></a>
                     <a href="submissions.php?form_id=<{$f.form_id}>" class="xcp-btn xcp-btn--gray"><{$smarty.const._AM_XCONTACT_FORMS_BTN_SUBS}></a>
                     <form method="post" action="forms.php" style="display:inline" onsubmit="return confirm('<{$smarty.const._AM_XCONTACT_FORMS_CONFIRM_DEL}>')">
                     <input type="hidden" name="op" value="delete">

@@ -123,6 +123,8 @@ define('_AM_XCONTACT_ABOUT_BLOCK_USE',  'Blok olarak: <strong>Admin → Bloklar 
 // Forms listesi
 define('_AM_XCONTACT_FORMS_LIST',       'Form Listesi');
 define('_AM_XCONTACT_FORMS_NEW',        'Yeni Form');
+define('_AM_XCONTACT_FORMS_EDIT',       'Düzenle Form');
+define('_AM_XCONTACT_FORMS_CLONE',      'Klon Form');
 define('_AM_XCONTACT_FORMS_BLOCK_INFO', 'Formu XOOPS bloğu olarak ekleyin: <strong>Modüller → xcontact → Blok Yönetimi</strong><br>Veya doğrudan link:');
 define('_AM_XCONTACT_FORMS_DELETED',    'Form ve tüm gönderileri silindi.');
 define('_AM_XCONTACT_FORMS_COL_NAME',   'Ad');
@@ -135,13 +137,12 @@ define('_AM_XCONTACT_FORMS_SUB_COUNT',  'gönderi');
 define('_AM_XCONTACT_FORMS_STATUS_ON',  'Aktif');
 define('_AM_XCONTACT_FORMS_STATUS_OFF', 'Pasif');
 define('_AM_XCONTACT_FORMS_BTN_EDIT',   'Düzenle');
+define('_AM_XCONTACT_FORMS_BTN_CLONE',  'Klon');
 define('_AM_XCONTACT_FORMS_BTN_SUBS',   'Gönderiler');
 define('_AM_XCONTACT_FORMS_BTN_DEL',    'Sil');
 define('_AM_XCONTACT_FORMS_CONFIRM_DEL','Formu ve tüm gönderileri silmek istediğinize emin misiniz?');
 define('_AM_XCONTACT_FORMS_EMPTY',      'Henüz form yok.');
 define('_AM_XCONTACT_FORMS_CREATE_FIRST','İlk formunuzu oluşturun →');
-define('_AM_XCONTACT_FORMS_DEFAULT_SUCCESS','Formunuz başarıyla gönderildi. Teşekkürler!');
-define('_AM_XCONTACT_FORMS_DEFAULT_SUBJECT','Yeni Form Gönderisi');
 // Dashboard
 define('_AM_XCONTACT_DASH_RECENT_FORMS','Son Formlar');
 define('_AM_XCONTACT_DASH_RECENT_SUBS', 'Son Gönderiler');
