@@ -9,12 +9,17 @@
 
 defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
 
+$moduleDirName      = \basename(__DIR__);
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
+
+include \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/preloads/autoloader.php';
+
 $modversion = [
     'name'                => \_MI_XCONTACT_NAME,
     'version'             => '1.0.1',
     'description'         => \_MI_XCONTACT_DESC,
     'author'              => 'Eren Yumak — Aymak',
-    'author_mail'         => '',
+    'author_mail'         => 'aymak@aymak.net',
     'author_website_url'  => '',
     'author_website_name' => '',
     'credits'             => 'Eren Yumak — Aymak; Goffy',
@@ -90,7 +95,24 @@ $modversion['templates'][] = ['file' => 'xcontact_form.tpl',       'description'
 
 // ── Modül ayarları ────────────────────────────────────────────────────────────
 
-
+// Admin pager
+$modversion['config'][] = [
+    'name'        => 'adminpager',
+    'title'       => '\_MI_XCONTACT_ADMIN_PAGER',
+    'description' => '\_MI_XCONTACT_ADMIN_PAGER_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 10,
+];
+// Admin pager
+$modversion['config'][] = [
+    'name'        => 'userpager',
+    'title'       => '\_MI_XCONTACT_USER_PAGER',
+    'description' => '\_MI_XCONTACT_ADMIN_PAGER_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 10,
+];
 // create increment steps for file size
 require_once __DIR__ . '/include/xoops_version.inc.php';
 $iniPostMaxSize       = xcontactReturnBytes(\ini_get('post_max_size'));
@@ -176,3 +198,22 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 5,
 ];
+// Make tab clone visible?
+$modversion['config'][] = [
+    'name'        => 'displayTabClone',
+    'title'       => '_MI_' . $moduleDirNameUpper . '_' . 'SHOW_TAB_CLONE',
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+// Make tab feedback visible?
+$modversion['config'][] = [
+    'name'        => 'displayTabFeedback',
+    'title'       => '_MI_' . $moduleDirNameUpper . '_' . 'SHOW_TAB_FEEDBACK',
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+

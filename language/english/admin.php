@@ -7,6 +7,7 @@ define('_AM_XCONTACT_MENU_NEW_FORM',    'New Form');
 define('_AM_XCONTACT_MENU_SUBMISSIONS', 'Submissions');
 define('_AM_XCONTACT_MENU_ABOUT',       'About');
 define('_AM_XCONTACT_MENU_CLONE',       'Clone');
+define('_AM_XCONTACT_MENU_FEEDBACK',    'Feedback');
 define('_AM_XCONTACT_DASHBOARD',        'xcontact Dashboard');
 define('_AM_XCONTACT_STAT_FORMS',       'Total Forms');
 define('_AM_XCONTACT_STAT_ACTIVE',      'Active Forms');
@@ -139,6 +140,8 @@ define('_AM_XCONTACT_FORMS_BTN_DEL',    'Delete');
 define('_AM_XCONTACT_FORMS_CONFIRM_DEL','Are you sure you want to delete this form and all its submissions?');
 define('_AM_XCONTACT_FORMS_EMPTY',      'No forms yet.');
 define('_AM_XCONTACT_FORMS_CREATE_FIRST','Create your first form →');
+define('_AM_XCONTACT_FORMS_DEFAULT_SUCCESS','Your form has been successfully submitted. Thank you!');
+define('_AM_XCONTACT_FORMS_DEFAULT_SUBJECT','New Form Submission');
 // Dashboard
 define('_AM_XCONTACT_DASH_RECENT_FORMS','Recent Forms');
 define('_AM_XCONTACT_DASH_RECENT_SUBS', 'Recent Submissions');

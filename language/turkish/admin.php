@@ -6,7 +6,8 @@ define('_AM_XCONTACT_MENU_FORMS',       'Form Listesi');
 define('_AM_XCONTACT_MENU_NEW_FORM',    'Yeni Form');
 define('_AM_XCONTACT_MENU_SUBMISSIONS', 'Gönderiler');
 define('_AM_XCONTACT_MENU_ABOUT',       'Hakkında');
-define('_AM_XCONTACT_MENU_CLONE',       'Clone');
+define('_AM_XCONTACT_MENU_CLONE',       'Klon');
+define('_AM_XCONTACT_MENU_FEEDBACK',    'Geri bildirim');
 define('_AM_XCONTACT_DASHBOARD',        'xcontact Kontrol Paneli');
 define('_AM_XCONTACT_STAT_FORMS',       'Toplam Form');
 define('_AM_XCONTACT_STAT_ACTIVE',      'Aktif Form');
@@ -139,6 +140,8 @@ define('_AM_XCONTACT_FORMS_BTN_DEL',    'Sil');
 define('_AM_XCONTACT_FORMS_CONFIRM_DEL','Formu ve tüm gönderileri silmek istediğinize emin misiniz?');
 define('_AM_XCONTACT_FORMS_EMPTY',      'Henüz form yok.');
 define('_AM_XCONTACT_FORMS_CREATE_FIRST','İlk formunuzu oluşturun →');
+define('_AM_XCONTACT_FORMS_DEFAULT_SUCCESS','Formunuz başarıyla gönderildi. Teşekkürler!');
+define('_AM_XCONTACT_FORMS_DEFAULT_SUBJECT','Yeni Form Gönderisi');
 // Dashboard
 define('_AM_XCONTACT_DASH_RECENT_FORMS','Son Formlar');
 define('_AM_XCONTACT_DASH_RECENT_SUBS', 'Son Gönderiler');

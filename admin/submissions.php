@@ -38,12 +38,23 @@ $form_id=(int)($_GET['form_id']??0); $form=$form_id?xcontact_get_form($form_id):
 $start=max(0,(int)($_GET['start']??0)); $limit=20;
 $subs=$form_id?xcontact_get_submissions($form_id,$start,$limit):[]; $total=$form_id?xcontact_count_submissions($form_id):0;
 if($form_id&&$subs) $db->queryF("UPDATE {$tbl_subs} SET status=1 WHERE form_id='{$form_id}' AND status=0");
-$forms=xcontact_get_forms();
+
+$formsCount = $formsHandler->getCountForms();
+if ($formsCount > 0) {
+    $formsAll = $formsHandler->getAllForms($start, $limit);
+    foreach (\array_keys($formsAll) as $i) {
+        $forms = $formsAll[$i]->getValuesForms();
+        $GLOBALS['xoopsTpl']->append('forms', $forms);
+        unset($forms);
+    }
+}
+
+
 global $xoopsTpl;
 $d=XOOPS_ROOT_PATH.'/modules/xcontact/templates/admin/';
 if(method_exists($xoopsTpl,'addTemplateDir')) $xoopsTpl->addTemplateDir($d);
 $xoopsTpl->assign('xoops_url',XOOPS_URL); $xoopsTpl->assign('module_url',XOOPS_URL.'/modules/xcontact/');
-$xoopsTpl->assign('subs',$subs); $xoopsTpl->assign('form',$form); $xoopsTpl->assign('forms',$forms);
+$xoopsTpl->assign('subs',$subs); $xoopsTpl->assign('form',$form);
 $xoopsTpl->assign('form_id',$form_id); $xoopsTpl->assign('total',$total); $xoopsTpl->assign('start',$start); $xoopsTpl->assign('limit',$limit);
 
 echo $xoopsTpl->fetch($d.'xcontact_admin_submissions.tpl');

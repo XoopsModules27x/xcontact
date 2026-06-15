@@ -41,8 +41,8 @@ if (!\defined('XOOPS_ICONS32_URL')) {
 \define('XCONTACT_UPLOAD_IMAGE_PATH', \XCONTACT_UPLOAD_PATH . '/images');
 \define('XCONTACT_UPLOAD_IMAGE_URL', \XCONTACT_UPLOAD_URL . '/images');
 \define('XCONTACT_ADMIN', \XCONTACT_URL . '/admin/index.php');
-$localLogo = \XCONTACT_IMAGE_URL . '/goffy-wedega_logo.png';
+$localLogo = \XCONTACT_IMAGE_URL . '/logo.png';
 // Module Information
-$copyright = "<a href='https://wedega.com' title='Wedega Webdesign Gabor for XOOPS' target='_blank'><img src='" . $localLogo . "' alt='Wedega Webdesign Gabor for XOOPS' ></a>";
+$copyright = "<a href='erenyumak.com' title='Eren Yumak — Aymak, for XOOPS' target='_blank'><img src='" . $localLogo . "' alt='Eren Yumak — Aymak, for XOOPS' ></a>";
 require_once \XOOPS_ROOT_PATH . '/class/xoopsrequest.php';
 require_once \XCONTACT_PATH . '/include/functions.php';
