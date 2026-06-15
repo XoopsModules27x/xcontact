@@ -12,3 +12,9 @@ define('_MI_XCONTACT_CFG_CAPTCHA_LEN_DESC', 'CAPTCHA kodundaki karakter sayısı
 define('_MI_XCONTACT_SIZE_MB', 'MB');
 define('_MI_XCONTACT_UPLOAD_TYPES', 'Yükleme dosya türleri');
 define('_MI_XCONTACT_UPLOAD_TYPES_DESC', 'Dosya yükleme için izin verilen dosya türlerini tanımlayın');
+define('_MI_XCONTACT_SHOW_TAB_CLONE', 'Yönetici sayfasında "Kopyala" sekmesini göster');
+define('_MI_XCONTACT_SHOW_TAB_FEEDBACK', 'Yönetici sayfasında "Geri Bildirim" sekmesini göster');
+define('_MI_XCONTACT_ADMIN_PAGER', 'Yönetici sayfalama');
+define('_MI_XCONTACT_ADMIN_PAGER_DESC', 'Yönetici sayfalarında liste başına öğe sayısı');
+define('_MI_XCONTACT_USER_PAGER', 'Kullanıcı sayfalama');
+define('_MI_XCONTACT_USER_PAGER_DESC', 'Kullanıcı sayfalarında liste başına öğe sayısı');

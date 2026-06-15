@@ -25,6 +25,9 @@ xcontact_forms:
         -
             name: created_at
             attributes: ' INT(10) UNSIGNED NOT NULL DEFAULT 0 '
+        -
+            name: submitter
+            attributes: ' INT(10) UNSIGNED NOT NULL DEFAULT 0 '
     keys:
         PRIMARY:
             columns: form_id

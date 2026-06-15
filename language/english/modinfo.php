@@ -12,3 +12,9 @@ define('_MI_XCONTACT_CFG_CAPTCHA_LEN_DESC', 'Number of characters in CAPTCHA cod
 define('_MI_XCONTACT_SIZE_MB', 'MB');
 define('_MI_XCONTACT_UPLOAD_TYPES', 'File types upload');
 define('_MI_XCONTACT_UPLOAD_TYPES_DESC', 'Define the allowed file types for uploading');
+define('_MI_XCONTACT_SHOW_TAB_CLONE', 'Show tab "Clone" on admin page');
+define('_MI_XCONTACT_SHOW_TAB_FEEDBACK', 'Show tab "Feedback" on admin page');
+define('_MI_XCONTACT_ADMIN_PAGER', 'Admin pager');
+define('_MI_XCONTACT_ADMIN_PAGER_DESC', 'Items per list on admin pages');
+define('_MI_XCONTACT_USER_PAGER', 'User pager');
+define('_MI_XCONTACT_USER_PAGER_DESC', 'Items per list on user pages');

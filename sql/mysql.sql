@@ -7,6 +7,7 @@ CREATE TABLE `xcontact_forms` (
     `settings`    TEXT NOT NULL,
     `is_active`   TINYINT(1) NOT NULL DEFAULT 1,
     `created_at`  INT(10) UNSIGNED NOT NULL DEFAULT 0,
+    `submitter`   INT(10) UNSIGNED NOT NULL DEFAULT 0,
     PRIMARY KEY (`form_id`),
     UNIQUE KEY `slug` (`slug`)
 ) ENGINE=InnoDB;

@@ -37,4 +37,12 @@ interface Constants
     public const SUBMISSION_NEW = 0;
     public const SUBMISSION_READ = 1;
 
+    // Constants for form active
+    public const FORM_IS_INACTIVE = 0;
+    public const FORM_IS_ACTIVE   = 1;
+
+    // Constants captcha
+    public const CAPTCHA_DISABLED = 0;
+    public const CAPTCHA_ENABLED  = 1;
+
 }

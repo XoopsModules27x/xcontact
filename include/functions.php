@@ -7,16 +7,6 @@
 
 defined('XOOPS_ROOT_PATH') || exit();
 
-// ── DB: tüm formlar ──────────────────────────────────────────────────────────
-function xcontact_get_forms(): array {
-    $db  = $GLOBALS['xoopsDB'];
-    $tbl = $db->prefix('xcontact_forms');
-    $res = $db->query("SELECT * FROM {$tbl} ORDER BY form_id DESC");
-    $rows = [];
-    while ($row = $db->fetchArray($res)) $rows[] = $row;
-    return $rows;
-}
-
 function xcontact_get_form(int $id): ?array {
     $db  = $GLOBALS['xoopsDB'];
     $tbl = $db->prefix('xcontact_forms');

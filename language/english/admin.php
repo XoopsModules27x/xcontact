@@ -6,7 +6,8 @@ define('_AM_XCONTACT_MENU_FORMS',       'Form List');
 define('_AM_XCONTACT_MENU_NEW_FORM',    'New Form');
 define('_AM_XCONTACT_MENU_SUBMISSIONS', 'Submissions');
 define('_AM_XCONTACT_MENU_ABOUT',       'About');
-define('_AM_XCONTACT_MENU_CLONE',       'Clone');
+define('_AM_XCONTACT_MENU_CLONE',       'Clone module');
+define('_AM_XCONTACT_MENU_FEEDBACK',    'Feedback');
 define('_AM_XCONTACT_DASHBOARD',        'xcontact Dashboard');
 define('_AM_XCONTACT_STAT_FORMS',       'Total Forms');
 define('_AM_XCONTACT_STAT_ACTIVE',      'Active Forms');
@@ -122,6 +123,8 @@ define('_AM_XCONTACT_ABOUT_BLOCK_USE',  'As a block: <strong>Admin → Blocks �
 // Forms list
 define('_AM_XCONTACT_FORMS_LIST',       'Form List');
 define('_AM_XCONTACT_FORMS_NEW',        'New Form');
+define('_AM_XCONTACT_FORMS_EDIT',       'Edit Form');
+define('_AM_XCONTACT_FORMS_CLONE',      'Clone Form');
 define('_AM_XCONTACT_FORMS_BLOCK_INFO', 'Add as XOOPS block: <strong>Modules → xcontact → Block Management</strong><br>Or direct link:');
 define('_AM_XCONTACT_FORMS_DELETED',    'Form and all submissions deleted.');
 define('_AM_XCONTACT_FORMS_COL_NAME',   'Name');
@@ -134,6 +137,7 @@ define('_AM_XCONTACT_FORMS_SUB_COUNT',  'submissions');
 define('_AM_XCONTACT_FORMS_STATUS_ON',  'Active');
 define('_AM_XCONTACT_FORMS_STATUS_OFF', 'Inactive');
 define('_AM_XCONTACT_FORMS_BTN_EDIT',   'Edit');
+define('_AM_XCONTACT_FORMS_BTN_CLONE',  'Clone');
 define('_AM_XCONTACT_FORMS_BTN_SUBS',   'Submissions');
 define('_AM_XCONTACT_FORMS_BTN_DEL',    'Delete');
 define('_AM_XCONTACT_FORMS_CONFIRM_DEL','Are you sure you want to delete this form and all its submissions?');
