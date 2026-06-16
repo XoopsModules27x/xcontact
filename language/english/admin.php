@@ -1,6 +1,8 @@
 <?php
 defined('XOOPS_ROOT_PATH') || exit();
 
+include_once('common.php');
+
 define('_AM_XCONTACT_MENU_MAIN',        'Dashboard');
 define('_AM_XCONTACT_MENU_FORMS',       'Form List');
 define('_AM_XCONTACT_MENU_NEW_FORM',    'New Form');
