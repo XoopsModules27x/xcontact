@@ -2,7 +2,7 @@
 /**
  * xcontact — İletişim Formu Oluşturucu — XOOPS 2.7.0
  * @package    xcontact
- * @author     Eren Yumak — Aymak (aymak.net)
+ * @author     Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  * @copyright  2025 Eren Yumak
  * @license    GPL 2.0
  */
@@ -216,4 +216,12 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 1,
 ];
-
+// Make Sample button visible?
+$modversion['config'][] = [
+    'name'        => 'displaySampleButton',
+    'title'       => '_MI_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLEDATA_BUTTONS',
+    'description' => '_MI_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLEDATA_BUTTONS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];

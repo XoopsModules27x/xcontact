@@ -13,6 +13,8 @@
  - updated admin/forms.php to XOOPS standards (goffy)
  - implemented admin/form_edit.php into admin/forms.php (goffy)
  - added new preferences for pager and tabs (goffy)
+ - updated admin/index.php to XOOPS standards (goffy)
+ - added feature test data (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]

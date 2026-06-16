@@ -2,7 +2,7 @@
 /**
  * xcontact — Yardımcı fonksiyonlar
  * @package xcontact
- * @author  Eren Yumak — Aymak (aymak.net)
+ * @author  Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  */
 
 defined('XOOPS_ROOT_PATH') || exit();

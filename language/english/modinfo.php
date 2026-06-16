@@ -1,4 +1,5 @@
 <?php
+
 defined('XOOPS_ROOT_PATH') || exit();
 
 define('_MI_XCONTACT_NAME', 'Xcontact');
@@ -14,6 +15,8 @@ define('_MI_XCONTACT_UPLOAD_TYPES', 'File types upload');
 define('_MI_XCONTACT_UPLOAD_TYPES_DESC', 'Define the allowed file types for uploading');
 define('_MI_XCONTACT_SHOW_TAB_CLONE', 'Show tab "Clone" on admin page');
 define('_MI_XCONTACT_SHOW_TAB_FEEDBACK', 'Show tab "Feedback" on admin page');
+define('_MI_XCONTACT_SHOW_SAMPLEDATA_BUTTONS', 'Show the Sample buttons');
+define('_MI_XCONTACT_SHOW_SAMPLEDATA_BUTTONS_DESC', 'Show/Hide the buttons for import or export sample data');
 define('_MI_XCONTACT_ADMIN_PAGER', 'Admin pager');
 define('_MI_XCONTACT_ADMIN_PAGER_DESC', 'Items per list on admin pages');
 define('_MI_XCONTACT_USER_PAGER', 'User pager');

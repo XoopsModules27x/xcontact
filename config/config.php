@@ -18,7 +18,7 @@ declare(strict_types=1);
  * @copyright    2026 XOOPS Project (https://xoops.org)
  * @license      GPL 2.0 or later
  * @package      xcontact
- * @author       TDM XOOPS - Email:info@email.com - Website:http://xoops.org
+ * @author       Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  */
 
 /**
