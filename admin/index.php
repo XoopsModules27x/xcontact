@@ -26,6 +26,9 @@ use XoopsModules\Xcontact\Constants;
 require_once \dirname(__DIR__) . '/preloads/autoloader.php';
 require __DIR__ . '/header.php';
 
+$moduleDirName      = \basename(\dirname(__DIR__));
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
+
 // Template Index
 $templateMain = 'xcontact_admin_index.tpl';
 
@@ -64,14 +67,8 @@ $crSubs->setOrder('DESC');
 $subsAll = $submissionsHandler->getAll($crSubs);
 foreach (\array_keys($subsAll) as $i) {
     $sub = $subsAll[$i]->getValuesSubmissions();
-    $formsObj = $formsHandler->get($sub['form_id']);
-    $formName = \_AM_XCONTACT_INVALID_FORM_ID;
-    if (\is_object($formsObj)) {
-        $formName = $formsObj->getVar('name');
-    }
-    $sub['form_name'] = $formName;
     $GLOBALS['xoopsTpl']->append('recent_subs', $sub);
-    unset($sub, $formsObj);
+    unset($sub);
 }
 unset($crSubs);
 
@@ -79,7 +76,6 @@ unset($crSubs);
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
 if ($helper->getConfig('displaySampleButton')) {
     \xoops_loadLanguage('admin/modulesadmin', 'system');
-    require_once \dirname(__DIR__) . '/testdata/index.php';
     $adminObject->addItemButton(\constant('CO_' . $moduleDirNameUpper . '_ADD_SAMPLEDATA'), '../testdata/index.php?op=load', 'add');
     $adminObject->addItemButton(\constant('CO_' . $moduleDirNameUpper . '_SAVE_SAMPLEDATA'), '../testdata/index.php?op=save', 'add');
 //    $adminObject->addItemButton(\constant('CO_' . $moduleDirNameUpper . '_EXPORT_SCHEMA'), '../testdata/index.php?op=exportschema', 'add');
