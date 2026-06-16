@@ -45,7 +45,7 @@ $formsAll = $formsHandler->getAll($crForms);
 foreach (\array_keys($formsAll) as $i) {
     $form = $formsAll[$i]->getValuesForms();
     $GLOBALS['xoopsTpl']->append('recent_forms', $form);
-    unset($forms);
+    unset($form);
 }
 unset($crForms);
 
@@ -65,17 +65,16 @@ $subsAll = $submissionsHandler->getAll($crSubs);
 foreach (\array_keys($subsAll) as $i) {
     $sub = $subsAll[$i]->getValuesSubmissions();
     $formsObj = $formsHandler->get($sub['form_id']);
-    $formName = 'Invalid from name';
+    $formName = 'Invalid form name';
     if (\is_object($formsObj)) {
         $formName = $formsObj->getVar('name');
     }
     $sub['form_name'] = $formName;
     $GLOBALS['xoopsTpl']->append('recent_subs', $sub);
-    unset($forms);
+    unset($sub, $formsObj);
 }
 unset($crSubs);
 
-//if (class_exists('Xmf\\Module\\Admin')) \Xmf\Module\Admin::getInstance()->displayNavigation('index.php');
 // Render Index
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
 if ($helper->getConfig('displaySampleButton')) {

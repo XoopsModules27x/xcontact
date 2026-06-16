@@ -20,14 +20,14 @@ use Xmf\Request;
 use Xmf\Yaml;
 use XoopsModules\Xcontact;
 use XoopsModules\Xcontact\{
-    Common,
+    Common\Configurator,
     Utility
 };
 
 require_once dirname(__DIR__, 3) . '/include/cp_header.php';
 require \dirname(__DIR__) . '/preloads/autoloader.php';
 
-$op = \Xmf\Request::getCmd('op');
+$op = Request::getCmd('op');
 
 $moduleDirName      = \basename(\dirname(__DIR__));
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
@@ -38,7 +38,7 @@ $helper->loadLanguage('common');
 
 switch ($op) {
     case 'load':
-        if (\Xmf\Request::hasVar('ok', 'REQUEST') && 1 == $_REQUEST['ok']) {
+        if (1 === Request::getInt('ok')) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 \redirect_header('../admin/index.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
             }
@@ -62,8 +62,7 @@ function loadSampleData(): void
     $moduleDirName      = \basename(\dirname(__DIR__));
     $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
-    $utility      = new Xcontact\Utility();
-    $configurator = new Common\Configurator();
+    $configurator = new Configurator();
 
     $tables = Helper::getHelper($moduleDirName)->getModule()->getInfo('tables');
 
@@ -93,7 +92,7 @@ function loadSampleData(): void
         foreach (\array_keys($configurator->copyTestFolders) as $i) {
             $src  = $configurator->copyTestFolders[$i][0];
             $dest = $configurator->copyTestFolders[$i][1];
-            $utility::rcopy($src, $dest);
+            Utility::rcopy($src, $dest);
         }
     }
     \redirect_header('../admin/index.php', 1, \constant('CO_' . $moduleDirNameUpper . '_' . 'SAMPLEDATA_SUCCESS'));
@@ -103,7 +102,7 @@ function saveSampleData(): void
 {
     global $xoopsConfig;
 
-    $configurator = new Common\Configurator();
+    $configurator = new Configurator();
 
     $moduleDirName      = \basename(\dirname(__DIR__));
     $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
