@@ -65,7 +65,7 @@ $subsAll = $submissionsHandler->getAll($crSubs);
 foreach (\array_keys($subsAll) as $i) {
     $sub = $subsAll[$i]->getValuesSubmissions();
     $formsObj = $formsHandler->get($sub['form_id']);
-    $formName = 'Invalid form name';
+    $formName = \_AM_XCONTACT_INVALID_FORM_ID;
     if (\is_object($formsObj)) {
         $formName = $formsObj->getVar('name');
     }

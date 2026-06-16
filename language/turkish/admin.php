@@ -188,3 +188,4 @@ define('_AM_XCONTACT_MAINTAINEDBY',   'Bakımını yapan');
 \define('_AM_XCONTACT_CLONE_FAIL', 'Üzgünüz, yeni klon oluşturulamadı. Belki modules klasörüne geçici olarak yazma izni (CHMOD 777) vermeniz ve tekrar denemeniz gerekiyor.');
 
 define('_AM_XCONTACT_FORM_OK', 'Başarıyla kaydedildi');
+define('_AM_XCONTACT_INVALID_FORM_ID', 'Geçersiz form kimliği');
