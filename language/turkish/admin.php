@@ -166,6 +166,7 @@ define('_AM_XCONTACT_SUBS_COL_IP',      'IP');
 define('_AM_XCONTACT_SUBS_BTN_VIEW',    'Görüntüle');
 define('_AM_XCONTACT_SUBS_BTN_DEL',     'Sil');
 define('_AM_XCONTACT_SUBS_CONFIRM_DEL', 'Silmek istediğinize emin misiniz?');
+define('_AM_XCONTACT_SUBS_DELETED_OK',  'Gönderim başarıyla silindi');
 define('_AM_XCONTACT_SUBS_EMPTY',       'Bu form için henüz gönderi yok.');
 define('_AM_XCONTACT_SUB_STATUS_NEW',   'Yeni');
 define('_AM_XCONTACT_SUB_STATUS_READ',  'Okundu');

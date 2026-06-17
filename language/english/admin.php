@@ -166,6 +166,7 @@ define('_AM_XCONTACT_SUBS_COL_IP',      'IP');
 define('_AM_XCONTACT_SUBS_BTN_VIEW',    'View');
 define('_AM_XCONTACT_SUBS_BTN_DEL',     'Delete');
 define('_AM_XCONTACT_SUBS_CONFIRM_DEL', 'Are you sure you want to delete this submission?');
+define('_AM_XCONTACT_SUBS_DELETED_OK',  'Submission successfully deleted');
 define('_AM_XCONTACT_SUBS_EMPTY',       'No submissions for this form yet.');
 define('_AM_XCONTACT_SUB_STATUS_NEW',   'New');
 define('_AM_XCONTACT_SUB_STATUS_READ',  'Read');

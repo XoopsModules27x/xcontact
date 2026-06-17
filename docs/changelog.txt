@@ -15,6 +15,7 @@
  - added new preferences for pager and tabs (goffy)
  - updated admin/index.php to XOOPS standards (goffy)
  - added feature test data (goffy)
+ - updated admin/submissions.php to XOOPS standards (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]
