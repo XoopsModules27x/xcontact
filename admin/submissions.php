@@ -77,7 +77,8 @@ switch ($op) {
             // Display Navigation
             if ($submissionsCount > $limit) {
                 require_once \XOOPS_ROOT_PATH . '/class/pagenav.php';
-                $pagenav = new \XoopsPageNav($submissionsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+                $navQuery = 'op=list&form_id=' . (int)$formId . '&limit=' . (int)$limit;
+                $pagenav = new \XoopsPageNav($submissionsCount, $limit, $start, 'start', $navQuery);
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
             }
             $GLOBALS['xoopsTpl']->assign('xoops_token', $GLOBALS['xoopsSecurity']->getTokenHTML());
@@ -96,10 +97,10 @@ switch ($op) {
             $GLOBALS['xoopsTpl']->assign('error', $submissionsObj->getHtmlErrors());
         }
         // get form values
-        $formObj   = $formsHandler->get($submissionsObj->getVar('form_id'));
-        $form_name = \_AM_XCONTACT_INVALID_FORM_ID;
-        $fields    = [];
-        $fmap      = [];
+        $formObj  = $formsHandler->get($submissionsObj->getVar('form_id'));
+        $formName = \_AM_XCONTACT_INVALID_FORM_ID;
+        $fields   = [];
+        $fmap     = [];
         if (\is_object($formObj)) {
             $formName = $formObj->getVar('name');
             $fields   = json_decode($formObj->getVar('fields'),true);
@@ -118,7 +119,7 @@ switch ($op) {
         // assign all vars
         $GLOBALS['xoopsTpl']->assign('module_url',\XCONTACT_URL);
         $GLOBALS['xoopsTpl']->assign('sub',$submissionsObj->getValuesSubmissions());
-        $GLOBALS['xoopsTpl']->assign('form_name', $form_name);
+        $GLOBALS['xoopsTpl']->assign('form_name', $formName);
         $GLOBALS['xoopsTpl']->assign('fmap',$fmap);
         $GLOBALS['xoopsTpl']->assign('data',$data);
         break;
