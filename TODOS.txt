@@ -6,10 +6,14 @@ $cf_token    = md5($cf_form_id . 'xcontact_salt_aymak');
 ==> can be rebuilt by everyone who knows the code
 ==> replace by $GLOBALS['xoopsSecurity']->check()
 
-submissions always automatically read => change only if really read
-
-index.php: update db read access to XOOPS standards
 
 replace is_active=1 by Constants::FORM_IS_ACTIVE
 
+
 replace <{$f.desc|escape|truncate:80}> in xcontact_index.tpl by module preference
+
+
+create nice readme-md
+
+
+support of dark mode of admin theme "modern"

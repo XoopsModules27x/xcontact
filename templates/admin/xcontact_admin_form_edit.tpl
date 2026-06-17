@@ -42,6 +42,11 @@
 <{/if}>
 
 <div class="xcp-wrap">
+    <div class="xcp-header">
+        <h2><{if $is_edit}>✏️ <{$smarty.const._AM_XCONTACT3_BUILDER_EDIT_TITLE}> <{$form.name}><{else}>➕ <{$smarty.const._AM_XCONTACT3_BUILDER_NEW_TITLE}><{/if}></h2>
+        <a href="forms.php?op=list" class="xcp-btn xcp-btn--green"><{$smarty.const._AM_XCONTACT_SUBS_BACK}></a>
+    </div>
+
     <form method="post" action="<{$module_url}>admin/forms.php">
         <input type="hidden" name="op" value="save">
         <input type="hidden" name="start" value="<{$start}>">
