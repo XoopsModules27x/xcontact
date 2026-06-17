@@ -43,8 +43,8 @@
 
 <div class="xcp-wrap">
     <div class="xcp-header">
-        <h2><{if $is_edit}>✏️ <{$smarty.const._AM_XCONTACT_BUILDER_EDIT_TITLE}> <{$form.name|escape}><{else}>➕ <{$smarty.const._AM_XCONTACT_BUILDER_NEW_TITLE}><{/if}></h2>
-        <a href="forms.php?op=list" class="xcp-btn xcp-btn--green"><{$smarty.const._AM_XCONTACT_SUBS_BACK}></a>
+        <h2><{if $is_edit}><{$icons.edit}> <{$smarty.const._AM_XCONTACT_BUILDER_EDIT_TITLE}> <{$form.name|escape}><{else}><{$icons.plus}> <{$smarty.const._AM_XCONTACT_BUILDER_NEW_TITLE}><{/if}></h2>
+        <a href="forms.php?op=list" class="xcp-btn xcp-btn--green"><{$icons.back}> <{$smarty.const._AM_XCONTACT_SUBS_BACK}></a>
     </div>
 
     <form method="post" action="<{$module_url}>admin/forms.php">
@@ -56,32 +56,32 @@
         <{$xoops_token_html}>
 
         <div class="xcp-tabs">
-            <button type="button" class="xcp-tab active" data-tab="builder">🧩 <{$smarty.const._AM_XCONTACT_BUILDER_TAB_BUILDER}></button>
-            <button type="button" class="xcp-tab" data-tab="settings">⚙️ <{$smarty.const._AM_XCONTACT_BUILDER_TAB_SETTINGS}></button>
+            <button type="button" class="xcp-tab active" data-tab="builder"><{$icons.builder}> <{$smarty.const._AM_XCONTACT_BUILDER_TAB_BUILDER}></button>
+            <button type="button" class="xcp-tab" data-tab="settings"><{$icons.settings}> <{$smarty.const._AM_XCONTACT_BUILDER_TAB_SETTINGS}></button>
         </div>
 
         <div id="tab-builder" class="xcp-tab-panel active">
             <div class="xcp-builder">
                 <div class="xcp-palette">
                     <h4><{$smarty.const._AM_XCONTACT_BUILDER_FIELD_TYPES}></h4>
-                    <div class="xcp-ft" data-type="short_text"   draggable="true" ondblclick="xcfAdd('short_text')"><div class="xcp-ft-icon xcp-ic-green">T</div><{$smarty.const._AM_XCONTACT_FT_SHORT_TEXT}></div>
-                    <div class="xcp-ft" data-type="long_text"    draggable="true" ondblclick="xcfAdd('long_text')"><div class="xcp-ft-icon xcp-ic-green">T&#818;</div><{$smarty.const._AM_XCONTACT_FT_LONG_TEXT}></div>
-                    <div class="xcp-ft" data-type="email"        draggable="true" ondblclick="xcfAdd('email')"><div class="xcp-ft-icon xcp-ic-teal">@</div><{$smarty.const._AM_XCONTACT_FT_EMAIL}></div>
-                    <div class="xcp-ft" data-type="website"      draggable="true" ondblclick="xcfAdd('website')"><div class="xcp-ft-icon xcp-ic-teal">🔗</div><{$smarty.const._AM_XCONTACT_FT_WEBSITE}></div>
-                    <div class="xcp-ft" data-type="phone"        draggable="true" ondblclick="xcfAdd('phone')"><div class="xcp-ft-icon xcp-ic-teal">📞</div><{$smarty.const._AM_XCONTACT_FT_PHONE}></div>
-                    <div class="xcp-ft" data-type="number"       draggable="true" ondblclick="xcfAdd('number')"><div class="xcp-ft-icon xcp-ic-teal">#</div><{$smarty.const._AM_XCONTACT_FT_NUMBER}></div>
-                    <div class="xcp-ft" data-type="date"         draggable="true" ondblclick="xcfAdd('date')"><div class="xcp-ft-icon xcp-ic-blue">📅</div><{$smarty.const._AM_XCONTACT_FT_DATE}></div>
-                    <div class="xcp-ft" data-type="time"         draggable="true" ondblclick="xcfAdd('time')"><div class="xcp-ft-icon xcp-ic-blue">⏰</div><{$smarty.const._AM_XCONTACT_FT_TIME}></div>
-                    <div class="xcp-ft" data-type="file"         draggable="true" ondblclick="xcfAdd('file')"><div class="xcp-ft-icon xcp-ic-blue">📎</div><{$smarty.const._AM_XCONTACT_FT_FILE}></div>
-                    <div class="xcp-ft" data-type="hidden"       draggable="true" ondblclick="xcfAdd('hidden')"><div class="xcp-ft-icon xcp-ic-grey">🚫</div><{$smarty.const._AM_XCONTACT_FT_HIDDEN}></div>
-                    <div class="xcp-ft" data-type="label"        draggable="true" ondblclick="xcfAdd('label')"><div class="xcp-ft-icon xcp-ic-grey">L</div><{$smarty.const._AM_XCONTACT_FT_LABEL}></div>
-                    <div class="xcp-ft" data-type="heading"      draggable="true" ondblclick="xcfAdd('heading')"><div class="xcp-ft-icon xcp-ic-grey">H</div><{$smarty.const._AM_XCONTACT_FT_HEADING}></div>
-                    <div class="xcp-ft" data-type="paragraph"    draggable="true" ondblclick="xcfAdd('paragraph')"><div class="xcp-ft-icon xcp-ic-grey">¶</div><{$smarty.const._AM_XCONTACT_FT_PARAGRAPH}></div>
-                    <div class="xcp-ft" data-type="choice"       draggable="true" ondblclick="xcfAdd('choice')"><div class="xcp-ft-icon xcp-ic-purple">☑</div><{$smarty.const._AM_XCONTACT_FT_CHOICE}></div>
-                    <div class="xcp-ft" data-type="image_choice" draggable="true" ondblclick="xcfAdd('image_choice')"><div class="xcp-ft-icon xcp-ic-purple">🖼</div><{$smarty.const._AM_XCONTACT_FT_IMAGE_CHOICE}></div>
-                    <div class="xcp-ft" data-type="dropdown"     draggable="true" ondblclick="xcfAdd('dropdown')"><div class="xcp-ft-icon xcp-ic-purple">▼</div><{$smarty.const._AM_XCONTACT_FT_DROPDOWN}></div>
-                    <div class="xcp-ft" data-type="consent"      draggable="true" ondblclick="xcfAdd('consent')"><div class="xcp-ft-icon xcp-ic-purple">✓</div><{$smarty.const._AM_XCONTACT_FT_CONSENT}></div>
-                    <div class="xcp-ft" data-type="signature"    draggable="true" ondblclick="xcfAdd('signature')"><div class="xcp-ft-icon xcp-ic-orange">✒</div><{$smarty.const._AM_XCONTACT_FT_SIGNATURE}></div>
+                    <div class="xcp-ft" data-type="short_text"   draggable="true" ondblclick="xcfAdd('short_text')"><div class="xcp-ft-icon xcp-ic-green"><{$icons.text}></div><{$smarty.const._AM_XCONTACT_FT_SHORT_TEXT}></div>
+                    <div class="xcp-ft" data-type="long_text"    draggable="true" ondblclick="xcfAdd('long_text')"><div class="xcp-ft-icon xcp-ic-green"><{$icons.longtext}></div><{$smarty.const._AM_XCONTACT_FT_LONG_TEXT}></div>
+                    <div class="xcp-ft" data-type="email"        draggable="true" ondblclick="xcfAdd('email')"><div class="xcp-ft-icon xcp-ic-teal"><{$icons.mail}></div><{$smarty.const._AM_XCONTACT_FT_EMAIL}></div>
+                    <div class="xcp-ft" data-type="website"      draggable="true" ondblclick="xcfAdd('website')"><div class="xcp-ft-icon xcp-ic-teal"><{$icons.website}></div><{$smarty.const._AM_XCONTACT_FT_WEBSITE}></div>
+                    <div class="xcp-ft" data-type="phone"        draggable="true" ondblclick="xcfAdd('phone')"><div class="xcp-ft-icon xcp-ic-teal"><{$icons.phone}></div><{$smarty.const._AM_XCONTACT_FT_PHONE}></div>
+                    <div class="xcp-ft" data-type="number"       draggable="true" ondblclick="xcfAdd('number')"><div class="xcp-ft-icon xcp-ic-teal"><{$icons.number}></div><{$smarty.const._AM_XCONTACT_FT_NUMBER}></div>
+                    <div class="xcp-ft" data-type="date"         draggable="true" ondblclick="xcfAdd('date')"><div class="xcp-ft-icon xcp-ic-blue"><{$icons.date}></div><{$smarty.const._AM_XCONTACT_FT_DATE}></div>
+                    <div class="xcp-ft" data-type="time"         draggable="true" ondblclick="xcfAdd('time')"><div class="xcp-ft-icon xcp-ic-blue"><{$icons.time}></div><{$smarty.const._AM_XCONTACT_FT_TIME}></div>
+                    <div class="xcp-ft" data-type="file"         draggable="true" ondblclick="xcfAdd('file')"><div class="xcp-ft-icon xcp-ic-blue"><{$icons.file}></div><{$smarty.const._AM_XCONTACT_FT_FILE}></div>
+                    <div class="xcp-ft" data-type="hidden"       draggable="true" ondblclick="xcfAdd('hidden')"><div class="xcp-ft-icon xcp-ic-grey"><{$icons.hidden}></div><{$smarty.const._AM_XCONTACT_FT_HIDDEN}></div>
+                    <div class="xcp-ft" data-type="label"        draggable="true" ondblclick="xcfAdd('label')"><div class="xcp-ft-icon xcp-ic-grey"><{$icons.label}></div><{$smarty.const._AM_XCONTACT_FT_LABEL}></div>
+                    <div class="xcp-ft" data-type="heading"      draggable="true" ondblclick="xcfAdd('heading')"><div class="xcp-ft-icon xcp-ic-grey"><{$icons.heading}></div><{$smarty.const._AM_XCONTACT_FT_HEADING}></div>
+                    <div class="xcp-ft" data-type="paragraph"    draggable="true" ondblclick="xcfAdd('paragraph')"><div class="xcp-ft-icon xcp-ic-grey"><{$icons.paragraph}></div><{$smarty.const._AM_XCONTACT_FT_PARAGRAPH}></div>
+                    <div class="xcp-ft" data-type="choice"       draggable="true" ondblclick="xcfAdd('choice')"><div class="xcp-ft-icon xcp-ic-purple"><{$icons.choice}></div><{$smarty.const._AM_XCONTACT_FT_CHOICE}></div>
+                    <div class="xcp-ft" data-type="image_choice" draggable="true" ondblclick="xcfAdd('image_choice')"><div class="xcp-ft-icon xcp-ic-purple"><{$icons.image}></div><{$smarty.const._AM_XCONTACT_FT_IMAGE_CHOICE}></div>
+                    <div class="xcp-ft" data-type="dropdown"     draggable="true" ondblclick="xcfAdd('dropdown')"><div class="xcp-ft-icon xcp-ic-purple"><{$icons.dropdown}></div><{$smarty.const._AM_XCONTACT_FT_DROPDOWN}></div>
+                    <div class="xcp-ft" data-type="consent"      draggable="true" ondblclick="xcfAdd('consent')"><div class="xcp-ft-icon xcp-ic-purple"><{$icons.consent}></div><{$smarty.const._AM_XCONTACT_FT_CONSENT}></div>
+                    <div class="xcp-ft" data-type="signature"    draggable="true" ondblclick="xcfAdd('signature')"><div class="xcp-ft-icon xcp-ic-orange"><{$icons.signature}></div><{$smarty.const._AM_XCONTACT_FT_SIGNATURE}></div>
                 </div>
                 <div>
                     <div id="xcf-canvas" class="xcp-canvas">
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div style="margin-top:12px;text-align:right">
-                        <button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px;font-size:14px">💾 <{$smarty.const._AM_XCONTACT_BUILDER_SAVE_FORM}></button>
+                        <button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px;font-size:14px"><{$icons.save}> <{$smarty.const._AM_XCONTACT_BUILDER_SAVE_FORM}></button>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                 <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_EMAIL_SUBJECT}></label><input type="text" name="email_subject" value="<{$settings.email_subject|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUBJECT|escape}>"></div>
                 <label class="xcp-isp-toggle"><input type="checkbox" name="is_active" value="1"<{if !empty($form.is_active)}> checked<{/if}>> <{$smarty.const._AM_XCONTACT_SET_IS_ACTIVE}></label>
                 <label class="xcp-isp-toggle"><input type="checkbox" name="enable_captcha" value="1"<{if !empty($settings.enable_captcha)}> checked<{/if}>> <{$smarty.const._AM_XCONTACT_SET_CAPTCHA}></label>
-                <div style="margin-top:18px"><button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px">💾 <{$smarty.const._AM_XCONTACT_SAVE}></button></div>
+                <div style="margin-top:18px"><button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px"><{$icons.save}> <{$smarty.const._AM_XCONTACT_SAVE}></button></div>
             </div>
         </div>
 
@@ -124,6 +124,12 @@
 
 
 <script>
+var XCF_ICONS = {
+    edit: '<{$icons.edit|escape:"javascript"}>',
+    edit_title: '<{$smarty.const._EDIT}>',
+    delete: '<{$icons.delete|escape:"javascript"}>',
+    delete_title: '<{$smarty.const._DELETE}>',
+};
 var XCF_TYPES = {
     short_text:{l:<{$smarty.const._AM_XCONTACT_FT_SHORT_TEXT|json_encode}>},
     long_text:{l:<{$smarty.const._AM_XCONTACT_FT_LONG_TEXT|json_encode}>},
@@ -181,7 +187,7 @@ function xcfRender(){
         if(f.width===6){div.style.cssText='display:inline-flex;vertical-align:top;width:calc(50% - 5px);margin-right:6px;box-sizing:border-box';}
         else if(f.width===4){div.style.cssText='display:inline-flex;vertical-align:top;width:calc(33.333% - 6px);margin-right:6px;box-sizing:border-box';}
         div.setAttribute('data-idx',i);div.setAttribute('draggable','true');
-        div.innerHTML='<span class="xcp-fi-drag">⠿</span><div class="xcp-fi-info"><strong>'+xcfEsc(f.label||t.l)+'</strong><span>'+t.l+(f.required?' · '+XCF_LANG.required_lbl:'')+(wl?' · '+wl:'')+'</span></div><div class="xcp-fi-actions"><button onclick="xcfEdit('+i+')" title="✏️">✏️</button><button onclick="xcfDel('+i+')" title="🗑" style="color:#d32f2f">🗑</button></div>';
+        div.innerHTML='<span class="xcp-fi-drag">⠿</span><div class="xcp-fi-info"><strong>'+xcfEsc(f.label||t.l)+'</strong><span>'+t.l+(f.required?' · '+XCF_LANG.required_lbl:'')+(wl?' · '+wl:'')+'</span></div><div class="xcp-fi-actions"><button onclick="xcfEdit('+i+')" title="'+XCF_ICONS.edit_title+'">'+XCF_ICONS.edit+'</button><button onclick="xcfDel('+i+')" title="'+XCF_ICONS.delete_title+'" style="color:#d32f2f">'+XCF_ICONS.delete+'</button></div>';
         div.addEventListener('dragstart',function(e){xcfDragIdx=i;e.dataTransfer.effectAllowed='move';});
         div.addEventListener('dragover',function(e){e.preventDefault();});
         div.addEventListener('drop',function(e){e.preventDefault();e.stopPropagation();if(xcfDragIdx!==null&&xcfDragIdx!==i){var m=xcfFields.splice(xcfDragIdx,1)[0];xcfFields.splice(i,0,m);xcfDragIdx=null;xcfRender();xcfSync();}});

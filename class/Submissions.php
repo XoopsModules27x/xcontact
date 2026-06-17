@@ -24,7 +24,7 @@ namespace XoopsModules\Xcontact;
  * @author       Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  */
 
-use XoopsModules\Xcontact;
+use XoopsModules\Xcontact\Helper;
 
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
@@ -81,49 +81,6 @@ class Submissions extends \XoopsObject
     }
 
     /**
-     * @public function getForm
-     * @param bool $action
-     * @return \XoopsThemeForm
-     */
-    public function getFormSubmissions($action = false)
-    {
-        $helper = \XoopsModules\Xcontact\Helper::getInstance();
-        if (!$action) {
-            $action = $_SERVER['REQUEST_URI'];
-        }
-        $isAdmin = \is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
-        // Title
-        $title = $this->isNew() ? \_AM_XCONTACT_SUBMISSIONS_ADD : \_AM_XCONTACT_SUBMISSIONS_EDIT;
-        // Get Theme Form
-        \xoops_load('XoopsFormLoader');
-        $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
-        $form->setExtra('enctype="multipart/form-data"');
-        // Form Table forms
-        $formsHandler = $helper->getHandler('Forms');
-        $xxxForm_idSelect = new \XoopsFormSelect(\_AM_XCONTACT_SUBMISSIONS_FORM_ID, 'form_id', $this->getVar('form_id'));
-        $xxxForm_idSelect->addOptionArray($formsHandler->getList());
-        $form->addElement($xxxForm_idSelect, true);
-        // Form Editor TextArea xxxData
-        $form->addElement(new \XoopsFormTextArea(\_AM_XCONTACT_SUBMISSIONS_DATA, 'data', $this->getVar('data', 'e'), 4, 47), true);
-        // Form Text IP xxxIp
-        $xxxIp = $_SERVER['REMOTE_ADDR'];
-        $xxxIp = $this->isNew() ? ($_SERVER['REMOTE_ADDR'] ?? '') : $this->getVar('ip');
-        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_SUBMISSIONS_IP, 'ip', 20, 150, $xxxIp), true);
-        // Form Text xxxStatus
-        $xxxStatus = $this->isNew() ? '0' : $this->getVar('status');
-        $form->addElement(new \XoopsFormText(\_AM_XCONTACT_SUBMISSIONS_STATUS, 'status', 20, 150, $xxxStatus));
-        // Form Text Date Select xxxCreated_at
-        $xxxCreated_at = $this->isNew() ? \time() : $this->getVar('created_at');
-        $form->addElement(new \XoopsFormTextDateSelect(\_AM_XCONTACT_SUBMISSIONS_CREATED_AT, 'created_at', '', $xxxCreated_at));
-        // To Save
-        $form->addElement(new \XoopsFormHidden('op', 'save'));
-        $form->addElement(new \XoopsFormHidden('start', $this->start));
-        $form->addElement(new \XoopsFormHidden('limit', $this->limit));
-        $form->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));
-        return $form;
-    }
-
-    /**
      * Get Values
      * @param string $keys
      * @param string $format
@@ -132,7 +89,7 @@ class Submissions extends \XoopsObject
      */
     public function getValuesSubmissions($keys = null, $format = null, $maxDepth = null)
     {
-        $helper  = \XoopsModules\Xcontact\Helper::getInstance();
+        $helper  = Helper::getInstance();
         $ret = $this->getValues($keys, $format, $maxDepth);
         $formsHandler = $helper->getHandler('Forms');
         $formsObj = $formsHandler->get($this->getVar('form_id'));

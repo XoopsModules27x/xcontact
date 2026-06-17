@@ -159,7 +159,7 @@ define('_AM_XCONTACT_DASH_BTN_FORMS',   'Tüm Formlar');
 define('_AM_XCONTACT_DASH_BTN_VIEW',    'Gör');
 // Submissions
 define('_AM_XCONTACT_SUBS_TITLE',       'Gönderiler');
-define('_AM_XCONTACT_SUBS_BACK',        '← Formlara Dön');
+define('_AM_XCONTACT_SUBS_BACK',        'Formlara Dön');
 define('_AM_XCONTACT_SUBS_SELECT',      '— Form Seçin —');
 define('_AM_XCONTACT_SUBS_COL_DATE',    'Tarih');
 define('_AM_XCONTACT_SUBS_COL_IP',      'IP');
@@ -171,7 +171,7 @@ define('_AM_XCONTACT_SUBS_EMPTY',       'Bu form için henüz gönderi yok.');
 define('_AM_XCONTACT_SUB_STATUS_NEW',   'Yeni');
 define('_AM_XCONTACT_SUB_STATUS_READ',  'Okundu');
 define('_AM_XCONTACT_SUB_VIEW_TITLE', 'Gönderi');
-define('_AM_XCONTACT_SUB_VIEW_BACK',  '← Gönderilere Dön');
+define('_AM_XCONTACT_SUB_VIEW_BACK',  'Gönderilere Dön');
 
 define('_AM_XCONTACT_BLOCK_DISPLAY_MODE', 'Gösterim Modu');
 define('_AM_XCONTACT_BLOCK_MODE_LINK',    'Link olarak göster (forma yönlendir)');

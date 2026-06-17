@@ -159,7 +159,7 @@ define('_AM_XCONTACT_DASH_BTN_FORMS',   'All Forms');
 define('_AM_XCONTACT_DASH_BTN_VIEW',    'View');
 // Submissions
 define('_AM_XCONTACT_SUBS_TITLE',       'Submissions');
-define('_AM_XCONTACT_SUBS_BACK',        '← Back to Forms');
+define('_AM_XCONTACT_SUBS_BACK',        'Back to Forms');
 define('_AM_XCONTACT_SUBS_SELECT',      '— Select a Form —');
 define('_AM_XCONTACT_SUBS_COL_DATE',    'Date');
 define('_AM_XCONTACT_SUBS_COL_IP',      'IP');
@@ -171,7 +171,7 @@ define('_AM_XCONTACT_SUBS_EMPTY',       'No submissions for this form yet.');
 define('_AM_XCONTACT_SUB_STATUS_NEW',   'New');
 define('_AM_XCONTACT_SUB_STATUS_READ',  'Read');
 define('_AM_XCONTACT_SUB_VIEW_TITLE',   'Submission');
-define('_AM_XCONTACT_SUB_VIEW_BACK',    '← Back to Submissions');
+define('_AM_XCONTACT_SUB_VIEW_BACK',    'Back to Submissions');
 
 define('_AM_XCONTACT_BLOCK_DISPLAY_MODE', 'Display Mode');
 define('_AM_XCONTACT_BLOCK_MODE_LINK',    'Show as link (redirect to form page)');

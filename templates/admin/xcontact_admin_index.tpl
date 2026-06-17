@@ -1,3 +1,9 @@
+<{if $displaySampleButton|default:false}>
+    <div class="xcp-header" style="justify-content: start;">
+        <a class="xcp-btn xcp-btn--green pull-left" href="../testdata/index.php?op=load" title="<{$smarty.const.CO_XCONTACT_ADD_SAMPLEDATA}>"><{$smarty.const.CO_XCONTACT_ADD_SAMPLEDATA}></a>
+        <a class="xcp-btn xcp-btn--green pull-left" href="../testdata/index.php?op=save" title="<{$smarty.const.CO_XCONTACT_SAVE_SAMPLEDATA}>"><{$smarty.const.CO_XCONTACT_SAVE_SAMPLEDATA}></a>
+    </div>
+<{/if}>
 <div class="xcp-dashboard">
     <h2 class="xcp-title"><{$dashboard_title}></h2>
     <div class="xcp-stat-grid">
@@ -10,7 +16,7 @@
     </div>
     <div class="xcp-widgets">
         <div class="xcp-widget">
-            <div class="xcp-widget-title">🆕 <{$smarty.const._AM_XCONTACT_DASH_RECENT_FORMS}></div>
+            <div class="xcp-widget-title"><{$icons.form}> <{$smarty.const._AM_XCONTACT_DASH_RECENT_FORMS}></div>
             <{if $recent_forms|default:false}>
             <table class="xcp-table">
                 <tr><th><{$smarty.const._AM_XCONTACT_DASH_COL_AD}></th><th><{$smarty.const._AM_XCONTACT_DASH_COL_SLUG}></th><th><{$smarty.const._AM_XCONTACT_FORM_ACTIVE}></th><th><{$smarty.const._AM_XCONTACT_ACTIONS}></th></tr>
@@ -26,7 +32,7 @@
             <{else}><p class="xcp-empty"><{$smarty.const._AM_XCONTACT_DASH_NO_FORMS}> <a href="<{$module_url}>admin/forms.php?op=new"><{$smarty.const._AM_XCONTACT_DASH_NEW_FORM}></a></p><{/if}>
         </div>
         <div class="xcp-widget">
-            <div class="xcp-widget-title">📥 <{$smarty.const._AM_XCONTACT_DASH_RECENT_SUBS}></div>
+            <div class="xcp-widget-title"><{$icons.submission}> <{$smarty.const._AM_XCONTACT_DASH_RECENT_SUBS}></div>
             <{if $recent_subs|default:false}>
             <table class="xcp-table">
                 <tr><th><{$smarty.const._AM_XCONTACT_DASH_COL_FORM}></th><th><{$smarty.const._AM_XCONTACT_DASH_COL_DATE}></th><th><{$smarty.const._AM_XCONTACT_SUB_STATUS}></th><th><{$smarty.const._AM_XCONTACT_ACTIONS}></th></tr>
@@ -43,8 +49,8 @@
         </div>
     </div>
     <div class="xcp-quick">
-        <a href="<{$module_url}>admin/forms.php?op=new" class="xcp-btn xcp-btn--green">➕ <{$smarty.const._AM_XCONTACT_MENU_NEW_FORM}></a>
-        <a href="<{$module_url}>admin/forms.php"        class="xcp-btn xcp-btn--blue">📋 <{$smarty.const._AM_XCONTACT_DASH_BTN_FORMS}></a>
-        <a href="<{$module_url}>admin/submissions.php"  class="xcp-btn xcp-btn--orange">📥 <{$smarty.const._AM_XCONTACT_MENU_SUBMISSIONS}></a>
+        <a href="<{$module_url}>admin/forms.php?op=new" class="xcp-btn xcp-btn--green"><{$icons.plus}> <{$smarty.const._AM_XCONTACT_MENU_NEW_FORM}></a>
+        <a href="<{$module_url}>admin/forms.php"        class="xcp-btn xcp-btn--blue"><{$icons.list}> <{$smarty.const._AM_XCONTACT_DASH_BTN_FORMS}></a>
+        <a href="<{$module_url}>admin/submissions.php"  class="xcp-btn xcp-btn--orange"><{$icons.submission}> <{$smarty.const._AM_XCONTACT_MENU_SUBMISSIONS}></a>
     </div>
 </div>
