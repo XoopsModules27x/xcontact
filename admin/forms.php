@@ -44,9 +44,6 @@ switch ($op) {
         // Define Stylesheet
         $GLOBALS['xoTheme']->addStylesheet($style, null);
         $templateMain = 'xcontact_admin_forms.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('forms.php'));
-        $adminObject->addItemButton(\_AM_XCONTACT_FORMS_NEW, 'forms.php?op=new');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         $formsCount = $formsHandler->getCountForms();
         $formsAll = $formsHandler->getAllForms($start, $limit);
         $GLOBALS['xoopsTpl']->assign('forms_count', $formsCount);
@@ -96,10 +93,6 @@ switch ($op) {
         break;
     case 'clone':
         $templateMain = 'xcontact_admin_form_edit.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('forms.php'));
-        $adminObject->addItemButton(\_AM_XCONTACT_FORMS_LIST, 'forms.php', 'list');
-        $adminObject->addItemButton(\_AM_XCONTACT_FORMS_NEW, 'forms.php?op=new');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         // Request source
         $formIdSource = Request::getInt('form_id_source');
         // Check params
@@ -124,9 +117,6 @@ switch ($op) {
         break;
     case 'new':
         $templateMain = 'xcontact_admin_form_edit.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('forms.php'));
-        $adminObject->addItemButton(\_AM_XCONTACT_FORMS_LIST, 'forms.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         //set default values
         $form=[
             'form_id'=>0,
@@ -137,7 +127,7 @@ switch ($op) {
             'settings'=>'{}',
             'is_active'=>Constants::FORM_IS_ACTIVE
         ];
-        $GLOBALS['xoopsTpl']->assign('form_header', \_AM_XCONTACT_FORMS_NEW);
+        $GLOBALS['xoopsTpl']->assign('is_edit', false);
         $GLOBALS['xoopsTpl']->assign('form', $form);
         $GLOBALS['xoopsTpl']->assign('start', $start);
         $GLOBALS['xoopsTpl']->assign('limit', $limit);
@@ -146,10 +136,6 @@ switch ($op) {
         break;
     case 'edit':
         $templateMain = 'xcontact_admin_form_edit.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('forms.php'));
-        $adminObject->addItemButton(\_AM_XCONTACT_FORMS_NEW, 'forms.php?op=new');
-        $adminObject->addItemButton(\_AM_XCONTACT_FORMS_LIST, 'forms.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         // Get Form
         if ($formId > 0) {
             $formsObj = $formsHandler->get($formId);
@@ -160,7 +146,7 @@ switch ($op) {
             \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         $form = $formsObj->getValues();
-        $GLOBALS['xoopsTpl']->assign('form_header', \_AM_XCONTACT_FORMS_EDIT);
+        $GLOBALS['xoopsTpl']->assign('is_edit', true);
         $GLOBALS['xoopsTpl']->assign('form', $form);
         $GLOBALS['xoopsTpl']->assign('start', $start);
         $GLOBALS['xoopsTpl']->assign('limit', $limit);
@@ -237,7 +223,6 @@ switch ($op) {
         break;
     case 'delete':
         $templateMain = 'xcontact_admin_forms.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('forms.php'));
         $formsObj = $formsHandler->get($formId);
         if (!\is_object($formsObj)) {
             \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);

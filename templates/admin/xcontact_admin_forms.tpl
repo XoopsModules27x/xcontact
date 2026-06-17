@@ -9,6 +9,10 @@
 <{/if}>
 
 <div class="xcp-wrap">
+    <div class="xcp-header">
+        <h2>📋 <{$smarty.const._AM_XCONTACT_FORMS_LIST}></h2>
+        <a href="forms.php?op=new" class="xcp-btn xcp-btn--green">➕ <{$smarty.const._AM_XCONTACT_FORMS_NEW}></a>
+    </div>
     <div class="xcp-info">
         <{$smarty.const._AM_XCONTACT_FORMS_BLOCK_INFO}><br>
         <code><{$xoops_url}>/modules/xcontact/form.php?slug=SLUG</code>
@@ -53,13 +57,14 @@
                     <form method="post" action="forms.php" style="display:inline" onsubmit="return confirm('<{$smarty.const._AM_XCONTACT_FORMS_CONFIRM_DEL}>')">
                     <input type="hidden" name="op" value="delete">
                     <input type="hidden" name="form_id" value="<{$f.form_id}>">
-                    <button type="submit" class="xcp-btn xcp-btn--red"><{$smarty.const._AM_XCONTACT_FORMS_BTN_DEL}></button><{$xoops_token}>
+                    <button type="submit" class="xcp-btn xcp-btn--red"><{$smarty.const._AM_XCONTACT_FORMS_BTN_DEL}></button>
+                    <{$xoops_token}>
                 </form>
                 </td>
             </tr>
             <{/foreach}>
         <{else}>
-            <tr><td colspan="6" class="xcp-empty"><{$smarty.const._AM_XCONTACT_FORMS_EMPTY}> <a href="form_edit.php"><{$smarty.const._AM_XCONTACT_FORMS_CREATE_FIRST}></a></td></tr>
+            <tr><td colspan="6" class="xcp-empty"><{$smarty.const._AM_XCONTACT_FORMS_EMPTY}> <a href="forms.php?op=new"><{$smarty.const._AM_XCONTACT_FORMS_CREATE_FIRST}></a></td></tr>
         <{/if}>
         </tbody>
     </table>

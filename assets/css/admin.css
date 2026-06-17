@@ -21,7 +21,7 @@
 .xcp-on{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
 .xcp-off{background:#fce4ec;color:#c62828;border:1px solid #ef9a9a}
 .xcp-new{background:#e3f2fd;color:#0d47a1;border:1px solid #90caf9}
-.xcp-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:4px;border:none;cursor:pointer;font-size:12px;text-decoration:none;font-weight:600;transition:opacity .15s}
+.xcp-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:4px;border:none;cursor:pointer;font-size:12px;text-decoration:none;font-weight:600;transition:opacity .15s;line-height:19.2px;}
 .xcp-btn:hover{opacity:.85;text-decoration:none}
 .xcp-btn--green{background:#388e3c;color:#fff}
 .xcp-btn--blue{background:#1976d2;color:#fff}

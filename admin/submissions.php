@@ -44,9 +44,6 @@ switch ($op) {
         // Define Stylesheet
         $GLOBALS['xoTheme']->addStylesheet($style, null);
         $templateMain = 'xcontact_admin_submissions.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('submissions.php'));
-        //$adminObject->addItemButton(\_AM_XCONTACT_ADD_SUBMISSIONS, 'submissions.php?op=new');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // get list of forms
         $formsCount = $formsHandler->getCountForms();
         if ($formsCount > 0) {
@@ -86,7 +83,6 @@ switch ($op) {
         break;
     case 'view':
         $templateMain = 'xcontact_admin_sub_view.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('submissions.php'));
         $submissionsObj = $submissionsHandler->get($subId);
         if (!\is_object($submissionsObj)) {
             \redirect_header('submissions.php', 3, \_AM_XCONTACT_SUB_NOT_FOUND);
@@ -125,7 +121,6 @@ switch ($op) {
         break;
     case 'delete':
         $templateMain = 'xcontact_admin_submissions.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('submissions.php'));
         $submissionsObj = $submissionsHandler->get($subId);
         if (!\is_object($submissionsObj)) {
             \redirect_header('submissions.php', 3, \_AM_XCONTACT_INVALID_PARAM);

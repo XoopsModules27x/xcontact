@@ -42,6 +42,11 @@
 <{/if}>
 
 <div class="xcp-wrap">
+    <div class="xcp-header">
+        <h2><{if $is_edit}>✏️ <{$smarty.const._AM_XCONTACT_BUILDER_EDIT_TITLE}> <{$form.name|escape}><{else}>➕ <{$smarty.const._AM_XCONTACT_BUILDER_NEW_TITLE}><{/if}></h2>
+        <a href="forms.php?op=list" class="xcp-btn xcp-btn--green"><{$smarty.const._AM_XCONTACT_SUBS_BACK}></a>
+    </div>
+
     <form method="post" action="<{$module_url}>admin/forms.php">
         <input type="hidden" name="op" value="save">
         <input type="hidden" name="start" value="<{$start}>">
@@ -50,9 +55,6 @@
         <input type="hidden" name="fields_json" id="xcf-fields-json" value='<{$form.fields|escape}>'>
         <{$xoops_token_html}>
 
-        <div class="xcp-header">
-            <{$form_header|default:''}>
-        </div>
         <div class="xcp-tabs">
             <button type="button" class="xcp-tab active" data-tab="builder">🧩 <{$smarty.const._AM_XCONTACT_BUILDER_TAB_BUILDER}></button>
             <button type="button" class="xcp-tab" data-tab="settings">⚙️ <{$smarty.const._AM_XCONTACT_BUILDER_TAB_SETTINGS}></button>
