@@ -1,6 +1,8 @@
 <?php
 defined('XOOPS_ROOT_PATH') || exit();
 
+include_once('common.php');
+
 define('_AM_XCONTACT_MENU_MAIN',        'Dashboard');
 define('_AM_XCONTACT_MENU_FORMS',       'Form List');
 define('_AM_XCONTACT_MENU_NEW_FORM',    'New Form');
@@ -164,11 +166,12 @@ define('_AM_XCONTACT_SUBS_COL_IP',      'IP');
 define('_AM_XCONTACT_SUBS_BTN_VIEW',    'View');
 define('_AM_XCONTACT_SUBS_BTN_DEL',     'Delete');
 define('_AM_XCONTACT_SUBS_CONFIRM_DEL', 'Are you sure you want to delete this submission?');
+define('_AM_XCONTACT_SUBS_DELETED_OK',  'Submission successfully deleted');
 define('_AM_XCONTACT_SUBS_EMPTY',       'No submissions for this form yet.');
 define('_AM_XCONTACT_SUB_STATUS_NEW',   'New');
 define('_AM_XCONTACT_SUB_STATUS_READ',  'Read');
-define('_AM_XCONTACT_SUB_VIEW_TITLE', 'Submission');
-define('_AM_XCONTACT_SUB_VIEW_BACK',  '← Back to Submissions');
+define('_AM_XCONTACT_SUB_VIEW_TITLE',   'Submission');
+define('_AM_XCONTACT_SUB_VIEW_BACK',    '← Back to Submissions');
 
 define('_AM_XCONTACT_BLOCK_DISPLAY_MODE', 'Display Mode');
 define('_AM_XCONTACT_BLOCK_MODE_LINK',    'Show as link (redirect to form page)');
@@ -187,4 +190,5 @@ define('_AM_XCONTACT_MAINTAINEDBY',   'Maintained by');
 \define('_AM_XCONTACT_CLONE_IMAGEFAIL', 'Attention, we failed creating the new module logo. Please consider modifying assets/images/logo_module.png manually!');
 \define('_AM_XCONTACT_CLONE_FAIL', 'Sorry, we failed in creating the new clone. Maybe you need to temporarily set write permissions (CHMOD 777) to modules folder and try again.');
 
-define('_AM_XCONTACT_FORM_OK',   'Successfully saved');
+define('_AM_XCONTACT_FORM_OK', 'Successfully saved');
+define('_AM_XCONTACT_INVALID_FORM_ID', 'Invalid form id');

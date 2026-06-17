@@ -11,7 +11,7 @@
     <div class="xcp-widgets">
         <div class="xcp-widget">
             <div class="xcp-widget-title">🆕 <{$smarty.const._AM_XCONTACT_DASH_RECENT_FORMS}></div>
-            <{if $recent_forms}>
+            <{if $recent_forms|default:false}>
             <table class="xcp-table">
                 <tr><th><{$smarty.const._AM_XCONTACT_DASH_COL_AD}></th><th><{$smarty.const._AM_XCONTACT_DASH_COL_SLUG}></th><th><{$smarty.const._AM_XCONTACT_FORM_ACTIVE}></th><th><{$smarty.const._AM_XCONTACT_ACTIONS}></th></tr>
                 <{foreach item=f from=$recent_forms}>
@@ -27,7 +27,7 @@
         </div>
         <div class="xcp-widget">
             <div class="xcp-widget-title">📥 <{$smarty.const._AM_XCONTACT_DASH_RECENT_SUBS}></div>
-            <{if $recent_subs}>
+            <{if $recent_subs|default:false}>
             <table class="xcp-table">
                 <tr><th><{$smarty.const._AM_XCONTACT_DASH_COL_FORM}></th><th><{$smarty.const._AM_XCONTACT_DASH_COL_DATE}></th><th><{$smarty.const._AM_XCONTACT_SUB_STATUS}></th><th><{$smarty.const._AM_XCONTACT_ACTIONS}></th></tr>
                 <{foreach item=s from=$recent_subs}>

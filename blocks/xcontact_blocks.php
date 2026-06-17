@@ -2,7 +2,7 @@
 /**
  * xcontact — Bloklar
  * @package  xcontact
- * @author   Eren Yumak — Aymak (aymak.net)
+ * @author   Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  */
 
 if (!defined('XOOPS_ROOT_PATH')) { exit(); }

@@ -21,7 +21,7 @@ namespace XoopsModules\Xcontact;
  * @copyright    2026 XOOPS Project (https://xoops.org)
  * @license      GPL 2.0 or later
  * @package      xcontact
- * @author       TDM XOOPS - Email:info@email.com - Website:http://xoops.org
+ * @author       Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  */
 
 use XoopsModules\Xcontact;
@@ -136,7 +136,7 @@ class Submissions extends \XoopsObject
         $ret = $this->getValues($keys, $format, $maxDepth);
         $formsHandler = $helper->getHandler('Forms');
         $formsObj = $formsHandler->get($this->getVar('form_id'));
-        $formName = '';
+        $formName = \_AM_XCONTACT_INVALID_FORM_ID;
         if (\is_object($formsObj)) {
             $formName = $formsObj->getVar('name');
         }

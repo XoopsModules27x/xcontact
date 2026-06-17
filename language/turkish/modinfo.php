@@ -1,4 +1,5 @@
 <?php
+
 defined('XOOPS_ROOT_PATH') || exit();
 
 define('_MI_XCONTACT_NAME', 'Xcontact');
@@ -14,6 +15,8 @@ define('_MI_XCONTACT_UPLOAD_TYPES', 'Yükleme dosya türleri');
 define('_MI_XCONTACT_UPLOAD_TYPES_DESC', 'Dosya yükleme için izin verilen dosya türlerini tanımlayın');
 define('_MI_XCONTACT_SHOW_TAB_CLONE', 'Yönetici sayfasında "Kopyala" sekmesini göster');
 define('_MI_XCONTACT_SHOW_TAB_FEEDBACK', 'Yönetici sayfasında "Geri Bildirim" sekmesini göster');
+define('_MI_XCONTACT_SHOW_SAMPLEDATA_BUTTONS', 'Örnek düğmelerini göster');
+define('_MI_XCONTACT_SHOW_SAMPLEDATA_BUTTONS_DESC', 'Örnek verileri içe veya dışa aktarma düğmelerini göster/gizle');
 define('_MI_XCONTACT_ADMIN_PAGER', 'Yönetici sayfalama');
 define('_MI_XCONTACT_ADMIN_PAGER_DESC', 'Yönetici sayfalarında liste başına öğe sayısı');
 define('_MI_XCONTACT_USER_PAGER', 'Kullanıcı sayfalama');

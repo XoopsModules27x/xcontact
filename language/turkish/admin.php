@@ -1,6 +1,8 @@
 <?php
 defined('XOOPS_ROOT_PATH') || exit();
 
+include_once('common.php');
+
 define('_AM_XCONTACT_MENU_MAIN',        'Ana Sayfa');
 define('_AM_XCONTACT_MENU_FORMS',       'Form Listesi');
 define('_AM_XCONTACT_MENU_NEW_FORM',    'Yeni Form');
@@ -164,6 +166,7 @@ define('_AM_XCONTACT_SUBS_COL_IP',      'IP');
 define('_AM_XCONTACT_SUBS_BTN_VIEW',    'Görüntüle');
 define('_AM_XCONTACT_SUBS_BTN_DEL',     'Sil');
 define('_AM_XCONTACT_SUBS_CONFIRM_DEL', 'Silmek istediğinize emin misiniz?');
+define('_AM_XCONTACT_SUBS_DELETED_OK',  'Gönderim başarıyla silindi');
 define('_AM_XCONTACT_SUBS_EMPTY',       'Bu form için henüz gönderi yok.');
 define('_AM_XCONTACT_SUB_STATUS_NEW',   'Yeni');
 define('_AM_XCONTACT_SUB_STATUS_READ',  'Okundu');
@@ -188,3 +191,4 @@ define('_AM_XCONTACT_MAINTAINEDBY',   'Bakımını yapan');
 \define('_AM_XCONTACT_CLONE_FAIL', 'Üzgünüz, yeni klon oluşturulamadı. Belki modules klasörüne geçici olarak yazma izni (CHMOD 777) vermeniz ve tekrar denemeniz gerekiyor.');
 
 define('_AM_XCONTACT_FORM_OK', 'Başarıyla kaydedildi');
+define('_AM_XCONTACT_INVALID_FORM_ID', 'Geçersiz form kimliği');

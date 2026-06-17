@@ -38,7 +38,7 @@
 <{include file='db:xcontact_admin_header.tpl' }>
 
 <{if $error|default:false}>
-    <{$error}>
+    <div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 
 <div class="xcp-wrap">
