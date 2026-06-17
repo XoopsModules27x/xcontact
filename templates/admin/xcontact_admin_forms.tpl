@@ -10,7 +10,7 @@
 
 <div class="xcp-wrap">
     <div class="xcp-header">
-        <h2>📋 <{$smarty.const._AM_XCONTACT3_FORMS_TITLE}></h2>
+        <h2>📋 <{$smarty.const._AM_XCONTACT_FORMS_LIST}></h2>
         <a href="forms.php?op=new" class="xcp-btn xcp-btn--green">➕ <{$smarty.const._AM_XCONTACT_FORMS_NEW}></a>
     </div>
     <div class="xcp-info">

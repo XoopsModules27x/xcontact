@@ -127,7 +127,7 @@ switch ($op) {
             'settings'=>'{}',
             'is_active'=>Constants::FORM_IS_ACTIVE
         ];
-        $GLOBALS['xoopsTpl']->assign('form_header', \_AM_XCONTACT_FORMS_NEW);
+        $GLOBALS['xoopsTpl']->assign('is_edit', false);
         $GLOBALS['xoopsTpl']->assign('form', $form);
         $GLOBALS['xoopsTpl']->assign('start', $start);
         $GLOBALS['xoopsTpl']->assign('limit', $limit);
@@ -146,7 +146,7 @@ switch ($op) {
             \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         $form = $formsObj->getValues();
-        $GLOBALS['xoopsTpl']->assign('form_header', \_AM_XCONTACT_FORMS_EDIT);
+        $GLOBALS['xoopsTpl']->assign('is_edit', true);
         $GLOBALS['xoopsTpl']->assign('form', $form);
         $GLOBALS['xoopsTpl']->assign('start', $start);
         $GLOBALS['xoopsTpl']->assign('limit', $limit);
