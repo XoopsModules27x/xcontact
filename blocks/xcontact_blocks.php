@@ -39,20 +39,20 @@ function xcontact_block_form($options)
     $crForms->setLimit(1);
     $crForms->setSort('form_id');
     $crForms->setOrder('DESC');
-    if (0 == $formsHandler->getCount($crForms)) {
+    $formsAll = $formsHandler->getAll($crForms);
+    if (empty($formsAll)) {
         return false;
     }
-    $formsAll = $formsHandler->getAll($crForms);
-    foreach (\array_keys($formsAll) as $i) {
-        $form = $formsAll[$i]->getValuesForms();
-        $GLOBALS['xoopsTpl']->append('recent_forms', $form);
+    $formObj = reset($formsAll);
+    if (false === $formObj) {
+        return false;
     }
+    $form = $formObj->getValuesForms();
     unset($crForms);
 
     $cf_form_id = (int)$form['form_id'];
     $cf_fields  = json_decode($form['fields'] ?? '[]', true) ?: [];
     $cf_settings= json_decode($form['settings'] ?? '{}', true) ?: [];
-    //$url        = XOOPS_URL . '/modules/xcontact/form.php?slug=' . urlencode($safeSlug);
 
     $block = array(
         'form_url'    => $form['url'],
@@ -114,13 +114,19 @@ function xcontact_block_form($options)
                 if (!$fn || in_array($ft, ['label','heading','paragraph'])) continue;
                 if ($ft === 'choice') {
                     $val = isset($_POST[$fn]) ? array_map('strip_tags', (array)$_POST[$fn]) : array();
-                    if ($req && empty($val)) $errors[] = htmlspecialchars($field['label']??$fn) . ' ' . \_MB_XCONTACT_IS_MANDATORY;
+                    if ($req && empty($val)) {
+                        $errors[] = htmlspecialchars($field['label']??$fn) . ' ' . \_MB_XCONTACT_IS_MANDATORY;
+                    }
                 } elseif ($ft === 'consent') {
                     $val = isset($_POST[$fn]) ? '1' : '0';
-                    if ($req && $val !== '1') $errors[] = htmlspecialchars($field['label']??$fn) . ' ' . \_MB_XCONTACT_MUST_BE_CHECKED;
+                    if ($req && $val !== '1') {
+                        $errors[] = htmlspecialchars($field['label']??$fn) . ' ' . \_MB_XCONTACT_MUST_BE_CHECKED;
+                    }
                 } else {
                     $val = strip_tags(trim($_POST[$fn] ?? ''));
-                    if ($req && $val === '') $errors[] = htmlspecialchars($field['label']??$fn) . ' ' . \_MB_XCONTACT_IS_MANDATORY;
+                    if ($req && $val === '') {
+                        $errors[] = htmlspecialchars($field['label']??$fn) . ' ' . \_MB_XCONTACT_IS_MANDATORY;
+                    }
                     if ($val !== '' && $ft === 'email' && !filter_var($val, FILTER_VALIDATE_EMAIL)) {
                         $errors[] = \_MB_XCONTACT_ENTER_VALID_MAIL;
                     }
