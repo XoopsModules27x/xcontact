@@ -20,7 +20,9 @@ function xcontact_block_form($options)
     \xoops_loadLanguage('admin', 'xcontact');
 
     $helper = Helper::getInstance();
+    /** `@var` \XoopsModules\Xcontact\FormsHandler $formsHandler */
     $formsHandler = $helper->getHandler('Forms');
+    /** `@var` \XoopsModules\Xcontact\SubmissionsHandler $submissionsHandler */
     $submissionsHandler = $helper->getHandler('Submissions');
 
     $slug  = isset($options[0]) ? trim($options[0]) : '';
@@ -129,7 +131,7 @@ function xcontact_block_form($options)
                 $submissionsObj->setVar('form_id', $cf_form_id);
                 $submissionsObj->setVar('data', json_encode($data, JSON_UNESCAPED_UNICODE));
                 $submissionsObj->setVar('ip', $_SERVER['REMOTE_ADDR']);
-                $submissionsObj->setVar('status', 0);
+                $submissionsObj->setVar('status', Constants::SUBMISSION_NEW);
                 $submissionsObj->setVar('created_at', time());
                 // Insert Data
                 if ($submissionsHandler->insert($submissionsObj)) {
@@ -168,6 +170,7 @@ function xcontact_block_form_edit($options)
     \xoops_loadLanguage('admin', 'xcontact');
 
     $helper = Helper::getInstance();
+    /** `@var` \XoopsModules\Xcontact\FormsHandler $formsHandler */
     $formsHandler = $helper->getHandler('Forms');
 
     $slug  = isset($options[0]) ? trim($options[0]) : '';
