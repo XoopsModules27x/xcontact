@@ -19,6 +19,8 @@ if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 function xcontact_block_form($options)
 {
     \xoops_loadLanguage('admin', 'xcontact');
+    \xoops_loadLanguage('main', 'xcontact');
+    require_once dirname(__DIR__) . '/include/functions.php';
 
     $helper = Helper::getInstance();
     /** `@var` \XoopsModules\Xcontact\FormsHandler $formsHandler */
