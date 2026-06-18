@@ -72,16 +72,7 @@ class Forms extends \XoopsObject
         }
         return $instance;
     }
-
-    /**
-     * The new inserted $Id
-     * @return int
-     */
-    public function getNewInsertedIdForms()
-    {
-        $newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
-        return $newInsertedId;
-    }
+    
 
     /**
      * Get Values
@@ -93,10 +84,9 @@ class Forms extends \XoopsObject
     public function getValuesForms($keys = null, $format = null, $maxDepth = null)
     {
 
-        $helper = \XoopsModules\Xcontact\Helper::getInstance();
+        $helper             = \XoopsModules\Xcontact\Helper::getInstance();
         $submissionsHandler = $helper->getHandler('Submissions');
-        $utility = new \XoopsModules\Xcontact\Utility();
-        $truncateLength = $helper->getConfig('truncate_length');
+        $truncateLength     = (int)$helper->getConfig('truncate_length');
 
         $ret =  $this->getValues($keys, $format, $maxDepth);
 
@@ -113,7 +103,7 @@ class Forms extends \XoopsObject
         $crNewSubs->add(new \Criteria('status', Constants::SUBMISSION_NEW));
         $ret['new_subs'] = $submissionsHandler->getCount($crNewSubs);
         // get truncated description
-        $ret['description_short'] = $utility::truncateHtml($ret['description'], $truncateLength);
+        $ret['description_short'] = \XoopsModules\Xcontact\Utility::truncateHtml($ret['description'], $truncateLength);
         // misc
         $ret['tpl_tag'] = '{xcontact slug="' . $this->getVar('slug') . '"}';
         $ret['url']     = \XOOPS_URL . '/modules/xcontact/form.php?slug=' . urlencode($this->getVar('slug'));

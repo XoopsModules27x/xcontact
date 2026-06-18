@@ -115,7 +115,7 @@ $modversion['config'][] = [
 ];
 $modversion['config'][] = [
     'name'        => 'truncate_length',
-    'title'       => '_MI_XCONTACT_TRUNCATE_LENGTH_DESC',
+    'title'       => '_MI_XCONTACT_TRUNCATE_LENGTH',
     'description' => '_MI_XCONTACT_TRUNCATE_LENGTH_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
