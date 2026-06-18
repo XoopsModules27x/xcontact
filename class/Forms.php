@@ -108,7 +108,7 @@ class Forms extends \XoopsObject
         $crNewSubs->add(new \Criteria('status', Constants::SUBMISSION_NEW));
         $ret['new_subs'] = $submissionsHandler->getCount($crNewSubs);
         $ret['tpl_tag']  = '{xcontact slug="' . $this->getVar('slug') . '"}';
-        $ret['url']      = \XCONTACT_URL . '/form.php?slug=' . urlencode($this->getVar('slug'));
+        $ret['url']      = \XOOPS_URL . '/modules/xcontact/form.php?slug=' . urlencode($this->getVar('slug'));
 
         return $ret;
     }

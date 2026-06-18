@@ -39,7 +39,7 @@ define('_AM_XCONTACT_SUB_NEW',          'New');
 define('_AM_XCONTACT_SUB_READ',         'Read');
 define('_AM_XCONTACT_SUB_VIEW',         'View');
 define('_AM_XCONTACT_BACK_TO_LIST',     'Back to List');
-define('_AM_XCONTACT_BLOCK_SLUG',       'Select Form:');
+define('_AM_XCONTACT_BLOCK_SLUG',       'Select Form');
 define('_AM_XCONTACT_SELECT_FORM',      '— Select a Form —');
 define('_AM_XCONTACT_USAGE_TITLE',      'Template Usage');
 define('_AM_XCONTACT_USAGE_DESC',       'Link to the form page or use the XOOPS block system.');

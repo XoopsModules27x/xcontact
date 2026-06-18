@@ -5,7 +5,11 @@
  * @author   Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  */
 
-use XoopsModules\Xcontact\Icons;
+use XoopsModules\Xcontact\ {
+    Icons,
+    Helper,
+    Constants
+};
 
 if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 
@@ -13,29 +17,44 @@ if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 
 function xcontact_block_form($options)
 {
+    \xoops_loadLanguage('admin', 'xcontact');
+
+    $helper = Helper::getInstance();
+    $formsHandler = $helper->getHandler('Forms');
+
     $slug  = isset($options[0]) ? trim($options[0]) : '';
     $embed = isset($options[1]) ? (int)$options[1]  : 0;
 
     if ($slug === '' || $slug === 'none') return false;
+    $safeSlug = preg_replace('/[^a-z0-9\-]/', '', strtolower($slug));
 
     $icons = Icons::iconsLoad();
     $GLOBALS['xoopsTpl']->assign('icons',$icons);
 
-    $db  = XoopsDatabaseFactory::getDatabaseConnection();
-    $tbl = $db->prefix('xcontact_forms');
+    // Get active forms
+    $crForms = new \CriteriaCompo();
+    $crForms->add(new \Criteria('is_active', Constants::FORM_IS_ACTIVE));
+    $crForms->add(new \Criteria('slug', $safeSlug));
+    $crForms->setLimit(1);
+    $crForms->setSort('form_id');
+    $crForms->setOrder('DESC');
+    if (0 == $formsHandler->getCount($crForms)) {
+        return false;
+    }
+    $formsAll = $formsHandler->getAll($crForms);
+    foreach (\array_keys($formsAll) as $i) {
+        $form = $formsAll[$i]->getValuesForms();
+        $GLOBALS['xoopsTpl']->append('recent_forms', $form);
+    }
+    unset($crForms);
 
-    $safe = preg_replace('/[^a-z0-9\-]/', '', strtolower($slug));
-    $res  = $db->query("SELECT * FROM `{$tbl}` WHERE slug='" . $db->escape($safe) . "' AND is_active=1 LIMIT 1");
-    if (!$res || $db->getRowsNum($res) == 0) return false;
-
-    $form       = $db->fetchArray($res);
     $cf_form_id = (int)$form['form_id'];
     $cf_fields  = json_decode($form['fields'] ?? '[]', true) ?: [];
     $cf_settings= json_decode($form['settings'] ?? '{}', true) ?: [];
-    $url        = XOOPS_URL . '/modules/xcontact/form.php?slug=' . urlencode($safe);
+    //$url        = XOOPS_URL . '/modules/xcontact/form.php?slug=' . urlencode($safeSlug);
 
     $block = array(
-        'form_url'    => $url,
+        'form_url'    => $form['url'],
         'form_desc'   => $form['description'],
         'embed'       => $embed,
         'form_id'     => $cf_form_id,
@@ -44,7 +63,7 @@ function xcontact_block_form($options)
         'data'        => array(),
         'fields'      => array(),
         'token'       => '',
-        'success_msg' => $cf_settings['success_msg'] ?? 'Formunuz başarıyla gönderildi. Teşekkürler!',
+        'success_msg' => $cf_settings['success_msg'] ?? \_AM_XCONTACT_SET_DEFAULT_SUCCESS,
     );
 
     if (!$embed) return $block;
@@ -94,15 +113,15 @@ function xcontact_block_form($options)
                 if (!$fn || in_array($ft, ['label','heading','paragraph'])) continue;
                 if ($ft === 'choice') {
                     $val = isset($_POST[$fn]) ? array_map('strip_tags', (array)$_POST[$fn]) : array();
-                    if ($req && empty($val)) $errors[] = htmlspecialchars($field['label']??$fn) . ' zorunludur.';
+                    if ($req && empty($val)) $errors[] = htmlspecialchars($field['label']??$fn) . ' ' . \_MB_XCONTACT_IS_MANDATORY;
                 } elseif ($ft === 'consent') {
                     $val = isset($_POST[$fn]) ? '1' : '0';
-                    if ($req && $val !== '1') $errors[] = htmlspecialchars($field['label']??$fn) . ' onaylanmalıdır.';
+                    if ($req && $val !== '1') $errors[] = htmlspecialchars($field['label']??$fn) . ' ' . \_MB_XCONTACT_MUST_BE_CHECKED;
                 } else {
                     $val = strip_tags(trim($_POST[$fn] ?? ''));
-                    if ($req && $val === '') $errors[] = htmlspecialchars($field['label']??$fn) . ' zorunludur.';
+                    if ($req && $val === '') $errors[] = htmlspecialchars($field['label']??$fn) . ' ' . \_MB_XCONTACT_IS_MANDATORY;
                     if ($val !== '' && $ft === 'email' && !filter_var($val, FILTER_VALIDATE_EMAIL)) {
-                        $errors[] = 'Geçerli bir e-posta girin.';
+                        $errors[] = \_MB_XCONTACT_ENTER_VALID_MAIL;
                     }
                 }
                 $data[$fn] = $val;
@@ -129,6 +148,8 @@ function xcontact_block_form($options)
 
 function xcontact_block_form_edit($options)
 {
+    \xoops_loadLanguage('admin', 'xcontact');
+
     $slug  = isset($options[0]) ? trim($options[0]) : '';
     $embed = isset($options[1]) ? (int)$options[1]  : 0;
     if ($slug === 'none') $slug = '';
@@ -138,9 +159,9 @@ function xcontact_block_form_edit($options)
     $res = $db->query("SELECT form_id, name, slug FROM `{$tbl}` WHERE is_active=1 ORDER BY form_id DESC");
 
     $html  = '<table>';
-    $html .= '<tr><td>Form Seçin:</td><td>';
+    $html .= '<tr><td>' . \_AM_XCONTACT_BLOCK_SLUG . ':</td><td>';
     $html .= '<select name="options[0]">';
-    $html .= '<option value="none">-- Form Seçin --</option>';
+    $html .= '<option value="none">' . \_AM_XCONTACT_SELECT_FORM . '</option>';
     if ($res) {
         while ($row = $db->fetchArray($res)) {
             $sel   = ($row['slug'] === $slug) ? ' selected' : '';
@@ -149,9 +170,9 @@ function xcontact_block_form_edit($options)
         }
     }
     $html .= '</select></td></tr>';
-    $html .= '<tr><td>Gösterim:</td><td>';
-    $html .= '<label><input type="radio" name="options[1]" value="0"' . ($embed ? '' : ' checked') . '> Link olarak göster</label>&nbsp;';
-    $html .= '<label><input type="radio" name="options[1]" value="1"' . ($embed ? ' checked' : '') . '> Formu göster</label>';
+    $html .= '<tr><td>' . \_AM_XCONTACT_BLOCK_DISPLAY_MODE . ':</td><td>';
+    $html .= '<label><input type="radio" name="options[1]" value="0"' . ($embed ? '' : ' checked') . '> ' . \_AM_XCONTACT_BLOCK_MODE_LINK . '</label>&nbsp;';
+    $html .= '<label><input type="radio" name="options[1]" value="1"' . ($embed ? ' checked' : '') . '> ' . \_AM_XCONTACT_BLOCK_MODE_EMBED . '</label>';
     $html .= '</td></tr></table>';
 
     return $html;

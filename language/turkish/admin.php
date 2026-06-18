@@ -40,7 +40,7 @@ define('_AM_XCONTACT_SUB_READ',         'Okundu');
 define('_AM_XCONTACT_SUB_VIEW',         'Görüntüle');
 define('_AM_XCONTACT_BACK_TO_LIST',     '← Listeye Dön');
 define('_AM_XCONTACT_BLOCK_SLUG',       'Form Seçin:');
-define('_AM_XCONTACT_SELECT_FORM',      '— Form Seçin —');
+define('_AM_XCONTACT_SELECT_FORM',      '-- Form Seçin --');
 define('_AM_XCONTACT_USAGE_TITLE',      'Şablonda Kullanım');
 define('_AM_XCONTACT_USAGE_DESC',       'Form sayfasına link verin veya XOOPS blok sistemi kullanın.');
 
