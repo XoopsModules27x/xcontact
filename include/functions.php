@@ -7,47 +7,6 @@
 
 defined('XOOPS_ROOT_PATH') || exit();
 
-function xcontact_get_form(int $id): ?array {
-    $db  = $GLOBALS['xoopsDB'];
-    $tbl = $db->prefix('xcontact_forms');
-    $res = $db->query("SELECT * FROM {$tbl} WHERE form_id='" . (int)$id . "'");
-    return $res ? ($db->fetchArray($res) ?: null) : null;
-}
-
-function xcontact_get_form_by_slug(string $slug): ?array {
-    $db   = $GLOBALS['xoopsDB'];
-    $tbl  = $db->prefix('xcontact_forms');
-    $safe = $db->escape(preg_replace('/[^a-z0-9\-]/', '', strtolower($slug)));
-    $res  = $db->query("SELECT * FROM {$tbl} WHERE slug='{$safe}' AND is_active='1'");
-    return $res ? ($db->fetchArray($res) ?: null) : null;
-}
-
-function xcontact_count_submissions(int $form_id, ?int $status = null): int {
-    $db  = $GLOBALS['xoopsDB'];
-    $tbl = $db->prefix('xcontact_submissions');
-    $w   = "WHERE form_id='" . (int)$form_id . "'";
-    if ($status !== null) $w .= " AND status='" . (int)$status . "'";
-    $res = $db->query("SELECT COUNT(*) FROM {$tbl} {$w}");
-    [$cnt] = $db->fetchRow($res);
-    return (int)$cnt;
-}
-
-function xcontact_get_submissions(int $form_id, int $start = 0, int $limit = 20): array {
-    $db  = $GLOBALS['xoopsDB'];
-    $tbl = $db->prefix('xcontact_submissions');
-    $res = $db->query("SELECT * FROM {$tbl} WHERE form_id='" . (int)$form_id . "' ORDER BY sub_id DESC LIMIT " . (int)$limit . " OFFSET " . (int)$start);
-    $rows = [];
-    while ($row = $db->fetchArray($res)) $rows[] = $row;
-    return $rows;
-}
-
-function xcontact_get_submission(int $id): ?array {
-    $db  = $GLOBALS['xoopsDB'];
-    $tbl = $db->prefix('xcontact_submissions');
-    $res = $db->query("SELECT * FROM {$tbl} WHERE sub_id='" . (int)$id . "'");
-    return $res ? ($db->fetchArray($res) ?: null) : null;
-}
-
 // ── Upload klasörü ──────────────────────────────────────────────────────────
 function xcontact_ensure_upload_dir(): bool {
     $dir = XOOPS_UPLOAD_PATH . '/xcontact';
