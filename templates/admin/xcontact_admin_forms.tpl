@@ -64,7 +64,7 @@
             </tr>
             <{/foreach}>
         <{else}>
-            <tr><td colspan="6" class="xcp-empty"><{$smarty.const._AM_XCONTACT_FORMS_EMPTY}> <a href="forms.php?op=new"><{$smarty.const._AM_XCONTACT_FORMS_CREATE_FIRST}></a></td></tr>
+            <tr><td colspan="6" class="xcp-empty"><{$smarty.const._AM_XCONTACT_FORMS_EMPTY}> <a href="forms.php?op=new"><{$smarty.const._AM_XCONTACT_FORMS_CREATE_FIRST}> <{$icons.forward}></a></td></tr>
         <{/if}>
         </tbody>
     </table>
