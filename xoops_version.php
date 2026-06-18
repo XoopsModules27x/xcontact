@@ -206,8 +206,8 @@ $modversion['config'][] = [
     'valuetype'   => 'text',
     'default'     => 'fontawesome',
     'options'     => [
-        'Font Awesome' => 'fontawesome',
-        'Images'       => 'image',
+        _MI_XCONTACT_ICONSET_FA      => 'fontawesome',
+        _MI_XCONTACT_ICONSET_UNICODE => 'unicode',
     ],
 ];
 // Make tab clone visible?

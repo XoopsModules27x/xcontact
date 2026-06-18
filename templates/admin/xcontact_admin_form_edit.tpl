@@ -126,9 +126,9 @@
 <script>
 var XCF_ICONS = {
     edit: '<{$icons.edit|escape:"javascript"}>',
-    edit_title: '<{$smarty.const._EDIT}>',
+    edit_title: '<{$smarty.const._EDIT|json_encode}>',
     delete: '<{$icons.delete|escape:"javascript"}>',
-    delete_title: '<{$smarty.const._DELETE}>',
+    delete_title: '<{$smarty.const._DELETE|json_encode}>',
 };
 var XCF_TYPES = {
     short_text:{l:<{$smarty.const._AM_XCONTACT_FT_SHORT_TEXT|json_encode}>},

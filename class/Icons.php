@@ -59,14 +59,15 @@ class Icons
         'dropdown' => '<i class="fa-regular fa-square-caret-down"></i>',
         'consent' => '<i class="fa-regular fa-circle-check"></i>',
         'signature' => '<i class="fa-solid fa-signature"></i>',
+        'envelope_open' => '<i class="fa-regular fa-envelope-open"></i>'
     ];
 
-    private const IMAGE = [
+    private const UNICODE = [
         'plus'   => '➕',
         'list' => '📋',
         'form' => '🆕',
         'submission' => '📥',
-        'back' => '← ',
+        'back' => '←',
         'edit' => '✏️',
         'delete' => '🗑',
         'save' => '💾',
@@ -90,6 +91,7 @@ class Icons
         'dropdown' => '▼',
         'consent' => '✓',
         'signature' => '✒',
+        'envelope_open' => '📧'
     ];
 
     public static function iconsLoad(): array
@@ -99,16 +101,14 @@ class Icons
         if ('fontawesome' === $iconSet) {
             return self::FONTAWESOME;
         }
-        return self::IMAGE;
+        return self::UNICODE;
     }
 
     public static function get(string $name): string
     {
-        $helper = Helper::getInstance();
-        $iconSet = $helper->getConfig('iconset');
-        if ('fontawesome' === $iconSet) {
-            return self::FONTAWESOME[$name] ?? '';
-        }
-        return self::IMAGE[$name] ?? '';
+        $icons = self::iconsLoad();
+
+        return $icons[$name] ?? '';
+
     }
 }

@@ -23,3 +23,5 @@ define('_MI_XCONTACT_USER_PAGER', 'Kullanıcı sayfalama');
 define('_MI_XCONTACT_USER_PAGER_DESC', 'Kullanıcı sayfalarında liste başına öğe sayısı');
 define('_MI_XCONTACT_ICONSET', 'Simge seti');
 define('_MI_XCONTACT_ICONSET_DESC', 'Görüntülenecek simge kümesini seçin.');
+define('_MI_XCONTACT_ICONSET_FA', 'Font Awesome');
+define('_MI_XCONTACT_ICONSET_UNICODE', 'Unicode/Emoji');

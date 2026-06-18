@@ -1,6 +1,6 @@
 <div class="xcp-wrap">
     <div class="xcp-header">
-        <h2>📧 <{$smarty.const._AM_XCONTACT_SUB_VIEW_TITLE}> #<{$sub.sub_id|escape}> — <{$form_name|escape}></h2>
+        <h2><{$icons.envelope_open}> <{$smarty.const._AM_XCONTACT_SUB_VIEW_TITLE}> #<{$sub.sub_id|escape}> — <{$form_name|escape}></h2>
         <a href="<{$module_url}>/admin/submissions.php?form_id=<{$sub.form_id|escape:'url'}>" class="xcp-btn xcp-btn--gray"><{$icons.back}> <{$smarty.const._AM_XCONTACT_SUB_VIEW_BACK}></a>
     </div>
     <p style="color:#888;font-size:12px"><{$smarty.const._AM_XCONTACT_SUBS_COL_DATE}>: <{$sub.created_at|date_format:"%d.%m.%Y %H:%M"}> · IP: <{$sub.ip|escape}></p>
