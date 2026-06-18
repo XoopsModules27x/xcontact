@@ -6,7 +6,7 @@ A modern and flexible contact and form builder module for XOOPS CMS.
 
 xContact is a powerful contact and form management module for XOOPS. It allows administrators to create multiple contact forms, collect submissions, manage requests, and notify responsible users by email.
 
-The module is inspired by the original xmContact module and has been redesigned for current XOOPS versions with improved usability, a visual form builder, submission management, and modern UI support.
+The module is inspired by the original xcForm module and has been redesigned for current XOOPS versions with improved usability, a visual form builder, submission management, and modern UI support.
 
 ---
 
@@ -74,7 +74,6 @@ The module is inspired by the original xmContact module and has been redesigned 
 ### UI Features
 
 * Font Awesome support
-* Glyphicons support
 * Unicode/Emoji icon fallback
 * Bootstrap-compatible templates
 * Mobile-friendly administration
@@ -83,23 +82,12 @@ The module is inspired by the original xmContact module and has been redesigned 
 
 ## Requirements
 
-### Minimum
-
 | Component       | Version            |
-| --------------- | ------------------ |
-| XOOPS           | 2.5.11             |
-| PHP             | 8.0+               |
+| --------------- |--------------------|
+| XOOPS           | 2.7.x              |
+| PHP             | 8.2+               |
+| Bootstrap Theme | Latest             |
 | MySQL / MariaDB | Supported by XOOPS |
-
-### Recommended
-
-| Component       | Version |
-| --------------- | ------- |
-| XOOPS           | 2.7.x   |
-| PHP             | 8.2+    |
-| Bootstrap Theme | Latest  |
-
-XOOPS is a modular PHP-based CMS with extensive support for modules and permissions management.
 
 ---
 
@@ -223,8 +211,6 @@ Status examples:
 
 * New
 * Read
-* Replied
-* Closed
 
 ---
 
@@ -246,20 +232,6 @@ Notification includes:
 
 ---
 
-## Permissions
-
-xContact uses the native XOOPS permission system.
-
-Available permissions may include:
-
-* View Forms
-* Submit Forms
-* View Submissions
-* Manage Submissions
-* Administer Module
-
----
-
 ## Icon System
 
 The module supports multiple icon providers.
@@ -268,49 +240,11 @@ The module supports multiple icon providers.
 
 Recommended default option.
 
-### Glyphicons
-
-Useful for older Bootstrap environments.
-
 ### Unicode Icons
 
 No external dependencies required.
 
-Example:
-
-```php
-Icons::get('edit');
-Icons::get('delete');
-Icons::get('save');
-```
-
 ---
-
-## Developer Notes
-
-### XMF Request
-
-The module uses:
-
-```php
-use Xmf\Request;
-```
-
-instead of direct access to:
-
-```php
-$_GET
-$_POST
-$_REQUEST
-```
-
-for improved security and consistency.
-
-### Namespaces
-
-```php
-namespace XoopsModules\Xcontact;
-```
 
 ### Coding Standards
 
@@ -340,23 +274,6 @@ xcontact/
 
 ---
 
-## Roadmap
-
-Planned features:
-
-* File upload management
-* CSV export
-* PDF export
-* Submission search
-* Conditional fields
-* Multi-step forms
-* Webhook support
-* REST API integration
-* reCAPTCHA support
-* Form analytics
-
----
-
 ## Contributing
 
 Contributions are welcome.
@@ -374,9 +291,8 @@ Please follow XOOPS coding standards.
 
 ## Credits
 
-### Original Inspiration
-
-* xmContact module by the XM Modules team.
+* Eren Yumak — Aymak aymak@aymak.net
+* Goffy - Webdesign Gabor wedega.com
 
 ### XOOPS Project
 
