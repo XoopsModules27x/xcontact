@@ -79,10 +79,13 @@ function xcontact_block_form($options)
     );
 
     // Prepare the fields for the template
+    $nonInputFieldTypes = ['label', 'heading', 'paragraph', 'hidden'];
     $preparedFields = array();
     foreach ($cf_fields as $field) {
         $fieldType = $field['type'] ?? '';
-        if (in_array($fieldType, ['label', 'paragraph', 'hidden'])) continue;
+        if (in_array($fieldType, $nonInputFieldTypes, true)) {
+            continue;
+        }
         $f = $field;
         $f['input_type'] = $inputTypes[$fieldType] ?? 'text';
         $preparedFields[] = $f;
@@ -108,19 +111,25 @@ function xcontact_block_form($options)
                 $fieldType = $field['type'] ?? '';
                 $req       = !empty($field['required']);
 
-                if (!$fieldName || in_array($fieldType, ['label', 'heading', 'paragraph'], true)) {
+                if (!$fieldName || in_array($fieldType, $nonInputFieldTypes, true)) {
                     continue;
                 }
 
                 if ($fieldType === 'choice') {
                     $val = Request::getArray($fieldName, [], 'POST');
-                    $val = array_map('strip_tags', $val);
+                    $val = array_filter(
+                        array_map(
+                            static fn($item) => is_scalar($item) ? trim(strip_tags((string)$item)) : null,
+                           $val
+                       )
+                   );
 
                     if ($req && empty($val)) {
                         $errors[] = htmlspecialchars($field['label'] ?? $fieldName) . ' ' . _MB_XCONTACT_IS_MANDATORY;
                     }
                 } elseif ($fieldType === 'consent') {
-                    $val = Request::hasVar($fieldName, 'POST') ? '1' : '0';
+                    $postedConsent = Request::getString($fieldName, '', 'POST');
+                    $val = $postedConsent === '1' ? '1' : '0';
 
                     if ($req && $val !== '1') {
                         $errors[] = htmlspecialchars($field['label'] ?? $fieldName) . ' ' . _MB_XCONTACT_MUST_BE_CHECKED;
@@ -149,7 +158,7 @@ function xcontact_block_form($options)
             if (empty($errors)) {
                 $submissionsObj = $submissionsHandler->create();
 
-                $ip = $_SERVER['REMOTE_ADDR'];
+                $ip = Request::getString('REMOTE_ADDR', '', 'SERVER');
 
                 $submissionsObj->setVar('form_id', $cf_form_id);
                 $submissionsObj->setVar('data', json_encode($data, JSON_UNESCAPED_UNICODE));
