@@ -147,9 +147,11 @@ function xcontact_block_form($options)
             if (empty($errors)) {
                 $submissionsObj = $submissionsHandler->create();
 
+                $ip = $_SERVER['REMOTE_ADDR'];
+
                 $submissionsObj->setVar('form_id', $cf_form_id);
                 $submissionsObj->setVar('data', json_encode($data, JSON_UNESCAPED_UNICODE));
-                $submissionsObj->setVar('ip', Request::getIp());
+                $submissionsObj->setVar('ip',$ip);
                 $submissionsObj->setVar('status', Constants::SUBMISSION_NEW);
                 $submissionsObj->setVar('created_at', time());
 
@@ -157,7 +159,7 @@ function xcontact_block_form($options)
                     if (!empty($cf_settings['notify_email'])) {
                         $body  = _AM_XCONTACT_FORM . ': ' . $form['name'] . "\n";
                         $body .= _MD_XCONTACT_SUB_DATE_LABEL . ': ' . date('d.m.Y H:i') . "\n";
-                        $body .= 'IP: ' . Request::getIp() . "\n";
+                        $body .= 'IP: ' . $ip . "\n";
                         $body .= str_repeat('-', 40) . "\n";
 
                         foreach ($data as $k => $v) {
