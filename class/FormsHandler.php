@@ -121,4 +121,27 @@ class FormsHandler extends \XoopsPersistableObjectHandler
         $crForms->setOrder($order);
         return $crForms;
     }
+
+    /**
+     * Get Forms by slug
+     * @param string $slug
+     * @param int    $is_active
+     * @return array
+     */
+    public function getFormBySlug(string $slug, int $is_active)
+    {
+        // Get active forms
+        $crForms = new \CriteriaCompo();
+        $crForms->add(new \Criteria('is_active', $is_active));
+        $crForms->add(new \Criteria('slug', $slug));
+        $crForms->setLimit(1);
+        $crForms->setSort('form_id');
+        $crForms->setOrder('DESC');
+        $formsAll = $this->getAll($crForms);
+        if (empty($formsAll)) {
+            return [];
+        }
+
+        return reset($formsAll);
+    }
 }

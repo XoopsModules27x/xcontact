@@ -24,3 +24,6 @@ declare(strict_types=1);
 \define('_MB_XCONTACT_PLEASE_FIX', 'Please fix');
 \define('_MB_XCONTACT_OPTION_SELECT', '-- Select --');
 \define('_MB_XCONTACT_FILL_IN_FORM', 'Fill in the form');
+\define('_MB_XCONTACT_IS_MANDATORY', 'is mandatory');
+\define('_MB_XCONTACT_MUST_BE_CHECKED', 'must be checked');
+\define('_MB_XCONTACT_ENTER_VALID_MAIL', 'Enter a valid email address');

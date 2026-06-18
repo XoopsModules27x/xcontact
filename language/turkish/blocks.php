@@ -24,3 +24,6 @@ declare(strict_types=1);
 \define('_MB_XCONTACT_PLEASE_FIX', 'Lütfen düzeltin');
 \define('_MB_XCONTACT_OPTION_SELECT', '-- Seçin --');
 \define('_MB_XCONTACT_FILL_IN_FORM', 'Formu Doldurun');
+\define('_MB_XCONTACT_IS_MANDATORY', 'zorunludur');
+\define('_MB_XCONTACT_MUST_BE_CHECKED', 'onaylanmalıdır');
+\define('_MB_XCONTACT_ENTER_VALID_MAIL', 'Geçerli bir e-posta girin');

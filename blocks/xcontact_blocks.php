@@ -5,7 +5,11 @@
  * @author   Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  */
 
-use XoopsModules\Xcontact\Icons;
+use XoopsModules\Xcontact\ {
+    Icons,
+    Helper,
+    Constants
+};
 
 if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 
@@ -13,29 +17,36 @@ if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 
 function xcontact_block_form($options)
 {
+    \xoops_loadLanguage('admin', 'xcontact');
+
+    $helper = Helper::getInstance();
+    /** `@var` \XoopsModules\Xcontact\FormsHandler $formsHandler */
+    $formsHandler = $helper->getHandler('Forms');
+    /** `@var` \XoopsModules\Xcontact\SubmissionsHandler $submissionsHandler */
+    $submissionsHandler = $helper->getHandler('Submissions');
+
     $slug  = isset($options[0]) ? trim($options[0]) : '';
     $embed = isset($options[1]) ? (int)$options[1]  : 0;
 
     if ($slug === '' || $slug === 'none') return false;
+    $safeSlug = preg_replace('/[^a-z0-9\-]/', '', strtolower($slug));
 
     $icons = Icons::iconsLoad();
     $GLOBALS['xoopsTpl']->assign('icons',$icons);
 
-    $db  = XoopsDatabaseFactory::getDatabaseConnection();
-    $tbl = $db->prefix('xcontact_forms');
+    // Get active forms
+    $formObj = $formsHandler->getFormBySlug($safeSlug, Constants::FORM_IS_ACTIVE);
+    if (false === $formObj) {
+        return false;
+    }
+    $form = $formObj->getValuesForms();
 
-    $safe = preg_replace('/[^a-z0-9\-]/', '', strtolower($slug));
-    $res  = $db->query("SELECT * FROM `{$tbl}` WHERE slug='" . $db->escape($safe) . "' AND is_active=1 LIMIT 1");
-    if (!$res || $db->getRowsNum($res) == 0) return false;
-
-    $form       = $db->fetchArray($res);
     $cf_form_id = (int)$form['form_id'];
     $cf_fields  = json_decode($form['fields'] ?? '[]', true) ?: [];
     $cf_settings= json_decode($form['settings'] ?? '{}', true) ?: [];
-    $url        = XOOPS_URL . '/modules/xcontact/form.php?slug=' . urlencode($safe);
 
     $block = array(
-        'form_url'    => $url,
+        'form_url'    => $form['url'],
         'form_desc'   => $form['description'],
         'embed'       => $embed,
         'form_id'     => $cf_form_id,
@@ -44,7 +55,7 @@ function xcontact_block_form($options)
         'data'        => array(),
         'fields'      => array(),
         'token'       => '',
-        'success_msg' => $cf_settings['success_msg'] ?? 'Formunuz başarıyla gönderildi. Teşekkürler!',
+        'success_msg' => $cf_settings['success_msg'] ?? \_AM_XCONTACT_SET_DEFAULT_SUCCESS,
     );
 
     if (!$embed) return $block;
@@ -94,15 +105,21 @@ function xcontact_block_form($options)
                 if (!$fn || in_array($ft, ['label','heading','paragraph'])) continue;
                 if ($ft === 'choice') {
                     $val = isset($_POST[$fn]) ? array_map('strip_tags', (array)$_POST[$fn]) : array();
-                    if ($req && empty($val)) $errors[] = htmlspecialchars($field['label']??$fn) . ' zorunludur.';
+                    if ($req && empty($val)) {
+                        $errors[] = htmlspecialchars($field['label']??$fn) . ' ' . \_MB_XCONTACT_IS_MANDATORY;
+                    }
                 } elseif ($ft === 'consent') {
                     $val = isset($_POST[$fn]) ? '1' : '0';
-                    if ($req && $val !== '1') $errors[] = htmlspecialchars($field['label']??$fn) . ' onaylanmalıdır.';
+                    if ($req && $val !== '1') {
+                        $errors[] = htmlspecialchars($field['label']??$fn) . ' ' . \_MB_XCONTACT_MUST_BE_CHECKED;
+                    }
                 } else {
                     $val = strip_tags(trim($_POST[$fn] ?? ''));
-                    if ($req && $val === '') $errors[] = htmlspecialchars($field['label']??$fn) . ' zorunludur.';
+                    if ($req && $val === '') {
+                        $errors[] = htmlspecialchars($field['label']??$fn) . ' ' . \_MB_XCONTACT_IS_MANDATORY;
+                    }
                     if ($val !== '' && $ft === 'email' && !filter_var($val, FILTER_VALIDATE_EMAIL)) {
-                        $errors[] = 'Geçerli bir e-posta girin.';
+                        $errors[] = \_MB_XCONTACT_ENTER_VALID_MAIL;
                     }
                 }
                 $data[$fn] = $val;
@@ -110,12 +127,33 @@ function xcontact_block_form($options)
             $block['data'] = $data;
 
             if (empty($errors)) {
-                $ts  = $db->prefix('xcontact_submissions');
-                $ip  = $db->escape($_SERVER['REMOTE_ADDR'] ?? '');
-                $dj  = $db->escape(json_encode($data, JSON_UNESCAPED_UNICODE));
-                $now = time();
-                $db->queryF("INSERT INTO `{$ts}`(form_id,data,ip,status,created_at) VALUES('{$cf_form_id}','{$dj}','{$ip}','0','{$now}')");
-                $block['success'] = true;
+                $submissionsObj = $submissionsHandler->create();
+                $submissionsObj->setVar('form_id', $cf_form_id);
+                $submissionsObj->setVar('data', json_encode($data, JSON_UNESCAPED_UNICODE));
+                $submissionsObj->setVar('ip', $_SERVER['REMOTE_ADDR']);
+                $submissionsObj->setVar('status', Constants::SUBMISSION_NEW);
+                $submissionsObj->setVar('created_at', time());
+                // Insert Data
+                if ($submissionsHandler->insert($submissionsObj)) {
+                    // E-posta bildirimi
+                    if (!empty($cf_settings['notify_email'])) {
+                        $body  =  \_AM_XCONTACT_FORM . ':' . $form['name'] . "\n" . _MD_XCONTACT_SUB_DATE_LABEL . ': ' . date('d.m.Y H:i') . "\nIP: {$_SERVER['REMOTE_ADDR']}\n" . str_repeat('-', 40) . "\n";
+                        foreach ($data as $k => $v) {
+                            $lbl = $k;
+                            foreach ($cf_fields as $fd) { if (($fd['name'] ?? '') === $k) { $lbl = $fd['label'] ?? $k; break; } }
+                            $body .= $lbl . ': ' . (is_array($v) ? implode(', ', $v) : $v) . "\n";
+                        }
+                        xcontact_send_mail($cf_settings['notify_email'], $cf_settings['email_subject'] ?? _MD_XCONTACT_NEW_SUBMISSION, $body);
+                    }
+                } else {
+                    $errors[] = \_MD_XCONTACT_SUBMISSION_ERROR;
+                }
+
+                if (empty($errors)) {
+                    $block['success'] = true;
+                } else {
+                    $block['errors'] = $errors;
+                }
             } else {
                 $block['errors'] = $errors;
             }
@@ -129,29 +167,38 @@ function xcontact_block_form($options)
 
 function xcontact_block_form_edit($options)
 {
+    \xoops_loadLanguage('admin', 'xcontact');
+
+    $helper = Helper::getInstance();
+    /** `@var` \XoopsModules\Xcontact\FormsHandler $formsHandler */
+    $formsHandler = $helper->getHandler('Forms');
+
     $slug  = isset($options[0]) ? trim($options[0]) : '';
     $embed = isset($options[1]) ? (int)$options[1]  : 0;
     if ($slug === 'none') $slug = '';
 
-    $db  = XoopsDatabaseFactory::getDatabaseConnection();
-    $tbl = $db->prefix('xcontact_forms');
-    $res = $db->query("SELECT form_id, name, slug FROM `{$tbl}` WHERE is_active=1 ORDER BY form_id DESC");
+    // Get active forms
+    $crForms = new \CriteriaCompo();
+    $crForms->add(new \Criteria('is_active', Constants::FORM_IS_ACTIVE));
+    $crForms->setSort('form_id');
+    $crForms->setOrder('DESC');
+    $formsAll = $formsHandler->getAll($crForms);
 
     $html  = '<table>';
-    $html .= '<tr><td>Form Seçin:</td><td>';
+    $html .= '<tr><td>' . \_AM_XCONTACT_BLOCK_SLUG . ':</td><td>';
     $html .= '<select name="options[0]">';
-    $html .= '<option value="none">-- Form Seçin --</option>';
-    if ($res) {
-        while ($row = $db->fetchArray($res)) {
-            $sel   = ($row['slug'] === $slug) ? ' selected' : '';
-            $html .= '<option value="' . htmlspecialchars($row['slug'], ENT_QUOTES) . '"' . $sel . '>'
-                   . htmlspecialchars($row['name'], ENT_QUOTES) . '</option>';
+    $html .= '<option value="none">' . \_AM_XCONTACT_SELECT_FORM . '</option>';
+    if ($formsHandler->getCount($crForms) > 0) {
+        foreach (\array_keys($formsAll) as $i) {
+            $sel   = ($formsAll[$i]->getVar('slug') === $slug) ? ' selected' : '';
+            $html .= '<option value="' . htmlspecialchars($formsAll[$i]->getVar('slug'), ENT_QUOTES) . '"' . $sel . '>'
+                . htmlspecialchars($formsAll[$i]->getVar('name'), ENT_QUOTES) . '</option>';
         }
     }
     $html .= '</select></td></tr>';
-    $html .= '<tr><td>Gösterim:</td><td>';
-    $html .= '<label><input type="radio" name="options[1]" value="0"' . ($embed ? '' : ' checked') . '> Link olarak göster</label>&nbsp;';
-    $html .= '<label><input type="radio" name="options[1]" value="1"' . ($embed ? ' checked' : '') . '> Formu göster</label>';
+    $html .= '<tr><td>' . \_AM_XCONTACT_BLOCK_DISPLAY_MODE . ':</td><td>';
+    $html .= '<label><input type="radio" name="options[1]" value="0"' . ($embed ? '' : ' checked') . '> ' . \_AM_XCONTACT_BLOCK_MODE_LINK . '</label>&nbsp;';
+    $html .= '<label><input type="radio" name="options[1]" value="1"' . ($embed ? ' checked' : '') . '> ' . \_AM_XCONTACT_BLOCK_MODE_EMBED . '</label>';
     $html .= '</td></tr></table>';
 
     return $html;
