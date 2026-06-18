@@ -3,7 +3,7 @@
     <{if $xcontact_list}>
         <ul class="xcontact-form-list">
             <{foreach item=f from=$xcontact_list}>
-            <li><a href="<{$f.url|escape}>"><{$f.name}></a><{if $f.description|default:''}> — <{$f.description|escape|truncate:80}><{/if}></li>
+            <li><a href="<{$f.url|escape}>"><{$f.name}></a><{if $f.description_short|default:''}> — <{$f.description_short|escape}><{/if}></li>
             <{/foreach}>
         </ul>
         <{if $pagenav|default:''}>

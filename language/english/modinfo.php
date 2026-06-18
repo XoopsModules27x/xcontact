@@ -25,3 +25,6 @@ define('_MI_XCONTACT_ICONSET', 'Iconset');
 define('_MI_XCONTACT_ICONSET_DESC', 'Select the set of icons used to display');
 define('_MI_XCONTACT_ICONSET_FA', 'Font Awesome');
 define('_MI_XCONTACT_ICONSET_UNICODE', 'Unicode/Emoji');
+//Preferences
+\define('_MI_XCONTACT_TRUNCATE_LENGTH', 'Number of Characters to truncate long text');
+\define('_MI_XCONTACT_TRUNCATE_LENGTH_DESC', 'Set the maximum number of characters to truncate the long text fields');

@@ -95,20 +95,28 @@ class Forms extends \XoopsObject
 
         $helper = \XoopsModules\Xcontact\Helper::getInstance();
         $submissionsHandler = $helper->getHandler('Submissions');
+        $utility = new \XoopsModules\Xcontact\Utility();
+        $truncateLength = $helper->getConfig('truncate_length');
 
         $ret =  $this->getValues($keys, $format, $maxDepth);
 
+        // count fields
         $fields = json_decode($this->getVar('fields') ?: '[]', true) ?: [];
         $ret['field_count'] = count($fields);
+        // get number of submissions total
         $crTotalSubs = new \CriteriaCompo();
         $crTotalSubs->add(new \Criteria('form_id', $this->getVar('form_id')));
-        $ret['total_subs']  = $submissionsHandler->getCount($crTotalSubs);
+        $ret['total_subs'] = $submissionsHandler->getCount($crTotalSubs);
+        // get number of new submissions
         $crNewSubs = new \CriteriaCompo();
         $crNewSubs->add(new \Criteria('form_id', $this->getVar('form_id')));
         $crNewSubs->add(new \Criteria('status', Constants::SUBMISSION_NEW));
         $ret['new_subs'] = $submissionsHandler->getCount($crNewSubs);
-        $ret['tpl_tag']  = '{xcontact slug="' . $this->getVar('slug') . '"}';
-        $ret['url']      = \XOOPS_URL . '/modules/xcontact/form.php?slug=' . urlencode($this->getVar('slug'));
+        // get truncated description
+        $ret['description_short'] = $utility::truncateHtml($ret['description'], $truncateLength);
+        // misc
+        $ret['tpl_tag'] = '{xcontact slug="' . $this->getVar('slug') . '"}';
+        $ret['url']     = \XOOPS_URL . '/modules/xcontact/form.php?slug=' . urlencode($this->getVar('slug'));
 
         return $ret;
     }

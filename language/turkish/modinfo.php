@@ -25,3 +25,5 @@ define('_MI_XCONTACT_ICONSET', 'Simge seti');
 define('_MI_XCONTACT_ICONSET_DESC', 'Görüntülenecek simge kümesini seçin.');
 define('_MI_XCONTACT_ICONSET_FA', 'Font Awesome');
 define('_MI_XCONTACT_ICONSET_UNICODE', 'Unicode/Emoji');
+\define('_MI_XCONTACT_TRUNCATE_LENGTH', 'Uzun metni kısaltmak için karakter sayısı');
+\define('_MI_XCONTACT_TRUNCATE_LENGTH_DESC', 'Uzun metin alanlarında kısaltma yapılacak maksimum karakter sayısını ayarlayın');
