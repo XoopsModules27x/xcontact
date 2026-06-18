@@ -1,13 +1,13 @@
 <?php
 /**
- * xcontact — Yardımcı fonksiyonlar
+ * xcontact — Auxiliary functions
  * @package xcontact
  * @author  Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  */
 
 defined('XOOPS_ROOT_PATH') || exit();
 
-// ── Upload klasörü ──────────────────────────────────────────────────────────
+// ── Upload folder ──────────────────────────────────────────────────────────
 function xcontact_ensure_upload_dir(): bool {
     $dir = XOOPS_UPLOAD_PATH . '/xcontact';
     if (!is_dir($dir) && !mkdir($dir, 0755, true)) return false;
@@ -18,7 +18,7 @@ function xcontact_ensure_upload_dir(): bool {
     return true;
 }
 
-// ── CAPTCHA üret ─────────────────────────────────────────────────────────────
+// ── handling CAPTCHA  ─────────────────────────────────────────────────────────────
 function xcontact_generate_captcha(int $len = 5): array {
     $chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     $code  = '';
@@ -52,7 +52,7 @@ function xcontact_verify_captcha(string $input): bool {
     return strtoupper(trim($input)) === strtoupper($stored);
 }
 
-// ── Mail gönder ───────────────────────────────────────────────────────────────
+// ── Send Mail ───────────────────────────────────────────────────────────────
 function xcontact_send_mail(string $to, string $subject, string $body): void {
     global $xoopsConfig;
     $from    = $xoopsConfig['adminmail'] ?? ('noreply@' . ($_SERVER['HTTP_HOST'] ?? 'localhost'));

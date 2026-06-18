@@ -1,6 +1,6 @@
 <?php
 /**
- * xcontact — İletişim Formu Oluşturucu — XOOPS 2.7.0
+ * xcontact — Contact Form Generator — XOOPS 2.7.0
  * @package    xcontact
  * @author     Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  * @copyright  2025 Eren Yumak
@@ -89,11 +89,11 @@ $modversion['templates'] = [
     ['file' => 'xcontact_admin_submissions.tpl', 'description' => '', 'type' => 'admin'],
 ];
 // User
-$modversion['templates'][] = ['file' => 'xcontact_index.tpl',      'description' => 'Form listesi'];
-$modversion['templates'][] = ['file' => 'xcontact_form.tpl',       'description' => 'Form görüntüleme'];
-// Block template templates/blocks/ klasöründe - XOOPS install sırasında otomatik tarar
+$modversion['templates'][] = ['file' => 'xcontact_index.tpl',      'description' => 'Form list'];
+$modversion['templates'][] = ['file' => 'xcontact_form.tpl',       'description' => 'View form'];
 
-// ── Modül ayarları ────────────────────────────────────────────────────────────
+
+// ── Module settings ────────────────────────────────────────────────────────────
 
 // Admin pager
 $modversion['config'][] = [

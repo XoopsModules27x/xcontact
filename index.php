@@ -1,6 +1,6 @@
 <?php
 /**
- * xcontact — Ön yüz: form listesi
+ * xcontact — Front page: list of forms
  */
 
 use Xmf\Request;

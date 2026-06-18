@@ -12,15 +12,6 @@ if (!file_exists($fileinc)) {
 }
 include_once $fileinc;
 
-if (!defined('_AM_XCONTACT_MENU_MAIN')) {
-    // Fallback: sabit string
-    define('_AM_XCONTACT_MENU_MAIN',        'Ana Sayfa');
-    define('_AM_XCONTACT_MENU_FORMS',       'Form Listesi');
-    define('_AM_XCONTACT_MENU_NEW_FORM',    'Yeni Form');
-    define('_AM_XCONTACT_MENU_SUBMISSIONS', 'Gönderiler');
-    define('_AM_XCONTACT_MENU_ABOUT',       'Hakkında');
-}
-
 use Xmf\Module\Admin;
 $pathIcon32 = Admin::menuIconPath('');
 

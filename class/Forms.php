@@ -72,7 +72,7 @@ class Forms extends \XoopsObject
         }
         return $instance;
     }
-    
+
 
     /**
      * Get Values

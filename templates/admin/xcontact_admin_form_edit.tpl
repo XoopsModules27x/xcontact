@@ -229,7 +229,7 @@ function xcfEdit(i){
     html+='<div class="xcp-isp-fg" id="xcf-width-box"></div>';
     html+='<button class="xcp-btn xcp-btn--blue" onclick="xcfSave('+i+')" style="width:100%;justify-content:center;padding:9px;margin-top:4px">'+XCF_LANG.isp_save+'</button>';
     body.innerHTML=html;
-    // Genişlik seçici
+    // Width selector
     (function(){
         var wb=document.getElementById('xcf-width-box');
         if(!wb)return;

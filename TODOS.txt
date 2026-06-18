@@ -8,9 +8,6 @@ $cf_token    = md5($cf_form_id . 'xcontact_salt_aymak');
 
 
 
-replace <{$f.desc|escape|truncate:80}> in xcontact_index.tpl by module preference
-
-
 create nice readme-md
 
 
