@@ -21,6 +21,7 @@ function xcontact_block_form($options)
 
     $helper = Helper::getInstance();
     $formsHandler = $helper->getHandler('Forms');
+    $submissionsHandler = $helper->getHandler('Submissions');
 
     $slug  = isset($options[0]) ? trim($options[0]) : '';
     $embed = isset($options[1]) ? (int)$options[1]  : 0;
@@ -129,12 +130,33 @@ function xcontact_block_form($options)
             $block['data'] = $data;
 
             if (empty($errors)) {
-                $ts  = $db->prefix('xcontact_submissions');
-                $ip  = $db->escape($_SERVER['REMOTE_ADDR'] ?? '');
-                $dj  = $db->escape(json_encode($data, JSON_UNESCAPED_UNICODE));
-                $now = time();
-                $db->queryF("INSERT INTO `{$ts}`(form_id,data,ip,status,created_at) VALUES('{$cf_form_id}','{$dj}','{$ip}','0','{$now}')");
-                $block['success'] = true;
+                $submissionsObj = $submissionsHandler->create();
+                $submissionsObj->setVar('form_id', $cf_form_id);
+                $submissionsObj->setVar('data', json_encode($data, JSON_UNESCAPED_UNICODE));
+                $submissionsObj->setVar('ip', $_SERVER['REMOTE_ADDR']);
+                $submissionsObj->setVar('status', 0);
+                $submissionsObj->setVar('created_at', time());
+                // Insert Data
+                if ($submissionsHandler->insert($submissionsObj)) {
+                    // E-posta bildirimi
+                    if (!empty($cf_settings['notify_email'])) {
+                        $body  =  \_AM_XCONTACT_FORM . ':' . $form['name'] . "\n" . _MD_XCONTACT_SUB_DATE_LABEL . ': ' . date('d.m.Y H:i') . "\nIP: {$_SERVER['REMOTE_ADDR']}\n" . str_repeat('-', 40) . "\n";
+                        foreach ($data as $k => $v) {
+                            $lbl = $k;
+                            foreach ($cf_fields as $fd) { if (($fd['name'] ?? '') === $k) { $lbl = $fd['label'] ?? $k; break; } }
+                            $body .= $lbl . ': ' . (is_array($v) ? implode(', ', $v) : $v) . "\n";
+                        }
+                        xcontact_send_mail($cf_settings['notify_email'], $cf_settings['email_subject'] ?? _MD_XCONTACT_NEW_SUBMISSION, $body);
+                    }
+                } else {
+                    $errors[] = \_MD_XCONTACT_SUBMISSION_ERROR;
+                }
+
+                if (empty($errors)) {
+                    $block['success'] = true;
+                } else {
+                    $block['errors'] = $errors;
+                }
             } else {
                 $block['errors'] = $errors;
             }

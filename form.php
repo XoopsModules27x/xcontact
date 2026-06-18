@@ -120,7 +120,7 @@ if ($formId === $cf_form_id) {
             if ($submissionsHandler->insert($submissionsObj)) {
                 // E-posta bildirimi
                 if (!empty($cf_settings['notify_email'])) {
-                    $body  = "Form: {$cf_form['name']}\n" . _MD_XCONTACT_SUB_DATE_LABEL . ": " . date('d.m.Y H:i') . "\nIP: {$_SERVER['REMOTE_ADDR']}\n" . str_repeat('-', 40) . "\n";
+                    $body  = \_AM_XCONTACT_FORM . ':' . $cf_form['name'] . "\n" . _MD_XCONTACT_SUB_DATE_LABEL . ': ' . date('d.m.Y H:i') . "\nIP: {$_SERVER['REMOTE_ADDR']}\n" . str_repeat('-', 40) . "\n";
                     foreach ($cf_data as $k => $v) {
                         $lbl = $k;
                         foreach ($cf_fields as $fd) { if (($fd['name'] ?? '') === $k) { $lbl = $fd['label'] ?? $k; break; } }

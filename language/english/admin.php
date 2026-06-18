@@ -15,6 +15,7 @@ define('_AM_XCONTACT_STAT_FORMS',       'Total Forms');
 define('_AM_XCONTACT_STAT_ACTIVE',      'Active Forms');
 define('_AM_XCONTACT_STAT_SUBS',        'Total Submissions');
 define('_AM_XCONTACT_STAT_NEW_SUBS',    'New Submissions');
+define('_AM_XCONTACT_FORM',             'Form');
 define('_AM_XCONTACT_FORM_SAVED',       'Form saved successfully.');
 define('_AM_XCONTACT_FORM_DELETED',     'Form deleted.');
 define('_AM_XCONTACT_FORM_NOT_FOUND',   'Form not found.');

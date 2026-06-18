@@ -15,6 +15,7 @@ define('_AM_XCONTACT_STAT_FORMS',       'Toplam Form');
 define('_AM_XCONTACT_STAT_ACTIVE',      'Aktif Form');
 define('_AM_XCONTACT_STAT_SUBS',        'Toplam Gönderi');
 define('_AM_XCONTACT_STAT_NEW_SUBS',    'Yeni Gönderi');
+define('_AM_XCONTACT_FORM',             'Form');
 define('_AM_XCONTACT_FORM_SAVED',       'Form başarıyla kaydedildi.');
 define('_AM_XCONTACT_FORM_DELETED',     'Form silindi.');
 define('_AM_XCONTACT_FORM_NOT_FOUND',   'Form bulunamadı.');
