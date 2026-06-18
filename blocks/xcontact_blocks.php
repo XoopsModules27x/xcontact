@@ -5,6 +5,8 @@
  * @author   Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  */
 
+use XoopsModules\Xcontact\Icons;
+
 if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 
 // ── İletişim Formu Bloğu — show_func ─────────────────────────────────────────
@@ -15,6 +17,9 @@ function xcontact_block_form($options)
     $embed = isset($options[1]) ? (int)$options[1]  : 0;
 
     if ($slug === '' || $slug === 'none') return false;
+
+    $icons = Icons::iconsLoad();
+    $GLOBALS['xoopsTpl']->assign('icons',$icons);
 
     $db  = XoopsDatabaseFactory::getDatabaseConnection();
     $tbl = $db->prefix('xcontact_forms');

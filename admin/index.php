@@ -22,6 +22,7 @@ declare(strict_types=1);
  */
 
 use XoopsModules\Xcontact\Constants;
+use XoopsModules\Xcontact\Icons;
 
 require_once \dirname(__DIR__) . '/preloads/autoloader.php';
 require __DIR__ . '/header.php';
@@ -73,13 +74,9 @@ foreach (\array_keys($subsAll) as $i) {
 unset($crSubs);
 
 // Render Index
-$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
 if ($helper->getConfig('displaySampleButton')) {
     \xoops_loadLanguage('admin/modulesadmin', 'system');
-    $adminObject->addItemButton(\constant('CO_' . $moduleDirNameUpper . '_ADD_SAMPLEDATA'), '../testdata/index.php?op=load', 'add');
-    $adminObject->addItemButton(\constant('CO_' . $moduleDirNameUpper . '_SAVE_SAMPLEDATA'), '../testdata/index.php?op=save', 'add');
-//    $adminObject->addItemButton(\constant('CO_' . $moduleDirNameUpper . '_EXPORT_SCHEMA'), '../testdata/index.php?op=exportschema', 'add');
-    $adminObject->displayButton('left');
+    $GLOBALS['xoopsTpl']->assign('displaySampleButton', true);
 }
 
 $GLOBALS['xoopsTpl']->assign('xoops_token_html',$GLOBALS['xoopsSecurity']->getTokenHTML());
@@ -91,5 +88,8 @@ $GLOBALS['xoopsTpl']->assign('stat_cards',[
     ['value'=>$subsCountNew,'label'=>_AM_XCONTACT_STAT_NEW_SUBS,'mod'=>'orange']
 ]);
 $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
+
+$icons = Icons::iconsLoad();
+$GLOBALS['xoopsTpl']->assign('icons',$icons);
 
 require __DIR__ . '/footer.php';

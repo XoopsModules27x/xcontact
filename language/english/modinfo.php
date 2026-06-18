@@ -21,3 +21,7 @@ define('_MI_XCONTACT_ADMIN_PAGER', 'Admin pager');
 define('_MI_XCONTACT_ADMIN_PAGER_DESC', 'Items per list on admin pages');
 define('_MI_XCONTACT_USER_PAGER', 'User pager');
 define('_MI_XCONTACT_USER_PAGER_DESC', 'Items per list on user pages');
+define('_MI_XCONTACT_ICONSET', 'Iconset');
+define('_MI_XCONTACT_ICONSET_DESC', 'Select the set of icons used to display');
+define('_MI_XCONTACT_ICONSET_FA', 'Font Awesome');
+define('_MI_XCONTACT_ICONSET_UNICODE', 'Unicode/Emoji');

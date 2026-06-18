@@ -6,7 +6,7 @@
   <{else}>
     <{if $block.errors}>
       <div style="background:#ffebee;border:1px solid #ef9a9a;border-radius:5px;padding:12px;margin-bottom:12px;color:#c62828">
-        <strong>Lütfen düzeltin:</strong><ul>
+        <strong><{$smarty.const._MB_XCONTACT_PLEASE_FIX}>:</strong><ul>
         <{foreach from=$block.errors item=e}><li><{$e}></li><{/foreach}>
         </ul>
       </div>
@@ -33,7 +33,7 @@
         <div style="margin-bottom:12px">
           <label style="display:block;font-size:13px;font-weight:600;margin-bottom:4px"><{$field.label}><{if $field.required}> <span style="color:#e53935">*</span><{/if}></label>
           <select style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:4px;font-size:13px;background:#fff" name="<{$fn}>"<{if $field.required}> required<{/if}>>
-            <option value="">-- Seçin --</option>
+            <option value=""><{$smarty.const._MB_XCONTACT_OPTION_SELECT}></option>
             <{foreach from=$field.options item=opt}>
               <option value="<{$opt}>"<{if $block.data[$fn]|default:'' eq $opt}> selected<{/if}>><{$opt}></option>
             <{/foreach}>
@@ -48,12 +48,12 @@
         </div>
       <{/if}>
     <{/foreach}>
-    <div><button style="background:#1976d2;color:#fff;border:none;padding:10px 28px;border-radius:4px;font-size:14px;font-weight:700;cursor:pointer" type="submit">Gönder</button></div>
+    <div><button style="background:#1976d2;color:#fff;border:none;padding:10px 28px;border-radius:4px;font-size:14px;font-weight:700;cursor:pointer" type="submit"><{$smarty.const._SUBMIT}></button></div>
     </form>
   <{/if}>
 <{else}>
   <{if $block.form_desc}><p style="color:#666;font-size:13px;margin:0 0 8px"><{$block.form_desc}></p><{/if}>
-  <a href="<{$block.form_url}>" style="display:inline-block;background:#1976d2;color:#fff;padding:8px 20px;border-radius:4px;text-decoration:none;font-size:14px;font-weight:600">Formu Doldurun &rarr;</a>
+  <a href="<{$block.form_url}>" style="display:inline-block;background:#1976d2;color:#fff;padding:8px 20px;border-radius:4px;text-decoration:none;font-size:14px;font-weight:600"><{$smarty.const._MB_XCONTACT_FILL_IN_FORM}> <{$icons.forward}></a>
 <{/if}>
 </div>
 <{/if}>

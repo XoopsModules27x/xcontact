@@ -4,8 +4,8 @@
 
 <div class="xcp-wrap">
     <div class="xcp-header">
-        <h2>📥 <{$smarty.const._AM_XCONTACT_SUBS_TITLE}></h2>
-        <a href="<{$module_url}>admin/forms.php" class="xcp-btn xcp-btn--gray"><{$smarty.const._AM_XCONTACT_SUBS_BACK}></a>
+        <h2><{$icons.submission}> <{$smarty.const._AM_XCONTACT_SUBS_TITLE}></h2>
+        <a href="<{$module_url}>admin/forms.php" class="xcp-btn xcp-btn--gray"><{$icons.back}> <{$smarty.const._AM_XCONTACT_SUBS_BACK}></a>
     </div>
 
     <div style="margin-bottom:16px">

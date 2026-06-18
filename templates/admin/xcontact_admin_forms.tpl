@@ -10,8 +10,8 @@
 
 <div class="xcp-wrap">
     <div class="xcp-header">
-        <h2>📋 <{$smarty.const._AM_XCONTACT_FORMS_LIST}></h2>
-        <a href="forms.php?op=new" class="xcp-btn xcp-btn--green">➕ <{$smarty.const._AM_XCONTACT_FORMS_NEW}></a>
+        <h2><{$icons.list}> <{$smarty.const._AM_XCONTACT_FORMS_LIST}></h2>
+        <a href="forms.php?op=new" class="xcp-btn xcp-btn--green"><{$icons.plus}> <{$smarty.const._AM_XCONTACT_FORMS_NEW}></a>
     </div>
     <div class="xcp-info">
         <{$smarty.const._AM_XCONTACT_FORMS_BLOCK_INFO}><br>
@@ -64,7 +64,7 @@
             </tr>
             <{/foreach}>
         <{else}>
-            <tr><td colspan="6" class="xcp-empty"><{$smarty.const._AM_XCONTACT_FORMS_EMPTY}> <a href="forms.php?op=new"><{$smarty.const._AM_XCONTACT_FORMS_CREATE_FIRST}></a></td></tr>
+            <tr><td colspan="6" class="xcp-empty"><{$smarty.const._AM_XCONTACT_FORMS_EMPTY}> <a href="forms.php?op=new"><{$smarty.const._AM_XCONTACT_FORMS_CREATE_FIRST}> <{$icons.forward}></a></td></tr>
         <{/if}>
         </tbody>
     </table>

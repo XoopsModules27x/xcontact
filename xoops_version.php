@@ -198,6 +198,18 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 5,
 ];
+$modversion['config'][] = [
+    'name'        => 'iconset',
+    'title'       => '_MI_XCONTACT_ICONSET',
+    'description' => '_MI_XCONTACT_ICONSET_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'fontawesome',
+    'options'     => [
+        _MI_XCONTACT_ICONSET_FA      => 'fontawesome',
+        _MI_XCONTACT_ICONSET_UNICODE => 'unicode',
+    ],
+];
 // Make tab clone visible?
 $modversion['config'][] = [
     'name'        => 'displayTabClone',

@@ -23,6 +23,7 @@ declare(strict_types=1);
 
 use Xmf\Request;
 use XoopsModules\Xcontact\Constants;
+use XoopsModules\Xcontact\Icons;
 
 require __DIR__ . '/header.php';
 // Get all request values
@@ -37,6 +38,9 @@ $GLOBALS['xoopsTpl']->assign('limit', $limit);
 $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
 $GLOBALS['xoopsTpl']->assign('xcontact_url', \XCONTACT_URL);
 $GLOBALS['xoopsTpl']->assign('xcontact_upload_url', \XCONTACT_UPLOAD_URL);
+
+$icons = Icons::iconsLoad();
+$GLOBALS['xoopsTpl']->assign('icons',$icons);
 
 switch ($op) {
     case 'list':
