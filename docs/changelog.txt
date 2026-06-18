@@ -18,6 +18,7 @@
  - updated admin/submissions.php to XOOPS standards (goffy)
  - added selectable iconset (goffy)
  - created block lang file (goffy)
+ - added truncate form description as preference (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]

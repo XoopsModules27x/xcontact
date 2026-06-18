@@ -84,7 +84,7 @@ switch ($op) {
             \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
         // Set Vars
-        $isActive = 0 === (int)$formsObj->getVar('is_active') ? 1 : 0;
+        $isActive = Constants::FORM_IS_INACTIVE === (int)$formsObj->getVar('is_active') ? Constants::FORM_IS_ACTIVE : Constants::FORM_IS_INACTIVE;
         $formsObj->setVar('is_active', $isActive);
         // Insert Data
         if ($formsHandler->insert($formsObj)) {
