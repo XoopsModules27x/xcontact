@@ -14,7 +14,7 @@ use XoopsModules\Xcontact\ {
 
 if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 
-// ── İletişim Formu Bloğu — show_func ─────────────────────────────────────────
+// ── Contact Form Block — show_func ─────────────────────────────────────────
 
 function xcontact_block_form($options)
 {
@@ -63,11 +63,11 @@ function xcontact_block_form($options)
 
     if (!$embed) return $block;
 
-    // ── Embed modu: alanları hazırla ─────────────────────────────────────────
+    // ── Embed mode: prepare the fields ─────────────────────────────────────────
     $cf_token = md5($cf_form_id . 'xcontact_salt_aymak');
     $block['token'] = $cf_token;
 
-    // Field type → HTML input type eşleştirmesi
+    // Field type → HTML input type matching
     $inputTypes = array(
         'short_text' => 'text',
         'email'      => 'email',
@@ -78,7 +78,7 @@ function xcontact_block_form($options)
         'time'       => 'time',
     );
 
-    // Alanları template için hazırla
+    // Prepare the fields for the template
     $preparedFields = array();
     foreach ($cf_fields as $field) {
         $fieldType = $field['type'] ?? '';
@@ -89,7 +89,7 @@ function xcontact_block_form($options)
     }
     $block['fields'] = $preparedFields;
 
-    // ── POST işleme ───────────────────────────────────────────────────────────
+    // ── POST processing ───────────────────────────────────────────────────────────
 
     $formId = Request::getInt('cf_form_id', 0, 'POST');
     $token  = Request::getString('cf_token', '', 'POST');
@@ -201,7 +201,7 @@ function xcontact_block_form($options)
     return $block;
 }
 
-// ── İletişim Formu Bloğu — edit_func ─────────────────────────────────────────
+// ── Contact Form Block — edit_func ─────────────────────────────────────────
 
 function xcontact_block_form_edit($options)
 {

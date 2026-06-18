@@ -1,6 +1,6 @@
 <?php
 /**
- * xcontact — Ön yüz: form görüntüleme ve gönderme
+ * xcontact — Front end: form viewing and submission
  * URL: modules/xcontact/form.php?slug=iletisim-formu
  */
 
@@ -45,7 +45,7 @@ $cf_fileupload_size = \_MD_XCONTACT_FORM_UPLOAD_SIZE . ($uploadMaxSize / 1048576
 
 $formId = Request::getInt('cf_form_id', 0, 'POST');
 
-// ── POST işleme ───────────────────────────────────────────────────────────────
+// ── POST processing ───────────────────────────────────────────────────────────────
 if ($formId === $cf_form_id) {
     // Token
     if (Request::getString('cf_token', '', 'POST') !== $cf_token) {
@@ -138,7 +138,7 @@ if ($formId === $cf_form_id) {
     }
 }
 
-// ── CAPTCHA üret (POST işleminden SONRA — session'ı ezmemek için) ────────────
+// ── Generate CAPTCHA (AFTER POST request — to avoid overwriting the session) ────────────
 $cf_captcha = ['code' => '', 'img' => ''];
 if (!empty($cf_settings['enable_captcha']) && !$cf_success) {
     global $xoopsModuleConfig;
@@ -146,7 +146,7 @@ if (!empty($cf_settings['enable_captcha']) && !$cf_success) {
     $cf_captcha = xcontact_generate_captcha($cap_len);
 }
 
-// ── Şablona aktar ────────────────────────────────────────────────────────────
+// ── assign to template ────────────────────────────────────────────────────────────
 $xoopsTpl->assign('xcontact_form',       $cf_form);
 $xoopsTpl->assign('xcontact_fields',     $cf_fields);
 $xoopsTpl->assign('xcontact_settings',   $cf_settings);
@@ -154,7 +154,7 @@ $xoopsTpl->assign('xcontact_form_id',    $cf_form_id);
 $xoopsTpl->assign('xcontact_token',      $cf_token);
 $xoopsTpl->assign('xcontact_success',    $cf_success);
 $xoopsTpl->assign('xcontact_errors',     $cf_errors);
-$xoopsTpl->assign('xcontact_data',       $cf_data);   // POST'tan gelen temizlenmiş data (array)
+$xoopsTpl->assign('xcontact_data',       $cf_data);   // Cleaned data (array) from POST
 $xoopsTpl->assign('xcontact_captcha',    $cf_captcha);
 $xoopsTpl->assign('xcontact_module_url', XOOPS_URL . '/modules/xcontact/');
 $xoopsTpl->assign('xoops_pagetitle',     $cf_form['name']);
