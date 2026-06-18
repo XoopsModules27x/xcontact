@@ -33,22 +33,11 @@ function xcontact_block_form($options)
     $GLOBALS['xoopsTpl']->assign('icons',$icons);
 
     // Get active forms
-    $crForms = new \CriteriaCompo();
-    $crForms->add(new \Criteria('is_active', Constants::FORM_IS_ACTIVE));
-    $crForms->add(new \Criteria('slug', $safeSlug));
-    $crForms->setLimit(1);
-    $crForms->setSort('form_id');
-    $crForms->setOrder('DESC');
-    $formsAll = $formsHandler->getAll($crForms);
-    if (empty($formsAll)) {
-        return false;
-    }
-    $formObj = reset($formsAll);
+    $formObj = $formsHandler->getFormBySlug($safeSlug, Constants::FORM_IS_ACTIVE);
     if (false === $formObj) {
         return false;
     }
     $form = $formObj->getValuesForms();
-    unset($crForms);
 
     $cf_form_id = (int)$form['form_id'];
     $cf_fields  = json_decode($form['fields'] ?? '[]', true) ?: [];
@@ -178,23 +167,29 @@ function xcontact_block_form_edit($options)
 {
     \xoops_loadLanguage('admin', 'xcontact');
 
+    $helper = Helper::getInstance();
+    $formsHandler = $helper->getHandler('Forms');
+
     $slug  = isset($options[0]) ? trim($options[0]) : '';
     $embed = isset($options[1]) ? (int)$options[1]  : 0;
     if ($slug === 'none') $slug = '';
 
-    $db  = XoopsDatabaseFactory::getDatabaseConnection();
-    $tbl = $db->prefix('xcontact_forms');
-    $res = $db->query("SELECT form_id, name, slug FROM `{$tbl}` WHERE is_active=1 ORDER BY form_id DESC");
+    // Get active forms
+    $crForms = new \CriteriaCompo();
+    $crForms->add(new \Criteria('is_active', Constants::FORM_IS_ACTIVE));
+    $crForms->setSort('form_id');
+    $crForms->setOrder('DESC');
+    $formsAll = $formsHandler->getAll($crForms);
 
     $html  = '<table>';
     $html .= '<tr><td>' . \_AM_XCONTACT_BLOCK_SLUG . ':</td><td>';
     $html .= '<select name="options[0]">';
     $html .= '<option value="none">' . \_AM_XCONTACT_SELECT_FORM . '</option>';
-    if ($res) {
-        while ($row = $db->fetchArray($res)) {
-            $sel   = ($row['slug'] === $slug) ? ' selected' : '';
-            $html .= '<option value="' . htmlspecialchars($row['slug'], ENT_QUOTES) . '"' . $sel . '>'
-                   . htmlspecialchars($row['name'], ENT_QUOTES) . '</option>';
+    if ($formsHandler->getCount($crForms) > 0) {
+        foreach (\array_keys($formsAll) as $i) {
+            $sel   = ($formsAll[$i]->getVar('slug') === $slug) ? ' selected' : '';
+            $html .= '<option value="' . htmlspecialchars($formsAll[$i]->getVar('slug'), ENT_QUOTES) . '"' . $sel . '>'
+                . htmlspecialchars($formsAll[$i]->getVar('name'), ENT_QUOTES) . '</option>';
         }
     }
     $html .= '</select></td></tr>';
