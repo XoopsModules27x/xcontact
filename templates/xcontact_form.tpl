@@ -54,7 +54,7 @@
 
 <form method="post" action="" enctype="multipart/form-data" novalidate>
 <input type="hidden" name="cf_form_id" value="<{$xcontact_form_id}>">
-<{$xoops_token}>
+<{$xoops_token_xc1}>
 <div style="position:absolute;left:-9999px;overflow:hidden;height:0">
     <input type="text" name="cf_hp" tabindex="-1" autocomplete="off">
 </div>

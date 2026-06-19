@@ -44,12 +44,10 @@ $cf_fileupload_size = \_MD_XCONTACT_FORM_UPLOAD_SIZE . ($uploadMaxSize / 1048576
 
 $formId = Request::getInt('cf_form_id', 0, 'POST');
 
-$GLOBALS['xoopsTpl']->assign('xoops_token',$GLOBALS['xoopsSecurity']->getTokenHTML());
-
 // ── POST processing ───────────────────────────────────────────────────────────────
 if ($formId === $cf_form_id) {
     // Security Check
-    if (!$GLOBALS['xoopsSecurity']->check()) {
+    if (!$GLOBALS['xoopsSecurity']->check(true, 'XCONTACT_TOKEN_FORM_' . $cf_form_id)) {
         \redirect_header('index.php?op=list', 5, \_MD_XCONTACT_TOKEN_ERROR);
     } else {
         // Honeypot
@@ -156,18 +154,18 @@ if (!empty($cf_settings['enable_captcha']) && !$cf_success) {
 }
 
 // ── assign to template ────────────────────────────────────────────────────────────
-$xoopsTpl->assign('xcontact_form',       $cf_form);
-$xoopsTpl->assign('xcontact_fields',     $cf_fields);
-$xoopsTpl->assign('xcontact_settings',   $cf_settings);
-$xoopsTpl->assign('xcontact_form_id',    $cf_form_id);
-$xoopsTpl->assign('xcontact_token',      $cf_token);
-$xoopsTpl->assign('xcontact_success',    $cf_success);
-$xoopsTpl->assign('xcontact_errors',     $cf_errors);
-$xoopsTpl->assign('xcontact_data',       $cf_data);   // Cleaned data (array) from POST
-$xoopsTpl->assign('xcontact_captcha',    $cf_captcha);
-$xoopsTpl->assign('xcontact_module_url', XOOPS_URL . '/modules/xcontact/');
-$xoopsTpl->assign('xoops_pagetitle',     $cf_form['name']);
-$xoopsTpl->assign('cf_fileupload_size',  $cf_fileupload_size);
-$xoopsTpl->assign('cf_fileupload_types', $cf_fileupload_types);
+$GLOBALS['xoopsTpl']->assign('xcontact_form',       $cf_form);
+$GLOBALS['xoopsTpl']->assign('xcontact_fields',     $cf_fields);
+$GLOBALS['xoopsTpl']->assign('xcontact_settings',   $cf_settings);
+$GLOBALS['xoopsTpl']->assign('xcontact_form_id',    $cf_form_id);
+$GLOBALS['xoopsTpl']->assign('xcontact_success',    $cf_success);
+$GLOBALS['xoopsTpl']->assign('xcontact_errors',     $cf_errors);
+$GLOBALS['xoopsTpl']->assign('xcontact_data',       $cf_data);   // Cleaned data (array) from POST
+$GLOBALS['xoopsTpl']->assign('xcontact_captcha',    $cf_captcha);
+$GLOBALS['xoopsTpl']->assign('xcontact_module_url', XOOPS_URL . '/modules/xcontact/');
+$GLOBALS['xoopsTpl']->assign('xoops_pagetitle',     $cf_form['name']);
+$GLOBALS['xoopsTpl']->assign('cf_fileupload_size',  $cf_fileupload_size);
+$GLOBALS['xoopsTpl']->assign('cf_fileupload_types', $cf_fileupload_types);
+$GLOBALS['xoopsTpl']->assign('xoops_token',$GLOBALS['xoopsSecurity']->getTokenHTML('XCONTACT_TOKEN_FORM_' . $cf_form_id));
 
 require_once XOOPS_ROOT_PATH . '/footer.php';

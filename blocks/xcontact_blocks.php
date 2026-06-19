@@ -63,7 +63,7 @@ function xcontact_block_form($options)
     if (!$embed) return $block;
 
     // ── Embed mode: prepare the fields ─────────────────────────────────────────
-    $block['xoops_token'] = $GLOBALS['xoopsSecurity']->getTokenHTML();
+    $block['xoops_token'] = $GLOBALS['xoopsSecurity']->getTokenHTML('XCONTACT_TOKEN_BLOCK_' . $cf_form_id);
 
     // Field type → HTML input type matching
     $inputTypes = array(
@@ -96,8 +96,9 @@ function xcontact_block_form($options)
     $hp = Request::getString('cf_hp', '', 'POST');
 
     if ($formId === $cf_form_id) {
+        $errors = [];
         // Security Check
-        if (!$GLOBALS['xoopsSecurity']->check()) {
+        if (!$GLOBALS['xoopsSecurity']->check(true, 'XCONTACT_TOKEN_BLOCK_' . $cf_form_id)) {
             $errors[] = _MD_XCONTACT_TOKEN_ERROR;
             $block['errors'] = $errors;
         } else {
@@ -105,7 +106,6 @@ function xcontact_block_form($options)
                 // Honeypot match
                 $block['success'] = true;
             } else {
-                $errors = [];
                 $data = [];
 
                 foreach ($cf_fields as $field) {
