@@ -53,7 +53,7 @@
         <input type="hidden" name="limit" value="<{$limit}>">
         <input type="hidden" name="form_id" value="<{$form.form_id}>">
         <input type="hidden" name="fields_json" id="xcf-fields-json" value='<{$form.fields|escape}>'>
-        <{$xoops_token_html}>
+        <{$xoops_token}>
 
         <div class="xcp-tabs">
             <button type="button" class="xcp-tab active" data-tab="builder"><{$icons.builder}> <{$smarty.const._AM_XCONTACT_BUILDER_TAB_BUILDER}></button>
