@@ -115,7 +115,7 @@ switch ($op) {
         $settings = \json_decode((string)($form['settings'] ?? '{}'), true) ?: [];
         $GLOBALS['xoopsTpl']->assign('settings', $settings);
         $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
-        $GLOBALS['xoopsTpl']->assign('xoops_token_html', $GLOBALS['xoopsSecurity']->getTokenHTML());
+        $GLOBALS['xoopsTpl']->assign('xoops_token', $GLOBALS['xoopsSecurity']->getTokenHTML());
         break;
     case 'new':
         $templateMain = 'xcontact_admin_form_edit.tpl';
@@ -134,7 +134,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('start', $start);
         $GLOBALS['xoopsTpl']->assign('limit', $limit);
         $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
-        $GLOBALS['xoopsTpl']->assign('xoops_token_html',$GLOBALS['xoopsSecurity']->getTokenHTML());
+        $GLOBALS['xoopsTpl']->assign('xoops_token',$GLOBALS['xoopsSecurity']->getTokenHTML());
         break;
     case 'edit':
         $templateMain = 'xcontact_admin_form_edit.tpl';
@@ -155,7 +155,7 @@ switch ($op) {
         $settings=json_decode($form['settings']??'{}',true)?:[];
         $GLOBALS['xoopsTpl']->assign('settings',$settings);
         $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
-        $GLOBALS['xoopsTpl']->assign('xoops_token_html',$GLOBALS['xoopsSecurity']->getTokenHTML());
+        $GLOBALS['xoopsTpl']->assign('xoops_token',$GLOBALS['xoopsSecurity']->getTokenHTML());
         break;
 
     case 'save':
@@ -221,7 +221,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('form', $formsObj->getValues());
         $GLOBALS['xoopsTpl']->assign('settings', \json_decode((string)$formsObj->getVar('settings'), true) ?: []);
         $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
-        $GLOBALS['xoopsTpl']->assign('xoops_token_html', $GLOBALS['xoopsSecurity']->getTokenHTML());
+        $GLOBALS['xoopsTpl']->assign('xoops_token', $GLOBALS['xoopsSecurity']->getTokenHTML());
         break;
     case 'delete':
         $templateMain = 'xcontact_admin_forms.tpl';

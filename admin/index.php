@@ -79,7 +79,7 @@ if ($helper->getConfig('displaySampleButton')) {
     $GLOBALS['xoopsTpl']->assign('displaySampleButton', true);
 }
 
-$GLOBALS['xoopsTpl']->assign('xoops_token_html',$GLOBALS['xoopsSecurity']->getTokenHTML());
+$GLOBALS['xoopsTpl']->assign('xoops_token',$GLOBALS['xoopsSecurity']->getTokenHTML());
 $GLOBALS['xoopsTpl']->assign('dashboard_title',_AM_XCONTACT_DASHBOARD);
 $GLOBALS['xoopsTpl']->assign('stat_cards',[
     ['value'=>$formsCount,'label'=>_AM_XCONTACT_STAT_FORMS,'mod'=>'purple'],

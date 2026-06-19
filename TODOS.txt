@@ -2,14 +2,5 @@ move_uploaded_file Max 5MB · jpg,png,pdf,doc,xls,txt,zip
 ==> replace by XoopsMediaUploader
 
 
-$cf_token    = md5($cf_form_id . 'xcontact_salt_aymak');
-==> can be rebuilt by everyone who knows the code
-==> replace by $GLOBALS['xoopsSecurity']->check()
-
-
-
-create nice readme-md
-
-
 support of dark mode of admin theme "modern"
 

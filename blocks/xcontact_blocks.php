@@ -57,15 +57,13 @@ function xcontact_block_form($options)
         'errors'      => array(),
         'data'        => array(),
         'fields'      => array(),
-        'token'       => '',
         'success_msg' => $cf_settings['success_msg'] ?? \_AM_XCONTACT_SET_DEFAULT_SUCCESS,
     );
 
     if (!$embed) return $block;
 
     // ── Embed mode: prepare the fields ─────────────────────────────────────────
-    $cf_token = md5($cf_form_id . 'xcontact_salt_aymak');
-    $block['token'] = $cf_token;
+    $block['xoops_token'] = $GLOBALS['xoopsSecurity']->getTokenHTML();
 
     // Field type → HTML input type matching
     $inputTypes = array(
@@ -95,118 +93,122 @@ function xcontact_block_form($options)
     // ── POST processing ───────────────────────────────────────────────────────────
 
     $formId = Request::getInt('cf_form_id', 0, 'POST');
-    $token  = Request::getString('cf_token', '', 'POST');
-    $hp     = Request::getString('cf_hp', '', 'POST');
+    $hp = Request::getString('cf_hp', '', 'POST');
 
-    if ($formId === $cf_form_id && $token === $cf_token) {
-        if ($hp !== '') {
-            // Honeypot match
-            $block['success'] = true;
+    if ($formId === $cf_form_id) {
+        // Security Check
+        if (!$GLOBALS['xoopsSecurity']->check()) {
+            $errors[] = _MD_XCONTACT_TOKEN_ERROR;
+            $block['errors'] = $errors;
         } else {
-            $errors = [];
-            $data   = [];
+            if ($hp !== '') {
+                // Honeypot match
+                $block['success'] = true;
+            } else {
+                $errors = [];
+                $data = [];
 
-            foreach ($cf_fields as $field) {
-                $fieldName = $field['name'] ?? '';
-                $fieldType = $field['type'] ?? '';
-                $req       = !empty($field['required']);
+                foreach ($cf_fields as $field) {
+                    $fieldName = $field['name'] ?? '';
+                    $fieldType = $field['type'] ?? '';
+                    $req = !empty($field['required']);
 
-                if (!$fieldName || in_array($fieldType, $nonInputFieldTypes, true)) {
-                    continue;
-                }
-
-                if ($fieldType === 'choice') {
-                    $val = Request::getArray($fieldName, [], 'POST');
-                    $val = array_filter(
-                        array_map(
-                            static fn($item) => is_scalar($item) ? trim(strip_tags((string)$item)) : null,
-                           $val
-                       )
-                   );
-
-                    if ($req && empty($val)) {
-                        $errors[] = htmlspecialchars($field['label'] ?? $fieldName) . ' ' . _MB_XCONTACT_IS_MANDATORY;
-                    }
-                } elseif ($fieldType === 'consent') {
-                    $postedConsent = Request::getString($fieldName, '', 'POST');
-                    $val = $postedConsent === '1' ? '1' : '0';
-
-                    if ($req && $val !== '1') {
-                        $errors[] = htmlspecialchars($field['label'] ?? $fieldName) . ' ' . _MB_XCONTACT_MUST_BE_CHECKED;
-                    }
-                } else {
-                    $val = trim(Request::getString($fieldName, '', 'POST'));
-
-                    if ($req && $val === '') {
-                        $errors[] = htmlspecialchars($field['label'] ?? $fieldName) . ' ' . _MB_XCONTACT_IS_MANDATORY;
+                    if (!$fieldName || in_array($fieldType, $nonInputFieldTypes, true)) {
+                        continue;
                     }
 
-                    if (
-                        $val !== ''
-                        && $fieldType === 'email'
-                        && !filter_var($val, FILTER_VALIDATE_EMAIL)
-                    ) {
-                        $errors[] = _MB_XCONTACT_ENTER_VALID_MAIL;
-                    }
-                }
+                    if ($fieldType === 'choice') {
+                        $val = Request::getArray($fieldName, [], 'POST');
+                        $val = array_filter(
+                            array_map(
+                                static fn($item) => is_scalar($item) ? trim(strip_tags((string)$item)) : null,
+                                $val
+                            )
+                        );
 
-                $data[$fieldName] = $val;
-            }
+                        if ($req && empty($val)) {
+                            $errors[] = htmlspecialchars($field['label'] ?? $fieldName) . ' ' . _MB_XCONTACT_IS_MANDATORY;
+                        }
+                    } elseif ($fieldType === 'consent') {
+                        $postedConsent = Request::getString($fieldName, '', 'POST');
+                        $val = $postedConsent === '1' ? '1' : '0';
 
-            $block['data'] = $data;
+                        if ($req && $val !== '1') {
+                            $errors[] = htmlspecialchars($field['label'] ?? $fieldName) . ' ' . _MB_XCONTACT_MUST_BE_CHECKED;
+                        }
+                    } else {
+                        $val = trim(Request::getString($fieldName, '', 'POST'));
 
-            if (empty($errors)) {
-                $submissionsObj = $submissionsHandler->create();
-
-                $ip = Request::getString('REMOTE_ADDR', '', 'SERVER');
-
-                $submissionsObj->setVar('form_id', $cf_form_id);
-                $submissionsObj->setVar('data', json_encode($data, JSON_UNESCAPED_UNICODE));
-                $submissionsObj->setVar('ip',$ip);
-                $submissionsObj->setVar('status', Constants::SUBMISSION_NEW);
-                $submissionsObj->setVar('created_at', time());
-
-                if ($submissionsHandler->insert($submissionsObj)) {
-                    if (!empty($cf_settings['notify_email'])) {
-                        $body  = _AM_XCONTACT_FORM . ': ' . $form['name'] . "\n";
-                        $body .= _MD_XCONTACT_SUB_DATE_LABEL . ': ' . date('d.m.Y H:i') . "\n";
-                        $body .= 'IP: ' . $ip . "\n";
-                        $body .= str_repeat('-', 40) . "\n";
-
-                        foreach ($data as $k => $v) {
-                            $lbl = $k;
-
-                            foreach ($cf_fields as $fd) {
-                                if (($fd['name'] ?? '') === $k) {
-                                    $lbl = $fd['label'] ?? $k;
-                                    break;
-                                }
-                            }
-
-                            $body .= $lbl . ': ' . (is_array($v) ? implode(', ', $v) : $v) . "\n";
+                        if ($req && $val === '') {
+                            $errors[] = htmlspecialchars($field['label'] ?? $fieldName) . ' ' . _MB_XCONTACT_IS_MANDATORY;
                         }
 
-                        xcontact_send_mail(
-                            $cf_settings['notify_email'],
-                            $cf_settings['email_subject'] ?? _MD_XCONTACT_NEW_SUBMISSION,
-                            $body
-                        );
+                        if (
+                            $val !== ''
+                            && $fieldType === 'email'
+                            && !filter_var($val, FILTER_VALIDATE_EMAIL)
+                        ) {
+                            $errors[] = _MB_XCONTACT_ENTER_VALID_MAIL;
+                        }
                     }
-                } else {
-                    $errors[] = _MD_XCONTACT_SUBMISSION_ERROR;
+
+                    $data[$fieldName] = $val;
                 }
 
+                $block['data'] = $data;
+
                 if (empty($errors)) {
-                    $block['success'] = true;
+                    $submissionsObj = $submissionsHandler->create();
+
+                    $ip = Request::getString('REMOTE_ADDR', '', 'SERVER');
+
+                    $submissionsObj->setVar('form_id', $cf_form_id);
+                    $submissionsObj->setVar('data', json_encode($data, JSON_UNESCAPED_UNICODE));
+                    $submissionsObj->setVar('ip', $ip);
+                    $submissionsObj->setVar('status', Constants::SUBMISSION_NEW);
+                    $submissionsObj->setVar('created_at', time());
+
+                    if ($submissionsHandler->insert($submissionsObj)) {
+                        if (!empty($cf_settings['notify_email'])) {
+                            $body = _AM_XCONTACT_FORM . ': ' . $form['name'] . "\n";
+                            $body .= _MD_XCONTACT_SUB_DATE_LABEL . ': ' . date('d.m.Y H:i') . "\n";
+                            $body .= 'IP: ' . $ip . "\n";
+                            $body .= str_repeat('-', 40) . "\n";
+
+                            foreach ($data as $k => $v) {
+                                $lbl = $k;
+
+                                foreach ($cf_fields as $fd) {
+                                    if (($fd['name'] ?? '') === $k) {
+                                        $lbl = $fd['label'] ?? $k;
+                                        break;
+                                    }
+                                }
+
+                                $body .= $lbl . ': ' . (is_array($v) ? implode(', ', $v) : $v) . "\n";
+                            }
+
+                            xcontact_send_mail(
+                                $cf_settings['notify_email'],
+                                $cf_settings['email_subject'] ?? _MD_XCONTACT_NEW_SUBMISSION,
+                                $body
+                            );
+                        }
+                    } else {
+                        $errors[] = _MD_XCONTACT_SUBMISSION_ERROR;
+                    }
+
+                    if (empty($errors)) {
+                        $block['success'] = true;
+                    } else {
+                        $block['errors'] = $errors;
+                    }
                 } else {
                     $block['errors'] = $errors;
                 }
-            } else {
-                $block['errors'] = $errors;
             }
         }
     }
-
     return $block;
 }
 

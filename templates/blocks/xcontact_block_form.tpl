@@ -13,7 +13,7 @@
     <{/if}>
     <form method="post" action="" enctype="multipart/form-data" novalidate>
     <input type="hidden" name="cf_form_id" value="<{$block.form_id}>">
-    <input type="hidden" name="cf_token" value="<{$block.token}>">
+    <{$block.xoops_token}>
     <div style="position:absolute;left:-9999px;height:0;overflow:hidden"><input type="text" name="cf_hp" tabindex="-1" autocomplete="off"></div>
     <{foreach from=$block.fields item=field}>
       <{assign var=fn value=$field.name}>
