@@ -124,9 +124,12 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * get inserted id
+     * function to process submissions
+     * @param array $cf_fields
+     * @param array $cf_settings
+     * @param array $cf_form
      *
-     * @return int reference to the {@link Get} object
+     * @return array
      */
     public function processSubmission($cf_fields, $cf_settings, $cf_form)
     {
@@ -139,10 +142,7 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
 
         // preferences for uploading files
         $allowed = $helper->getConfig('upload_filetypes');
-        $cf_fileupload_types = _MD_XCONTACT_FORM_UPLOAD_FILETYPE . implode(', ', $allowed);
-
         $uploadMaxSize = (int)$helper->getConfig('upload_max_size');
-        $cf_fileupload_size = \_MD_XCONTACT_FORM_UPLOAD_SIZE . ($uploadMaxSize / 1048576) . ' ' . \_MD_XCONTACT_FORM_UPLOAD_SIZE_MB;
 
         // Honeypot
         if ('' !== Request::getString('cf_hp', '', 'POST')) {
@@ -230,10 +230,7 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                     }
                     $cf_success = true;
                 } else {
-                    // redirect after error when inserting
                     $cf_errors[] = \_MD_XCONTACT_SUBMISSION_ERROR;
-                    //\redirect_header('index.php?op=list', 5, \_MD_XCONTACT_SUBMISSION_ERROR);
-
                 }
             }
         }
