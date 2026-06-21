@@ -237,6 +237,6 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                 }
             }
         }
-        return ['success' => $cf_success, 'errors' => $cf_errors];
+        return ['success' => $cf_success, 'errors' => $cf_errors, 'data' => $cf_data];
     }
 }

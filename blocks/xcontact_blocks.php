@@ -98,13 +98,14 @@ function xcontact_block_form($options)
     if ($formId === $cf_form_id) {
         $errors = [];
         // Security Check
-        if (!$GLOBALS['xoopsSecurity']->check(true, false, 'XCONTACT_TOKEN_BLOCK_' . $cf_form_id)) {
+        if (!$GLOBALS['xoopsSecurity']->check(true, true, 'XCONTACT_TOKEN_BLOCK_' . $cf_form_id)) {
             $errors[] = _MD_XCONTACT_TOKEN_ERROR;
             $block['errors'] = $errors;
         } else {
             $result = $submissionsHandler->processSubmission($cf_fields, $cf_settings, $form);
             $block['success'] = 0 == count($result['errors']);
             $block['errors'] = $result['errors'];
+            $block['data'] = $result['data'];
         }
     }
     return $block;

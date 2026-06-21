@@ -47,12 +47,13 @@ $formId = Request::getInt('cf_form_id', 0, 'POST');
 // ── POST processing ───────────────────────────────────────────────────────────────
 if ($formId === $cf_form_id) {
     // Security Check
-    if (!$GLOBALS['xoopsSecurity']->check(true, false,  'XCONTACT_TOKEN_FORM_' . $cf_form_id)) {
+    if (!$GLOBALS['xoopsSecurity']->check(true, true,  'XCONTACT_TOKEN_FORM_' . $cf_form_id)) {
         \redirect_header('index.php?op=list', 5, \_MD_XCONTACT_TOKEN_ERROR);
     } else {
-        $result = $submissionsHandler->processSubmission($cf_fields, $cf_settings, $cf_form);
+        $result     = $submissionsHandler->processSubmission($cf_fields, $cf_settings, $cf_form);
         $cf_success = $result['success'];
-        $cf_errors = $result['errors'];
+        $cf_errors  = $result['errors'];
+        $cf_data    = $result['data'];
     }
 }
 
