@@ -25,7 +25,7 @@ namespace XoopsModules\Xcontact;
  */
 
 use Xmf\Request;
-use XoopsModules\Xcontact;
+use XoopsModules\Xcontact\Constants;
 
 
 /**
@@ -151,7 +151,7 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
 
         // Captcha
         if (!$cf_success && !empty($cf_settings['enable_captcha'])) {
-            if (!xcontact_verify_captcha($_POST['cf_captcha'] ?? '')) {
+            if (!xcontact_verify_captcha(Request::getString('cf_captcha', '', 'POST'))) {
                 $cf_errors[] = _MD_XCONTACT_CAPTCHA_ERROR;
             }
         }
@@ -164,7 +164,7 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                 if (!$fn || in_array($ftype, ['label', 'heading', 'paragraph'])) continue;
 
                 if ($ftype === 'choice') {
-                    $val = Request::hasVar($fn, 'POST') ? array_map('strip_tags', Request::getArray($fn, [], 'POST')) : [];
+                    $val = Request::hasVar($fn, 'POST') ? array_filter(array_map(static fn($item) => is_scalar($item) ? strip_tags((string)$item) : '', Request::getArray($fn, [], 'POST'))) : [];
                     if ($req && empty($val)) $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ' ' . _MD_XCONTACT_REQUIRED;
                 } elseif ($ftype === 'file') {
                     // TODO: replace by XoopsMediaUploader
@@ -191,7 +191,7 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                     if ($req && 1 !== $val) $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ' ' . _MD_XCONTACT_MUST_ACCEPT;
                 } else {
                     $raw = Request::getString($fn, '', 'POST');
-                    if ($raw === '' && isset($field['value'])) {
+                    if ($raw === '' && isset($field['value']) && is_scalar($field['value'])) {
                         $raw = (string)$field['value'];
                     }
                     $val = strip_tags(trim($raw));
@@ -208,8 +208,8 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                 $submissionsObj = $this->create();
                 $submissionsObj->setVar('form_id', $cf_form_id);
                 $submissionsObj->setVar('data', json_encode($cf_data, JSON_UNESCAPED_UNICODE));
-                $submissionsObj->setVar('ip', $_SERVER['REMOTE_ADDR']);
-                $submissionsObj->setVar('status', 0);
+                $submissionsObj->setVar('ip', Request::getString('REMOTE_ADDR', '', 'SERVER'));
+                $submissionsObj->setVar('status', Constants::SUBMISSION_NEW);
                 $submissionsObj->setVar('created_at', time());
                 // Insert Data
                 if ($this->insert($submissionsObj)) {

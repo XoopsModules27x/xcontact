@@ -102,10 +102,10 @@ function xcontact_block_form($options)
             $errors[] = _MD_XCONTACT_TOKEN_ERROR;
             $block['errors'] = $errors;
         } else {
-            $result = $submissionsHandler->processSubmission($cf_fields, $cf_settings, $form);
-            $block['success'] = 0 == count($result['errors']);
-            $block['errors'] = $result['errors'];
-            $block['data'] = $result['data'];
+            $result           = $submissionsHandler->processSubmission($cf_fields, $cf_settings, $form);
+            $block['success'] = $result['success'];
+            $block['errors']  = $result['errors'];
+            $block['data']    = $result['data'];
         }
     }
     return $block;
