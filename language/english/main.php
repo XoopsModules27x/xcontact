@@ -32,3 +32,4 @@ define('_MD_XCONTACT_FORM_UPLOAD_SIZE', 'Max file size: ');
 define('_MD_XCONTACT_FORM_UPLOAD_SIZE_MB', 'MB');
 define('_MD_XCONTACT_FORM_UPLOAD_FILETYPE', 'Allowed file types: ');
 define('_MD_XCONTACT_SUBMISSION_ERROR', 'An error occured while submitting the form. Please try again.');
+define('_MD_XCONTACT_UPLOAD_ERROR', 'An error occured while uploading the file. Please try again.');

@@ -179,6 +179,7 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                             xcontact_ensure_upload_dir();
                             $udir = \XCONTACT_UPLOAD_FILE_PATH . '/';
                             $safe = time() . '_' . preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', $_FILES[$fn]['name']);
+                            $val = \_MD_XCONTACT_UPLOAD_ERROR;
                             if (@move_uploaded_file($_FILES[$fn]['tmp_name'], $udir . $safe)) {
                                 $val = \XCONTACT_UPLOAD_FILE_URL . '/' . $safe;
                             }

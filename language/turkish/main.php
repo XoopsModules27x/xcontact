@@ -33,3 +33,4 @@ define('_MD_XCONTACT_FORM_UPLOAD_SIZE', 'Maksimum dosya boyutu: ');
 define('_MD_XCONTACT_FORM_UPLOAD_SIZE_MB', 'MB');
 define('_MD_XCONTACT_FORM_UPLOAD_FILETYPE', 'İzin verilen dosya türleri: ');
 define('_MD_XCONTACT_SUBMISSION_ERROR', 'Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
+define('_MD_XCONTACT_UPLOAD_ERROR', 'Dosya yüklenirken bir hata oluştu. Lütfen tekrar dene.');
