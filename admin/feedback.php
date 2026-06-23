@@ -38,7 +38,6 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 switch ($op) {
     case 'list':
     default:
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('feedback.php'));
         $feedback->name  = $GLOBALS['xoopsUser']->getVar('name');
         $feedback->email = $GLOBALS['xoopsUser']->getVar('email');
         $feedback->site  = \XOOPS_URL;
@@ -50,8 +49,6 @@ switch ($op) {
         if (!$GLOBALS['xoopsSecurity']->check()) {
             \redirect_header('index.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
-
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('feedback.php'));
 
         $your_name  = Request::getString('your_name');
         $your_site  = Request::getString('your_site');

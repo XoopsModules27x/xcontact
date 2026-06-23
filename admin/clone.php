@@ -31,7 +31,6 @@ $templateMain = 'xcontact_admin_clone.tpl';
 switch ($op) {
     case 'list':
     default:
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('clone.php'));
         require_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
         $form  = new \XoopsThemeForm(\sprintf(\_AM_XCONTACT_CLONE_TITLE, $helper->getModule()->getVar('name', 'E')), 'clone', 'clone.php', 'post', true);
         $clone = new \XoopsFormText(\_AM_XCONTACT_CLONE_NAME, 'clone', 20, 20, '');

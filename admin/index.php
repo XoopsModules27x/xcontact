@@ -22,7 +22,6 @@ declare(strict_types=1);
  */
 
 use XoopsModules\Xcontact\Constants;
-use XoopsModules\Xcontact\Icons;
 
 require_once \dirname(__DIR__) . '/preloads/autoloader.php';
 require __DIR__ . '/header.php';
@@ -88,8 +87,5 @@ $GLOBALS['xoopsTpl']->assign('stat_cards',[
     ['value'=>$subsCountNew,'label'=>_AM_XCONTACT_STAT_NEW_SUBS,'mod'=>'orange']
 ]);
 $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
-
-$icons = Icons::iconsLoad();
-$GLOBALS['xoopsTpl']->assign('icons',$icons);
 
 require __DIR__ . '/footer.php';

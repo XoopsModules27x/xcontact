@@ -21,6 +21,8 @@ declare(strict_types=1);
  * @author       Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  */
 
+use XoopsModules\Xcontact\Icons;
+
 require \dirname(__DIR__, 3) . '/include/cp_header.php';
 require_once \dirname(__DIR__) . '/include/common.php';
 
@@ -65,3 +67,6 @@ $GLOBALS['xoopsTpl']->assign('modPathIcon32', $modPathIcon32);
 $adminObject = \Xmf\Module\Admin::getInstance();
 $style = \XCONTACT_URL . '/assets/css/admin.css';
 $GLOBALS['xoTheme']->addStylesheet($style, null);
+
+$icons = Icons::iconsLoad();
+$GLOBALS['xoopsTpl']->assign('icons',$icons);
