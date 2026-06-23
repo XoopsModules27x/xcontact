@@ -33,3 +33,22 @@
 .xcp-isp-fg input,.xcp-isp-fg textarea,.xcp-isp-fg select{width:100%;padding:7px 9px;border:1px solid #ddd;border-radius:4px;font-size:13px;box-sizing:border-box}
 code{background:#f0f4f8;padding:2px 5px;border-radius:3px;font-family:monospace;font-size:12px}
 @media(max-width:768px){.xcp-stat-grid{grid-template-columns:repeat(2,1fr)}.xcp-widgets{grid-template-columns:1fr}}
+/* dark mode of XOOPS admin theme "modern" */
+body.dark-mode .xcp-title,
+body.dark-mode .xcp-widget-title,
+body.dark-mode .xcp-wrap h2
+{
+    color: var(--text-primary);
+}
+body.dark-mode .xcp-widget,
+body.dark-mode .xcp-stat-card,
+body.dark-mode .xcp-wrap,
+body.dark-mode .xcp-table code,
+body.dark-mode .xcp-table tr td
+{
+    background: var(--bg-primary) !important;
+}
+body.dark-mode .xcp-table tr:hover td
+{
+    background: var(--bg-secondary) !important;
+}

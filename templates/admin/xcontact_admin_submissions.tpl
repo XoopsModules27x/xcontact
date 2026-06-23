@@ -1,3 +1,6 @@
+<!-- Header -->
+<{include file='db:xcontact_admin_header.tpl' }>
+
 <{if $error|default:''}>
     <div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
@@ -53,3 +56,6 @@
     </table>
     <{/if}>
 </div>
+
+<!-- Footer -->
+<{include file='db:xcontact_admin_footer.tpl' }>

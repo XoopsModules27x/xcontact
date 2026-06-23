@@ -1,3 +1,6 @@
+<!-- Header -->
+<{include file='db:xcontact_admin_header.tpl' }>
+
 <{if $displaySampleButton|default:false}>
     <div class="xcp-header" style="justify-content: start;">
         <a class="xcp-btn xcp-btn--green pull-left" href="../testdata/index.php?op=load" title="<{$smarty.const.CO_XCONTACT_ADD_SAMPLEDATA}>"><{$smarty.const.CO_XCONTACT_ADD_SAMPLEDATA}></a>
@@ -54,3 +57,6 @@
         <a href="<{$module_url}>admin/submissions.php"  class="xcp-btn xcp-btn--orange"><{$icons.submission}> <{$smarty.const._AM_XCONTACT_MENU_SUBMISSIONS}></a>
     </div>
 </div>
+
+<!-- Footer -->
+<{include file='db:xcontact_admin_footer.tpl' }>
