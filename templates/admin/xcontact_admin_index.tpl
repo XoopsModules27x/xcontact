@@ -8,7 +8,7 @@
     </div>
 <{/if}>
 <div class="xcp-dashboard">
-    <h2 class="xcp-title"><{$dashboard_title}></h2>
+    <h2 class="xcp-title"><{$icons.dashboard}> <{$dashboard_title}></h2>
     <div class="xcp-stat-grid">
         <{foreach item=card from=$stat_cards}>
         <div class="xcp-stat-card xcp-stat-card--<{$card.mod}>">

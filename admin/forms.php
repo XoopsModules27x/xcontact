@@ -23,7 +23,7 @@ declare(strict_types=1);
 
 use Xmf\Request;
 use XoopsModules\Xcontact\Constants;
-use XoopsModules\Xcontact\Icons;
+
 
 require __DIR__ . '/header.php';
 // Get all request values
@@ -36,9 +36,6 @@ $GLOBALS['xoopsTpl']->assign('limit', $limit);
 
 $msg = Request::getString('msg');
 $GLOBALS['xoopsTpl']->assign('msg',$msg);
-
-$icons = Icons::iconsLoad();
-$GLOBALS['xoopsTpl']->assign('icons',$icons);
 
 switch ($op) {
     case 'list':

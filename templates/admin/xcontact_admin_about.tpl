@@ -1,5 +1,5 @@
 <div class="xcp-wrap">
-    <h2>ℹ️ <{$smarty.const._AM_XCONTACT_ABOUT_TITLE}></h2>
+    <h2><{$icons.info}> <{$smarty.const._AM_XCONTACT_ABOUT_TITLE}></h2>
     <table class="xcp-table" style="max-width:500px">
         <tr><th><{$smarty.const._AM_XCONTACT_ABOUT_MOD_NAME}></th><td>xcontact</td></tr>
         <tr><th><{$smarty.const._AM_XCONTACT_ABOUT_VERSION}></th><td>1.0.0</td></tr>

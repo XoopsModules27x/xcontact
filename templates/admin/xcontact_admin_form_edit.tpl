@@ -56,11 +56,23 @@
         <{$xoops_token}>
 
         <div class="xcp-tabs">
-            <button type="button" class="xcp-tab active" data-tab="builder"><{$icons.builder}> <{$smarty.const._AM_XCONTACT_BUILDER_TAB_BUILDER}></button>
-            <button type="button" class="xcp-tab" data-tab="settings"><{$icons.settings}> <{$smarty.const._AM_XCONTACT_BUILDER_TAB_SETTINGS}></button>
+            <button type="button" class="xcp-tab active" data-tab="settings"><{$icons.settings}> <{$smarty.const._AM_XCONTACT_BUILDER_TAB_SETTINGS}></button>
+            <button type="button" class="xcp-tab" data-tab="builder"><{$icons.builder}> <{$smarty.const._AM_XCONTACT_BUILDER_TAB_BUILDER}></button>
         </div>
-
-        <div id="tab-builder" class="xcp-tab-panel active">
+        <div id="tab-settings" class="xcp-tab-panel active">
+            <div class="xcp-wrap" style="max-width:600px">
+                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_NAME}></label><input type="text" name="form_name" value="<{$form.name|escape}>" required></div>
+                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_SLUG}></label><input type="text" name="form_slug" value="<{$form.slug|escape}>" placeholder="<{$smarty.const._AM_XCONTACT_SET_SLUG_PLACEHOLDER}>" pattern="[a-z0-9\-]+" required><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_SLUG_HINT}></small></div>
+                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_DESC}></label><textarea name="form_desc"><{$form.description|escape}></textarea></div>
+                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_SUCCESS_MSG}></label><input type="text" name="success_msg" value="<{$settings.success_msg|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUCCESS|escape}>"></div>
+                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_NOTIFY_EMAIL}></label><input type="email" name="notify_email" value="<{$settings.notify_email|default:''|escape}>"><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_EMAIL_HINT}></small></div>
+                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_EMAIL_SUBJECT}></label><input type="text" name="email_subject" value="<{$settings.email_subject|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUBJECT|escape}>"></div>
+                <label class="xcp-isp-toggle"><input type="checkbox" name="is_active" value="1"<{if !empty($form.is_active)}> checked<{/if}>> <{$smarty.const._AM_XCONTACT_SET_IS_ACTIVE}></label>
+                <label class="xcp-isp-toggle"><input type="checkbox" name="enable_captcha" value="1"<{if !empty($settings.enable_captcha)}> checked<{/if}>> <{$smarty.const._AM_XCONTACT_SET_CAPTCHA}></label>
+                <div style="margin-top:18px"><button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px"><{$icons.save}> <{$smarty.const._AM_XCONTACT_SAVE}></button></div>
+            </div>
+        </div>
+        <div id="tab-builder" class="xcp-tab-panel">
             <div class="xcp-builder">
                 <div class="xcp-palette">
                     <h4><{$smarty.const._AM_XCONTACT_BUILDER_FIELD_TYPES}></h4>
@@ -95,21 +107,6 @@
                 </div>
             </div>
         </div>
-
-        <div id="tab-settings" class="xcp-tab-panel">
-            <div class="xcp-wrap" style="max-width:600px">
-                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_NAME}></label><input type="text" name="form_name" value="<{$form.name|escape}>" required></div>
-                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_SLUG}></label><input type="text" name="form_slug" value="<{$form.slug|escape}>" placeholder="<{$smarty.const._AM_XCONTACT_SET_SLUG_PLACEHOLDER}>" pattern="[a-z0-9\-]+" required><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_SLUG_HINT}></small></div>
-                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_DESC}></label><textarea name="form_desc"><{$form.description|escape}></textarea></div>
-                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_SUCCESS_MSG}></label><input type="text" name="success_msg" value="<{$settings.success_msg|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUCCESS|escape}>"></div>
-                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_NOTIFY_EMAIL}></label><input type="email" name="notify_email" value="<{$settings.notify_email|default:''|escape}>"><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_EMAIL_HINT}></small></div>
-                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_EMAIL_SUBJECT}></label><input type="text" name="email_subject" value="<{$settings.email_subject|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUBJECT|escape}>"></div>
-                <label class="xcp-isp-toggle"><input type="checkbox" name="is_active" value="1"<{if !empty($form.is_active)}> checked<{/if}>> <{$smarty.const._AM_XCONTACT_SET_IS_ACTIVE}></label>
-                <label class="xcp-isp-toggle"><input type="checkbox" name="enable_captcha" value="1"<{if !empty($settings.enable_captcha)}> checked<{/if}>> <{$smarty.const._AM_XCONTACT_SET_CAPTCHA}></label>
-                <div style="margin-top:18px"><button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px"><{$icons.save}> <{$smarty.const._AM_XCONTACT_SAVE}></button></div>
-            </div>
-        </div>
-
     </form>
 </div>
 

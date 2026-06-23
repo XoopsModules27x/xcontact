@@ -60,7 +60,10 @@ class Icons
         'dropdown' => '<i class="fa-regular fa-square-caret-down"></i>',
         'consent' => '<i class="fa-regular fa-circle-check"></i>',
         'signature' => '<i class="fa-solid fa-signature"></i>',
-        'envelope_open' => '<i class="fa-regular fa-envelope-open"></i>'
+        'envelope_open' => '<i class="fa-regular fa-envelope-open"></i>',
+        'clone' => '<i class="fa-regular fa-clone"></i>',
+        'dashboard' => '<i class="fa-solid fa-tachometer-alt"></i>',
+        'info' => '<i class="fa-solid fa-circle-info"></i>'
     ];
 
     private const UNICODE = [
@@ -93,7 +96,10 @@ class Icons
         'dropdown' => '▼',
         'consent' => '✓',
         'signature' => '✒',
-        'envelope_open' => '📧'
+        'envelope_open' => '📧',
+        'clone' => '',
+        'dashboard' => '',
+        'info' => 'ℹ️'
     ];
 
     public static function iconsLoad(): array
