@@ -48,7 +48,7 @@ $formId = Request::getInt('cf_form_id', 0, 'POST');
 if ($formId === $cf_form_id) {
     // Security Check
     if (!$GLOBALS['xoopsSecurity']->check(true, false,  'XCONTACT_TOKEN_FORM_' . $cf_form_id)) {
-        $cf_errors  = \_MD_XCONTACT_TOKEN_ERROR;
+        $cf_errors[]  = \_MD_XCONTACT_TOKEN_ERROR;
     } else {
         $result     = $submissionsHandler->processSubmission($cf_fields, $cf_settings, $cf_form);
         $cf_success = $result['success'];
