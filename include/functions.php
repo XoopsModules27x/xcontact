@@ -9,7 +9,7 @@ defined('XOOPS_ROOT_PATH') || exit();
 
 // ── Upload folder ──────────────────────────────────────────────────────────
 function xcontact_ensure_upload_dir(): bool {
-    $dir = XOOPS_UPLOAD_PATH . '/xcontact';
+    $dir = XCONTACT_UPLOAD_FILE_PATH;
     if (!is_dir($dir) && !mkdir($dir, 0755, true)) return false;
     $htaccess = $dir . '/.htaccess';
     if (!file_exists($htaccess)) {

@@ -1,6 +1,9 @@
 move_uploaded_file Max 5MB · jpg,png,pdf,doc,xls,txt,zip
 ==> replace by XoopsMediaUploader
 
+replace form generation by XOOPS form generation
 
-support of dark mode of admin theme "modern"
+add additional captcha
+
+
 

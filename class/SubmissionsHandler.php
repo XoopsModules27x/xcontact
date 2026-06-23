@@ -177,10 +177,11 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                             $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ': ' . _MD_XCONTACT_FILE_TOO_BIG;
                         } else {
                             xcontact_ensure_upload_dir();
-                            $udir = XOOPS_UPLOAD_PATH . '/xcontact/';
+                            $udir = \XCONTACT_UPLOAD_FILE_PATH . '/';
                             $safe = time() . '_' . preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', $_FILES[$fn]['name']);
+                            $val = \_MD_XCONTACT_UPLOAD_ERROR;
                             if (@move_uploaded_file($_FILES[$fn]['tmp_name'], $udir . $safe)) {
-                                $val = XOOPS_UPLOAD_URL . '/xcontact/' . $safe;
+                                $val = \XCONTACT_UPLOAD_FILE_URL . '/' . $safe;
                             }
                         }
                     } elseif ($req) {

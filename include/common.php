@@ -38,8 +38,10 @@ if (!\defined('XOOPS_ICONS32_URL')) {
 \define('XCONTACT_IMAGE_URL', \XCONTACT_URL . '/assets/images');
 \define('XCONTACT_UPLOAD_PATH', \XOOPS_UPLOAD_PATH . '/' . \XCONTACT_DIRNAME);
 \define('XCONTACT_UPLOAD_URL', \XOOPS_UPLOAD_URL . '/' . \XCONTACT_DIRNAME);
-\define('XCONTACT_UPLOAD_IMAGE_PATH', \XCONTACT_UPLOAD_PATH . '/images');
-\define('XCONTACT_UPLOAD_IMAGE_URL', \XCONTACT_UPLOAD_URL . '/images');
+\define('XCONTACT_UPLOAD_FILE_PATH', \XCONTACT_UPLOAD_PATH . '/files');
+\define('XCONTACT_UPLOAD_FILE_URL', \XCONTACT_UPLOAD_URL . '/files');
+\define('XCONTACT_UPLOAD_TEMP_PATH', \XCONTACT_UPLOAD_PATH . '/temp');
+\define('XCONTACT_UPLOAD_TEMP_URL', \XCONTACT_UPLOAD_URL . '/temp');
 \define('XCONTACT_ADMIN', \XCONTACT_URL . '/admin/index.php');
 $localLogo = \XCONTACT_IMAGE_URL . '/logo.png';
 // Module Information

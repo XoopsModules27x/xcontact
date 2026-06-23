@@ -11,7 +11,7 @@
         </ul>
       </div>
     <{/if}>
-    <form method="post" action="" enctype="multipart/form-data" novalidate>
+    <form id="block_form_<{$block.form_id}>" method="post" action="" enctype="multipart/form-data" novalidate>
     <input type="hidden" name="cf_form_id" value="<{$block.form_id}>">
     <{$block.xoops_token}>
     <div style="position:absolute;left:-9999px;height:0;overflow:hidden"><input type="text" name="cf_hp" tabindex="-1" autocomplete="off"></div>
