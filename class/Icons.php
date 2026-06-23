@@ -97,8 +97,8 @@ class Icons
         'consent' => '✓',
         'signature' => '✒',
         'envelope_open' => '📧',
-        'clone' => '',
-        'dashboard' => '',
+        'clone' => '📄',
+        'dashboard' => '📊',
         'info' => 'ℹ️'
     ];
 
