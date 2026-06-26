@@ -270,7 +270,7 @@ function xcfSave(i){
     if(opts)f.options=opts.value.split('\n').map(function(s){return s.trim();}).filter(Boolean);
     if(!f.width)f.width=12;
     xcfRender();xcfSync();
-    document.getElementById('xcf-inspector').classList.remove('open');
+    xcfCloseInspector();
 }
 
 function xcfCloseInspector(){document.getElementById('xcf-inspector').classList.remove('open');xcfSelIdx=null;xcfRender();}
