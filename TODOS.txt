@@ -7,3 +7,4 @@ add additional captcha
 
 replace xcontact_send_mail by xoopsMailer
 
+

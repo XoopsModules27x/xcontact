@@ -62,7 +62,7 @@ define('_AM_XCONTACT_FT_PARAGRAPH',    'Paragraph');
 define('_AM_XCONTACT_FT_CHOICE',       'Choice');
 define('_AM_XCONTACT_FT_IMAGE_CHOICE', 'Image Choice');
 define('_AM_XCONTACT_FT_DROPDOWN',     'Dropdown');
-define('_AM_XCONTACT_FT_CONSENT',      'Consent');
+define('_AM_XCONTACT_FT_CONSENT',      'Checkbox');
 define('_AM_XCONTACT_FT_SIGNATURE',    'Signature');
 // Form Builder - interface labels
 define('_AM_XCONTACT_BUILDER_FIELD_TYPES',  'Field Types');
@@ -85,7 +85,7 @@ define('_AM_XCONTACT_ISP_REQUIRED',         'Required field');
 define('_AM_XCONTACT_ISP_DESC',             'Description');
 define('_AM_XCONTACT_ISP_WIDTH',            'Width');
 define('_AM_XCONTACT_ISP_WIDTH_FULL',       'Full');
-define('_AM_XCONTACT_ISP_SAVE',             'Save');
+define('_AM_XCONTACT_ISP_SAVE',             'Save and close editor');
 define('_AM_XCONTACT_ISP_SETTINGS_SUFFIX',  'Settings');
 define('_AM_XCONTACT_ISP_DEFAULT_OPTION',   'Option 1');
 define('_AM_XCONTACT_ISP_DEFAULT_OPTION2',  'Option 2');

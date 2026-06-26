@@ -211,6 +211,8 @@ function xcfEdit(i){
     var t=XCF_TYPES[f.type]||{};
     document.getElementById('xcf-isp-title').textContent=t.l+' '+XCF_LANG.isp_settings;
     var hasOpts=['choice','dropdown','image_choice'].indexOf(f.type)>=0;
+    var hasDescr=['choice','consent','signature'].indexOf(f.type)>=0;
+    var hasPlaceholder=['short_text','long_text','email','website','phone'].indexOf(f.type)>=0;
     var isStatic=['label','heading','paragraph'].indexOf(f.type)>=0;
     var isHidden=f.type==='hidden';
     var body=document.getElementById('xcf-isp-body');
@@ -218,11 +220,11 @@ function xcfEdit(i){
     if(isStatic) html+='<div class="xcp-isp-fg"><label>'+XCF_LANG.isp_content+'</label><textarea id="isp-label">'+xcfEsc(f.label||'')+'</textarea></div>';
     else html+='<div class="xcp-isp-fg"><label>'+XCF_LANG.isp_label+'</label><input type="text" id="isp-label" value="'+xcfEsc(f.label||'')+'"></div>';
     html+='<div class="xcp-isp-fg"><label>'+XCF_LANG.isp_name+'</label><input type="text" id="isp-name" value="'+xcfEsc(f.name||'')+'"></div>';
-    if(!isStatic&&!isHidden) html+='<div class="xcp-isp-fg"><label>'+XCF_LANG.isp_ph+'</label><input type="text" id="isp-ph" value="'+xcfEsc(f.placeholder||'')+'"></div>';
+    if(!isStatic&&!isHidden&&hasPlaceholder) html+='<div class="xcp-isp-fg"><label>'+XCF_LANG.isp_ph+'</label><input type="text" id="isp-ph" value="'+xcfEsc(f.placeholder||'')+'"></div>';
     if(isHidden) html+='<div class="xcp-isp-fg"><label>'+XCF_LANG.isp_val+'</label><input type="text" id="isp-val" value="'+xcfEsc(f.value||'')+'"></div>';
     if(hasOpts) html+='<div class="xcp-isp-fg"><label>'+XCF_LANG.isp_opts+'</label><textarea id="isp-opts" rows="5">'+xcfEsc((f.options||[]).join('\n'))+'</textarea></div>';
     if(!isStatic&&f.type!=='heading') html+='<label class="xcp-isp-toggle"><input type="checkbox" id="isp-req"'+(f.required?' checked':'')+'>'+' '+XCF_LANG.isp_required+'</label>';
-    html+='<div class="xcp-isp-fg"><label>'+XCF_LANG.isp_desc+'</label><input type="text" id="isp-desc" value="'+xcfEsc(f.description||'')+'"></div>';
+    if(hasDescr) html+='<div class="xcp-isp-fg"><label>'+XCF_LANG.isp_desc+'</label><input type="text" id="isp-desc" value="'+xcfEsc(f.description||'')+'"></div>';
     html+='<div class="xcp-isp-fg" id="xcf-width-box"></div>';
     html+='<button class="xcp-btn xcp-btn--blue" onclick="xcfSave('+i+')" style="width:100%;justify-content:center;padding:9px;margin-top:4px">'+XCF_LANG.isp_save+'</button>';
     body.innerHTML=html;
@@ -268,6 +270,7 @@ function xcfSave(i){
     if(opts)f.options=opts.value.split('\n').map(function(s){return s.trim();}).filter(Boolean);
     if(!f.width)f.width=12;
     xcfRender();xcfSync();
+    document.getElementById('xcf-inspector').classList.remove('open');
 }
 
 function xcfCloseInspector(){document.getElementById('xcf-inspector').classList.remove('open');xcfSelIdx=null;xcfRender();}
