@@ -63,7 +63,8 @@ class Icons
         'envelope_open' => '<i class="fa-regular fa-envelope-open"></i>',
         'clone' => '<i class="fa-regular fa-clone"></i>',
         'dashboard' => '<i class="fa-solid fa-tachometer-alt"></i>',
-        'info' => '<i class="fa-solid fa-circle-info"></i>'
+        'info' => '<i class="fa-solid fa-circle-info"></i>',
+        'checked' => '<i class="fa-solid fa-square-check"></i>'
     ];
 
     private const UNICODE = [
@@ -99,7 +100,8 @@ class Icons
         'envelope_open' => '📧',
         'clone' => '📄',
         'dashboard' => '📊',
-        'info' => 'ℹ️'
+        'info' => 'ℹ️',
+        'checked' => '✅️'
     ];
 
     public static function iconsLoad(): array

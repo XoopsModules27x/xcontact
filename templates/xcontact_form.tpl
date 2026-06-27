@@ -39,7 +39,7 @@
 <{if !empty($xcontact_error)}>
     <div class="xcontact-errors"><{$xcontact_error}></div>
 <{elseif $xcontact_success}>
-    <div class="xcontact-success">✅ <{$xcontact_settings.success_msg|default:$smarty.const._MD_XCONTACT_SUCCESS}></div>
+    <div class="xcontact-success"><{$icon.checked}> <{$xcontact_settings.success_msg|default:$smarty.const._MD_XCONTACT_SUCCESS}></div>
 <{else}>
 
 <{if $xcontact_form.description}>
@@ -157,7 +157,7 @@
             <{foreach item=opt from=$field.options}>
             <label style="border:2px solid #ddd;border-radius:6px;padding:10px;cursor:pointer;text-align:center;font-size:12px">
                 <input type="checkbox" name="<{$fn|escape}>[]" value="<{$opt|escape}>" style="display:none">
-                <div style="font-size:28px;margin-bottom:5px">🖼</div><{$opt|escape}>
+                <div style="font-size:28px;margin-bottom:5px">🖼</div>aaaa<{$opt|escape}>bbbb
             </label>
             <{/foreach}>
         </div>
