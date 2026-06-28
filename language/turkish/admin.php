@@ -64,6 +64,7 @@ define('_AM_XCONTACT_FT_IMAGE_CHOICE', 'Resimli Seçim');
 define('_AM_XCONTACT_FT_DROPDOWN',     'Açılır Menü');
 define('_AM_XCONTACT_FT_CONSENT',      'Onay');
 define('_AM_XCONTACT_FT_SIGNATURE',    'İmza');
+define('_AM_XCONTACT_FT_RADIO',        'Radyo');
 // Form Builder - arayüz etiketleri
 define('_AM_XCONTACT_BUILDER_FIELD_TYPES',  'Alan Türleri');
 define('_AM_XCONTACT_BUILDER_DRAG_HINT',    'Soldan alan sürükleyin veya çift tıklayın');
@@ -193,3 +194,7 @@ define('_AM_XCONTACT_MAINTAINEDBY',   'Bakımını yapan');
 
 define('_AM_XCONTACT_FORM_OK', 'Başarıyla kaydedildi');
 define('_AM_XCONTACT_INVALID_FORM_ID', 'Geçersiz form kimliği');
+
+define('_AM_XCONTACT_CHECKED', 'Seçili');
+define('_AM_XCONTACT_NOT_CHECKED', 'Seçili değil');
+define('_AM_XCONTACT_DOWNLOAD', 'Dosyayı indir');

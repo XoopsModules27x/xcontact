@@ -64,6 +64,7 @@ define('_AM_XCONTACT_FT_IMAGE_CHOICE', 'Image Choice');
 define('_AM_XCONTACT_FT_DROPDOWN',     'Dropdown');
 define('_AM_XCONTACT_FT_CONSENT',      'Checkbox');
 define('_AM_XCONTACT_FT_SIGNATURE',    'Signature');
+define('_AM_XCONTACT_FT_RADIO',        'Radio');
 // Form Builder - interface labels
 define('_AM_XCONTACT_BUILDER_FIELD_TYPES',  'Field Types');
 define('_AM_XCONTACT_BUILDER_DRAG_HINT',    'Drag a field from the left or double-click');
@@ -193,3 +194,6 @@ define('_AM_XCONTACT_MAINTAINEDBY',   'Maintained by');
 
 define('_AM_XCONTACT_FORM_OK', 'Successfully saved');
 define('_AM_XCONTACT_INVALID_FORM_ID', 'Invalid form id');
+define('_AM_XCONTACT_CHECKED', 'Checked');
+define('_AM_XCONTACT_NOT_CHECKED', 'Not checked');
+define('_AM_XCONTACT_DOWNLOAD', 'Download file');

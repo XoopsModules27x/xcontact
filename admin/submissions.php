@@ -96,17 +96,19 @@ switch ($op) {
         $formObj  = $formsHandler->get($submissionsObj->getVar('form_id'));
         $formName = \_AM_XCONTACT_INVALID_FORM_ID;
         $fields   = [];
-        $fmap     = [];
+        $f_name   = [];
+        $f_type   = [];
         if (\is_object($formObj)) {
             $formName = $formObj->getVar('name');
             $fields   = json_decode($formObj->getVar('fields'),true);
             foreach($fields as $f){
                 if (!empty($f['name'])) {
                     if (isset($f['label'])) {
-                        $fmap[$f['name']] = $f['label'];
+                        $f_name[$f['name']] = $f['label'];
                     } else {
-                        $fmap[$f['name']] = $f['name'];
+                        $f_name[$f['name']] = $f['name'];
                     }
+                    $f_type[$f['name']] = $f['type'];
                 }
             }
         }
@@ -116,8 +118,10 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('module_url',\XCONTACT_URL);
         $GLOBALS['xoopsTpl']->assign('sub',$submissionsObj->getValuesSubmissions());
         $GLOBALS['xoopsTpl']->assign('form_name', $formName);
-        $GLOBALS['xoopsTpl']->assign('fmap',$fmap);
+        $GLOBALS['xoopsTpl']->assign('f_name',$f_name);
+        $GLOBALS['xoopsTpl']->assign('f_type',$f_type);
         $GLOBALS['xoopsTpl']->assign('data',$data);
+        $GLOBALS['xoopsTpl']->assign('xcontact_upload_img_url', \XCONTACT_UPLOAD_IMAGE_URL . '/');
         break;
     case 'delete':
         $templateMain = 'xcontact_admin_submissions.tpl';

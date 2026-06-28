@@ -55,6 +55,7 @@ class Icons
         'label' => '<i class="fa-solid fa-tag"></i>',
         'heading' => '<i class="fa-solid fa-heading"></i>',
         'paragraph' => '<i class="fa-solid fa-paragraph"></i>',
+        'radio' => '<i class="fa-regular fa-circle-dot"></i>',
         'choice' => '<i class="fa-regular fa-square-check"></i>',
         'image' => '<i class="fa-regular fa-images"></i>',
         'dropdown' => '<i class="fa-regular fa-square-caret-down"></i>',
@@ -64,7 +65,8 @@ class Icons
         'clone' => '<i class="fa-regular fa-clone"></i>',
         'dashboard' => '<i class="fa-solid fa-tachometer-alt"></i>',
         'info' => '<i class="fa-solid fa-circle-info"></i>',
-        'checked' => '<i class="fa-solid fa-square-check"></i>'
+        'checked' => '<i class="fa-solid fa-square-check"></i>',
+        'download' => '<i class="fa-solid fa-download"></i>',
     ];
 
     private const UNICODE = [
@@ -92,6 +94,7 @@ class Icons
         'label' => 'L',
         'heading' => 'H',
         'paragraph' => '¶',
+        'radio' => '🔘',
         'choice' => '☑',
         'image' => '🖼',
         'dropdown' => '▼',
@@ -101,7 +104,8 @@ class Icons
         'clone' => '📄',
         'dashboard' => '📊',
         'info' => 'ℹ️',
-        'checked' => '✅️'
+        'checked' => '✅️',
+        'download' => '⬇️',
     ];
 
     public static function iconsLoad(): array

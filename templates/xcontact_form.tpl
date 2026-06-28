@@ -165,7 +165,7 @@
         <label class="xcontact-label"><{$field.label|escape}><{if $field.required}><span class="xcontact-req">*</span><{/if}></label>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px">
             <{foreach item=opt from=$field.options}>
-            <label style="border:2px solid #ddd;border-radius:6px;padding:10px;cursor:pointer;text-align:center;font-size:12px">
+            <label style="border:2px solid #ddd;border-radius:6px;padding:1px;cursor:pointer;text-align:center;font-size:12px">
                 <input type="checkbox" name="<{$fn|escape}>[]" value="<{$opt|escape}>" style="display:none">
                 <div class="xcontact-oi-container">
                 <img class="img-fluid img-responsive" src="<{$xcontact_upload_img_url}><{$opt|escape}>" alt="<{$opt|escape}>" title="<{$opt|escape}>" style="cursor:pointer">
@@ -190,6 +190,26 @@
         <input type="hidden" name="<{$fn|escape}>" id="sig_data_<{$fn}>">
         <button type="button" class="xcontact-sig-clear" onclick="xcfSigClear('<{$fn|escape}>')">🗑 <{$smarty.const._MD_XCONTACT_SIG_CLEAR}></button>
         <{if $field.description}><p class="xcontact-hint"><{$field.description|escape}></p><{/if}>
+    </div>
+<{elseif $field.type eq 'radio'}>
+    <div class="xcontact-fg">
+        <label class="xcontact-label"><{$field.label|escape}><{if $field.required}><span class="xcontact-req">*</span><{/if}></label>
+        <div class="xcontact-choice-list">
+            <{foreach item=opt from=$field.options}>
+            <label>
+                <input type="radio"
+                       name="<{$fn|escape}>"
+                       value="<{$opt|escape}>"
+                <{if $xcontact_data[$fn]|default:'' eq $opt}>checked<{/if}>
+                <{if $field.required}>required<{/if}>>
+                <span><{$opt|escape}></span>
+            </label>
+            <{/foreach}>
+        </div>
+
+        <{if $field.description}>
+        <p class="xcontact-hint"><{$field.description|escape}></p>
+        <{/if}>
     </div>
 <{/if}>
 </div>

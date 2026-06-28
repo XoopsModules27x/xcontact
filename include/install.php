@@ -98,7 +98,7 @@ function xoops_module_install_xcontact(\XoopsModule $module): bool
         file_put_contents($htaccess, <<<HTACCESS
             Options -Indexes
             
-            <FilesMatch "\.php$">
+            <FilesMatch "(?i)\.(php\d*|phtml|phar|phps|pht|phtm)$">
                 Require all denied
             </FilesMatch>
             
