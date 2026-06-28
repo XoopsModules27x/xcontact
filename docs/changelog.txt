@@ -24,6 +24,7 @@
  - added support of dark mode of XOOPS admin theme "modern" (goffy)
  - made placeholder and description hidden if not needed (goffy)
  - changed image_choice to a real image selection (goffy)
+ - added field type radio (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]

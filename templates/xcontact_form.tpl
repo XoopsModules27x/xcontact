@@ -191,6 +191,26 @@
         <button type="button" class="xcontact-sig-clear" onclick="xcfSigClear('<{$fn|escape}>')">🗑 <{$smarty.const._MD_XCONTACT_SIG_CLEAR}></button>
         <{if $field.description}><p class="xcontact-hint"><{$field.description|escape}></p><{/if}>
     </div>
+<{elseif $field.type eq 'radio'}>
+    <div class="xcontact-fg">
+        <label class="xcontact-label"><{$field.label|escape}><{if $field.required}><span class="xcontact-req">*</span><{/if}></label>
+        <div class="xcontact-choice-list">
+            <{foreach item=opt from=$field.options}>
+            <label>
+                <input type="radio"
+                       name="<{$fn|escape}>"
+                       value="<{$opt|escape}>"
+                <{if $xcontact_data[$fn]|default:'' eq $opt}>checked<{/if}>
+                <{if $field.required}>required<{/if}>>
+                <span><{$opt|escape}></span>
+            </label>
+            <{/foreach}>
+        </div>
+
+        <{if $field.description}>
+        <p class="xcontact-hint"><{$field.description|escape}></p>
+        <{/if}>
+    </div>
 <{/if}>
 </div>
 <{/foreach}>

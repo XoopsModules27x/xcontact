@@ -7,27 +7,6 @@
 
 defined('XOOPS_ROOT_PATH') || exit();
 
-// ── Upload folder ──────────────────────────────────────────────────────────
-function xcontact_ensure_upload_dir(): bool {
-    $dir = XCONTACT_UPLOAD_FILE_PATH;
-    if (!is_dir($dir) && !mkdir($dir, 0755, true)) return false;
-    $htaccess = $dir . '/.htaccess';
-    if (!file_exists($htaccess)) {
-        file_put_contents($htaccess, <<<HTACCESS
-            Options -Indexes
-            
-            <FilesMatch "\.php$">
-                Require all denied
-            </FilesMatch>
-            
-            <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|bmp|avif)$">
-                Require all granted
-            </FilesMatch>
-            HTACCESS);
-    }
-    return true;
-}
-
 // ── handling CAPTCHA  ─────────────────────────────────────────────────────────────
 function xcontact_generate_captcha(int $len = 5): array {
     $chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';

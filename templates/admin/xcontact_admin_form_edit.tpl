@@ -56,10 +56,10 @@
         <{$xoops_token}>
 
         <div class="xcp-tabs">
-            <button type="button" class="xcp-tab active" data-tab="settings"><{$icons.settings}> <{$smarty.const._AM_XCONTACT_BUILDER_TAB_SETTINGS}></button>
-            <button type="button" class="xcp-tab" data-tab="builder"><{$icons.builder}> <{$smarty.const._AM_XCONTACT_BUILDER_TAB_BUILDER}></button>
+            <button type="button" class="xcp-tab<{if !$is_edit}> active<{/if}>" data-tab="settings"><{$icons.settings}> <{$smarty.const._AM_XCONTACT_BUILDER_TAB_SETTINGS}></button>
+            <button type="button" class="xcp-tab<{if $is_edit}> active<{/if}>" data-tab="builder"><{$icons.builder}> <{$smarty.const._AM_XCONTACT_BUILDER_TAB_BUILDER}></button>
         </div>
-        <div id="tab-settings" class="xcp-tab-panel active">
+        <div id="tab-settings" class="xcp-tab-panel<{if !$is_edit}> active<{/if}>">
             <div class="xcp-wrap" style="max-width:600px">
                 <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_NAME}></label><input type="text" name="form_name" value="<{$form.name|escape}>" required></div>
                 <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_SLUG}></label><input type="text" name="form_slug" value="<{$form.slug|escape}>" placeholder="<{$smarty.const._AM_XCONTACT_SET_SLUG_PLACEHOLDER}>" pattern="[a-z0-9\-]+" required><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_SLUG_HINT}></small></div>
@@ -72,7 +72,7 @@
                 <div style="margin-top:18px"><button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px"><{$icons.save}> <{$smarty.const._AM_XCONTACT_SAVE}></button></div>
             </div>
         </div>
-        <div id="tab-builder" class="xcp-tab-panel">
+        <div id="tab-builder" class="xcp-tab-panel<{if $is_edit}> active<{/if}>">
             <div class="xcp-builder">
                 <div class="xcp-palette">
                     <h4><{$smarty.const._AM_XCONTACT_BUILDER_FIELD_TYPES}></h4>
@@ -89,6 +89,7 @@
                     <div class="xcp-ft" data-type="label"        draggable="true" ondblclick="xcfAdd('label')"><div class="xcp-ft-icon xcp-ic-grey"><{$icons.label}></div><{$smarty.const._AM_XCONTACT_FT_LABEL}></div>
                     <div class="xcp-ft" data-type="heading"      draggable="true" ondblclick="xcfAdd('heading')"><div class="xcp-ft-icon xcp-ic-grey"><{$icons.heading}></div><{$smarty.const._AM_XCONTACT_FT_HEADING}></div>
                     <div class="xcp-ft" data-type="paragraph"    draggable="true" ondblclick="xcfAdd('paragraph')"><div class="xcp-ft-icon xcp-ic-grey"><{$icons.paragraph}></div><{$smarty.const._AM_XCONTACT_FT_PARAGRAPH}></div>
+                    <div class="xcp-ft" data-type="radio"        draggable="true" ondblclick="xcfAdd('radio')"><div class="xcp-ft-icon xcp-ic-purple"><{$icons.radio}></div><{$smarty.const._AM_XCONTACT_FT_RADIO}></div>
                     <div class="xcp-ft" data-type="choice"       draggable="true" ondblclick="xcfAdd('choice')"><div class="xcp-ft-icon xcp-ic-purple"><{$icons.choice}></div><{$smarty.const._AM_XCONTACT_FT_CHOICE}></div>
                     <div class="xcp-ft" data-type="image_choice" draggable="true" ondblclick="xcfAdd('image_choice')"><div class="xcp-ft-icon xcp-ic-purple"><{$icons.image}></div><{$smarty.const._AM_XCONTACT_FT_IMAGE_CHOICE}></div>
                     <div class="xcp-ft" data-type="dropdown"     draggable="true" ondblclick="xcfAdd('dropdown')"><div class="xcp-ft-icon xcp-ic-purple"><{$icons.dropdown}></div><{$smarty.const._AM_XCONTACT_FT_DROPDOWN}></div>
@@ -141,6 +142,7 @@ var XCF_TYPES = {
     label:{l:<{$smarty.const._AM_XCONTACT_FT_LABEL|json_encode}>},
     heading:{l:<{$smarty.const._AM_XCONTACT_FT_HEADING|json_encode}>},
     paragraph:{l:<{$smarty.const._AM_XCONTACT_FT_PARAGRAPH|json_encode}>},
+    radio:{l:<{$smarty.const._AM_XCONTACT_FT_RADIO|json_encode}>},
     choice:{l:<{$smarty.const._AM_XCONTACT_FT_CHOICE|json_encode}>},
     image_choice:{l:<{$smarty.const._AM_XCONTACT_FT_IMAGE_CHOICE|json_encode}>},
     dropdown:{l:<{$smarty.const._AM_XCONTACT_FT_DROPDOWN|json_encode}>},
@@ -194,7 +196,7 @@ function xcfRender(){
 
 function xcfAdd(type){
     var t=XCF_TYPES[type]||{};
-    xcfFields.push({type:type,name:'field_'+Date.now(),label:t.l||type,placeholder:'',required:false,options:(['choice','dropdown','image_choice'].indexOf(type)>=0)?[XCF_LANG.def_option1,XCF_LANG.def_option2]:[],value:'',description:'',width:12});
+    xcfFields.push({type:type,name:'field_'+Date.now(),label:t.l||type,placeholder:'',required:false,options:(['radio','choice','dropdown','image_choice'].indexOf(type)>=0)?[XCF_LANG.def_option1,XCF_LANG.def_option2]:[],value:'',description:'',width:12});
     xcfRender();xcfSync();xcfEdit(xcfFields.length-1);
 }
 
@@ -210,8 +212,8 @@ function xcfEdit(i){
     var f=xcfFields[i];
     var t=XCF_TYPES[f.type]||{};
     document.getElementById('xcf-isp-title').textContent=t.l+' '+XCF_LANG.isp_settings;
-    var hasOpts=['choice','dropdown','image_choice'].indexOf(f.type)>=0;
-    var hasDescr=['choice','consent','signature'].indexOf(f.type)>=0;
+    var hasOpts=['radio','choice','dropdown','image_choice'].indexOf(f.type)>=0;
+    var hasDescr=['radio','choice','consent','signature'].indexOf(f.type)>=0;
     var hasPlaceholder=['short_text','long_text','email','website','phone'].indexOf(f.type)>=0;
     var isStatic=['label','heading','paragraph'].indexOf(f.type)>=0;
     var isHidden=f.type==='hidden';
