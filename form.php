@@ -74,7 +74,8 @@ $GLOBALS['xoopsTpl']->assign('xcontact_success',    $cf_success);
 $GLOBALS['xoopsTpl']->assign('xcontact_errors',     $cf_errors);
 $GLOBALS['xoopsTpl']->assign('xcontact_data',       $cf_data);   // Cleaned data (array) from POST
 $GLOBALS['xoopsTpl']->assign('xcontact_captcha',    $cf_captcha);
-$GLOBALS['xoopsTpl']->assign('xcontact_module_url', XOOPS_URL . '/modules/xcontact/');
+$GLOBALS['xoopsTpl']->assign('xcontact_module_url', \XCONTACT_URL . '/');
+$GLOBALS['xoopsTpl']->assign('xcontact_upload_img_url', \XCONTACT_UPLOAD_IMAGE_URL . '/');
 $GLOBALS['xoopsTpl']->assign('xoops_pagetitle',     $cf_form['name']);
 $GLOBALS['xoopsTpl']->assign('cf_fileupload_size',  $cf_fileupload_size);
 $GLOBALS['xoopsTpl']->assign('cf_fileupload_types', $cf_fileupload_types);
