@@ -64,7 +64,7 @@ define('_AM_XCONTACT_FT_IMAGE_CHOICE', 'Resimli Seçim');
 define('_AM_XCONTACT_FT_DROPDOWN',     'Açılır Menü');
 define('_AM_XCONTACT_FT_CONSENT',      'Onay');
 define('_AM_XCONTACT_FT_SIGNATURE',    'İmza');
-define('_AM_XCONTACT_FT_RADIO',        'Radio');
+define('_AM_XCONTACT_FT_RADIO',        'Radyo');
 // Form Builder - arayüz etiketleri
 define('_AM_XCONTACT_BUILDER_FIELD_TYPES',  'Alan Türleri');
 define('_AM_XCONTACT_BUILDER_DRAG_HINT',    'Soldan alan sürükleyin veya çift tıklayın');
