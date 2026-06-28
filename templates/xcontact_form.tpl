@@ -34,6 +34,16 @@
 .xcontact-errors{background:#ffebee;border:1px solid #ef9a9a;border-radius:5px;padding:14px 16px;margin-bottom:16px;color:#c62828}
 .xcontact-errors ul{margin:8px 0 0 18px;font-size:13px}
 .xcontact-success{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:5px;padding:20px;text-align:center;color:#2e7d32;font-weight:600;font-size:15px}
+.xcontact-oi-container {
+    display: inline-block;
+    border: 3px solid transparent;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.xcontact-oi-container.aktiv {
+    border-color: blue;
+}
 </style>
 
 <{if !empty($xcontact_error)}>
@@ -157,7 +167,9 @@
             <{foreach item=opt from=$field.options}>
             <label style="border:2px solid #ddd;border-radius:6px;padding:10px;cursor:pointer;text-align:center;font-size:12px">
                 <input type="checkbox" name="<{$fn|escape}>[]" value="<{$opt|escape}>" style="display:none">
-                <div style="font-size:28px;margin-bottom:5px">🖼</div>aaaa<{$opt|escape}>bbbb
+                <div class="xcontact-oi-container">
+                <img class="img-fluid img-responsive" src="<{$xcontact_upload_img_url}><{$opt|escape}>" alt="<{$opt|escape}>" title="<{$opt|escape}>" style="cursor:pointer">
+                </div>
             </label>
             <{/foreach}>
         </div>
@@ -225,6 +237,11 @@
 <{literal}>
 })();
 <{/literal}>
+    document.querySelectorAll(".xcontact-oi-container img").forEach(img => {
+    img.addEventListener("click", () => {
+        img.parentElement.classList.toggle("aktiv");
+    });
+});
 </script>
 
 <{/if}>

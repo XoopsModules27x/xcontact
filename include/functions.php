@@ -11,10 +11,10 @@ defined('XOOPS_ROOT_PATH') || exit();
 function xcontact_ensure_upload_dir(): bool {
     $dir = XCONTACT_UPLOAD_FILE_PATH;
     if (!is_dir($dir) && !mkdir($dir, 0755, true)) return false;
-    $htaccess = $dir . '/.htaccess';
+/*    $htaccess = $dir . '/.htaccess';
     if (!file_exists($htaccess)) {
         file_put_contents($htaccess, "Options -Indexes\n<Files *.php>\n  deny from all\n</Files>\n");
-    }
+    }*/
     return true;
 }
 

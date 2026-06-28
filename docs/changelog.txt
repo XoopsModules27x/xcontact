@@ -23,7 +23,7 @@
  - merged processing submissions from form.php and xcontact_blocks.php into handler (goffy)
  - added support of dark mode of XOOPS admin theme "modern" (goffy)
  - made placeholder and description hidden if not needed (goffy)
-
+ - changed image_choice into real image choice (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]
