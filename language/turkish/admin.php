@@ -194,3 +194,6 @@ define('_AM_XCONTACT_MAINTAINEDBY',   'Bakımını yapan');
 
 define('_AM_XCONTACT_FORM_OK', 'Başarıyla kaydedildi');
 define('_AM_XCONTACT_INVALID_FORM_ID', 'Geçersiz form kimliği');
+
+define('_AM_XCONTACT_CHECKED', 'Seçili');
+define('_AM_XCONTACT_NOT_CHECKED', 'Seçili değil');
