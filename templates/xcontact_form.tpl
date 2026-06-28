@@ -237,11 +237,15 @@
 <{literal}>
 })();
 <{/literal}>
-    document.querySelectorAll(".xcontact-oi-container img").forEach(img => {
-    img.addEventListener("click", () => {
-        img.parentElement.classList.toggle("aktiv");
+    document.querySelectorAll(".xcontact-oi-container").forEach(container => {
+        const input = container.parentElement.querySelector("input[type='checkbox']");
+        if (input) {
+            input.addEventListener("change", () => {
+                container.classList.toggle("aktiv", input.checked);
+            });
+            container.classList.toggle("aktiv", input.checked);
+        }
     });
-});
 </script>
 
 <{/if}>
