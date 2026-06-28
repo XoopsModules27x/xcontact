@@ -42,7 +42,8 @@ The module is inspired by the original xcForm module and has been redesigned for
 * Checkbox Group
 * Image Choice
 * Dropdown List
-* Consent Checkbox (GDPR)
+* Consent Checkbox (e.g. for GDPR)
+* Radio
 * Signature
 
 ### Administration
@@ -86,7 +87,7 @@ The module is inspired by the original xcForm module and has been redesigned for
 | --------------- |--------------------|
 | XOOPS           | 2.7.x              |
 | PHP             | 8.2+               |
-| Bootstrap Theme | Latest             |
+| Bootstrap Theme | 5+                 |
 | MySQL / MariaDB | Supported by XOOPS |
 
 ---

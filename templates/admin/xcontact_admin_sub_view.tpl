@@ -9,13 +9,13 @@
         <div style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;margin-bottom:3px"><{if isset($f_name[$k])}><{$f_name[$k]}><{else}><{$k}><{/if}></div>
         <div style="font-size:13px;color:#222;background:#f8f9fa;padding:8px 10px;border-radius:4px;word-break:break-all">
             <{if $f_type[$k] === 'signature' && $v !== ''}>
-                <img src="<{$v}>" alt="<{$smarty.const._AM_XCONTACT_FT_SIGNATURE}>" title="<{$smarty.const._AM_XCONTACT_FT_SIGNATURE}>" style="max-width:200px;max-height:100px;">
+                <img src="<{$v|escape:'html_attr'}>" alt="<{$smarty.const._AM_XCONTACT_FT_SIGNATURE}>" title="<{$smarty.const._AM_XCONTACT_FT_SIGNATURE}>" style="max-width:200px;max-height:100px;">
             <{elseif $f_type[$k] === 'image_choice'}>
                 <{foreach item=v_img from=$v}>
                     <img src="<{$xcontact_upload_img_url}>/<{$v_img}>" alt="<{$v_img}>" title="<{$v_img}>" style="max-width:200px;max-height:100px;">
                 <{/foreach}>
             <{elseif $f_type[$k] === 'file'}>
-                <{$v|escape}> <a class="xcp-btn xcp-btn--gray" href="<{$v|escape}>" download title="Datei herunterladen"><{$icons.download}></a>
+                <{$v|escape}> <a class="xcp-btn xcp-btn--gray" href="<{$v|escape}>" download title="<{$smarty.const._AM_XCONTACT_DOWNLOAD}>"><{$icons.download}></a>
             <{elseif $f_type[$k] === 'consent'}>
                 <{if $v|intval == 1}>
                     <{$smarty.const._AM_XCONTACT_CHECKED}>

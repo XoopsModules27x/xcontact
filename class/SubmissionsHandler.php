@@ -163,7 +163,7 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                 $req = !empty($field['required']);
                 if (!$fn || in_array($ftype, ['label', 'heading', 'paragraph'])) continue;
 
-                if ($ftype === 'choice' || $ftype === 'image_choice' || $ftype === 'radio') {
+                if ($ftype === 'choice' || $ftype === 'image_choice') {
                     $val = Request::hasVar($fn, 'POST') ? array_filter(array_map(static fn($item) => is_scalar($item) ? strip_tags((string)$item) : '', Request::getArray($fn, [], 'POST'))) : [];
                     if ($req && empty($val)) $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ' ' . _MD_XCONTACT_REQUIRED;
                 } elseif ($ftype === 'file') {

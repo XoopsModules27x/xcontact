@@ -165,7 +165,7 @@
         <label class="xcontact-label"><{$field.label|escape}><{if $field.required}><span class="xcontact-req">*</span><{/if}></label>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px">
             <{foreach item=opt from=$field.options}>
-            <label style="border:2px solid #ddd;border-radius:6px;padding:10px;cursor:pointer;text-align:center;font-size:12px">
+            <label style="border:2px solid #ddd;border-radius:6px;padding:1px;cursor:pointer;text-align:center;font-size:12px">
                 <input type="checkbox" name="<{$fn|escape}>[]" value="<{$opt|escape}>" style="display:none">
                 <div class="xcontact-oi-container">
                 <img class="img-fluid img-responsive" src="<{$xcontact_upload_img_url}><{$opt|escape}>" alt="<{$opt|escape}>" title="<{$opt|escape}>" style="cursor:pointer">

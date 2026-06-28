@@ -197,3 +197,4 @@ define('_AM_XCONTACT_INVALID_FORM_ID', 'Geçersiz form kimliği');
 
 define('_AM_XCONTACT_CHECKED', 'Seçili');
 define('_AM_XCONTACT_NOT_CHECKED', 'Seçili değil');
+define('_AM_XCONTACT_DOWNLOAD', 'Dosyayı indir');

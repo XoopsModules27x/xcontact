@@ -66,7 +66,7 @@ class Icons
         'dashboard' => '<i class="fa-solid fa-tachometer-alt"></i>',
         'info' => '<i class="fa-solid fa-circle-info"></i>',
         'checked' => '<i class="fa-solid fa-square-check"></i>',
-        'download' => '<i class="fa fa-download"></i>',
+        'download' => '<i class="fa-solid fa-download"></i>',
     ];
 
     private const UNICODE = [

@@ -196,3 +196,4 @@ define('_AM_XCONTACT_FORM_OK', 'Successfully saved');
 define('_AM_XCONTACT_INVALID_FORM_ID', 'Invalid form id');
 define('_AM_XCONTACT_CHECKED', 'Checked');
 define('_AM_XCONTACT_NOT_CHECKED', 'Not checked');
+define('_AM_XCONTACT_DOWNLOAD', 'Download file');
