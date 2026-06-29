@@ -122,18 +122,30 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('f_type',$f_type);
         $GLOBALS['xoopsTpl']->assign('data',$data);
         $GLOBALS['xoopsTpl']->assign('xcontact_upload_img_url', \XCONTACT_UPLOAD_IMAGE_URL . '/');
+        $GLOBALS['xoopsTpl']->assign('xcontact_upload_file_url', \XCONTACT_UPLOAD_FILE_URL . '/');
         break;
     case 'delete':
+        if (!$GLOBALS['xoopsSecurity']->check()) {
+            \redirect_header('submissions.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
+        }
         $templateMain = 'xcontact_admin_submissions.tpl';
         $submissionsObj = $submissionsHandler->get($subId);
         if (!\is_object($submissionsObj)) {
             \redirect_header('submissions.php', 3, \_AM_XCONTACT_INVALID_PARAM);
         }
         $subForm_id = $submissionsObj->getVar('form_id');
-        if (!$GLOBALS['xoopsSecurity']->check()) {
-            \redirect_header('submissions.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
-        }
+        // Get submitted data
+        $data = json_decode($submissionsObj->getVar('data'), true);
+
         if ($submissionsHandler->delete($submissionsObj)) {
+            // delete uploaded file
+            foreach ($data as $field => $value) {
+                // check whether it is an uploaded file
+                $fileToDelete = \XCONTACT_UPLOAD_FILE_PATH . '/' .$value;
+                if (!empty($value) && is_file($fileToDelete)) {
+                    unlink($fileToDelete);
+                }
+            }
             \redirect_header('submissions.php?form_id=' . $subForm_id, 3, \_AM_XCONTACT_SUBS_DELETED_OK);
         } else {
             $GLOBALS['xoopsTpl']->assign('error', $submissionsObj->getHtmlErrors());
