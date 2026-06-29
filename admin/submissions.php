@@ -136,13 +136,17 @@ switch ($op) {
         $subForm_id = $submissionsObj->getVar('form_id');
         // Get submitted data
         $data = json_decode($submissionsObj->getVar('data'), true);
+        if (!is_array($data)) { $data = []; }
 
         if ($submissionsHandler->delete($submissionsObj)) {
             // delete uploaded file
             foreach ($data as $field => $value) {
                 // check whether it is an uploaded file
-                $fileToDelete = \XCONTACT_UPLOAD_FILE_PATH . '/' .$value;
-                if (!empty($value) && is_file($fileToDelete)) {
+                $fileToDelete = '';
+                if (!is_array($value)) {
+                    $fileToDelete = \XCONTACT_UPLOAD_FILE_PATH . '/' .\basename($value);
+                }
+                if ('' !== $fileToDelete && is_file($fileToDelete)) {
                     unlink($fileToDelete);
                 }
             }
