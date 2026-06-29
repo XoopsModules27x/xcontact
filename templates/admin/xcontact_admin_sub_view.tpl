@@ -12,10 +12,10 @@
                 <img src="<{$v|escape:'html_attr'}>" alt="<{$smarty.const._AM_XCONTACT_FT_SIGNATURE}>" title="<{$smarty.const._AM_XCONTACT_FT_SIGNATURE}>" style="max-width:200px;max-height:100px;">
             <{elseif $f_type[$k] === 'image_choice'}>
                 <{foreach item=v_img from=$v}>
-                    <img src="<{$xcontact_upload_img_url}>/<{$v_img}>" alt="<{$v_img}>" title="<{$v_img}>" style="max-width:200px;max-height:100px;">
+                    <img src="<{$xcontact_upload_img_url}><{$v_img}>" alt="<{$v_img}>" title="<{$v_img}>" style="max-width:200px;max-height:100px;">
                 <{/foreach}>
             <{elseif $f_type[$k] === 'file'}>
-                <{$v|escape}> <a class="xcp-btn xcp-btn--gray" href="<{$v|escape}>" download title="<{$smarty.const._AM_XCONTACT_DOWNLOAD}>"><{$icons.download}></a>
+                <{$v|escape}> <a class="xcp-btn xcp-btn--gray" href="<{$xcontact_upload_file_url}><{$v|escape}>" download title="<{$smarty.const._AM_XCONTACT_DOWNLOAD}>"><{$icons.download}></a>
             <{elseif $f_type[$k] === 'consent'}>
                 <{if $v|intval == 1}>
                     <{$smarty.const._AM_XCONTACT_CHECKED}>

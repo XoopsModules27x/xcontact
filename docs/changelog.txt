@@ -26,6 +26,7 @@
  - changed image_choice to a real image selection (goffy)
  - added field type radio (goffy)
  - updated displaying of different field types for submissions (goffy)
+ - deleting uploaded files when submission data are deleted (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]
