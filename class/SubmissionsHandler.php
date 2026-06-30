@@ -226,7 +226,15 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                             }
                             $body .= $lbl . ': ' . (is_array($v) ? implode(', ', $v) : $v) . "\n";
                         }
-                        xcontact_send_mail($cf_settings['notify_email'], $cf_settings['email_subject'] ?? _MD_XCONTACT_NEW_SUBMISSION, $body);
+                        $xoopsMailer = xoops_getMailer();
+                        $xoopsMailer->useMail();
+                        $xoopsMailer->setToEmails($cf_settings['notify_email']);
+                        $xoopsMailer->setFromEmail($helper->getConfig('notification_email'));
+                        $xoopsMailer->setFromName($helper->getConfig('notification_name'));
+                        $xoopsMailer->setSubject($cf_settings['email_subject'] ?? _MD_XCONTACT_NEW_SUBMISSION);
+                        $xoopsMailer->multimailer->isHTML();
+                        $xoopsMailer->setBody($body);
+                        $xoopsMailer->send();
                     }
                     $cf_success = true;
                 } else {
