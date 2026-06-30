@@ -123,6 +123,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('data',$data);
         $GLOBALS['xoopsTpl']->assign('xcontact_upload_img_url', \XCONTACT_UPLOAD_IMAGE_URL . '/');
         $GLOBALS['xoopsTpl']->assign('xcontact_upload_file_url', \XCONTACT_UPLOAD_FILE_URL . '/');
+        $GLOBALS['xoopsTpl']->assign('xoops_token', $GLOBALS['xoopsSecurity']->getTokenHTML());
         break;
     case 'delete':
         if (!$GLOBALS['xoopsSecurity']->check()) {

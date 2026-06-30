@@ -83,7 +83,7 @@ class Icons
         'settings' => '⚙️',
         'text' => 'T',
         'longtext' => 'T&#818;',
-        'mail' => '@',
+        'mail' => '📧',
         'website' => '🔗',
         'phone' => '📞',
         'number' => '#',
