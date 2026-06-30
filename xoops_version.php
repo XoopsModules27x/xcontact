@@ -245,3 +245,20 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 1,
 ];
+// config for notifications after submissions
+$modversion['config'][] = [
+    'name'        => 'notification_name',
+    'title'       => '_MI_XCONTACT_NOTIFICATION_NAME',
+    'description' => '_MI_XCONTACT_NOTIFICATION_NAME_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => _MI_XCONTACT_NOTIFICATION_NAME_DEFAULT . ' - ' . $GLOBALS['xoopsConfig']['sitename'],
+];
+$modversion['config'][] = [
+    'name'        => 'notification_email',
+    'title'       => '_MI_XCONTACT_NOTIFICATION_EMAIL',
+    'description' => '_MI_XCONTACT_NOTIFICATION_EMAIL_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => _MI_XCONTACT_NOTIFICATION_EMAIL_DEFAULT . $_SERVER['HTTP_HOST'],
+];

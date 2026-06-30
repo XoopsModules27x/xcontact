@@ -15,9 +15,11 @@
                     <img src="<{$xcontact_upload_img_url}><{$v_img}>" alt="<{$v_img}>" title="<{$v_img}>" style="max-width:200px;max-height:100px;">
                 <{/foreach}>
             <{elseif $f_type[$k] === 'file'}>
-                <{$v|escape}> <a class="xcp-btn xcp-btn--gray" href="<{$xcontact_upload_file_url}><{$v|escape}>" download title="<{$smarty.const._AM_XCONTACT_DOWNLOAD}>"><{$icons.download}></a>
+                <{if $v|escape !== ''}>
+                    <{$v|escape}> <a class="xcp-btn xcp-btn--gray" href="<{$xcontact_upload_file_url}><{$v|escape}>" download title="<{$smarty.const._AM_XCONTACT_DOWNLOAD}>"><{$icons.download}></a>
+                <{/if}>
             <{elseif $f_type[$k] === 'consent'}>
-                <{if $v|intval == 1}>
+                <{if $v == 1}>
                     <{$smarty.const._AM_XCONTACT_CHECKED}>
                 <{else}>
                     <{$smarty.const._AM_XCONTACT_NOT_CHECKED}>
