@@ -5,5 +5,6 @@ replace form generation by XOOPS form generation
 
 add additional captcha
 
+create email reply in xcontact
 
 
