@@ -1,6 +1,6 @@
 <?php
 
-namespace XoopsModules\Xcontact\Captcha;
+namespace XoopsModules\Xcontact;
 
 use XoopsModules\Xcontact\CaptchaInterface;
 

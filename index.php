@@ -9,6 +9,7 @@ use XoopsModules\Xcontact\Constants;
 require_once '../../mainfile.php';
 $xoopsOption['template_main'] = 'xcontact_index.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
+require_once __DIR__ . '/include/functions.php';
 require __DIR__ . '/header.php';
 
 $start  = Request::getInt('start');

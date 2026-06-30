@@ -10,6 +10,7 @@ use XoopsModules\Xcontact\CaptchaHandler;
 require_once '../../mainfile.php';
 $xoopsOption['template_main'] = 'xcontact_form.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
+require_once __DIR__ . '/include/functions.php';
 require_once __DIR__ . '/header.php';
 
 $slug   = Request::getString('slug', '', 'GET');
@@ -61,8 +62,13 @@ if ($formId === $cf_form_id) {
 $cf_captcha = '';
 if (!empty($cf_settings['enable_captcha']) && !$cf_success) {
     global $xoopsModuleConfig;
+    //$cap_len    = isset($xoopsModuleConfig['captcha_length']) ? (int)$xoopsModuleConfig['captcha_length'] : 5;
+    //$cf_captcha = xcontact_generate_captcha($cap_len);
+
     $handler = new CaptchaHandler();
-    $captcha = $handler->getInstance($helper->getConfig('captcha_type'));
+
+    $captcha = $handler->getInstance('custom');
+
     $cf_captcha = $captcha->render();
 }
 

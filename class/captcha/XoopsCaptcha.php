@@ -1,5 +1,5 @@
 <?php
-namespace XoopsModules\Xcontact\Captcha;
+namespace XoopsModules\Xcontact;
 
 use XoopsModules\Xcontact\CaptchaInterface;
 
@@ -9,9 +9,9 @@ class XoopsCaptcha implements CaptchaInterface
 
     public function render(): string
     {
+        xoops_load('XoopsFormCaptcha');
 
-        xoops_load('XoopsCaptcha');
-        $captcha = XoopsCaptcha::getInstance();
+        $captcha = new XoopsFormCaptcha();
 
         return $captcha->render();
     }
