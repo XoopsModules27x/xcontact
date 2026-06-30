@@ -33,3 +33,5 @@ defined('XOOPS_ROOT_PATH') || exit();
 \define('_MI_XCONTACT_NOTIFICATION_EMAIL', 'E-Mail sender notifications');
 \define('_MI_XCONTACT_NOTIFICATION_EMAIL_DESC', 'E-Mail sender used for notifications about submissions');
 \define('_MI_XCONTACT_NOTIFICATION_EMAIL_DEFAULT', 'noreply@');
+\define('_MI_XCONTACT_CAPTCHA_TYPE', 'Captcha type');
+\define('_MI_XCONTACT_CAPTCHA_TYPE_DESC', 'Select which captcha type you want to use. The usage you have additionally to activate in the forms');

@@ -197,7 +197,7 @@ $modversion['config'][] = [
         'zip'   => 'zip',
     ],
 ];
-//  jpg,png,pdf,doc,xls,txt,zip
+
 $modversion['config'][] = [
     'name'        => 'captcha_length',
     'title'       => '_MI_XCONTACT_CFG_CAPTCHA_LEN',
@@ -206,6 +206,24 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 5,
 ];
+
+$modversion['config'][] = [
+    'name'        => 'captcha_type',
+    'title'       => '_MI_XCONTACT_CAPTCHA_TYPE',
+    'description' => '_MI_XCONTACT_CAPTCHA_TYPE_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'xoops',
+    'options'     => [
+        'XOOPS Captcha'          => 'xoops',
+        'Google reCAPTCHA v2'    => 'google',
+        'xContact Custom'        => 'custom',
+    ],
+];
+
+
+
+
 $modversion['config'][] = [
     'name'        => 'iconset',
     'title'       => '_MI_XCONTACT_ICONSET',

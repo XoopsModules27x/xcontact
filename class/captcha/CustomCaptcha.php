@@ -1,6 +1,6 @@
 <?php
 
-namespace XoopsModules\Xcontact;
+namespace XoopsModules\Xcontact\Captcha;
 
 use Xmf\Request;
 use XoopsModules\Xcontact\CaptchaInterface;
@@ -11,7 +11,7 @@ class CustomCaptcha implements CaptchaInterface
     {
         $chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
         $code  = '';
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $code .= $chars[random_int(0, strlen($chars) - 1)];
         }
         $_SESSION['xcontact_captcha'] = $code;
@@ -31,15 +31,20 @@ class CustomCaptcha implements CaptchaInterface
             ob_start(); imagepng($im); $raw = ob_get_clean(); imagedestroy($im);
             $img_data = 'data:image/png;base64,' . base64_encode($raw);
         }
-
-        $ret = '<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">';
+        $ret = '';
+        /*$ret = '<div class="xcontact-fg" style="margin-top:8px">
+                    <label class="xcontact-label">' . _MD_XCONTACT_SECURITY_CODE . ' <span class="xcontact-req">*</span></label>
+                    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">';
+        */
+        $ret .= '<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">';
         if ('' !== $img_data) {
-            $ret .= '<img src="data:image/png;base64,' . base64_encode($img_data) . '" style="border:1px solid #ddd;border-radius:4px;height:44px" />';
+            $ret .= '<img src="' . $img_data . '" style="border:1px solid #ddd;border-radius:4px;height:44px" />';
         } else {
             $ret .= '<div style="background:#1976d2;color:#fff;padding:8px 16px;border-radius:4px;font-size:18px;font-weight:700;letter-spacing:6px;font-family:monospace">' . $code . '</div>';
         }
         $ret .= '<input type="text" name="cf_captcha" placeholder="' . _MD_XCONTACT_CODE_HINT . '" required autocomplete="off" style="width:180px;padding:10px 12px;border:1px solid #ddd;border-radius:5px;font-size:14px">';
         $ret .= '</div>';
+        //$ret .= '</div></div>';
 
         return $ret;
     }

@@ -26,7 +26,7 @@ namespace XoopsModules\Xcontact;
 
 use Xmf\Request;
 use XoopsModules\Xcontact\Constants;
-
+use XoopsModules\Xcontact\CaptchaHandler;
 
 /**
  * Class Object Handler Submissions
@@ -151,8 +151,10 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
 
         // Captcha
         if (!$cf_success && !empty($cf_settings['enable_captcha'])) {
-            if (!xcontact_verify_captcha(Request::getString('cf_captcha', '', 'POST'))) {
-                $cf_errors[] = _MD_XCONTACT_CAPTCHA_ERROR;
+            $captcha = (new CaptchaHandler())->getInstance($helper->getConfig('captcha_type'));
+
+            if (!$captcha->verify()) {
+                $errors[] = _MD_XCONTACT_CAPTCHA_ERROR;
             }
         }
 
