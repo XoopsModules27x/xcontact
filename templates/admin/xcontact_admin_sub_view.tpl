@@ -3,7 +3,7 @@
         <h2><{$icons.envelope_open}> <{$smarty.const._AM_XCONTACT_SUB_VIEW_TITLE}> #<{$sub.sub_id|escape}> — <{$form_name|escape}></h2>
         <div>
         <a href="<{$module_url}>/admin/submissions.php?form_id=<{$sub.form_id|escape:'url'}>" class="xcp-btn xcp-btn--gray"><{$icons.back}> <{$smarty.const._AM_XCONTACT_SUB_VIEW_BACK}></a>
-        <form method="post" action="<{$module_url}>/admin/submissions.php" style="display:inline" onsubmit="return confirm('<{$smarty.const._AM_XCONTACT_SUBS_CONFIRM_DEL}>')">
+        <form method="post" action="<{$module_url}>/admin/submissions.php" style="display:inline" onsubmit="return confirm('<{$smarty.const._AM_XCONTACT_SUBS_CONFIRM_DEL|escape:"javascript"}>')">
             <input type="hidden" name="op" value="delete">
             <input type="hidden" name="sub_id" value="<{$sub.sub_id}>">
             <input type="hidden" name="form_id" value="<{$sub.form_id}>">
@@ -26,7 +26,7 @@
                 <{$v|escape}> <a class="xcp-btn xcp-btn--blue" href="<{$xcontact_upload_file_url}><{$v|escape}>" download title="<{$smarty.const._AM_XCONTACT_DOWNLOAD}>"><{$icons.download}></a>
             <{elseif $f_type[$k] == 'email' &&  $v|escape != ''}>
                 <{$v|escape}>
-                <a class="xcp-btn xcp-btn--blue" href="mailto:<{$v|escape}>" class="btn btn-primary">
+                <a class="xcp-btn xcp-btn--blue" href="mailto:<{$v|escape}>">
                     <{$icons.envelope_open}> <{$smarty.const._REPLY}>
                 </a>
             <{elseif $f_type[$k] == 'consent'}>
