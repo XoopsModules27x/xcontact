@@ -229,8 +229,8 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                         $xoopsMailer = xoops_getMailer();
                         $xoopsMailer->useMail();
                         $xoopsMailer->setToEmails($cf_settings['notify_email']);
-                        $xoopsMailer->setFromEmail($helper->getConfig('notification_name'));
-                        $xoopsMailer->setFromName($helper->getConfig('notification_email'));
+                        $xoopsMailer->setFromEmail($helper->getConfig('notification_email'));
+                        $xoopsMailer->setFromName($helper->getConfig('notification_name'));
                         $xoopsMailer->setSubject($cf_settings['email_subject'] ?? _MD_XCONTACT_NEW_SUBMISSION);
                         $xoopsMailer->multimailer->isHTML();
                         $xoopsMailer->setBody($body);

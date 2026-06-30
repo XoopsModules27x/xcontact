@@ -260,5 +260,5 @@ $modversion['config'][] = [
     'description' => '_MI_XCONTACT_NOTIFICATION_EMAIL_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => _MI_XCONTACT_NOTIFICATION_EMAIL_DEFAULT . $_SERVER['HTTP_HOST'],
+    'default'     => _MI_XCONTACT_NOTIFICATION_EMAIL_DEFAULT . ($_SERVER['HTTP_HOST'] ?? 'localhost'),
 ];

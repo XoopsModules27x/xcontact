@@ -40,12 +40,3 @@ function xcontact_verify_captcha(string $input): bool {
     unset($_SESSION['xcontact_captcha']);
     return strtoupper(trim($input)) === strtoupper($stored);
 }
-
-// ── Send Mail ───────────────────────────────────────────────────────────────
-function xcontact_send_mail(string $to, string $subject, string $body): void {
-    global $xoopsConfig;
-    $from    = $xoopsConfig['adminmail'] ?? ('noreply@' . ($_SERVER['HTTP_HOST'] ?? 'localhost'));
-    $headers = "From: {$from}\r\nReply-To: {$from}\r\nMIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\n";
-    $subj    = '=?UTF-8?B?' . base64_encode($subject) . '?=';
-    @mail($to, $subj, $body, $headers);
-}
