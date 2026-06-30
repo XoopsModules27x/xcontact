@@ -220,12 +220,7 @@
 <div class="xcontact-fg" style="margin-top:8px">
     <label class="xcontact-label"><{$smarty.const._MD_XCONTACT_SECURITY_CODE}> <span class="xcontact-req">*</span></label>
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-        <{if $xcontact_captcha.img}>
-        <img src="<{$xcontact_captcha.img}>" style="border:1px solid #ddd;border-radius:4px;height:44px">
-        <{else}>
-        <div style="background:#1976d2;color:#fff;padding:8px 16px;border-radius:4px;font-size:18px;font-weight:700;letter-spacing:6px;font-family:monospace"><{$xcontact_captcha.code}></div>
-        <{/if}>
-        <input type="text" name="cf_captcha" placeholder="<{$smarty.const._MD_XCONTACT_CODE_HINT|escape}>" required autocomplete="off" style="width:180px;padding:10px 12px;border:1px solid #ddd;border-radius:5px;font-size:14px">
+        <{$xcontact_captcha}>
     </div>
 </div>
 <{/if}>

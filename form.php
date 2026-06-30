@@ -5,6 +5,7 @@
  */
 
 use Xmf\Request;
+use XoopsModules\Xcontact\CaptchaHandler;
 
 require_once '../../mainfile.php';
 $xoopsOption['template_main'] = 'xcontact_form.tpl';
@@ -58,11 +59,17 @@ if ($formId === $cf_form_id) {
 }
 
 // ── Generate CAPTCHA (AFTER POST request — to avoid overwriting the session) ────────────
-$cf_captcha = ['code' => '', 'img' => ''];
+$cf_captcha = '';
 if (!empty($cf_settings['enable_captcha']) && !$cf_success) {
     global $xoopsModuleConfig;
-    $cap_len    = isset($xoopsModuleConfig['captcha_length']) ? (int)$xoopsModuleConfig['captcha_length'] : 5;
-    $cf_captcha = xcontact_generate_captcha($cap_len);
+    //$cap_len    = isset($xoopsModuleConfig['captcha_length']) ? (int)$xoopsModuleConfig['captcha_length'] : 5;
+    //$cf_captcha = xcontact_generate_captcha($cap_len);
+
+    $handler = new CaptchaHandler();
+
+    $captcha = $handler->getInstance('custom');
+
+    $cf_captcha = $captcha->render();
 }
 
 // ── assign to template ────────────────────────────────────────────────────────────
