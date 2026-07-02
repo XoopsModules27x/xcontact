@@ -73,16 +73,27 @@ class FormSelect extends \XoopsFormSelect
             $ret .=  ' required ';
         }
         $ret .= $this->getExtra() . '>';
-
         $elementOptions = $this->getOptions();
+        $currentValue   = $this->getValue();
         if (defined('_MD_XCONTACT_SELECT_OPT')) {
             $ret .= '<option value="">' . \_MD_XCONTACT_SELECT_OPT . '</option>';
         } else {
             $ret .= '<option value="">' . \_AM_XCONTACT_SELECT_OPT . '</option>';
         }
-
         foreach ($elementOptions as $value => $name) {
-            $ret .= '<option value="' . $value . '">' . $name . '</option>';
+            $selected = '';
+            if (is_array($currentValue)) {
+                // Support multi-select style values by string-comparing
+                $currentValueStrs = array_map('strval', $currentValue);
+                if (in_array((string)$value, $currentValueStrs, true)) {
+                    $selected = ' selected="selected"';
+                }
+            } else {
+                if ((string)$value === (string)$currentValue) {
+                    $selected = ' selected="selected"';
+                }
+            }
+            $ret .= '<option value="' . $value . '"' . $selected . '>' . $name . '</option>';
         }
 
         if (($desc = $this->getDescription()) !== '') {

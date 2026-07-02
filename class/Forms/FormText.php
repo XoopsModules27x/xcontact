@@ -69,13 +69,13 @@ class FormText extends \XoopsFormText
         $ret .= '</span></label>';
         $ret .=  '<input id="xcf_' . $this->getName() . '" type="' . $this->getType() . '" name="'  . $this->getName() . '"';
         if ($this->placeholder) {
-            $ret .= ' placeholder="' . $this->getPlaceholder() . '"';
+            $ret .= ' placeholder="' . htmlspecialchars($this->getPlaceholder(), ENT_QUOTES, 'UTF-8') . '"';
         }
-        $ret .=  ' value="' . $this->getValue() . '"';
+        $ret .=  ' value="' . htmlspecialchars($this->getValue(), ENT_QUOTES, 'UTF-8') . '"';
         if ($this->isRequired()) {
             $ret .=  ' required ';
         }
-        $ret .=  ' title="' . $this->getTitle() . '"';
+        $ret .=  ' title="' . htmlspecialchars($this->getTitle(), ENT_QUOTES, 'UTF-8') . '"';
 
         if ($this->_hidden) {
             $ret .= ' style="display:none" ';

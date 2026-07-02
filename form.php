@@ -67,27 +67,16 @@ if (!empty($cf_settings['enable_captcha']) && !$cf_success) {
 }
 
 // ── assign to template ────────────────────────────────────────────────────────────
-$GLOBALS['xoopsTpl']->assign('xcontact_form',       $cf_form);
-$GLOBALS['xoopsTpl']->assign('xcontact_fields',     $cf_fields);
+$GLOBALS['xoopsTpl']->assign('xcontact_form_descr', $cf_form['description']);
 $GLOBALS['xoopsTpl']->assign('xcontact_settings',   $cf_settings);
 $GLOBALS['xoopsTpl']->assign('xcontact_form_id',    $cf_form_id);
 $GLOBALS['xoopsTpl']->assign('xcontact_success',    $cf_success);
 $GLOBALS['xoopsTpl']->assign('xcontact_errors',     $cf_errors);
-$GLOBALS['xoopsTpl']->assign('xcontact_data',       $cf_data);   // Cleaned data (array) from POST
-$GLOBALS['xoopsTpl']->assign('xcontact_captcha',    $cf_captcha);
-$GLOBALS['xoopsTpl']->assign('xcontact_module_url', \XCONTACT_URL . '/');
-$GLOBALS['xoopsTpl']->assign('xcontact_upload_img_url', \XCONTACT_UPLOAD_IMAGE_URL . '/');
 $GLOBALS['xoopsTpl']->assign('xoops_pagetitle',     $cf_form['name']);
-$GLOBALS['xoopsTpl']->assign('cf_fileupload_size',  $cf_fileupload_size);
-$GLOBALS['xoopsTpl']->assign('cf_fileupload_types', $cf_fileupload_types);
-$GLOBALS['xoopsTpl']->assign('xoops_token',$GLOBALS['xoopsSecurity']->getTokenHTML());
 
-
-
-//test form
 // Form Create
 $formsObj = $formsHandler->get($cf_form_id);
-$form = $formsObj->getFormUI();
+$form = $formsObj->getFormUI($cf_data);
 $GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 require_once XOOPS_ROOT_PATH . '/footer.php';

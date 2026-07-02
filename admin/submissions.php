@@ -141,18 +141,23 @@ switch ($op) {
 
         if ($submissionsHandler->delete($submissionsObj)) {
             // delete uploaded file
-            foreach ($data as $field => $value) {
-                if ('' !== $value && is_string($value)) {
-                    // check whether it is an uploaded file
-                    $fileToDelete = '';
-                    if (!is_array($value)) {
-                        $fileToDelete = \XCONTACT_UPLOAD_FILE_PATH . '/' .\basename($value);
+            $fileFields = [];
+            $formObj = $formsHandler->get($subForm_id);
+            if (is_object($formObj)) {
+                $fields = json_decode($formObj->getVar('fields'), true) ?: [];
+                foreach ($fields as $f) {
+                    if (isset($f['type'], $f['name']) && $f['type'] === 'file') {
+                        $fileFields[] = $f['name'];
                     }
-                    if ('' !== $fileToDelete && is_file($fileToDelete)) {
+                }
+            }
+            foreach ($data as $field => $value) {
+                if (in_array($field, $fileFields, true) && is_string($value) && '' !== $value) {
+                    $fileToDelete = \XCONTACT_UPLOAD_FILE_PATH . '/' . \basename($value);
+                    if (is_file($fileToDelete)) {
                         unlink($fileToDelete);
                     }
                 }
-
             }
             \redirect_header('submissions.php?form_id=' . $subForm_id, 3, \_AM_XCONTACT_SUBS_DELETED_OK);
         } else {

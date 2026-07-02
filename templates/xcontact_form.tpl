@@ -48,8 +48,8 @@
 .xcontact-fg-paragraph p {font-size:13px;color:#666;line-height:1.6}
 .xcontact-fg-file input {width:100%;padding:8px;border:1px dashed #bbb;border-radius:5px;background:#fafafa;font-size:13px}
 .xcontact-fg-imgchoice-container {display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
-.xcontact-fg-imgchoice-container label {border:2px solid #ddd;border-radius:6px;padding:1px;cursor:pointer;text-align:center;font-size:12px};
-.xcontact-fg-imgchoice-container img {cursor:pointer};
+.xcontact-fg-imgchoice-container label {border:2px solid #ddd;border-radius:6px;padding:1px;cursor:pointer;text-align:center;font-size:12px;}
+.xcontact-fg-imgchoice-container img {cursor:pointer}
 
 
 
@@ -61,8 +61,8 @@
     <div class="xcontact-success"><{$icon.checked}> <{$xcontact_settings.success_msg|default:$smarty.const._MD_XCONTACT_SUCCESS}></div>
 <{else}>
 
-<{if $xcontact_form.description}>
-<p style="color:#666;font-size:14px;margin-bottom:20px"><{$xcontact_form.description|nl2br}></p>
+<{if $xcontact_form_descr|default:''}>
+<p style="color:#666;font-size:14px;margin-bottom:20px"><{$xcontact_form_descr|nl2br}></p>
 <{/if}>
 
 <{if !empty($xcontact_errors)}>

@@ -2,8 +2,9 @@ move_uploaded_file Max 5MB · jpg,png,pdf,doc,xls,txt,zip
 ==> replace by XoopsMediaUploader
 remove preference upload_filetypes
 
+form.php: send $cf_data to form renderer
 
-add additional captcha
+add (additional) captcha
 
 create email reply in xcontact
 

@@ -66,7 +66,7 @@ class Form extends \XoopsThemeForm
         }
         if (count($this->getRequired()) > 0) {
             //  Add caption marker constructed using renderer's formatting
-            $ret .= NWLINE . '<div class="col-12 mb-2"> <span class="xo-caption-required">*</span> = ' . _REQUIRED . '</div>' . NWLINE;
+            $ret .= '<div class="col-12 mb-2"> <span class="xo-caption-required">*</span> = ' . _REQUIRED . '</div>' . NWLINE;
         }
         $ret .= $hidden;
         $ret .= '</form></div>';

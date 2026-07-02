@@ -78,10 +78,10 @@ class Forms extends \XoopsObject
 
     /**
      * @public function getForm for UI
-     * @param bool $action
+     * @param array $data
      * @return \XoopsThemeForm
      */
-    public function getFormUI($action = false)
+    public function getFormUI($data)
     {
         $helper = \XoopsModules\Xcontact\Helper::getInstance();
 
@@ -177,7 +177,7 @@ class Forms extends \XoopsObject
                 case 'file':
                     $maxsize = (int)$helper->getConfig('upload_max_size');
                     $description = \_MD_XCONTACT_FORM_UPLOAD_SIZE . ($maxsize / 1048576) . ' ' . \_MD_XCONTACT_FORM_UPLOAD_SIZE_MB .  ' <br>';
-                    $mimeTypesConfig = $helper->getConfig('upload_mimetypes');
+                    $mimeTypesConfig = (array)$helper->getConfig('upload_mimetypes');
                     $mimetypes = new MimeTypes();
                     $mimetypesPoss = $mimetypes::getList();
                     $mimetypeKeys = array_keys(array_intersect($mimetypesPoss, $mimeTypesConfig));

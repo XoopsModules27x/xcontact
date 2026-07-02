@@ -83,15 +83,21 @@ class FormCheckbox extends \XoopsFormSelect
         }
 
         $elementOptions = $this->getOptions();
+        $selectedValue = $this->getValue();
         foreach ($elementOptions as $value => $name) {
             $ret .= '<label><input type="' . $this->getType() . '" name="' . $this->getName() . $arrSuffix . '" title="'
                 . htmlspecialchars(strip_tags($name), ENT_QUOTES | ENT_HTML5) . '" value="'
-                . $value . '"';
+                . htmlspecialchars($value, ENT_QUOTES, 'UTF-8') . '"';
             if ($this->isRequired()) {
                 $ret .=  ' required ';
             }
+            if (is_array($selectedValue) && in_array($value, $selectedValue)) {
+                $ret .= ' checked';
+            } elseif ($value == $selectedValue) {
+                $ret .= ' checked';
+            }
             $ret .= $this->getExtra() . '>';
-            $ret .= '<span>' . $name . '</span></label>';
+            $ret .= '<span>' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '</span></label>';
         }
         $ret .= '</div>';
         if (($desc = $this->getDescription()) !== '') {

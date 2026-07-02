@@ -72,17 +72,23 @@ class FormSelectImage extends \XoopsFormSelect
         $ret .= '<div class="xcontact-fg-imgchoice-container">';
 
         $elementOptions = $this->getOptions();
+        $selectedValue = $this->getValue();
         foreach ($elementOptions as $value => $name) {
             $ret .= '<label><input type="' . $this->getType() . '" name="' . $this->getName() . '[]" title="'
                 . htmlspecialchars(strip_tags($name), ENT_QUOTES | ENT_HTML5) . '" value="'
-                . $value . '"';
+                . htmlspecialchars($value, ENT_QUOTES, 'UTF-8') . '"';
 
             if ($this->isRequired()) {
                 $ret .=  ' required ';
             }
+            if (is_array($selectedValue) && in_array($value, $selectedValue)) {
+                $ret .= ' checked';
+            } elseif ($value == $selectedValue) {
+                $ret .= ' checked';
+            }
             $ret .= $this->getExtra() . ' style="display:none">';
             $ret .= '<div class="xcontact-oi-container">';
-            $ret .= '<img class="img-fluid img-responsive" src="' . \XCONTACT_UPLOAD_IMAGE_URL . '/' . $name . '" alt="' . $name . '" title="' . $name . '">';
+            $ret .= '<img class="img-fluid img-responsive" src="' . \XCONTACT_UPLOAD_IMAGE_URL . '/' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" title="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '">';
             $ret .= '</div>';
             $ret .= '</label>';
         }

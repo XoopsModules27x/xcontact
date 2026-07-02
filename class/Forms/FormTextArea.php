@@ -72,7 +72,7 @@ class FormTextArea extends \XoopsFormTextArea
             $ret .= ' style="display:none" ';
         }
 
-        $ret .= '></textarea>';
+        $ret .= '>' . htmlspecialchars($this->getValue(), ENT_QUOTES, 'UTF-8') . '</textarea>';
         if (($desc = $this->getDescription()) !== '') {
             $ret .= '<p class="xcontact-hint">' . $desc . '</p>';
         }
