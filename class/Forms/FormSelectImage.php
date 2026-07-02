@@ -62,7 +62,7 @@ class FormSelectImage extends \XoopsFormSelect
     {
         $ret = '<div class="' . $this->getColsize() . '">';
         $ret .= '<div class="' . $this->getClass() . '">';
-        $ret .= '<label class="xcontact-label"><span>' . $this->getCaption();
+        $ret .= '<label class="xcontact-label"><span>' . htmlspecialchars($this->getCaption(), ENT_QUOTES, 'UTF-8');
         if ($this->isRequired()) {
             $ret .=  '<span class="xcontact-req">*</span> ';
         }
