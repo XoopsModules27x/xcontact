@@ -53,7 +53,7 @@ class FormHidden extends \XoopsFormHidden
      */
     public function render()
     {
-        return '<input type="hidden" name="' . $this->getName() . '" value="' . $this->getValue() . '">';
+        return '<input type="hidden" name="' . htmlspecialchars($this->getName(), ENT_QUOTES) . '" value="' . htmlspecialchars((string)$this->getValue(), ENT_QUOTES) . '">';
     }
 
     /**

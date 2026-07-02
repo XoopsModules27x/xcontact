@@ -88,7 +88,7 @@ class FormSelectImage extends \XoopsFormSelect
             }
             $ret .= $this->getExtra() . ' style="display:none">';
             $ret .= '<div class="xcontact-oi-container">';
-            $ret .= '<img class="img-fluid img-responsive" src="' . \XCONTACT_UPLOAD_IMAGE_URL . '/' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '" title="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '">';
+            $ret .= '<img class="img-fluid img-responsive" src="' . \XCONTACT_UPLOAD_IMAGE_URL . '/' . rawurlencode($name) . '" alt="' . htmlspecialchars($name, ENT_QUOTES | ENT_HTML5) . '" title="' . htmlspecialchars($name, ENT_QUOTES | ENT_HTML5) . '">';
             $ret .= '</div>';
             $ret .= '</label>';
         }

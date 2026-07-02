@@ -176,8 +176,7 @@ switch ($op) {
         // Set Vars
         $formName = trim(Request::getString('form_name'));
         $formsObj->setVar('name', $formName);
-        $formTitle = trim(Request::getString('form_title'));
-        $formsObj->setVar('title', str_replace(["'", '"'], '', $formTitle));
+        $formsObj->setVar('title', trim(Request::getString('form_title')));
         $slug = preg_replace('/[^a-z0-9\-]/','',strtolower(trim(Request::getString('form_slug'))));
         if ('' === $slug) {
             $slug = preg_replace('/[^a-z0-9\-]/','',strtolower($formName)) . '-' . time();

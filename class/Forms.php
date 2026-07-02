@@ -232,7 +232,6 @@ class Forms extends \XoopsObject
                     break;
                 case 'dropdown':
                     $formEle[$fieldName] = new Forms\FormSelect($cf_field['label'],  $cf_field['name'], '');
-                    $formEle[$fieldName]->setType('checkbox');
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
                     $formEle[$fieldName]->setDescription($cf_field['description']);
