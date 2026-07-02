@@ -29,6 +29,7 @@
  - deleting uploaded files when submission data are deleted (goffy)
  - replaced xcontact_send_mail by xoops_mailer (goffy)
  - added button for reply email (goffy)
+ - replaced tpl form generation by XOOPS form generation (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]

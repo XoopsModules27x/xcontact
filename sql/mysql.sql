@@ -1,6 +1,7 @@
 CREATE TABLE `xcontact_forms` (
     `form_id`     INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `name`        VARCHAR(255) NOT NULL DEFAULT '',
+    `title`       VARCHAR(255) NOT NULL DEFAULT '',
     `slug`        VARCHAR(100) NOT NULL DEFAULT '',
     `description` TEXT NOT NULL,
     `fields`      LONGTEXT NOT NULL,

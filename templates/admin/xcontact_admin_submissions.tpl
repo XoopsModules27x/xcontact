@@ -13,7 +13,7 @@
 
     <div style="margin-bottom:16px">
         <select onchange="if(this.value)location.href='<{$module_url}>admin/submissions.php?form_id='+this.value" style="padding:7px 10px;border:1px solid #ddd;border-radius:4px">
-            <option value=""><{$smarty.const._AM_XCONTACT_SUBS_SELECT}></option>
+            <option value=""><{$smarty.const._AM_XCONTACT_SELECT_OPT}></option>
             <{foreach item=f from=$forms|default:[]}>
             <option value="<{$f.form_id}>"<{if $form_id|default:0 eq $f.form_id}> selected<{/if}>><{$f.name}></option>
             <{/foreach}>
@@ -39,13 +39,15 @@
                 <td><{if $s.status eq 0}><span class="xcp-badge xcp-new"><{$smarty.const._AM_XCONTACT_SUB_NEW}></span><{else}><span class="xcp-badge xcp-on"><{$smarty.const._AM_XCONTACT_SUB_READ}></span><{/if}></td>
                 <td>
                     <a href="<{$module_url}>admin/submissions.php?op=view&sub_id=<{$s.sub_id}>" class="xcp-btn xcp-btn--blue"><{$smarty.const._AM_XCONTACT_SUBS_BTN_VIEW}></a>
-                    <form method="post" action="<{$module_url}>admin/submissions.php" style="display:inline" onsubmit="return confirm('<{$smarty.const._AM_XCONTACT_SUBS_CONFIRM_DEL|escape:"javascript"}>')">
-                        <input type="hidden" name="op" value="delete">
-                        <input type="hidden" name="sub_id" value="<{$s.sub_id}>">
-                        <input type="hidden" name="form_id" value="<{$form_id}>">
-                        <button type="submit" class="xcp-btn xcp-btn--red"><{$smarty.const._AM_XCONTACT_SUBS_BTN_DEL}></button>
-                        <{$xoops_token}>
-                    </form>
+                    <{if $s.status > 0}>
+                        <form method="post" action="<{$module_url}>admin/submissions.php" style="display:inline" onsubmit="return confirm('<{$smarty.const._AM_XCONTACT_SUBS_CONFIRM_DEL|escape:"javascript"}>')">
+                            <input type="hidden" name="op" value="delete">
+                            <input type="hidden" name="sub_id" value="<{$s.sub_id}>">
+                            <input type="hidden" name="form_id" value="<{$form_id}>">
+                            <button type="submit" class="xcp-btn xcp-btn--red"><{$smarty.const._AM_XCONTACT_SUBS_BTN_DEL}></button>
+                            <{$xoops_token}>
+                        </form>
+                    <{/if}>
                 </td>
             </tr>
             <{/foreach}>

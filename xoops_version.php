@@ -166,10 +166,34 @@ $modversion['config'][] = [
     'description' => '_MI_XCONTACT_CFG_UPLOAD_SIZE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
-    'default'     => 3145728,
+    'default'     => 1048576,
     'options'     => $optionMaxsize,
 ];
 // Uploads : mimetypes for upload file
+require_once __DIR__ . '/class/MimeTypes.php';
+$mimetypes = new XoopsModules\Xcontact\MimeTypes();
+
+$modversion['config'][] = [
+    'name'        => 'upload_mimetypes',
+    'title'       => '_MI_XCONTACT_UPLOAD_TYPES',
+    'description' => '_MI_XCONTACT_UPLOAD_TYPES_DESC',
+    'formtype'    => 'select_multi',
+    'valuetype'   => 'array',
+    'default'     => [
+        'gif',
+        'jpeg',
+        'jpg',
+        'jpe',
+        'png',
+        'pdf',
+        'zip',
+        'txt',
+        'xlsx',
+        'docx',
+    ],
+    'options'     => $mimetypes::getList(),
+];
+
 $modversion['config'][] = [
     'name'        => 'upload_filetypes',
     'title'       => '_MI_XCONTACT_UPLOAD_TYPES',

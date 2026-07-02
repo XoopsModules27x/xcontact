@@ -40,8 +40,8 @@ define('_AM_XCONTACT_SUB_NEW',          'New');
 define('_AM_XCONTACT_SUB_READ',         'Read');
 define('_AM_XCONTACT_SUB_VIEW',         'View');
 define('_AM_XCONTACT_BACK_TO_LIST',     'Back to List');
-define('_AM_XCONTACT_BLOCK_SLUG',       'Select Form');
-define('_AM_XCONTACT_SELECT_FORM',      '— Select a Form —');
+define('_AM_XCONTACT_SELECT_FORM',      'Select Form');
+define('_AM_XCONTACT_SELECT_OPT',    '-- Select --');
 define('_AM_XCONTACT_USAGE_TITLE',      'Template Usage');
 define('_AM_XCONTACT_USAGE_DESC',       'Link to the form page or use the XOOPS block system.');
 
@@ -92,6 +92,8 @@ define('_AM_XCONTACT_ISP_DEFAULT_OPTION',   'Option 1');
 define('_AM_XCONTACT_ISP_DEFAULT_OPTION2',  'Option 2');
 // Settings tab
 define('_AM_XCONTACT_SET_FORM_NAME',        'Form Name *');
+define('_AM_XCONTACT_SET_FORM_TITLE',       'Form Title');
+define('_AM_XCONTACT_SET_FORM_TITLE_HINT',  'Leave it blank if you do not want to use a form title');
 define('_AM_XCONTACT_SET_FORM_SLUG',        'Slug (URL) *');
 define('_AM_XCONTACT_SET_SLUG_HINT',        'Lowercase letters and hyphens. e.g. contact-form');
 define('_AM_XCONTACT_SET_DESC',             'Description');
@@ -162,7 +164,6 @@ define('_AM_XCONTACT_DASH_BTN_VIEW',    'View');
 // Submissions
 define('_AM_XCONTACT_SUBS_TITLE',       'Submissions');
 define('_AM_XCONTACT_SUBS_BACK',        'Back to Forms');
-define('_AM_XCONTACT_SUBS_SELECT',      '— Select a Form —');
 define('_AM_XCONTACT_SUBS_COL_DATE',    'Date');
 define('_AM_XCONTACT_SUBS_COL_IP',      'IP');
 define('_AM_XCONTACT_SUBS_BTN_VIEW',    'View');

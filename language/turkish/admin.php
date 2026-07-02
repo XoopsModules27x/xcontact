@@ -40,8 +40,8 @@ define('_AM_XCONTACT_SUB_NEW',          'Yeni');
 define('_AM_XCONTACT_SUB_READ',         'Okundu');
 define('_AM_XCONTACT_SUB_VIEW',         'Görüntüle');
 define('_AM_XCONTACT_BACK_TO_LIST',     'Listeye Dön');
-define('_AM_XCONTACT_BLOCK_SLUG',       'Form Seçin');
-define('_AM_XCONTACT_SELECT_FORM',      '-- Form Seçin --');
+define('_AM_XCONTACT_SELECT_FORM',      'Form Seçin');
+define('_AM_XCONTACT_SELECT_OPT',    '-- Seçin --');
 define('_AM_XCONTACT_USAGE_TITLE',      'Şablonda Kullanım');
 define('_AM_XCONTACT_USAGE_DESC',       'Form sayfasına link verin veya XOOPS blok sistemi kullanın.');
 
@@ -92,6 +92,8 @@ define('_AM_XCONTACT_ISP_DEFAULT_OPTION',   'Seçenek 1');
 define('_AM_XCONTACT_ISP_DEFAULT_OPTION2',  'Seçenek 2');
 // Ayarlar sekmesi
 define('_AM_XCONTACT_SET_FORM_NAME',        'Form Adı *');
+define('_AM_XCONTACT_SET_FORM_TITLE',       'Form Başlığı');
+define('_AM_XCONTACT_SET_FORM_TITLE_HINT',  'Form başlığı kullanmak istemiyorsanız boş bırakın');
 define('_AM_XCONTACT_SET_FORM_SLUG',        'Slug (URL) *');
 define('_AM_XCONTACT_SET_SLUG_HINT',        'Küçük harf, tire. Örn: iletisim-formu');
 define('_AM_XCONTACT_SET_DESC',             'Açıklama');
@@ -162,7 +164,6 @@ define('_AM_XCONTACT_DASH_BTN_VIEW',    'Gör');
 // Submissions
 define('_AM_XCONTACT_SUBS_TITLE',       'Gönderiler');
 define('_AM_XCONTACT_SUBS_BACK',        'Formlara Dön');
-define('_AM_XCONTACT_SUBS_SELECT',      '— Form Seçin —');
 define('_AM_XCONTACT_SUBS_COL_DATE',    'Tarih');
 define('_AM_XCONTACT_SUBS_COL_IP',      'IP');
 define('_AM_XCONTACT_SUBS_BTN_VIEW',    'Görüntüle');
