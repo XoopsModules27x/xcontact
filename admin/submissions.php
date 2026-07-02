@@ -142,14 +142,17 @@ switch ($op) {
         if ($submissionsHandler->delete($submissionsObj)) {
             // delete uploaded file
             foreach ($data as $field => $value) {
-                // check whether it is an uploaded file
-                $fileToDelete = '';
-                if (!is_array($value)) {
-                    $fileToDelete = \XCONTACT_UPLOAD_FILE_PATH . '/' .\basename($value);
+                if ('' !== $value && is_string($value)) {
+                    // check whether it is an uploaded file
+                    $fileToDelete = '';
+                    if (!is_array($value)) {
+                        $fileToDelete = \XCONTACT_UPLOAD_FILE_PATH . '/' .\basename($value);
+                    }
+                    if ('' !== $fileToDelete && is_file($fileToDelete)) {
+                        unlink($fileToDelete);
+                    }
                 }
-                if ('' !== $fileToDelete && is_file($fileToDelete)) {
-                    unlink($fileToDelete);
-                }
+
             }
             \redirect_header('submissions.php?form_id=' . $subForm_id, 3, \_AM_XCONTACT_SUBS_DELETED_OK);
         } else {

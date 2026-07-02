@@ -12,6 +12,7 @@ require_once XOOPS_ROOT_PATH . '/header.php';
 require_once __DIR__ . '/include/functions.php';
 require_once __DIR__ . '/header.php';
 
+$op     = Request::getString('op', 'list', 'POST');
 $slug   = Request::getString('slug', '', 'GET');
 $slug   = preg_replace('/[^a-z0-9\-]/', '', strtolower($slug));
 
@@ -45,9 +46,9 @@ $cf_fileupload_size = \_MD_XCONTACT_FORM_UPLOAD_SIZE . ($uploadMaxSize / 1048576
 $formId = Request::getInt('cf_form_id', 0, 'POST');
 
 // ── POST processing ───────────────────────────────────────────────────────────────
-if ($formId === $cf_form_id) {
+if ('save' == $op && $formId === $cf_form_id) {
     // Security Check
-    if (!$GLOBALS['xoopsSecurity']->check(true, false,  'XCONTACT_TOKEN_FORM_' . $cf_form_id)) {
+    if (!$GLOBALS['xoopsSecurity']->check()) {
         $cf_errors[]  = \_MD_XCONTACT_TOKEN_ERROR;
     } else {
         $result     = $submissionsHandler->processSubmission($cf_fields, $cf_settings, $cf_form);
@@ -79,6 +80,14 @@ $GLOBALS['xoopsTpl']->assign('xcontact_upload_img_url', \XCONTACT_UPLOAD_IMAGE_U
 $GLOBALS['xoopsTpl']->assign('xoops_pagetitle',     $cf_form['name']);
 $GLOBALS['xoopsTpl']->assign('cf_fileupload_size',  $cf_fileupload_size);
 $GLOBALS['xoopsTpl']->assign('cf_fileupload_types', $cf_fileupload_types);
-$GLOBALS['xoopsTpl']->assign('xoops_token',$GLOBALS['xoopsSecurity']->getTokenHTML('XCONTACT_TOKEN_FORM_' . $cf_form_id));
+$GLOBALS['xoopsTpl']->assign('xoops_token',$GLOBALS['xoopsSecurity']->getTokenHTML());
+
+
+
+//test form
+// Form Create
+$formsObj = $formsHandler->get($cf_form_id);
+$form = $formsObj->getFormUI();
+$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 require_once XOOPS_ROOT_PATH . '/footer.php';

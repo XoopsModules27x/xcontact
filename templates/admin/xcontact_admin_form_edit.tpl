@@ -62,6 +62,7 @@
         <div id="tab-settings" class="xcp-tab-panel<{if !$is_edit}> active<{/if}>">
             <div class="xcp-wrap" style="max-width:600px">
                 <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_NAME}></label><input type="text" name="form_name" value="<{$form.name|escape}>" required></div>
+                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_TITLE}></label><input type="text" name="form_title" value="<{$form.title|escape}>" ><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_FORM_TITLE_HINT}></small></div>
                 <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_SLUG}></label><input type="text" name="form_slug" value="<{$form.slug|escape}>" placeholder="<{$smarty.const._AM_XCONTACT_SET_SLUG_PLACEHOLDER}>" pattern="[a-z0-9\-]+" required><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_SLUG_HINT}></small></div>
                 <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_DESC}></label><textarea name="form_desc"><{$form.description|escape}></textarea></div>
                 <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_SUCCESS_MSG}></label><input type="text" name="success_msg" value="<{$settings.success_msg|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUCCESS|escape}>"></div>
@@ -213,7 +214,7 @@ function xcfEdit(i){
     var t=XCF_TYPES[f.type]||{};
     document.getElementById('xcf-isp-title').textContent=t.l+' '+XCF_LANG.isp_settings;
     var hasOpts=['radio','choice','dropdown','image_choice'].indexOf(f.type)>=0;
-    var hasDescr=['radio','choice','consent','signature'].indexOf(f.type)>=0;
+    var hasDescr=['short_text','long_text','email','website','phone','number','date','time','file','radio','choice','image_choice','dropdown','consent','signature'].indexOf(f.type)>=0;
     var hasPlaceholder=['short_text','long_text','email','website','phone'].indexOf(f.type)>=0;
     var isStatic=['label','heading','paragraph'].indexOf(f.type)>=0;
     var isHidden=f.type==='hidden';

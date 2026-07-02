@@ -93,7 +93,6 @@ function xcontact_block_form($options)
     // ── POST processing ───────────────────────────────────────────────────────────
 
     $formId = Request::getInt('cf_form_id', 0, 'POST');
-    $hp = Request::getString('cf_hp', '', 'POST');
 
     if ($formId === $cf_form_id) {
         $errors = [];
@@ -133,9 +132,9 @@ function xcontact_block_form_edit($options)
     $formsAll = $formsHandler->getAll($crForms);
 
     $html  = '<table>';
-    $html .= '<tr><td>' . \_AM_XCONTACT_BLOCK_SLUG . ':</td><td>';
+    $html .= '<tr><td>' . \_AM_XCONTACT_SELECT_FORM . ':</td><td>';
     $html .= '<select name="options[0]">';
-    $html .= '<option value="none">' . \_AM_XCONTACT_SELECT_FORM . '</option>';
+    $html .= '<option value="none">' . \_AM_XCONTACT_SELECT_OPT . '</option>';
     if ($formsHandler->getCount($crForms) > 0) {
         foreach (\array_keys($formsAll) as $i) {
             $sel   = ($formsAll[$i]->getVar('slug') === $slug) ? ' selected' : '';

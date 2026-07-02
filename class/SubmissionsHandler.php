@@ -161,6 +161,7 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                 $fn = $field['name'] ?? '';
                 $ftype = $field['type'] ?? '';
                 $req = !empty($field['required']);
+
                 if (!$fn || in_array($ftype, ['label', 'heading', 'paragraph'])) continue;
 
                 if ($ftype === 'choice' || $ftype === 'image_choice') {
