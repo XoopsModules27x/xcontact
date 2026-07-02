@@ -36,13 +36,6 @@ $cf_success  = false;
 $cf_errors   = [];
 $cf_data     = [];
 
-// preferences for uploading files
-$allowed = $helper->getConfig('upload_filetypes');
-$cf_fileupload_types = \_MD_XCONTACT_FORM_UPLOAD_FILETYPE . implode(', ', $allowed);
-
-$uploadMaxSize = (int)$helper->getConfig('upload_max_size');
-$cf_fileupload_size = \_MD_XCONTACT_FORM_UPLOAD_SIZE . ($uploadMaxSize / 1048576) . ' ' . \_MD_XCONTACT_FORM_UPLOAD_SIZE_MB;
-
 $formId = Request::getInt('cf_form_id', 0, 'POST');
 
 // ── POST processing ───────────────────────────────────────────────────────────────
