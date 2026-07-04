@@ -152,6 +152,7 @@ class FormsHandler extends \XoopsPersistableObjectHandler
      */
     public function initiateFormFields(array $fields)
     {
+        $data = [];
         // initialize all fields with default value
         // all form components (also FormRadio, FormSelect, FormSelectImage) currently expect a single scalar value, unlike choice which is explicitly configured as an array
         foreach ($fields as $f) {

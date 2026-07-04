@@ -70,8 +70,8 @@ $GLOBALS['xoopsTpl']->assign('xoops_pagetitle',     $form['name']);
 if (!$formSuccess) {
     // Form Create when first call or after error
     $formsObj = $formsHandler->get($formId);
-    $action = \XCONTACT_URL . '/blocks/' . basename(__FILE__);
-    $form = $formsObj->getFormUI($action, $formData);
+    $action = \XCONTACT_URL . '/' . basename(__FILE__);
+    $form = $formObj->getFormUI($action, $formData);
     $GLOBALS['xoopsTpl']->assign('form', $form->render());
 }
 

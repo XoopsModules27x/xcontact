@@ -42,15 +42,15 @@ function xcontactInitSignaturePads() {
             if (!drawing) {
                 return;
             }
-
             var pt = getPoint(e);
             ctx.lineTo(pt.x, pt.y);
             ctx.stroke();
-            xcontactSyncSignature(canvas);
         }
-
         function endDraw() {
-            drawing = false;
+            if (drawing) {
+                drawing = false;
+                xcontactSyncSignature(canvas);
+            }
         }
 
         // Mouse

@@ -29,8 +29,8 @@ function xcontact_block_form($options)
     $submissionsHandler = $helper->getHandler('Submissions');
 
     $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http')
-        . '://' . $_SERVER['HTTP_HOST']
-        . $_SERVER['REQUEST_URI'];
+        . '://' . htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, 'UTF-8')
+        . htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8');
 
     $op     = Request::getString('op', 'list', 'POST');
 
@@ -95,8 +95,7 @@ function xcontact_block_form($options)
     $block['form'] = false;
     if (!$formSuccess) {
         // Form Create when first call or after error
-        $formsObj = $formsHandler->get($formId);
-        $form = $formsObj->getFormUI($currentUrl, $formData);
+        $form = $formObj->getFormUI($currentUrl, $formData);
         $block['form'] = $form->render();
     }
 

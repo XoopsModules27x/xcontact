@@ -288,7 +288,6 @@ class Forms extends \XoopsObject
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormHidden('cf_form_id', $formId));
         $form->addElement(new \XoopsFormHidden('slug', $this->getVar('slug')));
-        $form->addElement(new \XoopsFormHidden('redir_url', $redirUrl));
         $form->addElement(new \XoopsFormHidden('start', $this->start));
         $form->addElement(new \XoopsFormHidden('limit', $this->limit));
         $form->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));
