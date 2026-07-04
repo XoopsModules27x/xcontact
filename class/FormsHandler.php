@@ -144,4 +144,24 @@ class FormsHandler extends \XoopsPersistableObjectHandler
 
         return reset($formsAll);
     }
+
+    /**
+     * Initiate form fields for first loading
+     * @param array $fields
+     * @return array
+     */
+    public function initiateFormFields(array $fields)
+    {
+        // initialize all fields with default value
+        // all form components (also FormRadio, FormSelect, FormSelectImage) currently expect a single scalar value, unlike choice which is explicitly configured as an array
+        foreach ($fields as $f) {
+            if ('choice' === $f['type']) {
+                $data[$f['name']] = [];
+            } else {
+                $data[$f['name']] = '';
+            }
+        }
+
+        return $data;
+    }
 }

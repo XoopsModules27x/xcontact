@@ -78,17 +78,18 @@ class Forms extends \XoopsObject
 
     /**
      * @public function getForm for UI
-     * @param array $data
+     * @param string $action
+     * @param array  $data
      * @return \XoopsThemeForm
      */
-    public function getFormUI($data)
+    public function getFormUI($action, $data)
     {
         $helper = \XoopsModules\Xcontact\Helper::getInstance();
 
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $formId = $this->getVar('form_id');
-        $form = new Forms\Form($this->getVar('title'), 'form_' . $formId, 'form.php', 'post', true);
+        $form = new Forms\Form($this->getVar('title'), 'form_' . $formId, $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // get all fields with params
         $cf_fields   = json_decode($this->getVar('fields')   ?? '[]', true) ?: [];
@@ -287,6 +288,7 @@ class Forms extends \XoopsObject
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormHidden('cf_form_id', $formId));
         $form->addElement(new \XoopsFormHidden('slug', $this->getVar('slug')));
+        $form->addElement(new \XoopsFormHidden('redir_url', $redirUrl));
         $form->addElement(new \XoopsFormHidden('start', $this->start));
         $form->addElement(new \XoopsFormHidden('limit', $this->limit));
         $form->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));

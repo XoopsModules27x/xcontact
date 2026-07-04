@@ -20,13 +20,19 @@ function xcontact_block_form($options)
 {
     \xoops_loadLanguage('admin', 'xcontact');
     \xoops_loadLanguage('main', 'xcontact');
-    require_once dirname(__DIR__) . '/include/functions.php';
+    require_once dirname(__DIR__) . '/include/common.php';
 
     $helper = Helper::getInstance();
     /** `@var` \XoopsModules\Xcontact\FormsHandler $formsHandler */
     $formsHandler = $helper->getHandler('Forms');
     /** `@var` \XoopsModules\Xcontact\SubmissionsHandler $submissionsHandler */
     $submissionsHandler = $helper->getHandler('Submissions');
+
+    $currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http')
+        . '://' . $_SERVER['HTTP_HOST']
+        . $_SERVER['REQUEST_URI'];
+
+    $op     = Request::getString('op', 'list', 'POST');
 
     $slug  = isset($options[0]) ? trim($options[0]) : '';
     $embed = isset($options[1]) ? (int)$options[1]  : 0;
@@ -44,69 +50,63 @@ function xcontact_block_form($options)
     }
     $form = $formObj->getValuesForms();
 
-    $cf_form_id = (int)$form['form_id'];
-    $cf_fields  = json_decode($form['fields'] ?? '[]', true) ?: [];
-    $cf_settings= json_decode($form['settings'] ?? '{}', true) ?: [];
+    $formId       = (int)$form['form_id'];
+    $formFields   = json_decode($form['fields'] ?? '[]', true) ?: [];
+    $formSettings = json_decode($form['settings'] ?? '{}', true) ?: [];
+    $formSuccess  = false;
+    $formErrors   = [];
+    $formData     = [];
+
+    if ('list' == $op) {
+        // initialize all fields with default value
+        $formData = $formsHandler->initiateFormFields($formFields);
+    }
 
     $block = array(
         'form_url'    => $form['url'],
         'form_desc'   => $form['description'],
         'embed'       => $embed,
-        'form_id'     => $cf_form_id,
+        'form_id'     => $formId,
         'success'     => false,
         'errors'      => array(),
         'data'        => array(),
         'fields'      => array(),
-        'success_msg' => $cf_settings['success_msg'] ?? \_AM_XCONTACT_SET_DEFAULT_SUCCESS,
+        'success_msg' => $formSettings['success_msg'] ?? \_AM_XCONTACT_SET_DEFAULT_SUCCESS,
     );
 
+    // stop here if only url should be shown
     if (!$embed) return $block;
 
-    // ── Embed mode: prepare the fields ─────────────────────────────────────────
-    $block['xoops_token'] = $GLOBALS['xoopsSecurity']->getTokenHTML('XCONTACT_TOKEN_BLOCK_' . $cf_form_id);
-
-    // Field type → HTML input type matching
-    $inputTypes = array(
-        'short_text' => 'text',
-        'email'      => 'email',
-        'website'    => 'url',
-        'phone'      => 'tel',
-        'number'     => 'number',
-        'date'       => 'date',
-        'time'       => 'time',
-    );
-
-    // Prepare the fields for the template
-    $nonInputFieldTypes = ['label', 'heading', 'paragraph', 'hidden'];
-    $preparedFields = array();
-    foreach ($cf_fields as $field) {
-        $fieldType = $field['type'] ?? '';
-        if (in_array($fieldType, $nonInputFieldTypes, true)) {
-            continue;
-        }
-        $f = $field;
-        $f['input_type'] = $inputTypes[$fieldType] ?? 'text';
-        $preparedFields[] = $f;
-    }
-    $block['fields'] = $preparedFields;
-
     // ── POST processing ───────────────────────────────────────────────────────────
+    $cfFormId = Request::getInt('cf_form_id', 0, 'POST');
 
-    $formId = Request::getInt('cf_form_id', 0, 'POST');
-
-    if ($formId === $cf_form_id) {
-        $errors = [];
+    if ('save' == $op && $formId === $cfFormId) {
         // Security Check
-        if (!$GLOBALS['xoopsSecurity']->check(true, false, 'XCONTACT_TOKEN_BLOCK_' . $cf_form_id)) {
-            $errors[] = _MD_XCONTACT_TOKEN_ERROR;
-            $block['errors'] = $errors;
+        if (!$GLOBALS['xoopsSecurity']->check()) {
+            $formErrors[]  = \_MD_XCONTACT_TOKEN_ERROR;
         } else {
-            $result           = $submissionsHandler->processSubmission($cf_fields, $cf_settings, $form);
-            $block['success'] = $result['success'];
-            $block['errors']  = $result['errors'];
-            $block['data']    = $result['data'];
+            $result      = $submissionsHandler->processSubmission($formFields, $formSettings, $form);
+            $formSuccess = $result['success'];
+            $formErrors  = $result['errors'];
+            $formData    = $result['data'];
         }
     }
+
+    $block['form'] = false;
+    if (!$formSuccess) {
+        // Form Create when first call or after error
+        $formsObj = $formsHandler->get($formId);
+        $form = $formsObj->getFormUI($currentUrl, $formData);
+        $block['form'] = $form->render();
+    }
+
+    $block['success'] = $formSuccess;
+    $block['errors']  = $formErrors;
+
+    // load js and css
+    $GLOBALS['xoTheme']->addScript(\XCONTACT_URL . '/assets/js/xcontact-form.js', ['type' => 'text/javascript']);
+    $GLOBALS['xoTheme']->addStylesheet(\XCONTACT_URL . '/assets/css/xcontact-form.css', null);
+
     return $block;
 }
 

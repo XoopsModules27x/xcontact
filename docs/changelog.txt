@@ -31,6 +31,8 @@
  - added button for reply email (goffy)
  - replaced tpl form generation by XOOPS form generation (goffy)
  - reload form with already given data after submission error (goffy)
+ - created seperate css and js files (goffy)
+ - adapted form blocks to new structure (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]
