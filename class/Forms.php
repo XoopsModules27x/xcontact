@@ -97,7 +97,7 @@ class Forms extends \XoopsObject
 
             switch ($cf_field['type']) {
                 case 'short_text':
-                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, '');
+                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, $data[$fieldName]);
                     $formEle[$fieldName]->setType('text');
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
@@ -108,7 +108,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'long_text':
-                    $formEle[$fieldName] = new Forms\FormTextArea($cf_field['label'],  $cf_field['name'], '',5, 50);
+                    $formEle[$fieldName] = new Forms\FormTextArea($cf_field['label'],  $cf_field['name'], $data[$fieldName],5, 50);
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
                     $formEle[$fieldName]->setDescription($cf_field['description']);
@@ -118,7 +118,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'email':
-                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, '');
+                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, $data[$fieldName]);
                     $formEle[$fieldName]->setType('email');
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
@@ -129,7 +129,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'website':
-                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, '');
+                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, $data[$fieldName]);
                     $formEle[$fieldName]->setType('url');
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
@@ -140,7 +140,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'phone':
-                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, '');
+                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, $data[$fieldName]);
                     $formEle[$fieldName]->setType('tel');
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
@@ -151,7 +151,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'number':
-                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, '');
+                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, $data[$fieldName]);
                     $formEle[$fieldName]->setType('number');
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
@@ -159,7 +159,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'date':
-                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, '');
+                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, $data[$fieldName]);
                     $formEle[$fieldName]->setType('date');
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
@@ -167,7 +167,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'time':
-                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, '');
+                    $formEle[$fieldName] = new Forms\FormText($cf_field['label'],  $cf_field['name'], 0, 0, $data[$fieldName]);
                     $formEle[$fieldName]->setType('time');
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
@@ -197,7 +197,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName]);
                     break;
                 case 'radio':
-                    $formEle[$fieldName] = new Forms\FormRadio($cf_field['label'],  $cf_field['name'], '');
+                    $formEle[$fieldName] = new Forms\FormRadio($cf_field['label'],  $cf_field['name'], $data[$fieldName]);
                     $formEle[$fieldName]->setType('radio');
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
@@ -208,7 +208,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'choice':
-                    $formEle[$fieldName] = new Forms\FormCheckbox($cf_field['label'],  $cf_field['name'], '');
+                    $formEle[$fieldName] = new Forms\FormCheckbox($cf_field['label'],  $cf_field['name'], $data[$fieldName]);
                     $formEle[$fieldName]->setType('checkbox');
                     $formEle[$fieldName]->setAsArray(true);
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
@@ -220,7 +220,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'image_choice':
-                    $formEle[$fieldName] = new Forms\FormSelectImage($cf_field['label'],  $cf_field['name'], '');
+                    $formEle[$fieldName] = new Forms\FormSelectImage($cf_field['label'],  $cf_field['name'], $data[$fieldName]);
                     $formEle[$fieldName]->setType('checkbox');
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
@@ -231,7 +231,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'dropdown':
-                    $formEle[$fieldName] = new Forms\FormSelect($cf_field['label'],  $cf_field['name'], '');
+                    $formEle[$fieldName] = new Forms\FormSelect($cf_field['label'],  $cf_field['name'], $data[$fieldName]);
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
                     $formEle[$fieldName]->setDescription($cf_field['description']);
@@ -241,7 +241,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'consent':
-                    $formEle[$fieldName] = new Forms\FormCheckbox('',  $cf_field['name'], '');
+                    $formEle[$fieldName] = new Forms\FormCheckbox('',  $cf_field['name'], $data[$fieldName]);
                     $formEle[$fieldName]->setType('checkbox');
                     $formEle[$fieldName]->setAsArray(false);
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
@@ -252,7 +252,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'signature':
-                    $formEle[$fieldName] = new Forms\FormSignature($cf_field['label'],  $cf_field['name'], 0, 0, '');
+                    $formEle[$fieldName] = new Forms\FormSignature($cf_field['label'],  $cf_field['name'], 0, 0, $data[$fieldName]);
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
                     $formEle[$fieldName]->setDescription($cf_field['description']);
@@ -286,6 +286,7 @@ class Forms extends \XoopsObject
 
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormHidden('cf_form_id', $formId));
+        $form->addElement(new \XoopsFormHidden('slug', $this->getVar('slug')));
         $form->addElement(new \XoopsFormHidden('start', $this->start));
         $form->addElement(new \XoopsFormHidden('limit', $this->limit));
         $form->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));

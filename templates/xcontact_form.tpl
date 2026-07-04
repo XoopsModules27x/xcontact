@@ -58,55 +58,57 @@
 <{if !empty($xcontact_error)}>
     <div class="xcontact-errors"><{$xcontact_error}></div>
 <{elseif $xcontact_success}>
-    <div class="xcontact-success"><{$icon.checked}> <{$xcontact_settings.success_msg|default:$smarty.const._MD_XCONTACT_SUCCESS}></div>
+    <div class="xcontact-success"><{$icons.checked}> <{$xcontact_settings.success_msg|default:$smarty.const._MD_XCONTACT_SUCCESS}></div>
 <{else}>
+    <{if $xcontact_form_descr|default:''}>
+        <p style="color:#666;font-size:14px;margin-bottom:20px"><{$xcontact_form_descr|nl2br}></p>
+    <{/if}>
 
-<{if $xcontact_form_descr|default:''}>
-<p style="color:#666;font-size:14px;margin-bottom:20px"><{$xcontact_form_descr|nl2br}></p>
+    <{if !empty($xcontact_errors)}>
+        <div class="xcontact-errors"><strong><{$smarty.const._MD_XCONTACT_PLEASE_FIX}></strong>
+            <ul>
+                <{foreach item=e from=$xcontact_errors}><li><{$e}></li><{/foreach}>
+            </ul>
+        </div>
+    <{/if}>
 <{/if}>
 
-<{if !empty($xcontact_errors)}>
-<div class="xcontact-errors"><strong><{$smarty.const._MD_XCONTACT_PLEASE_FIX}></strong><ul>
-<{foreach item=e from=$xcontact_errors}><li><{$e}></li><{/foreach}>
-</ul></div>
-<{/if}>
-
+<!-- input form with necessary script -->
 <{if $form|default:''}>
     <{$form}>
-<{/if}>
 
-<script>
-<{literal}>
-(function(){
-    var pads=document.querySelectorAll('.xcontact-sig-pad');
-    pads.forEach(function(c){
-        var ctx=c.getContext('2d'),dr=false;
-        ctx.strokeStyle='#222';ctx.lineWidth=2;ctx.lineCap='round';
-        function p(e){var r=c.getBoundingClientRect(),s=e.touches?e.touches[0]:e;return{x:(s.clientX-r.left)*(c.width/r.width),y:(s.clientY-r.top)*(c.height/r.height)};}
-        c.addEventListener('mousedown',function(e){dr=true;var pt=p(e);ctx.beginPath();ctx.moveTo(pt.x,pt.y);});
-        c.addEventListener('mousemove',function(e){if(!dr)return;var pt=p(e);ctx.lineTo(pt.x,pt.y);ctx.stroke();sync(c);});
-        c.addEventListener('mouseup',function(){dr=false;});
-        c.addEventListener('touchstart',function(e){e.preventDefault();dr=true;var pt=p(e);ctx.beginPath();ctx.moveTo(pt.x,pt.y);});
-        c.addEventListener('touchmove',function(e){e.preventDefault();if(!dr)return;var pt=p(e);ctx.lineTo(pt.x,pt.y);ctx.stroke();sync(c);});
-        c.addEventListener('touchend',function(){dr=false;});
-    });
-    function sync(c){var id=c.id.replace('sig_','');var i=document.getElementById('sig_data_'+id);if(i)i.value=c.toDataURL();}
-    window.xcfSigClear=function(fn){var c=document.getElementById('sig_'+fn);if(c){c.getContext('2d').clearRect(0,0,c.width,c.height);var i=document.getElementById('sig_data_'+fn);if(i)i.value='';}};
-<{/literal}>
+    <script>
+    <{literal}>
+    (function(){
+        var pads=document.querySelectorAll('.xcontact-sig-pad');
+        pads.forEach(function(c){
+            var ctx=c.getContext('2d'),dr=false;
+            ctx.strokeStyle='#222';ctx.lineWidth=2;ctx.lineCap='round';
+            function p(e){var r=c.getBoundingClientRect(),s=e.touches?e.touches[0]:e;return{x:(s.clientX-r.left)*(c.width/r.width),y:(s.clientY-r.top)*(c.height/r.height)};}
+            c.addEventListener('mousedown',function(e){dr=true;var pt=p(e);ctx.beginPath();ctx.moveTo(pt.x,pt.y);});
+            c.addEventListener('mousemove',function(e){if(!dr)return;var pt=p(e);ctx.lineTo(pt.x,pt.y);ctx.stroke();sync(c);});
+            c.addEventListener('mouseup',function(){dr=false;});
+            c.addEventListener('touchstart',function(e){e.preventDefault();dr=true;var pt=p(e);ctx.beginPath();ctx.moveTo(pt.x,pt.y);});
+            c.addEventListener('touchmove',function(e){e.preventDefault();if(!dr)return;var pt=p(e);ctx.lineTo(pt.x,pt.y);ctx.stroke();sync(c);});
+            c.addEventListener('touchend',function(){dr=false;});
+        });
+        function sync(c){var id=c.id.replace('sig_','');var i=document.getElementById('sig_data_'+id);if(i)i.value=c.toDataURL();}
+        window.xcfSigClear=function(fn){var c=document.getElementById('sig_'+fn);if(c){c.getContext('2d').clearRect(0,0,c.width,c.height);var i=document.getElementById('sig_data_'+fn);if(i)i.value='';}};
+    <{/literal}>
 
-<{literal}>
-})();
-<{/literal}>
-    document.querySelectorAll(".xcontact-oi-container").forEach(container => {
-        const input = container.parentElement.querySelector("input[type='checkbox']");
-        if (input) {
-            input.addEventListener("change", () => {
+    <{literal}>
+    })();
+    <{/literal}>
+        document.querySelectorAll(".xcontact-oi-container").forEach(container => {
+            const input = container.parentElement.querySelector("input[type='checkbox']");
+            if (input) {
+                input.addEventListener("change", () => {
+                    container.classList.toggle("aktiv", input.checked);
+                });
                 container.classList.toggle("aktiv", input.checked);
-            });
-            container.classList.toggle("aktiv", input.checked);
-        }
-    });
-</script>
-
+            }
+        });
+    </script>
 <{/if}>
-</div>
+
+</div> <!-- xcontact-wrap -->
