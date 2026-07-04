@@ -4,6 +4,8 @@ remove preference upload_filetypes
 
 form.php: send $cf_data to form renderer
 
+remove tpl form generation form xcontact_blocks.php
+
 add (additional) captcha
 
 create email reply in xcontact

@@ -13,7 +13,7 @@ require_once __DIR__ . '/include/functions.php';
 require_once __DIR__ . '/header.php';
 
 $op     = Request::getString('op', 'list', 'POST');
-$slug   = Request::getString('slug', '', 'GET');
+$slug   = Request::getString('slug');
 $slug   = preg_replace('/[^a-z0-9\-]/', '', strtolower($slug));
 
 $cf_form = null;
@@ -35,6 +35,18 @@ $cf_form_id  = (int)$cf_form['form_id'];
 $cf_success  = false;
 $cf_errors   = [];
 $cf_data     = [];
+
+if ('list' == $op) {
+    // initialize all fields with default value
+    // all form components (also FormRadio, FormSelect, FormSelectImage) currently expect a single scalar value, unlike choice which is explicitly configured as an array
+    foreach ($cf_fields as $f) {
+        if ('choice' === $f['type']) {
+            $cf_data[$f['name']] = [];
+        } else {
+            $cf_data[$f['name']] = '';
+        }
+    }
+}
 
 $formId = Request::getInt('cf_form_id', 0, 'POST');
 
@@ -67,9 +79,11 @@ $GLOBALS['xoopsTpl']->assign('xcontact_success',    $cf_success);
 $GLOBALS['xoopsTpl']->assign('xcontact_errors',     $cf_errors);
 $GLOBALS['xoopsTpl']->assign('xoops_pagetitle',     $cf_form['name']);
 
-// Form Create
-$formsObj = $formsHandler->get($cf_form_id);
-$form = $formsObj->getFormUI($cf_data);
-$GLOBALS['xoopsTpl']->assign('form', $form->render());
+if (!$cf_success) {
+    // Form Create when first call or after error
+    $formsObj = $formsHandler->get($cf_form_id);
+    $form = $formsObj->getFormUI($cf_data);
+    $GLOBALS['xoopsTpl']->assign('form', $form->render());
+}
 
 require_once XOOPS_ROOT_PATH . '/footer.php';

@@ -42,3 +42,6 @@ $modPathIcon32 = $GLOBALS['xoopsModule']->getInfo('modicons32');
 // Load Languages
 \xoops_loadLanguage('main');
 //\xoops_loadLanguage('modinfo');
+
+$icons = XoopsModules\Xcontact\Icons::iconsLoad();
+$GLOBALS['xoopsTpl']->assign('icons',$icons);
