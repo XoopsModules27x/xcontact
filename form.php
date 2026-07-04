@@ -19,7 +19,7 @@ $slug = preg_replace('/[^a-z0-9\-]/', '', strtolower($slug));
 
 $form = null;
 $formObj = $formsHandler->getFormBySlug($slug, Constants::FORM_IS_ACTIVE);
-if (false === $formObj) {
+if (empty($formObj)) {
     \redirect_header('index.php', 3, \_MD_XCONTACT_FORM_NOT_FOUND);
     exit;
 }
