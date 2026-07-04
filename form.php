@@ -79,7 +79,7 @@ $GLOBALS['xoopsTpl']->assign('xcontact_errors',     $cf_errors);
 $GLOBALS['xoopsTpl']->assign('xoops_pagetitle',     $cf_form['name']);
 
 if (!$cf_success) {
-    // Form Create
+    // Form Create when first call or after error
     $formsObj = $formsHandler->get($cf_form_id);
     $form = $formsObj->getFormUI($cf_data);
     $GLOBALS['xoopsTpl']->assign('form', $form->render());
