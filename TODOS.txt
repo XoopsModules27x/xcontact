@@ -4,7 +4,7 @@ remove preference upload_filetypes
 
 form.php: send $cf_data to form renderer
 
-remove tbpl form generation form xcontact_blocks.php
+remove tpl form generation form xcontact_blocks.php
 
 add (additional) captcha
 

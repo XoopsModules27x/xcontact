@@ -38,8 +38,9 @@ $cf_data     = [];
 
 if ('list' == $op) {
     // initialize all fields with default value
+    // all form components (also FormRadio, FormSelect, FormSelectImage) currently expect a single scalar value, unlike choice which is explicitly configured as an array
     foreach ($cf_fields as $f) {
-        if (in_array($f['type'], ['radio', 'choice', 'dropdown', 'image_choice'], true)) {
+        if ('choice' === $f['type']) {
             $cf_data[$f['name']] = [];
         } else {
             $cf_data[$f['name']] = '';
