@@ -5,6 +5,7 @@
  */
 
 use Xmf\Request;
+use XoopsModules\Xcontact\Constants;
 
 require_once '../../mainfile.php';
 $xoopsOption['template_main'] = 'xcontact_form.tpl';
@@ -12,78 +13,70 @@ require_once XOOPS_ROOT_PATH . '/header.php';
 require_once __DIR__ . '/include/functions.php';
 require_once __DIR__ . '/header.php';
 
-$op     = Request::getString('op', 'list', 'POST');
-$slug   = Request::getString('slug');
-$slug   = preg_replace('/[^a-z0-9\-]/', '', strtolower($slug));
+$op   = Request::getString('op', 'list', 'POST');
+$slug = Request::getString('slug');
+$slug = preg_replace('/[^a-z0-9\-]/', '', strtolower($slug));
 
-$cf_form = null;
-$crForms = new \CriteriaCompo();
-$crForms->add(new \Criteria('slug', $slug));
-if ($formsHandler->getCount($crForms) > 0) {
-    $formsAll = $formsHandler->getAll($crForms);
-    foreach (\array_keys($formsAll) as $i) {
-        $cf_form = $formsAll[$i]->getValuesForms();
-    }
-} else {
+$form = null;
+$formObj = $formsHandler->getFormBySlug($slug, Constants::FORM_IS_ACTIVE);
+if (empty($formObj)) {
     \redirect_header('index.php', 3, \_MD_XCONTACT_FORM_NOT_FOUND);
     exit;
-};
+}
+$form = $formObj->getValuesForms();
 
-$cf_fields   = json_decode($cf_form['fields']   ?? '[]', true) ?: [];
-$cf_settings = json_decode($cf_form['settings'] ?? '{}', true) ?: [];
-$cf_form_id  = (int)$cf_form['form_id'];
-$cf_success  = false;
-$cf_errors   = [];
-$cf_data     = [];
+$formFields   = json_decode($form['fields']   ?? '[]', true) ?: [];
+$formSettings = json_decode($form['settings'] ?? '{}', true) ?: [];
+$formId       = (int)$form['form_id'];
+$formSuccess  = false;
+$formError    = [];
+$formData     = [];
 
 if ('list' == $op) {
-    // initialize all fields with default value
-    // all form components (also FormRadio, FormSelect, FormSelectImage) currently expect a single scalar value, unlike choice which is explicitly configured as an array
-    foreach ($cf_fields as $f) {
-        if ('choice' === $f['type']) {
-            $cf_data[$f['name']] = [];
-        } else {
-            $cf_data[$f['name']] = '';
-        }
-    }
+    $formData = $formsHandler->initiateFormFields($formFields);
 }
 
-$formId = Request::getInt('cf_form_id', 0, 'POST');
+$cfFormId = Request::getInt('cf_form_id', 0, 'POST');
 
 // ── POST processing ───────────────────────────────────────────────────────────────
-if ('save' == $op && $formId === $cf_form_id) {
+if ('save' == $op && $formId === $cfFormId) {
     // Security Check
     if (!$GLOBALS['xoopsSecurity']->check()) {
-        $cf_errors[]  = \_MD_XCONTACT_TOKEN_ERROR;
+        $formError[]  = \_MD_XCONTACT_TOKEN_ERROR;
     } else {
-        $result     = $submissionsHandler->processSubmission($cf_fields, $cf_settings, $cf_form);
-        $cf_success = $result['success'];
-        $cf_errors  = $result['errors'];
-        $cf_data    = $result['data'];
+        $result      = $submissionsHandler->processSubmission($formFields, $formSettings, $form);
+        $formSuccess = $result['success'];
+        $formError   = $result['errors'];
+        $formData    = $result['data'];
     }
 }
 
 // ── Generate CAPTCHA (AFTER POST request — to avoid overwriting the session) ────────────
 $cf_captcha = ['code' => '', 'img' => ''];
-if (!empty($cf_settings['enable_captcha']) && !$cf_success) {
+if (!empty($formSettings['enable_captcha']) && !$formSuccess) {
     global $xoopsModuleConfig;
     $cap_len    = isset($xoopsModuleConfig['captcha_length']) ? (int)$xoopsModuleConfig['captcha_length'] : 5;
     $cf_captcha = xcontact_generate_captcha($cap_len);
 }
 
 // ── assign to template ────────────────────────────────────────────────────────────
-$GLOBALS['xoopsTpl']->assign('xcontact_form_descr', $cf_form['description']);
-$GLOBALS['xoopsTpl']->assign('xcontact_settings',   $cf_settings);
-$GLOBALS['xoopsTpl']->assign('xcontact_form_id',    $cf_form_id);
-$GLOBALS['xoopsTpl']->assign('xcontact_success',    $cf_success);
-$GLOBALS['xoopsTpl']->assign('xcontact_errors',     $cf_errors);
-$GLOBALS['xoopsTpl']->assign('xoops_pagetitle',     $cf_form['name']);
+$GLOBALS['xoopsTpl']->assign('xcontact_form_descr', $form['description']);
+$GLOBALS['xoopsTpl']->assign('xcontact_settings',   $formSettings);
+$GLOBALS['xoopsTpl']->assign('xcontact_form_id',    $formId);
+$GLOBALS['xoopsTpl']->assign('xcontact_success',    $formSuccess);
+$GLOBALS['xoopsTpl']->assign('xcontact_errors',     $formError);
+$GLOBALS['xoopsTpl']->assign('xoops_pagetitle',     $form['name']);
 
-if (!$cf_success) {
+if (!$formSuccess) {
     // Form Create when first call or after error
-    $formsObj = $formsHandler->get($cf_form_id);
-    $form = $formsObj->getFormUI($cf_data);
+    $formsObj = $formsHandler->get($formId);
+    $action = \XCONTACT_URL . '/' . basename(__FILE__);
+    $form = $formObj->getFormUI($action, $formData);
     $GLOBALS['xoopsTpl']->assign('form', $form->render());
 }
+
+// load js and css
+$GLOBALS['xoTheme']->addScript(\XCONTACT_URL . '/assets/js/xcontact-form.js', ['type' => 'text/javascript']);
+$GLOBALS['xoTheme']->addStylesheet(\XCONTACT_URL . '/assets/css/xcontact-form.css', null);
 
 require_once XOOPS_ROOT_PATH . '/footer.php';

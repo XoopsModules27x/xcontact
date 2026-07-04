@@ -78,17 +78,18 @@ class Forms extends \XoopsObject
 
     /**
      * @public function getForm for UI
-     * @param array $data
+     * @param string $action
+     * @param array  $data
      * @return \XoopsThemeForm
      */
-    public function getFormUI($data)
+    public function getFormUI($action, $data)
     {
         $helper = \XoopsModules\Xcontact\Helper::getInstance();
 
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $formId = $this->getVar('form_id');
-        $form = new Forms\Form($this->getVar('title'), 'form_' . $formId, 'form.php', 'post', true);
+        $form = new Forms\Form($this->getVar('title'), 'form_' . $formId, $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // get all fields with params
         $cf_fields   = json_decode($this->getVar('fields')   ?? '[]', true) ?: [];
