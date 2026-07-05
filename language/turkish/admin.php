@@ -23,7 +23,7 @@ define('_AM_XCONTACT_FORM_NAME',        'Form Adı');
 define('_AM_XCONTACT_FORM_SLUG',        'Slug (URL)');
 define('_AM_XCONTACT_FORM_DESC',        'Açıklama');
 define('_AM_XCONTACT_FORM_ACTIVE',      'Formu Aktif Et');
-define('_AM_XCONTACT_FORM_CAPTCHA',     'CAPTCHA Etkinleştir');
+define('_AM_XCONTACT_FORM_CAPTCHA',     'CAPTCHA’yı Etkinleştir (modül tercihleriyle seçildi)');
 define('_AM_XCONTACT_SUCCESS_MSG',      'Başarı Mesajı');
 define('_AM_XCONTACT_NOTIFY_EMAIL',     'Bildirim E-postası');
 define('_AM_XCONTACT_EMAIL_SUBJECT',    'E-posta Konusu');

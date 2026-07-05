@@ -23,7 +23,7 @@ define('_AM_XCONTACT_FORM_NAME',        'Form Name');
 define('_AM_XCONTACT_FORM_SLUG',        'Slug (URL)');
 define('_AM_XCONTACT_FORM_DESC',        'Description');
 define('_AM_XCONTACT_FORM_ACTIVE',      'Enable Form');
-define('_AM_XCONTACT_FORM_CAPTCHA',     'Enable CAPTCHA');
+define('_AM_XCONTACT_FORM_CAPTCHA',     'Enable CAPTCHA (selected in module preferences)');
 define('_AM_XCONTACT_SUCCESS_MSG',      'Success Message');
 define('_AM_XCONTACT_NOTIFY_EMAIL',     'Notification Email');
 define('_AM_XCONTACT_EMAIL_SUBJECT',    'Email Subject');

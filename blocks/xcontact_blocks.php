@@ -9,7 +9,8 @@ use Xmf\Request;
 use XoopsModules\Xcontact\ {
     Icons,
     Helper,
-    Constants
+    Constants,
+    Captcha\CaptchaHandler
 };
 
 if (!defined('XOOPS_ROOT_PATH')) { exit(); }
@@ -81,10 +82,22 @@ function xcontact_block_form($options)
     $cfFormId = Request::getInt('cf_form_id', 0, 'POST');
 
     if ('save' == $op && $formId === $cfFormId) {
-        // Security Check
+        // Security Checks
+        $checkPassed = true;
         if (!$GLOBALS['xoopsSecurity']->check()) {
-            $formErrors[]  = \_MD_XCONTACT_TOKEN_ERROR;
-        } else {
+            $formError[]  = \_MD_XCONTACT_TOKEN_ERROR;
+            $checkPassed = false;
+        }
+        if ((bool)$formSettings['enable_captcha']) {
+            $captchaHandler = new CaptchaHandler();
+            $captcha = $captchaHandler->getInstance($helper->getConfig('captcha_type'));
+            if (!$captcha->verify()) {
+                $formError[] = _MD_XCONTACT_CAPTCHA_ERROR;
+                $checkPassed = false;
+            }
+        }
+
+        if ($checkPassed) {
             $result      = $submissionsHandler->processSubmission($formFields, $formSettings, $form);
             $formSuccess = $result['success'];
             $formErrors  = $result['errors'];
