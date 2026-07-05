@@ -85,23 +85,23 @@ function xcontact_block_form($options)
         // Security Checks
         $checkPassed = true;
         if (!$GLOBALS['xoopsSecurity']->check()) {
-            $formError[]  = \_MD_XCONTACT_TOKEN_ERROR;
+            $formErrors[]  = \_MD_XCONTACT_TOKEN_ERROR;
             $checkPassed = false;
         }
         if ((bool)$formSettings['enable_captcha']) {
             $captchaHandler = new CaptchaHandler();
             $captcha = $captchaHandler->getInstance($helper->getConfig('captcha_type'));
             if (!$captcha->verify()) {
-                $formError[] = _MD_XCONTACT_CAPTCHA_ERROR;
+                $formErrors[] = _MD_XCONTACT_CAPTCHA_ERROR;
                 $checkPassed = false;
             }
         }
 
         if ($checkPassed) {
-            $result      = $submissionsHandler->processSubmission($formFields, $formSettings, $form);
-            $formSuccess = $result['success'];
-            $formErrors  = $result['errors'];
-            $formData    = $result['data'];
+            $result       = $submissionsHandler->processSubmission($formFields, $formSettings, $form);
+            $formSuccess  = $result['success'];
+            $formErrors[] = $result['errors'];
+            $formData     = $result['data'];
         }
     }
 

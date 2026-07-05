@@ -98,7 +98,7 @@ $modversion['templates'][] = ['file' => 'xcontact_form.tpl',       'description'
 // group header
 $modversion['config'][] = [
     'name'        => 'group_display',
-    'title'       => '\_MI_XCONTACT_GROUP_DISPLAY',
+    'title'       => '_MI_XCONTACT_GROUP_DISPLAY',
     'description' => '',
     'formtype'    => 'line_break',
     'valuetype'   => 'textbox',
@@ -147,7 +147,7 @@ $modversion['config'][] = [
 // group header
 $modversion['config'][] = [
     'name'        => 'group_upload',
-    'title'       => '\_MI_XCONTACT_GROUP_UPLOAD',
+    'title'       => '_MI_XCONTACT_GROUP_UPLOAD',
     'description' => '',
     'formtype'    => 'line_break',
     'valuetype'   => 'textbox',
@@ -258,7 +258,7 @@ $modversion['config'][] = [
 // group header
 $modversion['config'][] = [
     'name'        => 'group_captcha',
-    'title'       => '\_MI_XCONTACT_GROUP_CAPTCHA',
+    'title'       => '_MI_XCONTACT_GROUP_CAPTCHA',
     'description' => '',
     'formtype'    => 'line_break',
     'valuetype'   => 'textbox',
@@ -307,7 +307,7 @@ $modversion['config'][] = [
 // group header
 $modversion['config'][] = [
     'name'        => 'group_notification',
-    'title'       => '\_MI_XCONTACT_GROUP_NOTIFICATION',
+    'title'       => '_MI_XCONTACT_GROUP_NOTIFICATION',
     'description' => '',
     'formtype'    => 'line_break',
     'valuetype'   => 'textbox',
@@ -335,7 +335,7 @@ $modversion['config'][] = [
 // group header
 $modversion['config'][] = [
     'name'        => 'group_misc',
-    'title'       => '\_MI_XCONTACT_GROUP_MISC',
+    'title'       => '_MI_XCONTACT_GROUP_MISC',
     'description' => '',
     'formtype'    => 'line_break',
     'valuetype'   => 'textbox',

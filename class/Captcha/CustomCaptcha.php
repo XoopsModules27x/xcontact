@@ -52,7 +52,7 @@ class CustomCaptcha implements CaptchaInterface
         $input = Request::getString('cf_captcha');
         $stored = $_SESSION['xcontact_captcha_custom'] ?? '';
         if ($stored === '') return false;
-        unset($_SESSION['xcontact_captcha']);
+        unset($_SESSION['xcontact_captcha_custom']);
         return strtoupper(trim($input)) === strtoupper($stored);
     }
 

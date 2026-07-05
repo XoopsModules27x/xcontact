@@ -47,6 +47,6 @@ defined('XOOPS_ROOT_PATH') || exit();
 \define('_MI_XCONTACT_CAPTCHA_CUSTOM_LEN_DESC', 'Only if you are using Custom CAPTCHA: Define the number of characters in CAPTCHA code (4-6 recommended)');
 \define('_MI_XCONTACT_CAPTCHA_GOOGLE_INFO', '<br>For more information check out https://www.google.com/recaptcha/intro/index.html');
 \define('_MI_XCONTACT_CAPTCHA_GOOGLE_WEBSITEKEY', 'GOOGLE reCaptcha Website Key');
-\define('_MI_XCONTACT_CAPTCHA_GOOGLE_WEBSITEKEY_DESC', 'Only if you are using Custom CAPTCHA: Enter GOOGLE reCaptcha website key' . _MI_XCONTACT_CAPTCHA_GOOGLE_INFO);
+\define('_MI_XCONTACT_CAPTCHA_GOOGLE_WEBSITEKEY_DESC', 'Only if you are using GOOGLE reCaptcha: Enter GOOGLE reCaptcha website key' . _MI_XCONTACT_CAPTCHA_GOOGLE_INFO);
 \define('_MI_XCONTACT_CAPTCHA_GOOGLE_SECURITYKEY', 'GOOGLE reCaptcha Security Key');
-\define('_MI_XCONTACT_CAPTCHA_GOOGLE_SECURITYKEY_DESC', 'Only if you are using Custom CAPTCHA: Enter GOOGLE reCaptcha security key' . _MI_XCONTACT_CAPTCHA_GOOGLE_INFO);
+\define('_MI_XCONTACT_CAPTCHA_GOOGLE_SECURITYKEY_DESC', 'Only if you are using GOOGLE reCaptcha: Enter GOOGLE reCaptcha security key' . _MI_XCONTACT_CAPTCHA_GOOGLE_INFO);

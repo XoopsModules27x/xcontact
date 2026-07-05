@@ -47,6 +47,6 @@ defined('XOOPS_ROOT_PATH') || exit();
 \define('_MI_XCONTACT_CAPTCHA_CUSTOM_LEN_DESC', 'CAPTCHA kodundaki karakter sayısı (4-6 önerilir) - sadece Özel Captcha için geçerlidir');
 \define('_MI_XCONTACT_CAPTCHA_GOOGLE_INFO', '<br>Daha fazla bilgi için şuraya göz atın: https://www.google.com/recaptcha/intro/index.html');
 \define('_MI_XCONTACT_CAPTCHA_GOOGLE_WEBSITEKEY', 'GOOGLE reCaptcha Web Sitesi Anahtarı');
-\define('_MI_XCONTACT_CAPTCHA_GOOGLE_WEBSITEKEY_DESC', 'Sadece Özel CAPTCHA kullanıyorsanız: GOOGLE reCaptcha web sitesi anahtarını girin' . _MI_XCONTACT_CAPTCHA_GOOGLE_INFO);
+\define('_MI_XCONTACT_CAPTCHA_GOOGLE_WEBSITEKEY_DESC', 'Sadece GOOGLE reCaptcha kullanıyorsan: GOOGLE reCaptcha web sitesi anahtarını girin' . _MI_XCONTACT_CAPTCHA_GOOGLE_INFO);
 \define('_MI_XCONTACT_CAPTCHA_GOOGLE_SECURITYKEY', 'GOOGLE reCaptcha Güvenlik Anahtarı');
-\define('_MI_XCONTACT_CAPTCHA_GOOGLE_SECURITYKEY_DESC', 'Sadece Özel CAPTCHA kullanıyorsanız: GOOGLE reCaptcha güvenlik anahtarını girin' . _MI_XCONTACT_CAPTCHA_GOOGLE_INFO);
+\define('_MI_XCONTACT_CAPTCHA_GOOGLE_SECURITYKEY_DESC', 'Sadece GOOGLE reCaptcha kullanıyorsan: GOOGLE reCaptcha güvenlik anahtarını girin' . _MI_XCONTACT_CAPTCHA_GOOGLE_INFO);

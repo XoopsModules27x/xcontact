@@ -40,6 +40,7 @@ class GoogleCaptcha implements CaptchaInterface
         $recaptchaVerifyURL = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $googleSecurityKey
             . '&response=' .  $recaptchaResponse . '&remoteip=' . IPAddress::fromRequest()->asReadable();
         $usedCurl = false;
+        $recaptchaCheck = [];
         if (function_exists('curl_init') && false !== ($curlHandle  = curl_init())) {
             curl_setopt($curlHandle, CURLOPT_URL, $recaptchaVerifyURL);
             curl_setopt($curlHandle, CURLOPT_FAILONERROR, true);
@@ -51,12 +52,29 @@ class GoogleCaptcha implements CaptchaInterface
             } else {
                 $usedCurl = true;
                 $recaptchaCheck = json_decode($curlReturn, true);
+                if (!is_array($recaptchaCheck)) {
+                    $recaptchaCheck = [];
+                }
             }
             curl_close($curlHandle);
         }
         if (false === $usedCurl) {
-            $recaptchaCheck = file_get_contents($recaptchaVerifyURL);
-            $recaptchaCheck = json_decode($recaptchaCheck, true);
+            $context = stream_context_create([
+                'http' => [
+                    'timeout'       => 5,
+                    'ignore_errors' => true,
+                ],
+            ]);
+
+            $recaptchaResponse = @file_get_contents($recaptchaVerifyURL, false, $context);
+            if (false === $recaptchaResponse) {
+                $recaptchaCheck = [];
+            } else {
+                $recaptchaCheck = json_decode($recaptchaResponse, true);
+                if (!is_array($recaptchaCheck)) {
+                    $recaptchaCheck = [];
+                }
+            }
         }
         if (isset($recaptchaCheck['success']) && $recaptchaCheck['success'] === true) {
             $isValid = true;
@@ -64,8 +82,10 @@ class GoogleCaptcha implements CaptchaInterface
             /** @var \XoopsCaptcha $captchaInstance */
             $captchaInstance = \XoopsCaptcha::getInstance();
             /** @var array $recaptchaCheck */
-            foreach ($recaptchaCheck['error-codes'] as $msg) {
-                $captchaInstance->message[] = $msg;
+            if (!empty($recaptchaCheck['error-codes']) && is_array($recaptchaCheck['error-codes'])) {
+                foreach ($recaptchaCheck['error-codes'] as $msg) {
+                    $captchaInstance->message[] = $msg;
+                }
             }
         }
 
