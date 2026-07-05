@@ -37,8 +37,8 @@ class GoogleCaptcha implements CaptchaInterface
         }
         $helper = Helper::getInstance();
         $googleSecurityKey = $helper->getConfig('captcha_google_securitykey');
-        $recaptchaVerifyURL = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $googleSecurityKey
-            . '&response=' .  $recaptchaResponse . '&remoteip=' . IPAddress::fromRequest()->asReadable();
+        $recaptchaVerifyURL = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($googleSecurityKey)
+            . '&response=' . urlencode($recaptchaResponse) . '&remoteip=' . urlencode(IPAddress::fromRequest()->asReadable());
         $usedCurl = false;
         $recaptchaCheck = [];
         if (function_exists('curl_init') && false !== ($curlHandle  = curl_init())) {
@@ -46,6 +46,7 @@ class GoogleCaptcha implements CaptchaInterface
             curl_setopt($curlHandle, CURLOPT_FAILONERROR, true);
             curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curlHandle, CURLOPT_CONNECTTIMEOUT, 5);
+            curl_setopt($curlHandle, CURLOPT_TIMEOUT, 8);
             $curlReturn = curl_exec($curlHandle);
             if (false === $curlReturn) {
                 trigger_error(curl_error($curlHandle));
@@ -61,7 +62,7 @@ class GoogleCaptcha implements CaptchaInterface
         if (false === $usedCurl) {
             $context = stream_context_create([
                 'http' => [
-                    'timeout'       => 5,
+                    'timeout'       => 8,
                     'ignore_errors' => true,
                 ],
             ]);

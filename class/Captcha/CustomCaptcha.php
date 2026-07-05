@@ -11,8 +11,8 @@ class CustomCaptcha implements CaptchaInterface
     {
         $chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
         $code  = '';
-        global $xoopsModuleConfig;
-        $cap_len    = isset($xoopsModuleConfig['captcha_custom_length']) ? (int)$xoopsModuleConfig['captcha_custom_length'] : 5;
+        $helper = \XoopsModules\Xcontact\Helper::getInstance();
+        $cap_len = (int)$helper->getConfig('captcha_custom_length') ?: 5;
         for ($i = 0; $i < $cap_len; $i++) {
             $code .= $chars[random_int(0, strlen($chars) - 1)];
         }
@@ -25,8 +25,12 @@ class CustomCaptcha implements CaptchaInterface
             $bg  = imagecolorallocate($im, 245, 245, 250);
             $ns  = imagecolorallocate($im, 190, 190, 210);
             imagefill($im, 0, 0, $bg);
-            for ($i = 0; $i < 60; $i++) imagesetpixel($im, random_int(0, 129), random_int(0, 43), $ns);
-            for ($i = 0; $i < 3;  $i++) imageline($im, random_int(0, 40), random_int(0, 43), random_int(80, 129), random_int(0, 43), $ns);
+            for ($i = 0; $i < 60; $i++) {
+                imagesetpixel($im, random_int(0, 129), random_int(0, 43), $ns);
+            }
+            for ($i = 0; $i < 3; $i++) {
+                imageline($im, random_int(0, 40), random_int(0, 43), random_int(80, 129), random_int(0, 43), $ns);
+            }
             for ($i = 0; $i < strlen($code); $i++) {
                 $cx = imagecolorallocate($im, random_int(10, 40), random_int(10, 60), random_int(100, 180));
                 imagestring($im, 5, 8 + $i * 23, random_int(8, 16), $code[$i], $cx);
