@@ -94,7 +94,17 @@ $modversion['templates'][] = ['file' => 'xcontact_form.tpl',       'description'
 
 
 // ── Module settings ────────────────────────────────────────────────────────────
-
+// ------------------- Group header: Display ------------------- //
+// group header
+$modversion['config'][] = [
+    'name'        => 'group_display',
+    'title'       => '_MI_XCONTACT_GROUP_DISPLAY',
+    'description' => '',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'even',
+    'category'    => 'group_header',
+];
 // Admin pager
 $modversion['config'][] = [
     'name'        => 'adminpager',
@@ -114,12 +124,35 @@ $modversion['config'][] = [
     'default'     => 10,
 ];
 $modversion['config'][] = [
+    'name'        => 'iconset',
+    'title'       => '_MI_XCONTACT_ICONSET',
+    'description' => '_MI_XCONTACT_ICONSET_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'fontawesome',
+    'options'     => [
+        _MI_XCONTACT_ICONSET_FA      => 'fontawesome',
+        _MI_XCONTACT_ICONSET_UNICODE => 'unicode',
+    ],
+];
+$modversion['config'][] = [
     'name'        => 'truncate_length',
     'title'       => '_MI_XCONTACT_TRUNCATE_LENGTH',
     'description' => '_MI_XCONTACT_TRUNCATE_LENGTH_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 80,
+];
+// ------------------- Group header: Upload ------------------- //
+// group header
+$modversion['config'][] = [
+    'name'        => 'group_upload',
+    'title'       => '_MI_XCONTACT_GROUP_UPLOAD',
+    'description' => '',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'even',
+    'category'    => 'group_header',
 ];
 // create increment steps for file size
 require_once __DIR__ . '/include/xoops_version.inc.php';
@@ -172,7 +205,6 @@ $modversion['config'][] = [
 // Uploads : mimetypes for upload file
 require_once __DIR__ . '/class/MimeTypes.php';
 $mimetypes = new XoopsModules\Xcontact\MimeTypes();
-
 $modversion['config'][] = [
     'name'        => 'upload_mimetypes',
     'title'       => '_MI_XCONTACT_UPLOAD_TYPES',
@@ -194,6 +226,7 @@ $modversion['config'][] = [
     'options'     => $mimetypes::getList(),
 ];
 
+// to be removed
 $modversion['config'][] = [
     'name'        => 'upload_filetypes',
     'title'       => '_MI_XCONTACT_UPLOAD_TYPES',
@@ -221,26 +254,93 @@ $modversion['config'][] = [
         'zip'   => 'zip',
     ],
 ];
-//  jpg,png,pdf,doc,xls,txt,zip
+// ------------------- Group header: Captcha ------------------- //
+// group header
 $modversion['config'][] = [
-    'name'        => 'captcha_length',
-    'title'       => '_MI_XCONTACT_CFG_CAPTCHA_LEN',
-    'description' => '_MI_XCONTACT_CFG_CAPTCHA_LEN_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'int',
-    'default'     => 5,
+    'name'        => 'group_captcha',
+    'title'       => '_MI_XCONTACT_GROUP_CAPTCHA',
+    'description' => '',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'even',
+    'category'    => 'group_header',
 ];
 $modversion['config'][] = [
-    'name'        => 'iconset',
-    'title'       => '_MI_XCONTACT_ICONSET',
-    'description' => '_MI_XCONTACT_ICONSET_DESC',
+    'name'        => 'captcha_type',
+    'title'       => '_MI_XCONTACT_CAPTCHA',
+    'description' => '_MI_XCONTACT_CAPTCHA_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'text',
-    'default'     => 'fontawesome',
+    'default'     => 'xoops',
     'options'     => [
-        _MI_XCONTACT_ICONSET_FA      => 'fontawesome',
-        _MI_XCONTACT_ICONSET_UNICODE => 'unicode',
+        _MI_XCONTACT_CAPTCHA_TYPE_XOOPS => 'xoops',
+        _MI_XCONTACT_CAPTCHA_TYPE_GOOGLE => 'google',
+        _MI_XCONTACT_CAPTCHA_TYPE_CUSTOM => 'custom',
+        _MI_XCONTACT_CAPTCHA_TYPE_NONE => 'none',
     ],
+];
+$modversion['config'][] = [
+    'name'        => 'captcha_custom_length',
+    'title'       => '_MI_XCONTACT_CAPTCHA_CUSTOM_LEN',
+    'description' => '_MI_XCONTACT_CAPTCHA_CUSTOM_LEN_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 10,
+];
+$modversion['config'][] = [
+    'name'        => 'captcha_google_websitekey',
+    'title'       => '_MI_XCONTACT_CAPTCHA_GOOGLE_WEBSITEKEY',
+    'description' => '_MI_XCONTACT_CAPTCHA_GOOGLE_WEBSITEKEY_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '',
+];
+$modversion['config'][] = [
+    'name'        => 'captcha_google_securitykey',
+    'title'       => '_MI_XCONTACT_CAPTCHA_GOOGLE_SECURITYKEY',
+    'description' => '_MI_XCONTACT_CAPTCHA_GOOGLE_SECURITYKEY_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '',
+];
+// ------------------- Group header: Notification ------------------- //
+// group header
+$modversion['config'][] = [
+    'name'        => 'group_notification',
+    'title'       => '_MI_XCONTACT_GROUP_NOTIFICATION',
+    'description' => '',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'even',
+    'category'    => 'group_header',
+];
+// config for notifications after submissions
+$modversion['config'][] = [
+    'name'        => 'notification_name',
+    'title'       => '_MI_XCONTACT_NOTIFICATION_NAME',
+    'description' => '_MI_XCONTACT_NOTIFICATION_NAME_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => _MI_XCONTACT_NOTIFICATION_NAME_DEFAULT . ' - ' . $GLOBALS['xoopsConfig']['sitename'],
+];
+$modversion['config'][] = [
+    'name'        => 'notification_email',
+    'title'       => '_MI_XCONTACT_NOTIFICATION_EMAIL',
+    'description' => '_MI_XCONTACT_NOTIFICATION_EMAIL_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => _MI_XCONTACT_NOTIFICATION_EMAIL_DEFAULT . ($_SERVER['HTTP_HOST'] ?? 'localhost'),
+];
+// ------------------- Group header: Misc ------------------- //
+// group header
+$modversion['config'][] = [
+    'name'        => 'group_misc',
+    'title'       => '_MI_XCONTACT_GROUP_MISC',
+    'description' => '',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'even',
+    'category'    => 'group_header',
 ];
 // Make tab clone visible?
 $modversion['config'][] = [
@@ -268,21 +368,4 @@ $modversion['config'][] = [
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1,
-];
-// config for notifications after submissions
-$modversion['config'][] = [
-    'name'        => 'notification_name',
-    'title'       => '_MI_XCONTACT_NOTIFICATION_NAME',
-    'description' => '_MI_XCONTACT_NOTIFICATION_NAME_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => _MI_XCONTACT_NOTIFICATION_NAME_DEFAULT . ' - ' . $GLOBALS['xoopsConfig']['sitename'],
-];
-$modversion['config'][] = [
-    'name'        => 'notification_email',
-    'title'       => '_MI_XCONTACT_NOTIFICATION_EMAIL',
-    'description' => '_MI_XCONTACT_NOTIFICATION_EMAIL_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => _MI_XCONTACT_NOTIFICATION_EMAIL_DEFAULT . ($_SERVER['HTTP_HOST'] ?? 'localhost'),
 ];

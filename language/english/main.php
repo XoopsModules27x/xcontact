@@ -3,7 +3,7 @@ defined('XOOPS_ROOT_PATH') || exit();
 
 define('_MD_XCONTACT_FORM_NOT_FOUND',    'Form not found or disabled.');
 define('_MD_XCONTACT_TOKEN_ERROR',       'Security validation error. Please try again.');
-define('_MD_XCONTACT_CAPTCHA_ERROR',     'Incorrect security code. Please try again.');
+define('_MD_XCONTACT_CAPTCHA_ERROR',     'Invalid CAPTCHA. Please try again.');
 define('_MD_XCONTACT_REQUIRED',          'field is required.');
 define('_MD_XCONTACT_MUST_ACCEPT',       'must be accepted.');
 define('_MD_XCONTACT_INVALID_EMAIL',     'Please enter a valid email address.');
@@ -13,7 +13,7 @@ define('_MD_XCONTACT_FILE_TOO_BIG',      'file exceeds the maximum allowed size.
 define('_MD_XCONTACT_SUBMIT',            'Submit');
 define('_MD_XCONTACT_SENDING',           'Sending...');
 define('_MD_XCONTACT_SECURITY_CODE',     'Security Code');
-define('_MD_XCONTACT_CODE_HINT',         'Enter the code above');
+define('_MD_XCONTACT_CODE_HINT',         'Enter the code');
 define('_MD_XCONTACT_SUCCESS',           'Your form has been submitted successfully. Thank you!');
 define('_MD_XCONTACT_PLEASE_FIX',        'Please correct the following:');
 define('_MD_XCONTACT_SELECT_OPT',        '-- Select --');

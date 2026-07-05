@@ -33,6 +33,7 @@
  - reload form with already given data after submission error (goffy)
  - created separate css and js files (goffy)
  - adapted form blocks to new structure (goffy)
+ - implementation of different captcha types (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]

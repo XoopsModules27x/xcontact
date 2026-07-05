@@ -5,7 +5,10 @@
  */
 
 use Xmf\Request;
-use XoopsModules\Xcontact\Constants;
+use XoopsModules\Xcontact\{
+    Constants,
+    Captcha\CaptchaHandler
+};
 
 require_once '../../mainfile.php';
 $xoopsOption['template_main'] = 'xcontact_form.tpl';
@@ -40,23 +43,26 @@ $cfFormId = Request::getInt('cf_form_id', 0, 'POST');
 
 // ── POST processing ───────────────────────────────────────────────────────────────
 if ('save' == $op && $formId === $cfFormId) {
-    // Security Check
+    // Security Checks
+    $checkPassed = true;
     if (!$GLOBALS['xoopsSecurity']->check()) {
         $formError[]  = \_MD_XCONTACT_TOKEN_ERROR;
-    } else {
-        $result      = $submissionsHandler->processSubmission($formFields, $formSettings, $form);
-        $formSuccess = $result['success'];
-        $formError   = $result['errors'];
-        $formData    = $result['data'];
+        $checkPassed = false;
     }
-}
-
-// ── Generate CAPTCHA (AFTER POST request — to avoid overwriting the session) ────────────
-$cf_captcha = ['code' => '', 'img' => ''];
-if (!empty($formSettings['enable_captcha']) && !$formSuccess) {
-    global $xoopsModuleConfig;
-    $cap_len    = isset($xoopsModuleConfig['captcha_length']) ? (int)$xoopsModuleConfig['captcha_length'] : 5;
-    $cf_captcha = xcontact_generate_captcha($cap_len);
+    if ((bool)$formSettings['enable_captcha']) {
+        $captchaHandler = new CaptchaHandler();
+        $captcha = $captchaHandler->getInstance($helper->getConfig('captcha_type'));
+        if (!$captcha->verify()) {
+            $formError[] = _MD_XCONTACT_CAPTCHA_ERROR;
+            $checkPassed = false;
+        }
+    }
+    if ($checkPassed) {
+        $result = $submissionsHandler->processSubmission($formFields, $formSettings, $form);
+        $formSuccess = $result['success'];
+        $formError = $result['errors'];
+        $formData = $result['data'];
+    }
 }
 
 // ── assign to template ────────────────────────────────────────────────────────────

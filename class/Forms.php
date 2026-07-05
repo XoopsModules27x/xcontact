@@ -25,8 +25,11 @@ namespace XoopsModules\Xcontact;
  */
 
 
-use XoopsModules\Xcontact\Forms\FormElement;
-use XoopsModules\Xcontact\MimeTypes;
+use XoopsModules\Xcontact\{
+    Forms\FormElement,
+    Captcha\CaptchaHandler,
+    MimeTypes
+};
 
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
@@ -89,6 +92,8 @@ class Forms extends \XoopsObject
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $formId = $this->getVar('form_id');
+        $formSettings = json_decode($this->getVar('settings') ?? '{}', true) ?: [];
+
         $form = new Forms\Form($this->getVar('title'), 'form_' . $formId, $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // get all fields with params
@@ -284,7 +289,15 @@ class Forms extends \XoopsObject
                     break;
             }
         }
-
+        // captcha
+        if ((bool)$formSettings['enable_captcha']) {
+            $captchaHandler = new CaptchaHandler();
+            $captcha = $captchaHandler->getInstance($helper->getConfig('captcha_type'));
+            if ($element = $captcha->getFormElement()) {
+                $form->addElement($element);
+            }
+        }
+        // hidden elelments
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormHidden('cf_form_id', $formId));
         $form->addElement(new \XoopsFormHidden('slug', $this->getVar('slug')));

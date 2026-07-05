@@ -149,13 +149,6 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
             $cf_success = true;
         }
 
-        // Captcha
-        if (!$cf_success && !empty($cf_settings['enable_captcha'])) {
-            if (!xcontact_verify_captcha(Request::getString('cf_captcha', '', 'POST'))) {
-                $cf_errors[] = _MD_XCONTACT_CAPTCHA_ERROR;
-            }
-        }
-
         if (!$cf_success && empty($cf_errors)) {
             foreach ($cf_fields as $field) {
                 $fn = $field['name'] ?? '';
