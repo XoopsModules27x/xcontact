@@ -288,9 +288,17 @@ $modversion['config'][] = [
     'default'     => 10,
 ];
 $modversion['config'][] = [
-    'name'        => 'captcha_google_key',
-    'title'       => '_MI_XCONTACT_CAPTCHA_GOOGLE',
-    'description' => '_MI_XCONTACT_CAPTCHA_GOOGLE_DESC',
+    'name'        => 'captcha_google_website_key',
+    'title'       => '_MI_XCONTACT_CAPTCHA_GOOGLE_WEBSITEKEY',
+    'description' => '_MI_XCONTACT_CAPTCHA_GOOGLE_WEBSITEKEY_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '',
+];
+$modversion['config'][] = [
+    'name'        => 'captcha_google_securitykey',
+    'title'       => '_MI_XCONTACT_CAPTCHA_GOOGLE_SECURITYKEY',
+    'description' => '_MI_XCONTACT_CAPTCHA_GOOGLE_SECURITYKEY_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => '',
