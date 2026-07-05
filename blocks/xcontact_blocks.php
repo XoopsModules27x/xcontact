@@ -100,7 +100,7 @@ function xcontact_block_form($options)
         if ($checkPassed) {
             $result       = $submissionsHandler->processSubmission($formFields, $formSettings, $form);
             $formSuccess  = $result['success'];
-            $formErrors[] = $result['errors'];
+            $formErrors   = $result['errors'];
             $formData     = $result['data'];
         }
     }
