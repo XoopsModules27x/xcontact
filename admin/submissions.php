@@ -113,7 +113,19 @@ switch ($op) {
             }
         }
         // get data
-        $data = json_decode($submissionsObj->getVar('data'),true)?:[];
+        $dataArr = json_decode($submissionsObj->getVar('data'),true)?:[];
+        $data = [];
+        foreach ($dataArr as $key => $sub) {
+            $data[$key]['value'] = $sub;
+            $data[$key]['name'] = $f_name[$key] ?? $key;
+            $data[$key]['type'] = $f_type[$key] ?? '';
+            if ('file' === ($f_type[$key] ?? '')) {
+                $data[$key]['filetype'] = $submissionsHandler->getFiletypeSubmission($sub);
+            } else {
+                $data[$key]['filetype'] = Constants::SUB_FILETYPE_MISC;
+            }
+        }
+
         // assign all vars
         $GLOBALS['xoopsTpl']->assign('module_url',\XCONTACT_URL);
         $GLOBALS['xoopsTpl']->assign('sub',$submissionsObj->getValuesSubmissions());
@@ -121,6 +133,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('f_name',$f_name);
         $GLOBALS['xoopsTpl']->assign('f_type',$f_type);
         $GLOBALS['xoopsTpl']->assign('data',$data);
+        $GLOBALS['xoopsTpl']->assign('filetype_image',Constants::SUB_FILETYPE_IMAGE);
         $GLOBALS['xoopsTpl']->assign('xcontact_upload_img_url', \XCONTACT_UPLOAD_IMAGE_URL . '/');
         $GLOBALS['xoopsTpl']->assign('xcontact_upload_file_url', \XCONTACT_UPLOAD_FILE_URL . '/');
         $GLOBALS['xoopsTpl']->assign('xoops_token', $GLOBALS['xoopsSecurity']->getTokenHTML());

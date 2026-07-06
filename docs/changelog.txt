@@ -34,7 +34,8 @@
  - created separate css and js files (goffy)
  - adapted form blocks to new structure (goffy)
  - implementation of different captcha types (goffy)
- - replaced move_uploaded_file by XoopsMediaUploader  (goffy)
+ - replaced move_uploaded_file by XoopsMediaUploader (goffy)
+ - added file preview for uploaded files in submissions (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]

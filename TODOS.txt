@@ -1,9 +1,3 @@
-move_uploaded_file Max 5MB · jpg,png,pdf,doc,xls,txt,zip
-==> replace by XoopsMediaUploader
-remove preference upload_filetypes
-
-
-
 
 create email reply in xcontact
 

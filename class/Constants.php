@@ -45,4 +45,7 @@ interface Constants
     public const CAPTCHA_DISABLED = 0;
     public const CAPTCHA_ENABLED  = 1;
 
+    // Constants file type for display
+    public const SUB_FILETYPE_MISC  = 0;
+    public const SUB_FILETYPE_IMAGE = 1;
 }
