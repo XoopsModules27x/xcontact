@@ -259,7 +259,11 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getFiletypeSubmission($file_name)
     {
-        $filePath = XCONTACT_UPLOAD_FILE_URL . '/' . $file_name;
+        $filePath = \XCONTACT_UPLOAD_FILE_PATH . '/' . $file_name;
+
+        if (empty($file_name) || !is_file($filePath)) {
+            return Constants::SUB_FILETYPE_MISC;
+        }
 
         // get image information
         $imageInfo = @getimagesize($filePath);

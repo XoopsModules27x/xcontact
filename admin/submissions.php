@@ -117,12 +117,12 @@ switch ($op) {
         $data = [];
         foreach ($dataArr as $key => $sub) {
             $data[$key]['value'] = $sub;
-            $data[$key]['name'] = $f_name[$key];
-            $data[$key]['type'] = $f_type[$key];
-            if ('file' === $f_type[$key]) {
+            $data[$key]['name'] = $f_name[$key] ?? $key;
+            $data[$key]['type'] = $f_type[$key] ?? '';
+            if ('file' === ($f_type[$key] ?? '')) {
                 $data[$key]['filetype'] = $submissionsHandler->getFiletypeSubmission($sub);
-            } else{
-                $data[$key]['filetype'] = 0;
+            } else {
+                $data[$key]['filetype'] = Constants::SUB_FILETYPE_MISC;
             }
         }
 
