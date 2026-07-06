@@ -100,6 +100,7 @@ class Submissions extends \XoopsObject
         $ret['form_name']        = $formName;
         $ret['data_text']        = \strip_tags($this->getVar('data', 'e'));
         $ret['created_at_text']  = \formatTimestamp($this->getVar('created_at'), 's');
+
         return $ret;
     }
 

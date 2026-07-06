@@ -226,34 +226,6 @@ $modversion['config'][] = [
     'options'     => $mimetypes::getList(),
 ];
 
-// to be removed
-$modversion['config'][] = [
-    'name'        => 'upload_filetypes',
-    'title'       => '_MI_XCONTACT_UPLOAD_TYPES',
-    'description' => '_MI_XCONTACT_UPLOAD_TYPES_DESC',
-    'formtype'    => 'select_multi',
-    'valuetype'   => 'array',
-    'default'     => ['jpg','jpeg','png','gif','pdf','doc','docx','xls','xlsx','txt','zip'],
-    'options' => [
-        // images
-        'bmp'   => 'bmp',
-        'gif'   => 'gif',
-        'jpeg'  => 'jpeg',
-        'jpg'   => 'jpg',
-        'jpe'   => 'jpe',
-        'png'   => 'png',
-        // documents
-        'pdf'   => 'pdf',
-        'doc'   => 'doc',
-        'docx'  => 'docx',
-        'txt'   => 'txt',
-        // tables
-        'xls'   => 'xls',
-        'xlsx'  => 'xlsx',
-        // archive
-        'zip'   => 'zip',
-    ],
-];
 // ------------------- Group header: Captcha ------------------- //
 // group header
 $modversion['config'][] = [

@@ -140,10 +140,6 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
         $cf_errors   = [];
         $cf_data     = [];
 
-        // preferences for uploading files
-        $allowed = $helper->getConfig('upload_filetypes');
-        $uploadMaxSize = (int)$helper->getConfig('upload_max_size');
-
         // Honeypot
         if ('' !== Request::getString('cf_hp', '', 'POST')) {
             $cf_success = true;
@@ -161,20 +157,36 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                     $val = Request::hasVar($fn, 'POST') ? array_filter(array_map(static fn($item) => is_scalar($item) ? strip_tags((string)$item) : '', Request::getArray($fn, [], 'POST'))) : [];
                     if ($req && empty($val)) $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ' ' . _MD_XCONTACT_REQUIRED;
                 } elseif ($ftype === 'file') {
-                    // TODO: replace by XoopsMediaUploader
+                    // preferences for uploading files
+                    $allowedMime = $helper->getConfig('upload_mimetypes');
+                    $uploadMaxSize = (int)$helper->getConfig('upload_max_size');
                     $val = '';
                     if (isset($_FILES[$fn]) && $_FILES[$fn]['error'] === UPLOAD_ERR_OK) {
-                        $ext = strtolower(pathinfo($_FILES[$fn]['name'], PATHINFO_EXTENSION));
-                        if (!in_array($ext, $allowed)) {
-                            $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ': ' . _MD_XCONTACT_INVALID_EXT;
-                        } elseif ($_FILES[$fn]['size'] > $uploadMaxSize) {
+                        if ($_FILES[$fn]['size'] > $uploadMaxSize) {
                             $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ': ' . _MD_XCONTACT_FILE_TOO_BIG;
                         } else {
-                            $udir = \XCONTACT_UPLOAD_FILE_PATH . '/';
-                            $safe = time() . '_' . preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', $_FILES[$fn]['name']);
                             $val = \_MD_XCONTACT_UPLOAD_ERROR;
-                            if (@move_uploaded_file($_FILES[$fn]['tmp_name'], $udir . $safe)) {
-                                $val = $safe;
+                            require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
+                            $filename = time() . '_' . preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', $_FILES[$fn]['name']);
+                            $imgMimetype = $_FILES[$fn]['type'];
+                            if ('' !== $filename && '' !== $imgMimetype) {
+                                $uploader = new \XoopsMediaUploader(\XCONTACT_UPLOAD_FILE_PATH . '/',
+                                    $allowedMime, $uploadMaxSize, null, null);
+                                if ($uploader->fetchMedia($_POST['xoops_upload_file'][$fn])) {
+                                    $uploader->setTargetFileName($filename);
+                                    if (!$uploader->upload()) {
+                                        $cf_errors[] = $uploader->getErrors();
+                                    } else {
+                                        $savedFilename = $uploader->getSavedFileName();
+                                        $val = $savedFilename;
+                                        // additional check whether file really exists
+                                        $filePath = \XCONTACT_UPLOAD_FILE_PATH . '/' . $val;
+                                        if (!file_exists($filePath)) {
+                                            $val = \_MD_XCONTACT_UPLOAD_ERROR;
+                                            $cf_errors[] = $val;
+                                        }
+                                    }
+                                }
                             }
                         }
                     } elseif ($req) {

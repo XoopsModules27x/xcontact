@@ -68,7 +68,7 @@ class FormFile extends \XoopsFormFile
         }
         $ret .= '</span></label>';
         $ret .= '<input type="hidden" name="MAX_FILE_SIZE" value="' . $this->getMaxFileSize() . '">';
-        $ret .= '<input type="hidden"  id="xoops_upload_file[]" name="xoops_upload_file[]" value="' . $this->getName() . '">';
+        $ret .= '<input type="hidden"  id="xoops_upload_file[' . $this->getName() . ']" name="xoops_upload_file['  . $this->getName()  . ']" value="' . $this->getName() . '">';
         $ret .= '<input type="file" class="form-control"  name="' . $this->getName() . '" id="xcf_' . $this->getName(). '"';
         if ($this->isRequired()) {
             $ret .=  ' required ';
