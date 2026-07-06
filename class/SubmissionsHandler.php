@@ -165,16 +165,37 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
                     $val = '';
                     if (isset($_FILES[$fn]) && $_FILES[$fn]['error'] === UPLOAD_ERR_OK) {
                         $ext = strtolower(pathinfo($_FILES[$fn]['name'], PATHINFO_EXTENSION));
-                        if (!in_array($ext, $allowed)) {
+                        /*if (!in_array($ext, $allowed)) {
                             $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ': ' . _MD_XCONTACT_INVALID_EXT;
-                        } elseif ($_FILES[$fn]['size'] > $uploadMaxSize) {
+                        } else*/
+                        if ($_FILES[$fn]['size'] > $uploadMaxSize) {
                             $cf_errors[] = htmlspecialchars($field['label'] ?? $fn) . ': ' . _MD_XCONTACT_FILE_TOO_BIG;
                         } else {
-                            $udir = \XCONTACT_UPLOAD_FILE_PATH . '/';
-                            $safe = time() . '_' . preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', $_FILES[$fn]['name']);
                             $val = \_MD_XCONTACT_UPLOAD_ERROR;
-                            if (@move_uploaded_file($_FILES[$fn]['tmp_name'], $udir . $safe)) {
-                                $val = $safe;
+                            $uploaderErrors = '';
+                            require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
+                            $filename = time() . '_' . preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', $_FILES[$fn]['name']);
+                            $imgMimetype = $_FILES[$fn]['type'];
+                            if ('' !== $filename && '' !== $imgMimetype) {
+                                $uploader = new \XoopsMediaUploader(\XCONTACT_UPLOAD_FILE_PATH . '/',
+                                    $helper->getConfig('mimetypes_file'),
+                                    $helper->getConfig('maxsize_file'), null, null);
+                                if ($uploader->fetchMedia($_POST['xoops_upload_file'][$fn])) {
+                                    //$uploader->setPrefix($filename . '_');
+                                    $uploader->setTargetFileName($filename);
+                                    $uploader->fetchMedia($_POST['xoops_upload_file'][$fn]);
+                                    if (!$uploader->upload()) {
+                                        $cf_errors[] = $uploader->getErrors();
+                                    } else {
+                                        $savedFilename = $uploader->getSavedFileName();
+                                        $val = $savedFilename;
+                                    }
+                                }
+                            }
+                            $filePath = \XCONTACT_UPLOAD_FILE_PATH . '/' . $val;
+                            if (!file_exists($filePath)) {
+                                $val = \_MD_XCONTACT_UPLOAD_ERROR;
+                                $cf_errors[] = $val;
                             }
                         }
                     } elseif ($req) {
