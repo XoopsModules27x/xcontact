@@ -250,4 +250,40 @@ class SubmissionsHandler extends \XoopsPersistableObjectHandler
         }
         return ['success' => $cf_success, 'errors' => $cf_errors, 'data' => $cf_data];
     }
+
+    /**
+     * function to get file type for display submissions
+     * @param string $file_name
+     *
+     * @return int
+     */
+    public function getFiletypeSubmission($file_name)
+    {
+        $filePath = XCONTACT_UPLOAD_FILE_URL . '/' . $file_name;
+
+        // get image information
+        $imageInfo = @getimagesize($filePath);
+
+        if ($imageInfo === false) {
+            return 0;
+        }
+
+        // get MIME-Typ
+        $mime = $imageInfo['mime'] ?? '';
+
+        // mime-types where <img> is possible
+        $allowed = [
+            'image/jpeg',
+            'image/png',
+            'image/gif',
+            'image/webp',
+            'image/avif',
+            'image/bmp',
+        ];
+
+        if (in_array($mime, $allowed, true)) {
+            return Constants::SUB_FILETYPE_IMAGE;
+        }
+        return Constants::SUB_FILETYPE_MISC;
+    }
 }
