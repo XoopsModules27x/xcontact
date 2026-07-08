@@ -18,13 +18,18 @@ class GoogleCaptcha implements CaptchaInterface
 
     public function getFormElement(): ?\XoopsFormElement
     {
-        if (is_object($GLOBALS['xoopsUser'])) {
+        if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) {
             return null;
         }
-        $GLOBALS['xoTheme']->addScript('https://www.google.com/recaptcha/api.js', ['type' => 'text/javascript']);
+        $script = '';
+        if (isset($GLOBALS['xoTheme']) && is_object($GLOBALS['xoTheme'])) {
+            $GLOBALS['xoTheme']->addScript('https://www.google.com/recaptcha/api.js', ['type' => 'text/javascript']);
+        } else {
+            $script = '<script src="https://www.google.com/recaptcha/api.js"></script>';
+        }
         $helper = Helper::getInstance();
         $googleWebsiteKey = $helper->getConfig('captcha_google_websitekey');
-        $captcha = '<div class="form-group"><div class="g-recaptcha" data-sitekey="'
+        $captcha =  $script . '<div class="form-group"><div class="g-recaptcha" data-sitekey="'
             . htmlspecialchars($googleWebsiteKey, ENT_QUOTES) . '"></div></div>';
 
         return new FormLabel('', $captcha);
@@ -33,7 +38,7 @@ class GoogleCaptcha implements CaptchaInterface
 
     public function verify(): bool
     {
-        if (is_object($GLOBALS['xoopsUser'])) {
+        if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) {
             return true;
         }
         $isValid = false;

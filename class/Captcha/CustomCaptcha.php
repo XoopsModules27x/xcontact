@@ -9,7 +9,7 @@ class CustomCaptcha implements CaptchaInterface
 {
     public function getFormElement(): ?\XoopsFormElement
     {
-        if (is_object($GLOBALS['xoopsUser'])) {
+        if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) {
             return null;
         }
         $chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -56,7 +56,7 @@ class CustomCaptcha implements CaptchaInterface
 
     public function verify(): bool
     {
-        if (is_object($GLOBALS['xoopsUser'])) {
+        if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) {
             return true;
         }
         $input = Request::getString('cf_captcha');
