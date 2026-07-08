@@ -102,7 +102,7 @@ define('_AM_XCONTACT_SET_NOTIFY_EMAIL',     'Notification Email');
 define('_AM_XCONTACT_SET_EMAIL_HINT',       'Leave blank to disable email notifications.');
 define('_AM_XCONTACT_SET_EMAIL_SUBJECT',    'Email Subject');
 define('_AM_XCONTACT_SET_IS_ACTIVE',        'Form Active');
-define('_AM_XCONTACT_SET_CAPTCHA',          'Enable CAPTCHA (selected in module preferences)');
+define('_AM_XCONTACT_SET_CAPTCHA',          'Enable CAPTCHA (must be selected in module preferences, logged in members will be skipped)');
 define('_AM_XCONTACT_SET_DEFAULT_SUCCESS',  'Your form has been submitted successfully. Thank you!');
 define('_AM_XCONTACT_SET_DEFAULT_SUBJECT',  'New Form Submission');
 define('_AM_XCONTACT_SET_SLUG_PLACEHOLDER', 'contact-form');

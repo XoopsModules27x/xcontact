@@ -102,7 +102,7 @@ define('_AM_XCONTACT_SET_NOTIFY_EMAIL',     'Bildirim E-posta');
 define('_AM_XCONTACT_SET_EMAIL_HINT',       'Boş bırakırsanız e-posta gönderilmez.');
 define('_AM_XCONTACT_SET_EMAIL_SUBJECT',    'E-posta Konusu');
 define('_AM_XCONTACT_SET_IS_ACTIVE',        'Formu Aktif Et');
-define('_AM_XCONTACT_SET_CAPTCHA',          'CAPTCHA’yı Etkinleştir (modül tercihleriyle seçildi)');
+define('_AM_XCONTACT_SET_CAPTCHA',          'CAPTCHA’yı etkinleştir (modül tercihlerinde seçilmiş olmalı, giriş yapan üyeler atlanacak)');
 define('_AM_XCONTACT_SET_DEFAULT_SUCCESS',  'Formunuz başarıyla gönderildi. Teşekkürler!');
 define('_AM_XCONTACT_SET_DEFAULT_SUBJECT',  'Yeni Form Gönderisi');
 define('_AM_XCONTACT_SET_SLUG_PLACEHOLDER', 'iletisim-formu');

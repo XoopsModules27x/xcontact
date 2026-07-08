@@ -13,7 +13,7 @@ class XoopsCaptcha implements CaptchaInterface
 
     public function getFormElement(): \XoopsFormCaptcha
     {
-        return new \XoopsFormCaptcha();
+        return new XoopsFormCaptcha();
     }
 
     public function verify(): bool

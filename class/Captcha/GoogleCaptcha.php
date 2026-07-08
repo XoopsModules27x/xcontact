@@ -8,27 +8,34 @@ use Xmf\{
 };
 use XoopsModules\Xcontact\{
     Captcha\CaptchaInterface,
-    Helper
+    Helper,
+    Forms\FormLabel
 };
 
 class GoogleCaptcha implements CaptchaInterface
 {
     protected string $error = '';
 
-    public function getFormElement(): \XoopsFormElement
+    public function getFormElement(): ?\XoopsFormElement
     {
+        if (is_object($GLOBALS['xoopsUser'])) {
+            return null;
+        }
+        $GLOBALS['xoTheme']->addScript('https://www.google.com/recaptcha/api.js', ['type' => 'text/javascript']);
         $helper = Helper::getInstance();
         $googleWebsiteKey = $helper->getConfig('captcha_google_websitekey');
-        $captcha = '<script src="https://www.google.com/recaptcha/api.js"></script>';
-        $captcha .= '<div class="form-group"><div class="g-recaptcha" data-sitekey="'
-            . $googleWebsiteKey . '"></div></div>';
+        $captcha = '<div class="form-group"><div class="g-recaptcha" data-sitekey="'
+            . htmlspecialchars($googleWebsiteKey, ENT_QUOTES) . '"></div></div>';
 
-        return new \XoopsFormLabel('', $captcha);
+        return new FormLabel('', $captcha);
 
     }
 
     public function verify(): bool
     {
+        if (is_object($GLOBALS['xoopsUser'])) {
+            return true;
+        }
         $isValid = false;
         $recaptchaResponse = Request::getString('g-recaptcha-response', '');
         if ($recaptchaResponse === '') {
