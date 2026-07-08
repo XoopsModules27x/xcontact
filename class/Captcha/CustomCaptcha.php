@@ -7,8 +7,11 @@ use XoopsModules\Xcontact\Captcha\CaptchaInterface;
 
 class CustomCaptcha implements CaptchaInterface
 {
-    public function getFormElement(): \XoopsFormElement
+    public function getFormElement(): ?\XoopsFormElement
     {
+        if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) {
+            return null;
+        }
         $chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
         $code  = '';
         $helper = \XoopsModules\Xcontact\Helper::getInstance();
@@ -53,6 +56,9 @@ class CustomCaptcha implements CaptchaInterface
 
     public function verify(): bool
     {
+        if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) {
+            return true;
+        }
         $input = Request::getString('cf_captcha');
         $stored = $_SESSION['xcontact_captcha_custom'] ?? '';
         if ($stored === '') return false;
