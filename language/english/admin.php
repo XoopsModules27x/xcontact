@@ -102,11 +102,13 @@ define('_AM_XCONTACT_SET_NOTIFY_EMAIL',     'Notification Email');
 define('_AM_XCONTACT_SET_EMAIL_HINT',       'Leave blank to disable email notifications.');
 define('_AM_XCONTACT_SET_EMAIL_SUBJECT',    'Email Subject');
 define('_AM_XCONTACT_SET_IS_ACTIVE',        'Form Active');
-define('_AM_XCONTACT_SET_CAPTCHA',          'Enable CAPTCHA (must be selected in module preferences, logged in members will be skipped)');
+define('_AM_XCONTACT_SET_CAPTCHA',          'Enable CAPTCHA (type of CAPTCHA must be selected in module preferences, logged in members will be skipped)');
 define('_AM_XCONTACT_SET_DEFAULT_SUCCESS',  'Your form has been submitted successfully. Thank you!');
 define('_AM_XCONTACT_SET_DEFAULT_SUBJECT',  'New Form Submission');
 define('_AM_XCONTACT_SET_SLUG_PLACEHOLDER', 'contact-form');
-
+define('_AM_XCONTACT_SET_GOOGLE_MAPS',      'Embed google maps');
+define('_AM_XCONTACT_SET_GOOGLE_MAPS_HINT', 'Enter iframe code for embed google maps');
+define('_AM_XCONTACT_SET_TEMPLATE',         'Template for displaying form');
 // About page
 define('_AM_XCONTACT_ABOUT_TITLE',      'xcontact — Contact Form Builder');
 define('_AM_XCONTACT_ABOUT_MOD_NAME',   'Module Name');
@@ -138,7 +140,7 @@ define('_AM_XCONTACT_FORMS_COL_SLUG',   'Slug / Usage');
 define('_AM_XCONTACT_FORMS_COL_FIELDS', 'Fields');
 define('_AM_XCONTACT_FORMS_COL_SUBS',   'Submissions');
 define('_AM_XCONTACT_FORMS_COL_STATUS', 'Status');
-define('_AM_XCONTACT_FORMS_FIELD_COUNT','fields');
+define('_AM_XCONTACT_FORMS_FIELDS_COUNT','fields');
 define('_AM_XCONTACT_FORMS_SUB_COUNT',  'submissions');
 define('_AM_XCONTACT_FORMS_STATUS_ON',  'Active');
 define('_AM_XCONTACT_FORMS_STATUS_OFF', 'Inactive');

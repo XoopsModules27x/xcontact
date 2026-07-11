@@ -44,7 +44,7 @@
                     <td><{$s.form_name}></td>
                     <td><{$s.created_at|date_format:"%d.%m.%Y %H:%M"}></td>
                     <td><{if $s.status eq 0}><span class="xcp-badge xcp-new"><{$smarty.const._AM_XCONTACT_SUB_NEW}></span><{else}><span class="xcp-badge xcp-on"><{$smarty.const._AM_XCONTACT_SUB_READ}></span><{/if}></td>
-                    <td><a href="<{$module_url}>admin/submissions.php?op=view&id=<{$s.sub_id}>" class="xcp-btn xcp-btn--blue"><{$smarty.const._AM_XCONTACT_DASH_BTN_VIEW}></a></td>
+                    <td><a href="<{$module_url}>admin/submissions.php?op=view&sub_id=<{$s.sub_id}>" class="xcp-btn xcp-btn--blue"><{$smarty.const._AM_XCONTACT_DASH_BTN_VIEW}></a></td>
                 </tr>
                 <{/foreach}>
             </table>

@@ -106,11 +106,10 @@ switch ($op) {
         $formsObj = $formsObjSource->xoopsClone();
         $formsObj->setNew();
         $formsObj->setVar('form_id', 0);
-        $form = $formsObj->getValues();
+        $form = $formsObj->getValuesForms();
         $GLOBALS['xoopsTpl']->assign('form_header', \_AM_XCONTACT_FORMS_CLONE);
         $GLOBALS['xoopsTpl']->assign('form', $form);
-        $settings = \json_decode((string)($form['settings'] ?? '{}'), true) ?: [];
-        $GLOBALS['xoopsTpl']->assign('settings', $settings);
+        $GLOBALS['xoopsTpl']->assign('settings', $form['settings_decoded']);
         $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
         $GLOBALS['xoopsTpl']->assign('xoops_token', $GLOBALS['xoopsSecurity']->getTokenHTML());
         break;
@@ -144,13 +143,12 @@ switch ($op) {
         if (!\is_object($formsObj)) {
             \redirect_header('forms.php', 3, \_MD_XCONTACT_INVALID_PARAM);
         }
-        $form = $formsObj->getValues();
+        $form = $formsObj->getValuesForms();
         $GLOBALS['xoopsTpl']->assign('is_edit', true);
         $GLOBALS['xoopsTpl']->assign('form', $form);
         $GLOBALS['xoopsTpl']->assign('start', $start);
         $GLOBALS['xoopsTpl']->assign('limit', $limit);
-        $settings=json_decode($form['settings']??'{}',true)?:[];
-        $GLOBALS['xoopsTpl']->assign('settings',$settings);
+        $GLOBALS['xoopsTpl']->assign('settings',$form['settings_decoded']);
         $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
         $GLOBALS['xoopsTpl']->assign('xoops_token',$GLOBALS['xoopsSecurity']->getTokenHTML());
         break;
@@ -216,7 +214,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         $GLOBALS['xoopsTpl']->assign('form_header', $formId > 0 ? \_AM_XCONTACT_FORMS_EDIT : \_AM_XCONTACT_FORMS_NEW);
         $GLOBALS['xoopsTpl']->assign('form', $formsObj->getValues());
-        $GLOBALS['xoopsTpl']->assign('settings', \json_decode((string)$formsObj->getVar('settings'), true) ?: []);
+        $GLOBALS['xoopsTpl']->assign('settings', \json_decode((string)$formSettings, true) ?: []);
         $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
         $GLOBALS['xoopsTpl']->assign('xoops_token', $GLOBALS['xoopsSecurity']->getTokenHTML());
         break;

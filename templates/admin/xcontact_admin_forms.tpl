@@ -35,7 +35,7 @@
                     <code><{$f.slug}></code><br>
                     <small style="color:#1976d2"><{$f.tpl_tag|default:''}></small>
                 </td>
-                <td><{$f.field_count|default:0}> <{$smarty.const._AM_XCONTACT_FORMS_FIELD_COUNT}></td>
+                <td><{$f.fields_count|default:0}> <{$smarty.const._AM_XCONTACT_FORMS_FIELDS_COUNT}></td>
                 <td>
                     <a href="submissions.php?form_id=<{$f.form_id}>"><{$f.total_subs|default:0}> <{$smarty.const._AM_XCONTACT_FORMS_SUB_COUNT}>
                     <{if $f.new_subs|default:0 gt 0}><span class="xcp-badge xcp-new"><{$f.new_subs}> <{$smarty.const._AM_XCONTACT_SUB_NEW}></span><{/if}></a>
