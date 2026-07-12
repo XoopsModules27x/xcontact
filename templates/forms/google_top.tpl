@@ -17,7 +17,7 @@
     <{/if}>
     <!-- google maps iframe -->
     <{if $xcontact_settings.google_maps|default:''}>
-        <div><{$xcontact_settings.google_maps}></div>
+        <div><{$xcontact_settings.google_maps|escape}></div>
     <{/if}>
     <!-- input form with necessary script -->
     <{if $form|default:''}>

@@ -25,7 +25,7 @@
         <!-- google maps iframe -->
         <div class="xcontact-col-4">
             <{if $xcontact_settings.google_maps|default:''}>
-                <{$xcontact_settings.google_maps}>
+                <{$xcontact_settings.google_maps|escape}>
             <{/if}>
         </div>
     </div>

@@ -202,3 +202,5 @@ include_once('common.php');
 \define('_AM_XCONTACT_NOT_CHECKED', 'Seçili değil');
 \define('_AM_XCONTACT_DOWNLOAD', 'Dosyayı indir');
 \define('_AM_XCONTACT_FORM_ERROR_SLUG', "'%s' formu halihazırda '%s' kısa adını (slug) kullanıyor! Lütfen farklı bir tane seçin!");
+\define('_AM_XCONTACT_FORM_TEMPLATE_SUCCESS', 'Şablon mevcut');
+\define('_AM_XCONTACT_FORM_TEMPLATE_BROKEN', 'Şablon mevcut değil!');

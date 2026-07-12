@@ -39,7 +39,7 @@ $GLOBALS['xoopsTpl']->assign('msg',$msg);
 
 if ('new' == $op || 'edit' == $op || 'clone' == $op) {
     $formTpls = [];
-    foreach (glob(XOOPS_ROOT_PATH . '/modules/xcontact/templates/forms/*.tpl') as $file) {
+    foreach (glob(XOOPS_ROOT_PATH . '/modules/xcontact/templates/forms/*.tpl') ?: [] as $file) {
         $formTpls[] = basename($file);
     }
     $GLOBALS['xoopsTpl']->assign('form_tpls', $formTpls);
@@ -223,7 +223,7 @@ switch ($op) {
             'email_subject'=>trim(Request::getString('email_subject',\_AM_XCONTACT_SET_DEFAULT_SUBJECT)),
             'enable_captcha'=>$enableCaptcha,
             'google_maps'=>trim(Request::getText('google_maps')),
-            'template'=>trim(Request::getString('template',\_AM_XCONTACT_SET_DEFAULT_SUBJECT)),
+            'template'=>trim(Request::getString('template', 'default.tpl')),
         ],JSON_UNESCAPED_UNICODE);
         $formsObj->setVar('settings', $formSettings);
         $formsObj->setVar('is_active', Request::getInt('is_active'));
