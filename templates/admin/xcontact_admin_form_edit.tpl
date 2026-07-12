@@ -52,7 +52,7 @@
         <input type="hidden" name="start" value="<{$start}>">
         <input type="hidden" name="limit" value="<{$limit}>">
         <input type="hidden" name="form_id" value="<{$form.form_id}>">
-        <input type="hidden" name="fields_json" id="xcf-fields-json" value='<{$form.fields|escape}>'>
+        <input type="hidden" name="fields_json" id="xcf-fields-json" value='<{$form.fields_text|escape}>'>
         <{$xoops_token}>
 
         <div class="xcp-tabs">
@@ -68,6 +68,14 @@
                 <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_SUCCESS_MSG}></label><input type="text" name="success_msg" value="<{$settings.success_msg|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUCCESS|escape}>"></div>
                 <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_NOTIFY_EMAIL}></label><input type="email" name="notify_email" value="<{$settings.notify_email|default:''|escape}>"><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_EMAIL_HINT}></small></div>
                 <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_EMAIL_SUBJECT}></label><input type="text" name="email_subject" value="<{$settings.email_subject|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUBJECT|escape}>"></div>
+                <!--
+                <div class="xcp-isp-fg">
+                    <label><{$smarty.const._AM_XCONTACT_SET_GOOGLE_MAPS}></label>
+                    <textarea name="google_maps"><{$settings.google_maps|escape}></textarea>
+                    <small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_GOOGLE_MAPS_HINT}></small>
+                </div>
+                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_TEMPLATE}></label><input type="text" name="form_template" value="<{$settings.template|default:''}>"></div>
+                -->
                 <label class="xcp-isp-toggle"><input type="checkbox" name="is_active" value="1"<{if !empty($form.is_active)}> checked<{/if}>> <{$smarty.const._AM_XCONTACT_SET_IS_ACTIVE}></label>
                 <label class="xcp-isp-toggle"><input type="checkbox" name="enable_captcha" value="1"<{if !empty($settings.enable_captcha)}> checked<{/if}>> <{$smarty.const._AM_XCONTACT_SET_CAPTCHA}></label>
                 <div style="margin-top:18px"><button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px"><{$icons.save}> <{$smarty.const._AM_XCONTACT_SAVE}></button></div>

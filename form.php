@@ -28,8 +28,8 @@ if (empty($formObj)) {
 }
 $form = $formObj->getValuesForms();
 
-$formFields   = json_decode($form['fields']   ?? '[]', true) ?: [];
-$formSettings = json_decode($form['settings'] ?? '{}', true) ?: [];
+$formFields   = $form['fields_decoded'];
+$formSettings = $form['settings_decoded'];
 $formId       = (int)$form['form_id'];
 $formSuccess  = false;
 $formError    = [];
@@ -77,7 +77,7 @@ if (!$formSuccess) {
     // Form Create when first call or after error
     $formsObj = $formsHandler->get($formId);
     $action = \XCONTACT_URL . '/' . basename(__FILE__);
-    $form = $formObj->getFormUI($action, $formData);
+    $form = $formObj->getFormUI($action, $formData, $formFields, $formSettings);
     $GLOBALS['xoopsTpl']->assign('form', $form->render());
 }
 

@@ -138,7 +138,7 @@ define('_AM_XCONTACT_FORMS_COL_SLUG',   'Slug / Kullanım');
 define('_AM_XCONTACT_FORMS_COL_FIELDS', 'Alan');
 define('_AM_XCONTACT_FORMS_COL_SUBS',   'Gönderi');
 define('_AM_XCONTACT_FORMS_COL_STATUS', 'Durum');
-define('_AM_XCONTACT_FORMS_FIELD_COUNT','alan');
+define('_AM_XCONTACT_FORMS_FIELDS_COUNT','alan');
 define('_AM_XCONTACT_FORMS_SUB_COUNT',  'gönderi');
 define('_AM_XCONTACT_FORMS_STATUS_ON',  'Aktif');
 define('_AM_XCONTACT_FORMS_STATUS_OFF', 'Pasif');

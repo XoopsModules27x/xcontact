@@ -52,8 +52,8 @@ function xcontact_block_form($options)
     $form = $formObj->getValuesForms();
 
     $formId       = (int)$form['form_id'];
-    $formFields   = json_decode($form['fields'] ?? '[]', true) ?: [];
-    $formSettings = json_decode($form['settings'] ?? '{}', true) ?: [];
+    $formFields   = $form['fields_decoded'];
+    $formSettings = $form['settings_decoded'];
     $formSuccess  = false;
     $formErrors   = [];
     $formData     = [];
@@ -108,7 +108,7 @@ function xcontact_block_form($options)
     $block['form'] = false;
     if (!$formSuccess) {
         // Form Create when first call or after error
-        $form = $formObj->getFormUI($currentUrl, $formData);
+        $form = $formObj->getFormUI($currentUrl, $formData, $formFields, $formSettings);
         $block['form'] = $form->render();
     }
 

@@ -99,8 +99,9 @@ switch ($op) {
         $f_name   = [];
         $f_type   = [];
         if (\is_object($formObj)) {
-            $formName = $formObj->getVar('name');
-            $fields   = json_decode($formObj->getVar('fields'),true);
+            $form = $formObj->getValuesForms();
+            $formName = $form['name'];
+            $fields   = $form['fields_decoded'];
             foreach($fields as $f){
                 if (!empty($f['name'])) {
                     if (isset($f['label'])) {
@@ -113,7 +114,8 @@ switch ($op) {
             }
         }
         // get data
-        $dataArr = json_decode($submissionsObj->getVar('data'),true)?:[];
+        $submission = $submissionsObj->getValuesSubmissions();
+        $dataArr = $submission['data_arr'];
         $data = [];
         foreach ($dataArr as $key => $sub) {
             $data[$key]['value'] = $sub;
@@ -128,7 +130,7 @@ switch ($op) {
 
         // assign all vars
         $GLOBALS['xoopsTpl']->assign('module_url',\XCONTACT_URL);
-        $GLOBALS['xoopsTpl']->assign('sub',$submissionsObj->getValuesSubmissions());
+        $GLOBALS['xoopsTpl']->assign('sub', $submission);
         $GLOBALS['xoopsTpl']->assign('form_name', $formName);
         $GLOBALS['xoopsTpl']->assign('f_name',$f_name);
         $GLOBALS['xoopsTpl']->assign('f_type',$f_type);
@@ -149,7 +151,8 @@ switch ($op) {
         }
         $subForm_id = $submissionsObj->getVar('form_id');
         // Get submitted data
-        $data = json_decode($submissionsObj->getVar('data'), true);
+        $submission = $submissionsObj->getValuesSubmissions();
+        $data = $submission['data_arr'];
         if (!is_array($data)) { $data = []; }
 
         if ($submissionsHandler->delete($submissionsObj)) {
@@ -157,7 +160,8 @@ switch ($op) {
             $fileFields = [];
             $formObj = $formsHandler->get($subForm_id);
             if (is_object($formObj)) {
-                $fields = json_decode($formObj->getVar('fields'), true) ?: [];
+                $form = $formObj->getValuesForms();
+                $fields = $form['fields_decoded'];
                 foreach ($fields as $f) {
                     if (isset($f['type'], $f['name']) && $f['type'] === 'file') {
                         $fileFields[] = $f['name'];
