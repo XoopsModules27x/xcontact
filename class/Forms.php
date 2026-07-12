@@ -226,7 +226,7 @@ class Forms extends \XoopsObject
                     $form->addElement($formEle[$fieldName], (bool)$cf_field['required']);
                     break;
                 case 'image_choice':
-                    $formEle[$fieldName] = new Forms\FormSelectImage($cf_field['label'],  $cf_field['name'], $formData[$fieldName] ?? '');
+                    $formEle[$fieldName] = new Forms\FormSelectImage($cf_field['label'],  $cf_field['name'], $formData[$fieldName] ?? []);
                     $formEle[$fieldName]->setType('checkbox');
                     $formEle[$fieldName]->setColsize('xcontact-col-' . $cf_field['width']);
                     $formEle[$fieldName]->setClass('xcontact-fg');
@@ -290,7 +290,7 @@ class Forms extends \XoopsObject
             }
         }
         // captcha
-        if ((bool)$formSettings['enable_captcha']) {
+        if ((bool)($formSettings['enable_captcha'] ?? false)) {
             $captchaHandler = new CaptchaHandler();
             $captcha = $captchaHandler->getInstance($helper->getConfig('captcha_type'));
             if ($element = $captcha->getFormElement()) {
@@ -324,26 +324,27 @@ class Forms extends \XoopsObject
         $ret =  $this->getValues($keys, $format, $maxDepth);
 
         // count fields
-        $fields = json_decode($this->getVar('fields', 'n') ?: '[]', true) ?: [];
+        $fieldsRaw = $this->getVar('fields', 'n') ?: '[]';
+        $fields = json_decode($fieldsRaw, true) ?: [];
         $ret['fields_decoded'] = $fields;
-        $ret['fields_text']    = $this->getVar('fields', 'n') ?: '[]';
+        $ret['fields_text']    = $fieldsRaw;
         $ret['fields_count']   = count($fields);
         $settings = json_decode($this->getVar('settings', 'n') ?: '{}', true) ?: [];
         $ret['settings_decoded'] = $settings;
         // get number of submissions total
         $crTotalSubs = new \CriteriaCompo();
-        $crTotalSubs->add(new \Criteria('form_id', $this->getVar('form_id')));
+        $crTotalSubs->add(new \Criteria('form_id', $ret['form_id']));
         $ret['total_subs'] = $submissionsHandler->getCount($crTotalSubs);
         // get number of new submissions
         $crNewSubs = new \CriteriaCompo();
-        $crNewSubs->add(new \Criteria('form_id', $this->getVar('form_id')));
+        $crNewSubs->add(new \Criteria('form_id', $ret['form_id']));
         $crNewSubs->add(new \Criteria('status', Constants::SUBMISSION_NEW));
         $ret['new_subs'] = $submissionsHandler->getCount($crNewSubs);
         // get truncated description
         $ret['description_short'] = \XoopsModules\Xcontact\Utility::truncateHtml($ret['description'], $truncateLength);
         // misc
-        $ret['tpl_tag'] = '{xcontact slug="' . $this->getVar('slug') . '"}';
-        $ret['url']     = \XOOPS_URL . '/modules/xcontact/form.php?slug=' . urlencode($this->getVar('slug'));
+        $ret['tpl_tag'] = '{xcontact slug="' . $ret['slug'] . '"}';
+        $ret['url']     = \XOOPS_URL . '/modules/xcontact/form.php?slug=' . urlencode($ret['slug']);
 
         return $ret;
     }

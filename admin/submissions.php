@@ -130,7 +130,7 @@ switch ($op) {
 
         // assign all vars
         $GLOBALS['xoopsTpl']->assign('module_url',\XCONTACT_URL);
-        $GLOBALS['xoopsTpl']->assign('sub',$submissionsObj->getValuesSubmissions());
+        $GLOBALS['xoopsTpl']->assign('sub', $submission);
         $GLOBALS['xoopsTpl']->assign('form_name', $formName);
         $GLOBALS['xoopsTpl']->assign('f_name',$f_name);
         $GLOBALS['xoopsTpl']->assign('f_type',$f_type);
