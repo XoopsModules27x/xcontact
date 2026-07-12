@@ -213,7 +213,7 @@ switch ($op) {
         $adminObject->addItemButton(\_AM_XCONTACT_FORMS_LIST, 'forms.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         $GLOBALS['xoopsTpl']->assign('form_header', $formId > 0 ? \_AM_XCONTACT_FORMS_EDIT : \_AM_XCONTACT_FORMS_NEW);
-        $GLOBALS['xoopsTpl']->assign('form', $formsObj->getValues());
+        $GLOBALS['xoopsTpl']->assign('form', $formsObj->getValuesForms());
         $GLOBALS['xoopsTpl']->assign('settings', \json_decode((string)$formSettings, true) ?: []);
         $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
         $GLOBALS['xoopsTpl']->assign('xoops_token', $GLOBALS['xoopsSecurity']->getTokenHTML());

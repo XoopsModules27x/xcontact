@@ -106,8 +106,8 @@ define('_AM_XCONTACT_SET_CAPTCHA',          'Enable CAPTCHA (type of CAPTCHA mus
 define('_AM_XCONTACT_SET_DEFAULT_SUCCESS',  'Your form has been submitted successfully. Thank you!');
 define('_AM_XCONTACT_SET_DEFAULT_SUBJECT',  'New Form Submission');
 define('_AM_XCONTACT_SET_SLUG_PLACEHOLDER', 'contact-form');
-define('_AM_XCONTACT_SET_GOOGLE_MAPS',      'Embed google maps');
-define('_AM_XCONTACT_SET_GOOGLE_MAPS_HINT', 'Enter iframe code for embed google maps');
+define('_AM_XCONTACT_SET_GOOGLE_MAPS',      'Embed Google Maps');
+define('_AM_XCONTACT_SET_GOOGLE_MAPS_HINT', 'Enter iframe code for embed Google Maps');
 define('_AM_XCONTACT_SET_TEMPLATE',         'Template for displaying form');
 // About page
 define('_AM_XCONTACT_ABOUT_TITLE',      'xcontact — Contact Form Builder');

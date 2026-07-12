@@ -71,7 +71,7 @@
                 <!--
                 <div class="xcp-isp-fg">
                     <label><{$smarty.const._AM_XCONTACT_SET_GOOGLE_MAPS}></label>
-                    <textarea name="google_maps" value="<{$settings.google_maps|escape}>"></textarea>
+                    <textarea name="google_maps"><{$settings.google_maps|escape}></textarea>
                     <small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_GOOGLE_MAPS_HINT}></small>
                 </div>
                 <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_TEMPLATE}></label><input type="text" name="form_template" value="<{$settings.template|default:''}>"></div>

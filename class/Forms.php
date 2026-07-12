@@ -87,7 +87,7 @@ class Forms extends \XoopsObject
      * @param array  $formSettings
      * @return \XoopsThemeForm
      */
-    public function getFormUI($action, $formData, $formFields, $formSettings)
+    public function getFormUI(string $action, array $formData, array $formFields, array $formSettings)
     {
         $helper = \XoopsModules\Xcontact\Helper::getInstance();
 
@@ -326,9 +326,9 @@ class Forms extends \XoopsObject
         // count fields
         $fields = json_decode($this->getVar('fields', 'n') ?: '[]', true) ?: [];
         $ret['fields_decoded'] = $fields;
-        $ret['fields_text']    = $this->getVar('fields', 'n');
+        $ret['fields_text']    = $this->getVar('fields', 'n') ?: '[]';
         $ret['fields_count']   = count($fields);
-        $settings = json_decode($this->getVar('settings', 'n') ?: '[]', true) ?: [];
+        $settings = json_decode($this->getVar('settings', 'n') ?: '{}', true) ?: [];
         $ret['settings_decoded'] = $settings;
         // get number of submissions total
         $crTotalSubs = new \CriteriaCompo();

@@ -98,7 +98,7 @@ class Submissions extends \XoopsObject
             $formName = $formsObj->getVar('name');
         }
         $ret['form_name']        = $formName;
-        $ret['data_arr']         = json_decode($this->getVar('data', 'n'), true) ? : [];
+        $ret['data_arr']         = json_decode($this->getVar('data', 'n'), true) ?: [];
         $ret['created_at_text']  = \formatTimestamp($this->getVar('created_at'), 's');
 
         return $ret;
