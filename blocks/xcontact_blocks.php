@@ -45,7 +45,7 @@ function xcontact_block_form($options)
     $GLOBALS['xoopsTpl']->assign('icons',$icons);
 
     // Get active forms
-    $formObj = $formsHandler->getFormBySlug($safeSlug, Constants::FORM_IS_ACTIVE);
+    $formObj = $formsHandler->getFormBySlug($safeSlug);
     if (false === $formObj) {
         return false;
     }

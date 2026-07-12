@@ -106,7 +106,9 @@ define('_AM_XCONTACT_SET_CAPTCHA',          'CAPTCHA’yı etkinleştir (modül 
 define('_AM_XCONTACT_SET_DEFAULT_SUCCESS',  'Formunuz başarıyla gönderildi. Teşekkürler!');
 define('_AM_XCONTACT_SET_DEFAULT_SUBJECT',  'Yeni Form Gönderisi');
 define('_AM_XCONTACT_SET_SLUG_PLACEHOLDER', 'iletisim-formu');
-
+define('_AM_XCONTACT_SET_GOOGLE_MAPS',      'Google Haritalar’ı Göm');
+define('_AM_XCONTACT_SET_GOOGLE_MAPS_HINT', 'Google Haritalar’ı gömmek için iframe kodunu girin');
+define('_AM_XCONTACT_SET_TEMPLATE',         'Formu görüntüleme şablonu');
 // About sayfası
 define('_AM_XCONTACT_ABOUT_TITLE',      'xcontact — İletişim Formu Oluşturucu');
 define('_AM_XCONTACT_ABOUT_MOD_NAME',   'Modül Adı');
@@ -195,7 +197,7 @@ define('_AM_XCONTACT_MAINTAINEDBY',   'Bakımını yapan');
 
 define('_AM_XCONTACT_FORM_OK', 'Başarıyla kaydedildi');
 define('_AM_XCONTACT_INVALID_FORM_ID', 'Geçersiz form kimliği');
-
 define('_AM_XCONTACT_CHECKED', 'Seçili');
 define('_AM_XCONTACT_NOT_CHECKED', 'Seçili değil');
 define('_AM_XCONTACT_DOWNLOAD', 'Dosyayı indir');
+define('_AM_XCONTACT_FORM_ERROR_SLUG', "'%s' formu halihazırda '%s' kısa adını (slug) kullanıyor! Lütfen farklı bir tane seçin!");
