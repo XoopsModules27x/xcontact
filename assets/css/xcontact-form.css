@@ -1,11 +1,12 @@
 
 .xcontact-wrap{max-width:680px;margin:0 auto;font-family:inherit}
 .xcontact-grid{display:flex;flex-wrap:wrap;margin:0 -8px;align-items:flex-start}
-.xcontact-col-12,.xcontact-col-6,.xcontact-col-4{padding:0 8px;box-sizing:border-box}
+.xcontact-col-12,.xcontact-col-8,.xcontact-col-6,.xcontact-col-4{padding:0 8px;box-sizing:border-box}
 .xcontact-col-12{width:100%;flex:0 0 100%}
+.xcontact-col-8{width:66.666%;flex:0 0 66.666%}
 .xcontact-col-6{width:50%;flex:0 0 50%}
 .xcontact-col-4{width:33.333%;flex:0 0 33.333%}
-@media(max-width:600px){.xcontact-col-6,.xcontact-col-4{width:100%;flex:0 0 100%}}
+@media(max-width:600px){.xcontact-col-8,.xcontact-col-6,.xcontact-col-4{width:100%;flex:0 0 100%}}
 .xcontact-fg{margin-bottom:16px}
 .xcontact-label{display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:5px}
 .xcontact-req{color:#e53935;margin-left:2px}

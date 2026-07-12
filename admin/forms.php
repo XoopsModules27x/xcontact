@@ -37,6 +37,14 @@ $GLOBALS['xoopsTpl']->assign('limit', $limit);
 $msg = Request::getString('msg');
 $GLOBALS['xoopsTpl']->assign('msg',$msg);
 
+if ('new' == $op || 'edit' == $op || 'clone' == $op) {
+    $formTpls = [];
+    foreach (glob(XOOPS_ROOT_PATH . '/modules/xcontact/templates/forms/*.tpl') ?: [] as $file) {
+        $formTpls[] = basename($file);
+    }
+    $GLOBALS['xoopsTpl']->assign('form_tpls', $formTpls);
+}
+
 switch ($op) {
     case 'list':
     default:
@@ -48,11 +56,15 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('forms_count', $formsCount);
         $GLOBALS['xoopsTpl']->assign('xcontact_url', \XCONTACT_URL);
         $GLOBALS['xoopsTpl']->assign('xcontact_upload_url', \XCONTACT_UPLOAD_URL);
+        $GLOBALS['xoopsTpl']->assign('xcontact_icons_url', \XCONTACT_ICONS_URL);
         // Table view forms
         if ($formsCount > 0) {
             foreach (\array_keys($formsAll) as $i) {
-                $forms = $formsAll[$i]->getValuesForms();
-                $GLOBALS['xoopsTpl']->append('forms_list', $forms);
+                $form = $formsAll[$i]->getValuesForms();
+                // check template file for this form
+                $fileTpl = \XCONTACT_PATH . '/templates/forms/' . $form['settings_decoded']['template'];
+                $form['template_status'] = \file_exists($fileTpl);
+                $GLOBALS['xoopsTpl']->append('forms_list', $form);
                 unset($forms);
             }
             // Display Navigation
@@ -209,7 +221,9 @@ switch ($op) {
             'success_msg'=>trim(Request::getString('success_msg', \_AM_XCONTACT_SET_DEFAULT_SUCCESS)),
             'notify_email'=>trim(Request::getString('notify_email')),
             'email_subject'=>trim(Request::getString('email_subject',\_AM_XCONTACT_SET_DEFAULT_SUBJECT)),
-            'enable_captcha'=>$enableCaptcha
+            'enable_captcha'=>$enableCaptcha,
+            'google_maps'=>trim(Request::getText('google_maps')),
+            'template'=>trim(Request::getString('template', 'default.tpl')),
         ],JSON_UNESCAPED_UNICODE);
         $formsObj->setVar('settings', $formSettings);
         $formsObj->setVar('is_active', Request::getInt('is_active'));

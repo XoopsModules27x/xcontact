@@ -92,7 +92,6 @@ $modversion['templates'] = [
 $modversion['templates'][] = ['file' => 'xcontact_index.tpl',      'description' => 'Form list'];
 $modversion['templates'][] = ['file' => 'xcontact_form.tpl',       'description' => 'View form'];
 
-
 // ── Module settings ────────────────────────────────────────────────────────────
 // ------------------- Group header: Display ------------------- //
 // group header

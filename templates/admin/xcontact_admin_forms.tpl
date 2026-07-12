@@ -24,6 +24,7 @@
             <th><{$smarty.const._AM_XCONTACT_FORMS_COL_FIELDS}></th>
             <th><{$smarty.const._AM_XCONTACT_FORMS_COL_SUBS}></th>
             <th><{$smarty.const._AM_XCONTACT_FORMS_COL_STATUS}></th>
+            <th><{$smarty.const._AM_XCONTACT_FORMS_COL_TEMPLATE}></th>
             <th><{$smarty.const._AM_XCONTACT_ACTIONS}></th>
         </tr></thead>
         <tbody>
@@ -50,6 +51,13 @@
                         <{$xoops_token}>
                     </form>
                 </td>
+                <td class="center">
+                    <{if $f.template_status|default:false}>
+                        <img src="<{$xcontact_icons_url|escape}>/32/success.png" alt="<{$smarty.const._AM_XCONTACT_FORM_TEMPLATE_SUCCESS}>" title="<{$smarty.const._AM_XCONTACT_FORM_TEMPLATE_SUCCESS}>" style="width:24px;">
+                    <{else}>
+                        <img src="<{$xcontact_icons_url|escape}>/32/broken.png" alt="<{$smarty.const._AM_XCONTACT_FORM_TEMPLATE_BROKEN}>" title="<{$smarty.const._AM_XCONTACT_FORM_TEMPLATE_BROKEN}>" style="width:24px;">
+                    <{/if}>
+                </td>
                 <td>
                     <a href="forms.php?op=edit&form_id=<{$f.form_id}>" class="xcp-btn xcp-btn--blue"><{$smarty.const._AM_XCONTACT_FORMS_BTN_EDIT}></a>
                     <a href="forms.php?op=clone&form_id_source=<{$f.form_id}>" class="xcp-btn xcp-btn--blue"><{$smarty.const._AM_XCONTACT_FORMS_BTN_CLONE}></a>
@@ -64,7 +72,7 @@
             </tr>
             <{/foreach}>
         <{else}>
-            <tr><td colspan="6" class="xcp-empty"><{$smarty.const._AM_XCONTACT_FORMS_EMPTY}> <a href="forms.php?op=new"><{$smarty.const._AM_XCONTACT_FORMS_CREATE_FIRST}> <{$icons.forward}></a></td></tr>
+            <tr><td colspan="7" class="xcp-empty"><{$smarty.const._AM_XCONTACT_FORMS_EMPTY}> <a href="forms.php?op=new"><{$smarty.const._AM_XCONTACT_FORMS_CREATE_FIRST}> <{$icons.forward}></a></td></tr>
         <{/if}>
         </tbody>
     </table>
