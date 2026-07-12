@@ -37,6 +37,7 @@
  - replaced move_uploaded_file by XoopsMediaUploader (goffy)
  - added file preview for uploaded files in submissions (goffy)
  - skip captcha for logged in members (goffy)
+ - added slug check (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]

@@ -112,6 +112,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('settings', $form['settings_decoded']);
         $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
         $GLOBALS['xoopsTpl']->assign('xoops_token', $GLOBALS['xoopsSecurity']->getTokenHTML());
+        $GLOBALS['xoopsTpl']->assign('is_edit',false);
         break;
     case 'new':
         $templateMain = 'xcontact_admin_form_edit.tpl';
@@ -158,6 +159,7 @@ switch ($op) {
         if (!$GLOBALS['xoopsSecurity']->check()) {
             \redirect_header('forms.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
+        $error = '';
         //ensure that data are sent by POST
         if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
             if ($formId > 0) {
@@ -179,6 +181,14 @@ switch ($op) {
         if ('' === $slug) {
             $slug = preg_replace('/[^a-z0-9\-]/','',strtolower($formName)) . '-' . time();
         }
+        // check whether slug already exists
+        $formsObjCheck = $formsHandler->getFormBySlug($slug, Constants::FORM_IS_ACTIVE);
+        if (\is_object($formsObjCheck) && (int)$formsObjCheck->getVar('form_id') !== $formId) {
+            $formNameCheck = $formsObjCheck->getVar('name');
+            $error = sprintf(_AM_XCONTACT_FORM_ERROR_SLUG, $formNameCheck, $slug);
+        }
+        unset($formsObjCheck);
+
         $formsObj->setVar('slug', $slug);
         $formsObj->setVar('description', trim(Request::getString('form_desc')));
         $fieldsJson = Request::getText('fields_json', '[]');
@@ -202,14 +212,16 @@ switch ($op) {
         $formsObj->setVar('created_at', time());
         $uidCurrent = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
         $formsObj->setVar('submitter', $uidCurrent);
-        // Insert Data
-        if ($formsHandler->insert($formsObj)) {
-            \redirect_header('forms.php?op=list&start=' . $start . '&limit=' . $limit, 2, \_AM_XCONTACT_FORM_OK);
+        if ('' === $error) {
+            // Insert Data
+            if ($formsHandler->insert($formsObj)) {
+                \redirect_header('forms.php?op=list&start=' . $start . '&limit=' . $limit, 2, \_AM_XCONTACT_FORM_OK);
+            }
+            $error = $formsObj->getHtmlErrors();
         }
         $templateMain = 'xcontact_admin_form_edit.tpl';
         // Get errors
-        $GLOBALS['xoopsTpl']->assign('error', $formsObj->getHtmlErrors());
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('forms.php'));
+        $GLOBALS['xoopsTpl']->assign('error', $error);
         $adminObject->addItemButton(\_AM_XCONTACT_FORMS_LIST, 'forms.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         $GLOBALS['xoopsTpl']->assign('form_header', $formId > 0 ? \_AM_XCONTACT_FORMS_EDIT : \_AM_XCONTACT_FORMS_NEW);
@@ -217,6 +229,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('settings', \json_decode((string)$formSettings, true) ?: []);
         $GLOBALS['xoopsTpl']->assign('module_url', \XCONTACT_URL . '/');
         $GLOBALS['xoopsTpl']->assign('xoops_token', $GLOBALS['xoopsSecurity']->getTokenHTML());
+        $GLOBALS['xoopsTpl']->assign('is_edit', $formId > 0);
         break;
     case 'delete':
         $templateMain = 'xcontact_admin_forms.tpl';
