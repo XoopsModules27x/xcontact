@@ -24,7 +24,7 @@ namespace XoopsModules\Xcontact;
  * @author       Eren Yumak — Aymak (aymak.net) / Goffy (wedega.com)
  */
 
-use XoopsModules\Xcontact;
+use XoopsModules\Xcontact\Constants;
 
 
 /**
@@ -123,16 +123,18 @@ class FormsHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * Get Forms by slug
+     * Get Forms by slug, by default only active
      * @param string $slug
-     * @param int    $is_active
+     * @param bool   $only_active
      * @return array
      */
-    public function getFormBySlug(string $slug, int $is_active)
+    public function getFormBySlug(string $slug, bool $only_active = true)
     {
         // Get active forms
         $crForms = new \CriteriaCompo();
-        $crForms->add(new \Criteria('is_active', $is_active));
+        if ($only_active) {
+            $crForms->add(new \Criteria('is_active', Constants::FORM_IS_ACTIVE));
+        }
         $crForms->add(new \Criteria('slug', $slug));
         $crForms->setLimit(1);
         $crForms->setSort('form_id');

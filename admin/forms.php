@@ -182,10 +182,14 @@ switch ($op) {
             $slug = preg_replace('/[^a-z0-9\-]/','',strtolower($formName)) . '-' . time();
         }
         // check whether slug already exists
-        $formsObjCheck = $formsHandler->getFormBySlug($slug, Constants::FORM_IS_ACTIVE);
+        $formsObjCheck = $formsHandler->getFormBySlug($slug, false);
         if (\is_object($formsObjCheck) && (int)$formsObjCheck->getVar('form_id') !== $formId) {
             $formNameCheck = $formsObjCheck->getVar('name');
-            $error = sprintf(_AM_XCONTACT_FORM_ERROR_SLUG, $formNameCheck, $slug);
+            $error = sprintf(
+            _AM_XCONTACT_FORM_ERROR_SLUG,
+                htmlspecialchars($formNameCheck, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'),
+                htmlspecialchars($slug, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')
+            );
         }
         unset($formsObjCheck);
 

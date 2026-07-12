@@ -6,7 +6,6 @@
 
 use Xmf\Request;
 use XoopsModules\Xcontact\{
-    Constants,
     Captcha\CaptchaHandler
 };
 
@@ -21,7 +20,7 @@ $slug = Request::getString('slug');
 $slug = preg_replace('/[^a-z0-9\-]/', '', strtolower($slug));
 
 $form = null;
-$formObj = $formsHandler->getFormBySlug($slug, Constants::FORM_IS_ACTIVE);
+$formObj = $formsHandler->getFormBySlug($slug);
 if (empty($formObj)) {
     \redirect_header('index.php', 3, \_MD_XCONTACT_FORM_NOT_FOUND);
     exit;
