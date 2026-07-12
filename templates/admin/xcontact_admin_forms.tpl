@@ -24,6 +24,7 @@
             <th><{$smarty.const._AM_XCONTACT_FORMS_COL_FIELDS}></th>
             <th><{$smarty.const._AM_XCONTACT_FORMS_COL_SUBS}></th>
             <th><{$smarty.const._AM_XCONTACT_FORMS_COL_STATUS}></th>
+            <th><{$smarty.const._AM_XCONTACT_FORMS_COL_TEMPLATE}></th>
             <th><{$smarty.const._AM_XCONTACT_ACTIONS}></th>
         </tr></thead>
         <tbody>
@@ -49,6 +50,13 @@
                         </button>
                         <{$xoops_token}>
                     </form>
+                </td>
+                <td class="center">
+                    <{if $f.template_status|default:false}>
+                        <img src="<{$xcontact_icons_url|escape}>/32/success.png" alt="<{$smarty.const._AM_XCONTACT_FORM_TEMPLATE_SUCCESS}>" title="<{$smarty.const._AM_XCONTACT_FORM_TEMPLATE_SUCCESS}>" style="width:24px;">
+                    <{else}>
+                        <img src="<{$xcontact_icons_url|escape}>/32/broken.png" alt="<{$smarty.const._AM_XCONTACT_FORM_TEMPLATE_BROKEN}>" title="<{$smarty.const._AM_XCONTACT_FORM_TEMPLATE_BROKEN}>" style="width:24px;">
+                    <{/if}>
                 </td>
                 <td>
                     <a href="forms.php?op=edit&form_id=<{$f.form_id}>" class="xcp-btn xcp-btn--blue"><{$smarty.const._AM_XCONTACT_FORMS_BTN_EDIT}></a>

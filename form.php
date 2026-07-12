@@ -74,6 +74,11 @@ $GLOBALS['xoopsTpl']->assign('xoops_pagetitle',     $form['name']);
 
 if (!$formSuccess) {
     // Form Create when first call or after error
+    $formTpl = $formSettings['template'] ?: 'default.tpl';
+    $GLOBALS['xoopsTpl']->assign(
+        'formTemplate',
+        'file:' . XOOPS_ROOT_PATH . '/modules/xcontact/templates/forms/' . $formTpl
+    );
     $formsObj = $formsHandler->get($formId);
     $action = \XCONTACT_URL . '/' . basename(__FILE__);
     $form = $formObj->getFormUI($action, $formData, $formFields, $formSettings);
