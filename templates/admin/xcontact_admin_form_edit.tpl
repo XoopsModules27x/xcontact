@@ -32,6 +32,73 @@
 .xcp-tab{padding:9px 18px;cursor:pointer;font-size:13px;font-weight:600;color:#666;border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-2px}
 .xcp-tab.active{color:#1976d2;border-bottom-color:#1976d2}
 .xcp-tab-panel{display:none}.xcp-tab-panel.active{display:block}
+/* info button */
+.xcp-help-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background-color: #1976d2;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: sans-serif;
+    cursor: pointer;
+    margin-left: 6px;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+.xcp-help-icon:hover {
+    background-color: #115293;
+}
+.xcp-help-icon::after {
+    content: attr(data-hint);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.85);
+    background-color: #fff;
+    border:1px solid #000;
+    color: #000;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+    white-space: normal;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: all 0.15s ease-in-out;
+    z-index: 9999;
+}
+/* arrow below Tooltip */
+.xcp-help-icon::before {
+    content: "";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #2a2a3d transparent transparent transparent;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: all 0.15s ease-in-out;
+    z-index: 9999;
+}
+/* Tooltip on Hover */
+.xcp-help-icon:hover::after, .xcp-help-icon:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+}
 </style>
 
 <!-- Header -->
@@ -62,19 +129,48 @@
         <div id="tab-settings" class="xcp-tab-panel<{if !$is_edit}> active<{/if}>">
             <div class="xcp-wrap" style="max-width:600px">
                 <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_NAME}></label><input type="text" name="form_name" value="<{$form.name|escape}>" required></div>
-                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_TITLE}></label><input type="text" name="form_title" value="<{$form.title|escape}>" ><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_FORM_TITLE_HINT}></small></div>
-                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_FORM_SLUG}></label><input type="text" name="form_slug" value="<{$form.slug|escape}>" placeholder="<{$smarty.const._AM_XCONTACT_SET_SLUG_PLACEHOLDER}>" pattern="[a-z0-9\-]+" required><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_SLUG_HINT}></small></div>
-                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_DESC}></label><textarea name="form_desc"><{$form.description|escape}></textarea></div>
-                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_SUCCESS_MSG}></label><input type="text" name="success_msg" value="<{$settings.success_msg|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUCCESS|escape}>"></div>
-                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_NOTIFY_EMAIL}></label><input type="email" name="notify_email" value="<{$settings.notify_email|default:''|escape}>"><small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_EMAIL_HINT}></small></div>
-                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_EMAIL_SUBJECT}></label><input type="text" name="email_subject" value="<{$settings.email_subject|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUBJECT|escape}>"></div>
                 <div class="xcp-isp-fg">
-                    <label for="google_maps"><{$smarty.const._AM_XCONTACT_SET_GOOGLE_MAPS}></label>
-                    <textarea id="google_maps" name="google_maps"><{$settings.google_maps|escape}></textarea>
-                    <small style="color:#888"><{$smarty.const._AM_XCONTACT_SET_GOOGLE_MAPS_HINT}></small>
+                    <label>
+                        <{$smarty.const._AM_XCONTACT_SET_FORM_TITLE}>
+                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_FORM_TITLE_HINT|escape:'javascript'}>">i</span>
+                    </label>
+                    <input type="text" name="form_title" value="<{$form.title|escape}>" >
                 </div>
                 <div class="xcp-isp-fg">
-                    <label><{$smarty.const._AM_XCONTACT_SET_TEMPLATE}></label>
+                    <label>
+                        <{$smarty.const._AM_XCONTACT_SET_FORM_SLUG}>
+                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_SLUG_HINT|escape:'javascript'}>">i</span>
+                    </label>
+                    <input type="text" name="form_slug" value="<{$form.slug|escape}>" placeholder="<{$smarty.const._AM_XCONTACT_SET_SLUG_PLACEHOLDER}>" pattern="[a-z0-9\-]+" required>
+                </div>
+                <div class="xcp-isp-fg">
+                    <label>
+                        <{$smarty.const._AM_XCONTACT_SET_DESC}>
+                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_DESC_HINT|escape:'javascript'}>">i</span>
+                    </label>
+                    <textarea name="form_desc"><{$form.description|escape}></textarea>
+                </div>
+                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_SUCCESS_MSG}></label><input type="text" name="success_msg" value="<{$settings.success_msg|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUCCESS|escape}>"></div>
+                <div class="xcp-isp-fg">
+                    <label>
+                        <{$smarty.const._AM_XCONTACT_SET_NOTIFY_EMAIL}>
+                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_EMAIL_HINT|escape:'javascript'}>">i</span>
+                    </label>
+                    <input type="email" name="notify_email" value="<{$settings.notify_email|default:''|escape}>">
+                </div>
+                <div class="xcp-isp-fg"><label><{$smarty.const._AM_XCONTACT_SET_EMAIL_SUBJECT}></label><input type="text" name="email_subject" value="<{$settings.email_subject|default:$smarty.const._AM_XCONTACT_SET_DEFAULT_SUBJECT|escape}>"></div>
+                <div class="xcp-isp-fg">
+                    <label for="google_maps">
+                        <{$smarty.const._AM_XCONTACT_SET_GOOGLE_MAPS}>
+                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_GOOGLE_MAPS_HINT|escape:'javascript'}>">i</span>
+                    </label>
+                    <textarea id="google_maps" name="google_maps"><{$settings.google_maps|escape}></textarea>
+                </div>
+                <div class="xcp-isp-fg">
+                    <label>
+                        <{$smarty.const._AM_XCONTACT_SET_TEMPLATE}>
+                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_TEMPLATE_HINT|escape:'javascript'}>">i</span>
+                    </label>
                     <select name="template">
                         <{foreach from=$form_tpls item=tpl}>
                             <option value="<{$tpl|escape}>"
@@ -85,7 +181,11 @@
                     </select>
                 </div>
                 <label class="xcp-isp-toggle"><input type="checkbox" name="is_active" value="1"<{if !empty($form.is_active)}> checked<{/if}>> <{$smarty.const._AM_XCONTACT_SET_IS_ACTIVE}></label>
-                <label class="xcp-isp-toggle"><input type="checkbox" name="enable_captcha" value="1"<{if !empty($settings.enable_captcha)}> checked<{/if}>> <{$smarty.const._AM_XCONTACT_SET_CAPTCHA}></label>
+                <label class="xcp-isp-toggle">
+                    <input type="checkbox" name="enable_captcha" value="1"<{if !empty($settings.enable_captcha)}> checked<{/if}>>
+                    <{$smarty.const._AM_XCONTACT_SET_CAPTCHA}>
+                    <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_CAPTCHA_HINT|escape:'javascript'}>">i</span>
+                </label>
                 <div style="margin-top:18px"><button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px"><{$icons.save}> <{$smarty.const._AM_XCONTACT_SAVE}></button></div>
             </div>
         </div>
@@ -321,4 +421,17 @@ document.addEventListener('DOMContentLoaded',function(){
     });
 });
 <{/literal}>
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.xcp-help-icon').forEach(function(icon) {
+            icon.addEventListener('click', function(e) {
+                e.preventDefault();
+                var text = this.getAttribute('data-hint');
+                if (text) {
+                    alert(text);
+                }
+            });
+        });
+    });
 </script>
