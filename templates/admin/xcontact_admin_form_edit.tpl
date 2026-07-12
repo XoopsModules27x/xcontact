@@ -61,7 +61,7 @@
     left: 50%;
     transform: translateX(-50%) scale(0.85);
     background-color: #fff;
-    border:1px solid #000;
+    border:1px solid #2a2a3d;
     color: #000;
     padding: 6px 10px;
     border-radius: 4px;
@@ -69,7 +69,7 @@
     font-weight: 400;
     line-height: 1.4;
     white-space: normal;
-    width: 300px;
+    width: 400px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     opacity: 0;
     pointer-events: none;
@@ -132,21 +132,21 @@
                 <div class="xcp-isp-fg">
                     <label>
                         <{$smarty.const._AM_XCONTACT_SET_FORM_TITLE}>
-                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_FORM_TITLE_HINT|escape:'javascript'}>">i</span>
+                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_FORM_TITLE_HINT|escape:'html'}>">i</span>
                     </label>
                     <input type="text" name="form_title" value="<{$form.title|escape}>" >
                 </div>
                 <div class="xcp-isp-fg">
                     <label>
                         <{$smarty.const._AM_XCONTACT_SET_FORM_SLUG}>
-                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_SLUG_HINT|escape:'javascript'}>">i</span>
+                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_SLUG_HINT|escape:'html'}>">i</span>
                     </label>
                     <input type="text" name="form_slug" value="<{$form.slug|escape}>" placeholder="<{$smarty.const._AM_XCONTACT_SET_SLUG_PLACEHOLDER}>" pattern="[a-z0-9\-]+" required>
                 </div>
                 <div class="xcp-isp-fg">
                     <label>
                         <{$smarty.const._AM_XCONTACT_SET_DESC}>
-                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_DESC_HINT|escape:'javascript'}>">i</span>
+                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_DESC_HINT|escape:'html'}>">i</span>
                     </label>
                     <textarea name="form_desc"><{$form.description|escape}></textarea>
                 </div>
@@ -154,7 +154,7 @@
                 <div class="xcp-isp-fg">
                     <label>
                         <{$smarty.const._AM_XCONTACT_SET_NOTIFY_EMAIL}>
-                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_EMAIL_HINT|escape:'javascript'}>">i</span>
+                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_EMAIL_HINT|escape:'html'}>">i</span>
                     </label>
                     <input type="email" name="notify_email" value="<{$settings.notify_email|default:''|escape}>">
                 </div>
@@ -162,14 +162,14 @@
                 <div class="xcp-isp-fg">
                     <label for="google_maps">
                         <{$smarty.const._AM_XCONTACT_SET_GOOGLE_MAPS}>
-                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_GOOGLE_MAPS_HINT|escape:'javascript'}>">i</span>
+                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_GOOGLE_MAPS_HINT|escape:'html'}>">i</span>
                     </label>
                     <textarea id="google_maps" name="google_maps"><{$settings.google_maps|escape}></textarea>
                 </div>
                 <div class="xcp-isp-fg">
                     <label>
                         <{$smarty.const._AM_XCONTACT_SET_TEMPLATE}>
-                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_TEMPLATE_HINT|escape:'javascript'}>">i</span>
+                        <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_TEMPLATE_HINT|escape:'html'}>">i</span>
                     </label>
                     <select name="template">
                         <{foreach from=$form_tpls item=tpl}>
@@ -184,7 +184,7 @@
                 <label class="xcp-isp-toggle">
                     <input type="checkbox" name="enable_captcha" value="1"<{if !empty($settings.enable_captcha)}> checked<{/if}>>
                     <{$smarty.const._AM_XCONTACT_SET_CAPTCHA}>
-                    <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_CAPTCHA_HINT|escape:'javascript'}>">i</span>
+                    <span class="xcp-help-icon" data-hint="<{$smarty.const._AM_XCONTACT_SET_CAPTCHA_HINT|escape:'html'}>">i</span>
                 </label>
                 <div style="margin-top:18px"><button type="submit" class="xcp-btn xcp-btn--green" style="padding:10px 24px"><{$icons.save}> <{$smarty.const._AM_XCONTACT_SAVE}></button></div>
             </div>
@@ -398,6 +398,16 @@ function xcfSync(){var h=document.getElementById('xcf-fields-json');if(h)h.value
 
 // Init
 document.addEventListener('DOMContentLoaded',function(){
+    // help icons
+    document.querySelectorAll('.xcp-help-icon').forEach(function(icon) {
+        icon.addEventListener('click', function(e) {
+            e.preventDefault();
+            var text = this.getAttribute('data-hint');
+            if (text) {
+                alert(text);
+            }
+        });
+    });
     // Palette drag
     document.querySelectorAll('.xcp-ft').forEach(function(el){
         el.addEventListener('dragstart',function(e){xcfDragType=el.getAttribute('data-type');xcfDragIdx=null;e.dataTransfer.effectAllowed='copy';});
@@ -421,17 +431,4 @@ document.addEventListener('DOMContentLoaded',function(){
     });
 });
 <{/literal}>
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.xcp-help-icon').forEach(function(icon) {
-            icon.addEventListener('click', function(e) {
-                e.preventDefault();
-                var text = this.getAttribute('data-hint');
-                if (text) {
-                    alert(text);
-                }
-            });
-        });
-    });
 </script>

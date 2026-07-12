@@ -104,14 +104,14 @@ include_once('common.php');
 \define('_AM_XCONTACT_SET_EMAIL_SUBJECT',    'E-posta Konusu');
 \define('_AM_XCONTACT_SET_IS_ACTIVE',        'Formu Aktif Et');
 \define('_AM_XCONTACT_SET_CAPTCHA',          'CAPTCHA’yı etkinleştir');
-\define('_AM_XCONTACT_SET_CAPTCHA_HINT',     'CAPTCHA türü modül tercihlerinden seçilmelidir; oturum açmış üyeler CAPTCHA adımını geçecektir.)');
+\define('_AM_XCONTACT_SET_CAPTCHA_HINT',     'CAPTCHA türü modül tercihlerinden seçilmelidir; oturum açmış üyeler CAPTCHA adımını geçecektir.');
 \define('_AM_XCONTACT_SET_DEFAULT_SUCCESS',  'Formunuz başarıyla gönderildi. Teşekkürler!');
 \define('_AM_XCONTACT_SET_DEFAULT_SUBJECT',  'Yeni Form Gönderisi');
 \define('_AM_XCONTACT_SET_SLUG_PLACEHOLDER', 'iletisim-formu');
 \define('_AM_XCONTACT_SET_GOOGLE_MAPS',      'Google Haritalar’ı Göm');
-\define('_AM_XCONTACT_SET_GOOGLE_MAPS_HINT', 'Google Haritalar’ı gömmek için iframe kodunu girin');
+\define('_AM_XCONTACT_SET_GOOGLE_MAPS_HINT', "Google Haritalar’ı gömmek için iframe kodunu girin. Doğru duyarlı görüntüleme için 'width=600' değerini 'width=100%' olarak değiştirin");
 \define('_AM_XCONTACT_SET_TEMPLATE',         'Formu görüntüleme şablonu');
-\define('_AM_XCONTACT_SET_TEMPLATE_HINT',    'Formu görüntülemek için bir şablon seçin. Kendi şablonunuzu oluşturup ../templates/forms/ klasörüne kopyaladığınızda, bu şablon açılır listede otomatik olarak görünecektir.');
+\define('_AM_XCONTACT_SET_TEMPLATE_HINT',    "Formu görüntülemek için bir şablon seçin. Kendi şablonunuzu oluşturup '../templates/forms/' klasörüne kopyaladığınızda, bu şablon açılır listede otomatik olarak görünecektir.");
 // About sayfası
 \define('_AM_XCONTACT_ABOUT_TITLE',      'xcontact — İletişim Formu Oluşturucu');
 \define('_AM_XCONTACT_ABOUT_MOD_NAME',   'Modül Adı');

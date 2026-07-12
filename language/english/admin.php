@@ -104,14 +104,14 @@ include_once('common.php');
 \define('_AM_XCONTACT_SET_EMAIL_SUBJECT',    'Email Subject');
 \define('_AM_XCONTACT_SET_IS_ACTIVE',        'Form Active');
 \define('_AM_XCONTACT_SET_CAPTCHA',          'Enable CAPTCHA');
-\define('_AM_XCONTACT_SET_CAPTCHA_HINT',     'The type of CAPTCHA must be selected in module preferences, logged in members will be skipped from CAPTCHA.)');
+\define('_AM_XCONTACT_SET_CAPTCHA_HINT',     'The type of CAPTCHA must be selected in module preferences, logged in members will be skipped from CAPTCHA.');
 \define('_AM_XCONTACT_SET_DEFAULT_SUCCESS',  'Your form has been submitted successfully. Thank you!');
 \define('_AM_XCONTACT_SET_DEFAULT_SUBJECT',  'New Form Submission');
 \define('_AM_XCONTACT_SET_SLUG_PLACEHOLDER', 'contact-form');
 \define('_AM_XCONTACT_SET_GOOGLE_MAPS',      'Embed Google Maps');
-\define('_AM_XCONTACT_SET_GOOGLE_MAPS_HINT', "Enter iframe code for embed Google Maps. For proper responsive displaying change width=600 into width=100%");
+\define('_AM_XCONTACT_SET_GOOGLE_MAPS_HINT', "Enter iframe code for embed Google Maps. For proper responsive displaying change 'width=600' into 'width=100%'");
 \define('_AM_XCONTACT_SET_TEMPLATE',         'Template for displaying form');
-\define('_AM_XCONTACT_SET_TEMPLATE_HINT',    'Select a template for displaying the form.You can create your own template, copy it into folder ../templates/forms/ and it will appear automatically here in the dropdown');
+\define('_AM_XCONTACT_SET_TEMPLATE_HINT',    "Select a template for displaying the form.You can create your own template, copy it into folder '../templates/forms/' and it will appear automatically here in the dropdown");
 // About page
 \define('_AM_XCONTACT_ABOUT_TITLE',      'xcontact — Contact Form Builder');
 \define('_AM_XCONTACT_ABOUT_MOD_NAME',   'Module Name');
