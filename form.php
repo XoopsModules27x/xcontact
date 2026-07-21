@@ -72,17 +72,20 @@ $GLOBALS['xoopsTpl']->assign('xcontact_success',    $formSuccess);
 $GLOBALS['xoopsTpl']->assign('xcontact_errors',     $formError);
 $GLOBALS['xoopsTpl']->assign('xoops_pagetitle',     $form['name']);
 
-// get template
-$formTpl      = $formSettings['template'] ?: 'default.tpl';
+// Get the selected form template, restricted to this module's forms directory.
+$formTpl = basename((string)($formSettings['template'] ?? ''));
+if ('' === $formTpl || 1 !== preg_match('/^[a-z0-9_.-]+\.tpl$/i', $formTpl)) {
+    $formTpl = 'default.tpl';
+}
 $templatePath = XOOPS_ROOT_PATH . '/modules/xcontact/templates/forms/' . $formTpl;
 if (!is_readable($templatePath)) {
     // Fallback to a known-good default template file
-    $template = XOOPS_ROOT_PATH . '/modules/xcontact/templates/forms/default.tpl';
+    $templatePath = XOOPS_ROOT_PATH . '/modules/xcontact/templates/forms/default.tpl';
 }
+$GLOBALS['xoopsTpl']->assign('formTemplate', 'file:' . $templatePath);
 
 if (!$formSuccess) {
     // Form Create when first call or after error
-    $GLOBALS['xoopsTpl']->assign('formTemplate', 'file:' . $templatePath);
     $formsObj = $formsHandler->get($formId);
     $action = \XCONTACT_URL . '/' . basename(__FILE__);
     $form = $formObj->getFormUI($action, $formData, $formFields, $formSettings);
