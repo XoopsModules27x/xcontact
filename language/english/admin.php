@@ -207,3 +207,5 @@ include_once('common.php');
 \define('_AM_XCONTACT_FORM_ERROR_SLUG', "The form '%s' is already using the slug '%s'! Please choose a different one!");
 \define('_AM_XCONTACT_FORM_TEMPLATE_SUCCESS', 'Template available');
 \define('_AM_XCONTACT_FORM_TEMPLATE_BROKEN', 'Template not available!');
+
+\define('_AM_XCONTACT_THEREARENO_FORMS', 'There are no forms.');
