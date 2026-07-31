@@ -3,8 +3,8 @@
 
 <{if $displaySampleButton|default:false}>
     <div class="xcp-header" style="justify-content: start;">
-        <a class="xcp-btn xcp-btn--green pull-left" href="../testdata/index.php?op=load" title="<{$smarty.const.CO_XCONTACT_ADD_SAMPLEDATA}>"><{$smarty.const.CO_XCONTACT_ADD_SAMPLEDATA}></a>
-        <a class="xcp-btn xcp-btn--green pull-left" href="../testdata/index.php?op=save" title="<{$smarty.const.CO_XCONTACT_SAVE_SAMPLEDATA}>"><{$smarty.const.CO_XCONTACT_SAVE_SAMPLEDATA}></a>
+        <a class="xcp-btn xcp-btn--green pull-left" href="../testdata/index.php?op=load" title="<{$smarty.const._CO_XCONTACT_ADD_SAMPLEDATA}>"><{$smarty.const._CO_XCONTACT_ADD_SAMPLEDATA}></a>
+        <a class="xcp-btn xcp-btn--green pull-left" href="../testdata/index.php?op=save" title="<{$smarty.const._CO_XCONTACT_SAVE_SAMPLEDATA}>"><{$smarty.const._CO_XCONTACT_SAVE_SAMPLEDATA}></a>
     </div>
 <{/if}>
 <div class="xcp-dashboard">

@@ -59,17 +59,17 @@ trait ServerStats
         //    $html .= '<li>' . constant('_CO_XCONTACT_REGISTERGLOBALS . $registerglobals;
 
         $downloads = \ini_get('file_uploads') ? '<span style="color: #008000;">' . \constant('_CO_XCONTACT_ON') . '</span>' : '<span style="color: #ff0000;">' . \constant('_CO_XCONTACT_OFF') . '</span>';
-        $html      .= '<li>' . \constant('_CO_XCONTACT_' . 'SERVERUPLOADSTATUS') . $downloads;
+        $html      .= '<li>' . \constant('_CO_XCONTACT_SERVERUPLOADSTATUS') . $downloads;
 
-        $html .= '<li>' . \constant('_CO_XCONTACT_' . 'MAXUPLOADSIZE') . ' <b><span style="color: #0000ff;">' . \ini_get('upload_max_filesize') . '</span></b>';
-        $html .= '<li>' . \constant('_CO_XCONTACT_' . 'MAXPOSTSIZE') . ' <b><span style="color: #0000ff;">' . \ini_get('post_max_size') . '</span></b>';
-        $html .= '<li>' . \constant('_CO_XCONTACT_' . 'MEMORYLIMIT') . ' <b><span style="color: #0000ff;">' . \ini_get('memory_limit') . '</span></b>';
+        $html .= '<li>' . \constant('_CO_XCONTACT_MAXUPLOADSIZE') . ' <b><span style="color: #0000ff;">' . \ini_get('upload_max_filesize') . '</span></b>';
+        $html .= '<li>' . \constant('_CO_XCONTACT_MAXPOSTSIZE') . ' <b><span style="color: #0000ff;">' . \ini_get('post_max_size') . '</span></b>';
+        $html .= '<li>' . \constant('_CO_XCONTACT_MEMORYLIMIT') . ' <b><span style="color: #0000ff;">' . \ini_get('memory_limit') . '</span></b>';
         $html .= '</ul>';
         $html .= '<ul>';
-        $html .= '<li>' . \constant('_CO_XCONTACT_' . 'SERVERPATH') . ' <b>' . XOOPS_ROOT_PATH . '</b>';
+        $html .= '<li>' . \constant('_CO_XCONTACT_SERVERPATH') . ' <b>' . XOOPS_ROOT_PATH . '</b>';
         $html .= '</ul>';
         $html .= '<br>';
-        $html .= \constant('_CO_XCONTACT_' . 'UPLOADPATHDSC') . '';
+        $html .= \constant('_CO_XCONTACT_UPLOADPATHDSC') . '';
         $html .= '</div>';
         $html .= '</fieldset><br>';
 

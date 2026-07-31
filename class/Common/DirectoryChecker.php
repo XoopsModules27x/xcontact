@@ -181,7 +181,7 @@ class DirectoryChecker
 
     private static function message(string $suffix, string $fallback): string
     {
-        $constant = 'CO_XCONTACT_' . $suffix;
+        $constant = '_CO_XCONTACT_' . $suffix;
 
         return defined($constant) ? (string)constant($constant) : $fallback;
     }
