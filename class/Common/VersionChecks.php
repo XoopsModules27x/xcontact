@@ -32,11 +32,8 @@ trait VersionChecks
             $module = \XoopsModule::getByDirname(self::consumerDirname());
         }
         $moduleDirName      = (string)$module->getVar('dirname');
-        $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
         $errorConstant      = '_CO_XCONTACT_ERROR_BAD_XOOPS';
-        if (!defined($errorConstant)) {
-            $errorConstant = '_CO_XCONTACT_ERROR_BAD_XOOPS';
-        }
+
         \xoops_loadLanguage('admin', $moduleDirName);
         \xoops_loadLanguage('common', $moduleDirName);
 
