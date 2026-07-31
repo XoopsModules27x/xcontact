@@ -20,92 +20,92 @@
 $moduleDirName      = \basename(\dirname(__DIR__, 2));
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
-\define('CO_' . $moduleDirNameUpper . '_GDLIBSTATUS', 'GD kütüphane desteği: ');
-\define('CO_' . $moduleDirNameUpper . '_GDLIBVERSION', 'GD Kütüphane sürümü: ');
-\define('CO_' . $moduleDirNameUpper . '_GDOFF', "<span style='font-weight: bold;'>Devre Dışı</span> (Küçük resimler kullanılamıyor)");
-\define('CO_' . $moduleDirNameUpper . '_GDON', "<span style='font-weight: bold;'>Etkin</span> (Küçük resimler kullanılabilir)");
-\define('CO_' . $moduleDirNameUpper . '_IMAGEINFO', 'Sunucu durumu');
-\define('CO_' . $moduleDirNameUpper . '_MAXPOSTSIZE', 'İzin verilen maksimum gönderi boyutu (php.ini içindeki post_max_size): ');
-\define('CO_' . $moduleDirNameUpper . '_MAXUPLOADSIZE', 'İzin verilen maksimum yükleme boyutu (php.ini içindeki upload_max_filesize): ');
-\define('CO_' . $moduleDirNameUpper . '_MEMORYLIMIT', 'Bellek sınırı (php.ini içindeki memory_limit): ');
-\define('CO_' . $moduleDirNameUpper . '_METAVERSION', "<span style='font-weight: bold;'>İndirmeler meta sürümü:</span> ");
-\define('CO_' . $moduleDirNameUpper . '_OFF', "<span style='font-weight: bold;'>KAPALI</span>");
-\define('CO_' . $moduleDirNameUpper . '_ON', "<span style='font-weight: bold;'>AÇIK</span>");
-\define('CO_' . $moduleDirNameUpper . '_SERVERPATH', 'XOOPS kök dizinine sunucu yolu: ');
-\define('CO_' . $moduleDirNameUpper . '_SERVERUPLOADSTATUS', 'Sunucu yükleme durumu: ');
-\define('CO_' . $moduleDirNameUpper . '_SPHPINI', "<span style='font-weight: bold;'>PHP ini dosyasından alınan bilgiler:</span>");
-\define('CO_' . $moduleDirNameUpper . '_UPLOADPATHDSC', 'Not: Yükleme yolu, yükleme klasörünüzün tam sunucu yolunu İÇERMELİDİR.');
+\define('_CO_XCONTACT_GDLIBSTATUS', 'GD kütüphane desteği: ');
+\define('_CO_XCONTACT_GDLIBVERSION', 'GD Kütüphane sürümü: ');
+\define('_CO_XCONTACT_GDOFF', "<span style='font-weight: bold;'>Devre Dışı</span> (Küçük resimler kullanılamıyor)");
+\define('_CO_XCONTACT_GDON', "<span style='font-weight: bold;'>Etkin</span> (Küçük resimler kullanılabilir)");
+\define('_CO_XCONTACT_IMAGEINFO', 'Sunucu durumu');
+\define('_CO_XCONTACT_MAXPOSTSIZE', 'İzin verilen maksimum gönderi boyutu (php.ini içindeki post_max_size): ');
+\define('_CO_XCONTACT_MAXUPLOADSIZE', 'İzin verilen maksimum yükleme boyutu (php.ini içindeki upload_max_filesize): ');
+\define('_CO_XCONTACT_MEMORYLIMIT', 'Bellek sınırı (php.ini içindeki memory_limit): ');
+\define('_CO_XCONTACT_METAVERSION', "<span style='font-weight: bold;'>İndirmeler meta sürümü:</span> ");
+\define('_CO_XCONTACT_OFF', "<span style='font-weight: bold;'>KAPALI</span>");
+\define('_CO_XCONTACT_ON', "<span style='font-weight: bold;'>AÇIK</span>");
+\define('_CO_XCONTACT_SERVERPATH', 'XOOPS kök dizinine sunucu yolu: ');
+\define('_CO_XCONTACT_SERVERUPLOADSTATUS', 'Sunucu yükleme durumu: ');
+\define('_CO_XCONTACT_SPHPINI', "<span style='font-weight: bold;'>PHP ini dosyasından alınan bilgiler:</span>");
+\define('_CO_XCONTACT_UPLOADPATHDSC', 'Not: Yükleme yolu, yükleme klasörünüzün tam sunucu yolunu İÇERMELİDİR.');
 
-\define('CO_' . $moduleDirNameUpper . '_PRINT', "<span style='font-weight: bold;'>Yazdır</span>");
-\define('CO_' . $moduleDirNameUpper . '_PDF', "<span style='font-weight: bold;'>PDF Oluştur</span>");
+\define('_CO_XCONTACT_PRINT', "<span style='font-weight: bold;'>Yazdır</span>");
+\define('_CO_XCONTACT_PDF', "<span style='font-weight: bold;'>PDF Oluştur</span>");
 
-\define('CO_' . $moduleDirNameUpper . '_UPGRADEFAILED0', "Güncelleme başarısız - '%s' alanı yeniden adlandırılamadı");
-\define('CO_' . $moduleDirNameUpper . '_UPGRADEFAILED1', "Güncelleme başarısız - yeni alanlar eklenemedi");
-\define('CO_' . $moduleDirNameUpper . '_UPGRADEFAILED2', "Güncelleme başarısız - '%s' tablosu yeniden adlandırılamadı");
-\define('CO_' . $moduleDirNameUpper . '_ERROR_COLUMN', 'Veritabanında sütun oluşturulamadı: %s');
-\define('CO_' . $moduleDirNameUpper . '_ERROR_BAD_XOOPS', 'Bu modül XOOPS %s+ gerektirir (%s yüklü)');
-\define('CO_' . $moduleDirNameUpper . '_ERROR_BAD_PHP', 'Bu modül PHP %s+ gerektirir (%s yüklü)');
-\define('CO_' . $moduleDirNameUpper . '_ERROR_TAG_REMOVAL', 'Tag modülündeki etiketler kaldırılamadı');
+\define('_CO_XCONTACT_UPGRADEFAILED0', "Güncelleme başarısız - '%s' alanı yeniden adlandırılamadı");
+\define('_CO_XCONTACT_UPGRADEFAILED1', "Güncelleme başarısız - yeni alanlar eklenemedi");
+\define('_CO_XCONTACT_UPGRADEFAILED2', "Güncelleme başarısız - '%s' tablosu yeniden adlandırılamadı");
+\define('_CO_XCONTACT_ERROR_COLUMN', 'Veritabanında sütun oluşturulamadı: %s');
+\define('_CO_XCONTACT_ERROR_BAD_XOOPS', 'Bu modül XOOPS %s+ gerektirir (%s yüklü)');
+\define('_CO_XCONTACT_ERROR_BAD_PHP', 'Bu modül PHP %s+ gerektirir (%s yüklü)');
+\define('_CO_XCONTACT_ERROR_TAG_REMOVAL', 'Tag modülündeki etiketler kaldırılamadı');
 
-\define('CO_' . $moduleDirNameUpper . '_FOLDERS_DELETED_OK', 'Yükleme klasörleri silindi');
+\define('_CO_XCONTACT_FOLDERS_DELETED_OK', 'Yükleme klasörleri silindi');
 
 // Error Msgs
-\define('CO_' . $moduleDirNameUpper . '_ERROR_BAD_DEL_PATH', '%s dizini silinemedi');
-\define('CO_' . $moduleDirNameUpper . '_ERROR_BAD_REMOVE', '%s silinemedi');
-\define('CO_' . $moduleDirNameUpper . '_ERROR_NO_PLUGIN', 'Eklenti yüklenemedi');
+\define('_CO_XCONTACT_ERROR_BAD_DEL_PATH', '%s dizini silinemedi');
+\define('_CO_XCONTACT_ERROR_BAD_REMOVE', '%s silinemedi');
+\define('_CO_XCONTACT_ERROR_NO_PLUGIN', 'Eklenti yüklenemedi');
 
 //Help
-\define('CO_' . $moduleDirNameUpper . '_BACK_2_ADMIN', 'Yönetim paneline geri dön: ');
-\define('CO_' . $moduleDirNameUpper . '_OVERVIEW', 'Genel Bakış');
+\define('_CO_XCONTACT_BACK_2_ADMIN', 'Yönetim paneline geri dön: ');
+\define('_CO_XCONTACT_OVERVIEW', 'Genel Bakış');
 
 //help multi-page
-\define('CO_' . $moduleDirNameUpper . '_DISCLAIMER', 'Sorumluluk Reddi');
-\define('CO_' . $moduleDirNameUpper . '_LICENSE', 'Lisans');
-\define('CO_' . $moduleDirNameUpper . '_SUPPORT', 'Destek');
+\define('_CO_XCONTACT_DISCLAIMER', 'Sorumluluk Reddi');
+\define('_CO_XCONTACT_LICENSE', 'Lisans');
+\define('_CO_XCONTACT_SUPPORT', 'Destek');
 
 //Sample Data
-\define('CO_' . $moduleDirNameUpper . '_' . 'ADD_SAMPLEDATA', 'Örnek Verileri İçe Aktar (mevcut TÜM veriler silinecektir)');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SAMPLEDATA_SUCCESS', 'Örnek veriler başarıyla içe aktarıldı');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA', 'Tabloları YAML olarak dışa aktar');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA_SUCCESS', 'Tablolar başarıyla YAML olarak dışa aktarıldı');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA_ERROR', 'HATA: Tabloların YAML dışa aktarımı başarısız oldu');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON', 'Örnek Veri düğmesi gösterilsin mi?');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON_DESC', 'Evet seçilirse, "Örnek Veri Ekle" düğmesi yöneticiye görünür olur. İlk kurulumda varsayılan olarak Evet seçilidir.');
-\define('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA', 'Veritabanı şemasını YAML olarak dışa aktar');
-\define('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA_SUCCESS', 'Veritabanı şeması başarıyla YAML olarak dışa aktarıldı');
-\define('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA_ERROR', 'HATA: Veritabanı şemasının YAML dışa aktarımı başarısız oldu');
-\define('CO_' . $moduleDirNameUpper . '_' . 'ADD_SAMPLEDATA_OK', 'Örnek verileri içe aktarmak istediğinizden emin misiniz? (Mevcut TÜM veriler silinecektir)');
-\define('CO_' . $moduleDirNameUpper . '_' . 'HIDE_SAMPLEDATA_BUTTONS', 'İçe aktarma düğmelerini gizle');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLEDATA_BUTTONS', 'İçe aktarma düğmelerini göster');
-\define('CO_' . $moduleDirNameUpper . '_' . 'CONFIRM', 'Onayla');
+\define('_CO_XCONTACT_ADD_SAMPLEDATA', 'Örnek Verileri İçe Aktar (mevcut TÜM veriler silinecektir)');
+\define('_CO_XCONTACT_SAMPLEDATA_SUCCESS', 'Örnek veriler başarıyla içe aktarıldı');
+\define('_CO_XCONTACT_SAVE_SAMPLEDATA', 'Tabloları YAML olarak dışa aktar');
+\define('_CO_XCONTACT_SAVE_SAMPLEDATA_SUCCESS', 'Tablolar başarıyla YAML olarak dışa aktarıldı');
+\define('_CO_XCONTACT_SAVE_SAMPLEDATA_ERROR', 'HATA: Tabloların YAML dışa aktarımı başarısız oldu');
+\define('_CO_XCONTACT_SHOW_SAMPLE_BUTTON', 'Örnek Veri düğmesi gösterilsin mi?');
+\define('_CO_XCONTACT_SHOW_SAMPLE_BUTTON_DESC', 'Evet seçilirse, "Örnek Veri Ekle" düğmesi yöneticiye görünür olur. İlk kurulumda varsayılan olarak Evet seçilidir.');
+\define('_CO_XCONTACT_EXPORT_SCHEMA', 'Veritabanı şemasını YAML olarak dışa aktar');
+\define('_CO_XCONTACT_EXPORT_SCHEMA_SUCCESS', 'Veritabanı şeması başarıyla YAML olarak dışa aktarıldı');
+\define('_CO_XCONTACT_EXPORT_SCHEMA_ERROR', 'HATA: Veritabanı şemasının YAML dışa aktarımı başarısız oldu');
+\define('_CO_XCONTACT_ADD_SAMPLEDATA_OK', 'Örnek verileri içe aktarmak istediğinizden emin misiniz? (Mevcut TÜM veriler silinecektir)');
+\define('_CO_XCONTACT_HIDE_SAMPLEDATA_BUTTONS', 'İçe aktarma düğmelerini gizle');
+\define('_CO_XCONTACT_SHOW_SAMPLEDATA_BUTTONS', 'İçe aktarma düğmelerini göster');
+\define('_CO_XCONTACT_CONFIRM', 'Onayla');
 
 //letter choice
-\define('CO_' . $moduleDirNameUpper . '_' . 'BROWSETOTOPIC', "<span style='font-weight: bold;'>Öğeleri alfabetik olarak görüntüle</span>");
-\define('CO_' . $moduleDirNameUpper . '_' . 'OTHER', 'Diğer');
-\define('CO_' . $moduleDirNameUpper . '_' . 'ALL', 'Tümü');
+\define('_CO_XCONTACT_BROWSETOTOPIC', "<span style='font-weight: bold;'>Öğeleri alfabetik olarak görüntüle</span>");
+\define('_CO_XCONTACT_OTHER', 'Diğer');
+\define('_CO_XCONTACT_ALL', 'Tümü');
 
 // block defines
-\define('CO_' . $moduleDirNameUpper . '_' . 'ACCESSRIGHTS', 'Erişim Hakları');
-\define('CO_' . $moduleDirNameUpper . '_' . 'ACTION', 'İşlem');
-\define('CO_' . $moduleDirNameUpper . '_' . 'ACTIVERIGHTS', 'Aktif Haklar');
-\define('CO_' . $moduleDirNameUpper . '_' . 'BADMIN', 'Blok Yönetimi');
-\define('CO_' . $moduleDirNameUpper . '_' . 'BLKDESC', 'Açıklama');
-\define('CO_' . $moduleDirNameUpper . '_' . 'CBCENTER', 'Orta Merkez');
-\define('CO_' . $moduleDirNameUpper . '_' . 'CBLEFT', 'Orta Sol');
-\define('CO_' . $moduleDirNameUpper . '_' . 'CBRIGHT', 'Orta Sağ');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SBLEFT', 'Sol');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SBRIGHT', 'Sağ');
-\define('CO_' . $moduleDirNameUpper . '_' . 'SIDE', 'Hizalama');
-\define('CO_' . $moduleDirNameUpper . '_' . 'TITLE', 'Başlık');
-\define('CO_' . $moduleDirNameUpper . '_' . 'VISIBLE', 'Görünür');
-\define('CO_' . $moduleDirNameUpper . '_' . 'VISIBLEIN', 'Şurada Görünür');
-\define('CO_' . $moduleDirNameUpper . '_' . 'WEIGHT', 'Sıra');
+\define('_CO_XCONTACT_ACCESSRIGHTS', 'Erişim Hakları');
+\define('_CO_XCONTACT_ACTION', 'İşlem');
+\define('_CO_XCONTACT_ACTIVERIGHTS', 'Aktif Haklar');
+\define('_CO_XCONTACT_BADMIN', 'Blok Yönetimi');
+\define('_CO_XCONTACT_BLKDESC', 'Açıklama');
+\define('_CO_XCONTACT_CBCENTER', 'Orta Merkez');
+\define('_CO_XCONTACT_CBLEFT', 'Orta Sol');
+\define('_CO_XCONTACT_CBRIGHT', 'Orta Sağ');
+\define('_CO_XCONTACT_SBLEFT', 'Sol');
+\define('_CO_XCONTACT_SBRIGHT', 'Sağ');
+\define('_CO_XCONTACT_SIDE', 'Hizalama');
+\define('_CO_XCONTACT_TITLE', 'Başlık');
+\define('_CO_XCONTACT_VISIBLE', 'Görünür');
+\define('_CO_XCONTACT_VISIBLEIN', 'Şurada Görünür');
+\define('_CO_XCONTACT_WEIGHT', 'Sıra');
 
-\define('CO_' . $moduleDirNameUpper . '_' . 'PERMISSIONS', 'İzinler');
-\define('CO_' . $moduleDirNameUpper . '_' . 'BLOCKS', 'Blok Yönetimi');
-\define('CO_' . $moduleDirNameUpper . '_' . 'BLOCKS_DESC', 'Blok/Grup Yönetimi');
+\define('_CO_XCONTACT_PERMISSIONS', 'İzinler');
+\define('_CO_XCONTACT_BLOCKS', 'Blok Yönetimi');
+\define('_CO_XCONTACT_BLOCKS_DESC', 'Blok/Grup Yönetimi');
 
-\define('CO_' . $moduleDirNameUpper . '_' . 'BLOCKS_MANAGMENT', 'Yönet');
-\define('CO_' . $moduleDirNameUpper . '_' . 'BLOCKS_ADDBLOCK', 'Yeni blok ekle');
-\define('CO_' . $moduleDirNameUpper . '_' . 'BLOCKS_EDITBLOCK', 'Blok düzenle');
-\define('CO_' . $moduleDirNameUpper . '_' . 'BLOCKS_CLONEBLOCK', 'Blok kopyala');
+\define('_CO_XCONTACT_BLOCKS_MANAGMENT', 'Yönet');
+\define('_CO_XCONTACT_BLOCKS_ADDBLOCK', 'Yeni blok ekle');
+\define('_CO_XCONTACT_BLOCKS_EDITBLOCK', 'Blok düzenle');
+\define('_CO_XCONTACT_BLOCKS_CLONEBLOCK', 'Blok kopyala');

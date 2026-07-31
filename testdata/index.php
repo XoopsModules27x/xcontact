@@ -45,7 +45,7 @@ switch ($op) {
             loadSampleData();
         } else {
             xoops_cp_header();
-            xoops_confirm(['ok' => 1, 'op' => 'load'], 'index.php', \constant('CO_' . $moduleDirNameUpper . '_' . 'ADD_SAMPLEDATA_OK'), \constant('CO_' . $moduleDirNameUpper . '_' . 'CONFIRM'));
+            xoops_confirm(['ok' => 1, 'op' => 'load'], 'index.php', \constant('_CO_XCONTACT_ADD_SAMPLEDATA_OK'), \constant('_CO_XCONTACT_CONFIRM'));
             xoops_cp_footer();
         }
         break;
@@ -95,7 +95,7 @@ function loadSampleData(): void
             Utility::rcopy($src, $dest);
         }
     }
-    \redirect_header('../admin/index.php', 1, \constant('CO_' . $moduleDirNameUpper . '_' . 'SAMPLEDATA_SUCCESS'));
+    \redirect_header('../admin/index.php', 1, \constant('_CO_XCONTACT_SAMPLEDATA_SUCCESS'));
 }
 
 function saveSampleData(): void
@@ -137,7 +137,7 @@ function saveSampleData(): void
             Utility::rcopy($src, $dest);
         }
     }
-    \redirect_header('../admin/index.php', 1, \constant('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA_SUCCESS'));
+    \redirect_header('../admin/index.php', 1, \constant('_CO_XCONTACT_SAVE_SAMPLEDATA_SUCCESS'));
 }
 
 function exportSchema(): void
@@ -150,9 +150,9 @@ function exportSchema(): void
         //        $migrate = new Xcontact\Migrate($moduleDirName);
         //        $migrate->saveCurrentSchema();
         //
-        //        \redirect_header('../admin/index.php', 1, \constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA_SUCCESS'));
+        //        \redirect_header('../admin/index.php', 1, \constant('_CO_XCONTACT_EXPORT_SCHEMA_SUCCESS'));
     } catch (\Exception $e) {
-        exit(\constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA_ERROR'));
+        exit(\constant('_CO_XCONTACT_EXPORT_SCHEMA_ERROR'));
     }
 }
 

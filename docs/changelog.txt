@@ -41,6 +41,7 @@
  - added possibility to show Google Maps iframe (goffy)
  - added template system (goffy)
  - added info buttons to form edit (goffy)
+ - updated lang files for usage as array (goffy)
 
 ==============================================================
 1.0.0 [2026/05/01]

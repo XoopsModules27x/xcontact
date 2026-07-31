@@ -37,5 +37,5 @@ define('_CO_XCONTACT_FB_TYPE_FEATURES', 'Features');
 define('_CO_XCONTACT_FB_TYPE_OTHERS', 'Misc');
 define('_CO_XCONTACT_FB_TYPE_CONTENT', 'Feedback content');
 define('_CO_XCONTACT_FB_SEND_FOR', 'Feedback for module ');
-define('_CO_XCONTACT_' . 'FB_SEND_SUCCESS', 'Feedback successfully sent');
-define('_CO_XCONTACT_' . 'FB_SEND_ERROR', 'An error occurred when feedback was sent!');
+define('_CO_XCONTACT_FB_SEND_SUCCESS', 'Feedback successfully sent');
+define('_CO_XCONTACT_FB_SEND_ERROR', 'An error occurred when feedback was sent!');
