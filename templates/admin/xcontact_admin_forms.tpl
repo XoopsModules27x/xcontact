@@ -14,8 +14,8 @@
         <a href="forms.php?op=new" class="xcp-btn xcp-btn--green"><{$icons.plus}> <{$smarty.const._AM_XCONTACT_FORMS_NEW}></a>
     </div>
     <div class="xcp-info">
-        <{$smarty.const._AM_XCONTACT_FORMS_BLOCK_INFO}><br>
-        <code><{$xoops_url}>/modules/xcontact/form.php?slug=SLUG</code>
+        <{$smarty.const._AM_XCONTACT_FORMS_BLOCK_INFO}>
+        <code><{$xoops_url|escape}>/modules/xcontact/form.php?slug=SLUG</code>
     </div>
     <table class="xcp-table">
         <thead><tr>
