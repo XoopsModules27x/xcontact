@@ -41,7 +41,7 @@ class MimeTypes
      */
     public static function getList()
     {
-        $ret = [
+        return [
             // images
             'gif' => 'image/gif',
             'jpeg' => 'image/jpeg',
@@ -61,8 +61,6 @@ class MimeTypes
             'csv' => 'text/comma-separated-values',
             'zip' => 'application/zip',
         ];
-
-        return $ret;
     }
 
 }

@@ -38,11 +38,10 @@ class CustomCaptcha implements CaptchaInterface
                 $cx = imagecolorallocate($im, random_int(10, 40), random_int(10, 60), random_int(100, 180));
                 imagestring($im, 5, 8 + $i * 23, random_int(8, 16), $code[$i], $cx);
             }
-            ob_start(); imagepng($im); $raw = ob_get_clean(); imagedestroy($im);
+            ob_start(); imagepng($im); $raw = ob_get_clean();
             $img_data = 'data:image/png;base64,' . base64_encode($raw);
         }
-        $ret = '';
-        $ret .= '<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-top:8px;padding-bottom:16px;">';
+        $ret = '<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-top:8px;padding-bottom:16px;">';
         if ('' !== $img_data) {
             $ret .= '<img src="' . $img_data . '" style="border:1px solid #ddd;border-radius:4px;height:44px" />';
         } else {

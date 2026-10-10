@@ -42,7 +42,7 @@ class GoogleCaptcha implements CaptchaInterface
             return true;
         }
         $isValid = false;
-        $recaptchaResponse = Request::getString('g-recaptcha-response', '');
+        $recaptchaResponse = Request::getString('g-recaptcha-response');
         if ($recaptchaResponse === '') {
             $this->error = 'Captcha missing';
             return false;
@@ -69,7 +69,6 @@ class GoogleCaptcha implements CaptchaInterface
                     $recaptchaCheck = [];
                 }
             }
-            curl_close($curlHandle);
         }
         if (false === $usedCurl) {
             $context = stream_context_create([

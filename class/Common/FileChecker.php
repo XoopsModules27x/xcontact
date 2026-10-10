@@ -116,7 +116,7 @@ class FileChecker
             return false;
         }
 
-        return @\chmod($target, self::normalizeMode($mode, 0644));
+        return @\chmod($target, self::normalizeMode($mode));
     }
 
     private static function isAllowedPath(string $path, ?string $allowedBasePath): bool
@@ -183,12 +183,12 @@ class FileChecker
         return realpath($current);
     }
 
-    private static function normalizeMode($mode, int $fallback): int
+    private static function normalizeMode($mode): int
     {
         $mode = (int)$mode;
         $allowedModes = [0644, 0664, 0755, 0775];
 
-        return in_array($mode, $allowedModes, true) ? $mode : $fallback;
+        return in_array($mode, $allowedModes, true) ? $mode : 0644;
     }
 
     private static function message(string $suffix, string $fallback): string

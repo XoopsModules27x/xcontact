@@ -161,16 +161,14 @@ class SysUtility
         $sql    = 'SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "' . $table . '" AND COLUMN_NAME = "' . $columnName . '"';
         $result = $GLOBALS['xoopsDB']->query($sql);
         if (!$GLOBALS['xoopsDB']->isResultSet($result) || !($result instanceof \mysqli_result)) {
-            \trigger_error(\sprintf(\_DB_QUERY_ERROR, $sql) . $GLOBALS['xoopsDB']->error(), \E_USER_ERROR);
+            \trigger_error(\sprintf(\_DB_QUERY_ERROR, $sql) . $GLOBALS['xoopsDB']->error());
         }
 
         $row = (($GLOBALS['xoopsDB']->isResultSet($result) && ($result instanceof \mysqli_result)) ? $GLOBALS['xoopsDB']->fetchBoth($result) : false);
         if (false === $row) {
             return [];
         }
-        $enumList = \explode(',', \str_replace("'", '', \mb_substr($row['COLUMN_TYPE'], 5, -6)));
-
-        return $enumList;
+        return \explode(',', \str_replace("'", '', \mb_substr($row['COLUMN_TYPE'], 5, -6)));
     }
 
     /**
@@ -318,8 +316,9 @@ class SysUtility
     }
 
     /**
-     * @param $fieldname
-     * @param $table
+     * @param string $fieldname
+     * @param string $table
+     * @return bool
      */
     public static function fieldExists(string $fieldname, string $table): bool
     {
@@ -368,13 +367,11 @@ class SysUtility
         $sql     = "INSERT INTO $table (" . \implode(', ', $columns) . ') VALUES (' . \implode(', ', $values) . ')';
         $result  = $GLOBALS['xoopsDB']->exec($sql);
         if (!$result) {
-            \trigger_error(\sprintf(\_DB_QUERY_ERROR, $sql) . $GLOBALS['xoopsDB']->error(), \E_USER_ERROR);
+            \trigger_error(\sprintf(\_DB_QUERY_ERROR, $sql) . $GLOBALS['xoopsDB']->error());
 
         }
         // Return the new id
-        $new_id = $GLOBALS['xoopsDB']->getInsertId();
-
-        return $new_id;
+        return $GLOBALS['xoopsDB']->getInsertId();
     }
 
     /**

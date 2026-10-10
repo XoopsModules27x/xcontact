@@ -116,7 +116,7 @@ function cloneFileFolder($path): void
         if ($handle) {
             while (false !== ($file = \readdir($handle))) {
                 if (0 !== \mb_strpos($file, '.')) {
-                    cloneFileFolder("{$path}/{$file}");
+                    cloneFileFolder("$path/$file");
                 }
             }
             \closedir($handle);
@@ -187,7 +187,6 @@ function createLogo($dirname)
     //imagecolortransparent($imageModule, $white);
 
     \imagepng($imageModule, $GLOBALS['xoops']->path('modules/' . $dirname . '/assets/images/logoModule.png'));
-    \imagedestroy($imageModule);
 
     return true;
 }
