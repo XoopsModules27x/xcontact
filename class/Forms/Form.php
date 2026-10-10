@@ -35,8 +35,6 @@ class Form extends \XoopsThemeForm
     /**
      * Render support for XoopsThemeForm
      *
-     * @param XoopsThemeForm $form form to render
-     *
      * @return string rendered form
      */
     public function render()

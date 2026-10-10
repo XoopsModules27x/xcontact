@@ -44,7 +44,7 @@ trait VersionChecks
         }
         $success = true;
 
-        if ($module->versionCompare($currentVer, $requiredVer, '<')) {
+        if ($module->versionCompare($currentVer, $requiredVer)) {
             $success = false;
             $module->setErrors(\sprintf(\constant($errorConstant), $requiredVer, $currentVer));
         }
@@ -55,7 +55,7 @@ trait VersionChecks
     /**
      * Verifies PHP version meets minimum requirements for this module
      * @static
-     * @param \XoopsModule|bool|null $module
+     * @param \XoopsModule|null $module
      *
      * @return bool true if meets requirements, false if not
      */

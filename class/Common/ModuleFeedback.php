@@ -93,7 +93,7 @@ class ModuleFeedback extends \XoopsObject
         $form->addElement($your_mail);
 
         $fbtypeSelect = new \XoopsFormSelect($this->constantValue($moduleDirNameUpper, 'FB_TYPE', 'Type'), 'fb_type', $this->type);
-        $fbtypeSelect->addOption('', '');
+        $fbtypeSelect->addOption('');
         foreach (['SUGGESTION' => 'Suggestion', 'BUGS' => 'Bug report', 'TESTIMONIAL' => 'Testimonial', 'FEATURES' => 'Feature request', 'OTHERS' => 'Other'] as $suffix => $fallback) {
             $label = $this->constantValue($moduleDirNameUpper, 'FB_TYPE_' . $suffix, $fallback);
             $fbtypeSelect->addOption($label, $label);

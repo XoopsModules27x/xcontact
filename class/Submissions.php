@@ -76,8 +76,7 @@ class Submissions extends \XoopsObject
      */
     public function getNewInsertedIdSubmissions()
     {
-        $newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
-        return $newInsertedId;
+        return $GLOBALS['xoopsDB']->getInsertId();
     }
 
     /**

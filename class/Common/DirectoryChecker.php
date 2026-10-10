@@ -83,7 +83,7 @@ class DirectoryChecker
         // https://www.php.net/manual/en/function.mkdir.php
         return \is_dir($target)
             || (self::createDirectory(\dirname($target), $mode, $allowedBasePath)
-                && (@\mkdir($target, self::normalizeMode($mode, 0755)) || \is_dir($target)));
+                && (@\mkdir($target, self::normalizeMode($mode)) || \is_dir($target)));
     }
 
     /**
@@ -96,7 +96,7 @@ class DirectoryChecker
             return false;
         }
 
-        return @\chmod($target, self::normalizeMode($mode, 0755));
+        return @\chmod($target, self::normalizeMode($mode));
     }
 
     /**
@@ -171,12 +171,12 @@ class DirectoryChecker
         return realpath($current);
     }
 
-    private static function normalizeMode($mode, int $fallback): int
+    private static function normalizeMode($mode): int
     {
         $mode = (int)$mode;
         $allowedModes = [0644, 0664, 0755, 0775];
 
-        return in_array($mode, $allowedModes, true) ? $mode : $fallback;
+        return in_array($mode, $allowedModes, true) ? $mode : 0755;
     }
 
     private static function message(string $suffix, string $fallback): string

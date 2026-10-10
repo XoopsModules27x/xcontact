@@ -28,7 +28,7 @@ function xcontact_generate_captcha(int $len = 5): array {
             $cx = imagecolorallocate($im, random_int(10, 40), random_int(10, 60), random_int(100, 180));
             imagestring($im, 5, 8 + $i * 23, random_int(8, 16), $code[$i], $cx);
         }
-        ob_start(); imagepng($im); $raw = ob_get_clean(); imagedestroy($im);
+        ob_start(); imagepng($im); $raw = ob_get_clean();
         $img_data = 'data:image/png;base64,' . base64_encode($raw);
     }
     return ['code' => $code, 'img' => $img_data];

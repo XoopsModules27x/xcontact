@@ -114,13 +114,9 @@ class Resizer
                     \imagegif($tmpimg, $this->endFile);
                     break;
             }
-
-            // release the memory
-            \imagedestroy($tmpimg);
         } else {
             return 'copy';
         }
-        \imagedestroy($img);
 
         return true;
     }
@@ -277,9 +273,6 @@ class Resizer
             default:
                 \imagejpeg($dest, $this->endFile, $this->jpgQuality);
         }
-
-        \imagedestroy($src);
-        \imagedestroy($dest);
     }
 
     /**
@@ -327,9 +320,6 @@ class Resizer
                 }
                 break;
         }
-
-        // release the memory
-        \imagedestroy($tmpimg);
 
         return true;
     }
