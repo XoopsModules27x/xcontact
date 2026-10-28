@@ -28,7 +28,7 @@ define('_MD_XCONTACT_FILL_FORM',         'Formu Doldurun →');
 define('_MD_XCONTACT_SUB_DATE_LABEL',  'Tarih');
 define('_MD_XCONTACT_NEW_SUBMISSION',  'Yeni Form Gönderisi');
 
-define('_MD_XCONTACT_INVALID_PARAMETER',  'Geçersiz Parametre');
+define('_MD_XCONTACT_INVALID_PARAM',  'Geçersiz Parametre');
 define('_MD_XCONTACT_FORM_UPLOAD_SIZE', 'Maksimum dosya boyutu: ');
 define('_MD_XCONTACT_FORM_UPLOAD_SIZE_MB', 'MB');
 define('_MD_XCONTACT_FORM_UPLOAD_FILETYPE', 'İzin verilen dosya türleri: ');

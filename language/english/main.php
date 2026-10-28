@@ -27,7 +27,7 @@ define('_MD_XCONTACT_FILL_FORM',         'Fill out form →');
 define('_MD_XCONTACT_SUB_DATE_LABEL',  'Date');
 define('_MD_XCONTACT_NEW_SUBMISSION',  'New Form Submission');
 
-define('_MD_XCONTACT_INVALID_PARAMETER',  'Invalid Parameter');
+define('_MD_XCONTACT_INVALID_PARAM',  'Invalid Parameter');
 define('_MD_XCONTACT_FORM_UPLOAD_SIZE', 'Max file size: ');
 define('_MD_XCONTACT_FORM_UPLOAD_SIZE_MB', 'MB');
 define('_MD_XCONTACT_FORM_UPLOAD_FILETYPE', 'Allowed file types: ');
